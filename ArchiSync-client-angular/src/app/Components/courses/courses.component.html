@@ -1,0 +1,26 @@
+<div class="courses-container">
+  @for (course of (this.courses$|async); track $index) {
+    <mat-card class="course-card">
+      <mat-card-header>
+        <mat-card-title class="course-title">{{ course.title| capitalize }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="course-actions">
+        <div class="button-container">
+          <button mat-raised-button class="course-button" [routerLink]="['./', course.id]">View</button>
+          @if((this.user)?.role === "student") {
+            <button mat-raised-button class="course-button" (click)="joinToCourse(course.id)">Join</button>
+          } @else {
+            <button mat-raised-button class="course-button" (click)="deleteTheCourse(course.id)">Delete</button>
+            <button mat-raised-button class="course-button" (click)="editTheCourse(course.id)">Edit</button>
+          }
+        </div>
+      </mat-card-content>
+    </mat-card>
+  }
+  <div class="add-course-container">
+    @if((this.user)?.role === "teacher") {
+      <button mat-raised-button class="add-course-button" (click)="addNewCourse()">Add New Course</button>
+    }
+  </div>
+  <router-outlet></router-outlet>
+</div>

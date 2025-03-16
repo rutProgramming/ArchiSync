@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "VBRA/pT0sCI=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Core\\ArchiSyncServer.Core.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\97250\\.nuget\\packages\\automapper\\14.0.0\\automapper.14.0.0.nupkg.sha512",
+    "C:\\Users\\97250\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\9.0.3\\microsoft.entityframeworkcore.abstractions.9.0.3.nupkg.sha512",
+    "C:\\Users\\97250\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\97250\\.nuget\\packages\\microsoft.extensions.options\\8.0.0\\microsoft.extensions.options.8.0.0.nupkg.sha512",
+    "C:\\Users\\97250\\.nuget\\packages\\microsoft.extensions.primitives\\8.0.0\\microsoft.extensions.primitives.8.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

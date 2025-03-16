@@ -1,0 +1,49 @@
+<mat-card>
+  <form [formGroup]="courseForm" (ngSubmit)="send()">
+    <h2>{{ action === 'add' ? 'Add Course' : 'Update Course' }}</h2>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Course Title</mat-label>
+      <input matInput formControlName="title">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Teacher ID</mat-label>
+      <input matInput formControlName="teacherId">
+    </mat-form-field>
+
+    <h3>Lessons</h3>
+    <div formArrayName="lessons">
+      <div class="lesson-container">
+        @for (lesson of getlessons().controls; track $index) {
+          <div [formGroupName]="$index">
+            <mat-form-field appearance="outline">
+              <mat-label>Lesson Title</mat-label>
+              <input matInput formControlName="title">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Lesson Content</mat-label>
+              <textarea matInput formControlName="content"></textarea>
+            </mat-form-field>
+
+            <button mat-button color="primary" (click)="removeLesson($index); $event.preventDefault(); ">Remove</button>
+          </div>
+        }
+      </div>
+    </div>
+
+    <button mat-button color="primary" (click)="addLesson()">Add Lesson</button>
+
+    <br><br>
+
+    <button type="submit" mat-raised-button color="primary">
+      {{ action === 'add' ? 'Add Course' : 'Update Course' }}
+    </button>
+  </form>
+</mat-card>
