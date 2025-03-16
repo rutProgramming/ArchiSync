@@ -1,0 +1,70 @@
+.courses-container {
+  font-family: 'Georgia', serif; /* פונט קלאסי */
+  padding: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  height: fit-content;
+  background: linear-gradient(135deg, #f0f0f0, #e8e8e8); /* רקע אפור בהיר עם גרדיאנט */
+}
+
+.course-card {
+  padding: 40px; /* הגדלת הריפוד */
+  border-radius: 20px; /* עיגול מעט גדול יותר */
+  height: fit-content;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* צל עדין */
+  transition: transform 0.3s ease-in-out;
+  background: rgba(255, 255, 255, 0.9); /* רקע שקוף לבן */
+  border: 1px solid #d0d0d0; /* גבול עדין */
+}
+
+.course-card:hover {
+  transform: translateY(-8px);
+}
+
+mat-card-title {
+  font-size: 28px; /* גודל פונט גדול יותר */
+  font-weight: 500;
+  color: #42a5f5; /* צבע כחול לכותרת */
+  letter-spacing: 1.2px;
+  margin-bottom: 15px; /* הגדלת המרווח */
+  text-align: center; /* יישור למרכז */
+}
+
+mat-card-subtitle {
+  color: #555; /* צבע אפור כהה יותר */
+  margin-bottom: 25px; /* הגדלת המרווח */
+  text-align: center; /* יישור למרכז */
+}
+
+mat-card-content div {
+  margin-bottom: 12px; /* הגדלת המרווח */
+  font-size: 18px; /* גודל פונט גדול יותר */
+  color: #444; /* צבע אפור כהה יותר */
+  line-height: 1.6; /* הגדלת גובה השורה */
+}
+
+mat-divider {
+  margin: 30px 0; /* הגדלת המרווח */
+  border-color: #e0e0e0; /* צבע גבול עדין */
+}
+
+.lesson-header {
+  font-size: 24px; /* גודל פונט גדול יותר */
+  color: #42a5f5; /* צבע כחול לכותרת */
+  margin-bottom: 20px; /* הגדלת המרווח */
+  text-align: center; /* יישור למרכז */
+}
+
+h4.mat-line {
+  font-size: 18px; /* גודל פונט גדול יותר */
+  color: #444;
+  margin-bottom: 10px; /* הגדלת המרווח */
+}
+
+p.mat-line {
+  color: #666;
+  margin-bottom: 15px; /* הגדלת המרווח */
+  font-size: 18px; /* גודל פונט גדול יותר */
+  line-height: 1.6; /* הגדלת גובה השורה */
+}

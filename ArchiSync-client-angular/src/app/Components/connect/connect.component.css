@@ -1,0 +1,98 @@
+.home-container {
+  font-family: 'Georgia', serif; /* פונט קלאסי עם קריצה מודרנית */
+  text-align: center;
+  padding: 180px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #f0f0f0, #e8e8e8); /* רקע אפור בהיר עם גרדיאנט */
+}
+
+.home-card {
+  max-width: 700px;
+  padding: 100px;
+  background: rgba(255, 255, 255, 0.9); /* רקע לבן שקוף מעט */
+  border-radius: 30px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15); /* צל עמוק */
+  border: 2px solid #e0e0e0; /* גבול עדין */
+  transition: transform 0.3s ease-in-out;
+}
+
+.home-card:hover {
+  transform: translateY(-15px);
+}
+
+.home-title {
+  font-size: 45px;
+  font-weight: 500;
+  margin-bottom: 70px;
+  color: #333;
+  letter-spacing: 1.5px;
+  text-transform: none;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.home-title::before,
+.home-title::after {
+  content: '';
+  position: absolute;
+  width: 50px;
+  height: 2px;
+  background-color: #333;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.home-title::before {
+  left: -70px;
+}
+
+.home-title::after {
+  right: -70px;
+}
+
+.home-content {
+  text-align: center;
+}
+
+.home-description {
+  font-size: 26px;
+  color: #555;
+  margin-bottom: 90px;
+  line-height: 1.9;
+  font-weight: 300;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.home-button {
+  padding: 25px 45px;
+  font-size: 24px;
+  border-radius: 14px;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  border: 2px solid #c0c0c0; /* גבול עבה יותר */
+  background: linear-gradient(135deg, #ffffff, #f8f8f8); /* גרדיאנט עדין לכפתורים */
+  color: #333;
+  font-weight: 400;
+}
+
+.home-button:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(135deg, #f8f8f8, #ffffff); /* גרדיאנט הפוך בהובר */
+}
+
+.sign-in {
+  border-color: #42a5f5;
+  color: #42a5f5;
+}
+
+.sign-up {
+  border-color: #ffc107;
+  color: #ffc107;
+}

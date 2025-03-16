@@ -1,0 +1,20 @@
+
+<div class="courses-container">
+  @for (course of (this.myCourses$|async); track $index) {
+    <mat-card class="course-card">
+      <mat-card-header>
+        <mat-card-title class="course-title">{{ course.title| capitalize }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-actions class="course-actions">
+        <button mat-raised-button  class="course-button" [routerLink]="'./' + course.id">View</button>
+        @if((this.user$)?.role == "student") {
+          <button mat-raised-button class="course-button" (click)="leaveTheCourse(course.id)">Leave</button>
+        }
+      </mat-card-actions>
+    </mat-card>
+  }
+  <div class="add-course-container">
+    
+  </div>
+  <router-outlet></router-outlet>
+</div>

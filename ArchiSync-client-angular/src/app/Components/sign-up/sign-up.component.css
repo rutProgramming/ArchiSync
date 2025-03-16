@@ -1,0 +1,94 @@
+.form-wrapper {
+  font-family: 'Georgia', serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-container {
+  max-width: 500px;
+}
+
+.form-card {
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  border: 2px solid #ffeb3b; /* צהוב בוהק */
+  padding: 80px;
+}
+
+.form-title {
+  font-size: 36px;
+  font-weight: 500;
+  margin-bottom: 50px;
+  color: #ffc107; /* צהוב כהה יותר לכותרת */
+  letter-spacing: 1.5px;
+  text-align: center;
+  position: relative;
+}
+
+.form-title::before,
+.form-title::after {
+  content: '';
+  position: absolute;
+  width: 50px;
+  height: 2px;
+  background-color: #ffc107; /* צהוב כהה לקווים */
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.form-title::before {
+  left: -70px;
+}
+
+.form-title::after {
+  right: -70px;
+}
+
+.form-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-field {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.submit-button {
+  padding: 18px 36px;
+  font-size: 20px;
+  border-radius: 12px;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  border: 2px solid #ffea00; /* צהוב בהיר ובוהק לכפתור */
+  background: linear-gradient(135deg, #ffeb3b, #fff59d); /* גרדיאנט צהוב לכפתור */
+  color: #333;
+  font-weight: 400;
+}
+
+.submit-button:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(135deg, #fff59d, #ffeb3b);
+}
+
+/* התאמת סלקטים */
+mat-select {
+  font-size: 18px;
+}
+
+mat-option {
+  font-size: 18px;
+}
+
+/* התאמת שדות קלט */
+mat-form-field {
+  font-size: 18px;
+}
+
+mat-label {
+  font-size: 18px;
+}
+
+input {
+  font-size: 18px;
+}

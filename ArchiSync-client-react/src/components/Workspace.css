@@ -1,0 +1,112 @@
+.workspace-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #111;
+    color: yellow;
+    text-align: center;
+  }
+  
+  .image-section {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+  }
+  
+  .image-preview {
+    width: 48%;
+    height: 60vh;
+    border: 2px dashed yellow;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    position: relative;
+  }
+  
+  canvas {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  
+  .output-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+  
+  .placeholder {
+    color: gray;
+  }
+  
+  .controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  input[type="file"],
+  input[type="text"] {
+    padding: 10px;
+    border: 1px solid yellow;
+    background: black;
+    color: yellow;
+    margin: 10px 0;
+    width: 300px;
+    text-align: center;
+  }
+  
+  .tools {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+  }
+  
+  button {
+    background-color: yellow;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  
+  button:hover {
+    background-color: orange;
+  }
+  .file-input-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+  }
+  
+  .file-input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+  }
+  
+  .file-button {
+    background-color: #FFD700;
+    color: black;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .file-button:hover {
+    background-color: #FFC107;
+  }
+  
