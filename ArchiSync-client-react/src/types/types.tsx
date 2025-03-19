@@ -19,4 +19,15 @@ export type Projects = {
     description: string,
    
 }
+
+export type Folder = {
+  Id: number,
+  Name: string,
+  OwnerId: number,
+  IsPublic:boolean
+ 
+}
 export type PartialProjects = Partial<Projects>
+export type PartialFolder = Partial<Folder>
+
+

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ArchiSyncServer.Core.Entities
 { 
-        public class ProjectOrFolder
+        public class Project
         {
             [Key]
             public int Id { get; set; }
@@ -15,20 +15,15 @@ namespace ArchiSyncServer.Core.Entities
             [Required, MaxLength(255)]
             public string Name { get; set; }
 
-            public int? ParentId { get; set; } // Nullable כי תיקיית שורש אין לה אבא
-            public virtual ProjectOrFolder Parent { get; set; }
-
+            public int? ParentId { get; set; } 
+            public virtual Project Parent { get; set; }
             public int OwnerId { get; set; }
             public virtual User Owner { get; set; }
-
             public bool IsPublic { get; set; } = true;
-
             public DateTime CreatedAt { get; set; } 
             public DateTime UpdatedAt { get; set; } 
-
-            //??public virtual ICollection<ProjectOrFolder> Children { get; set; } = new List<ProjectOrFolder>(); // תתי-תיקיות
-            public virtual ICollection<File> Files { get; set; } = new List<File>(); // קבצים בתוך הפרויקט/תיקייה
-            public virtual ICollection<ProjectPermission> Permissions { get; set; } = new List<ProjectPermission>(); // הרשאות
+            public virtual ICollection<File> Files { get; set; } = new List<File>(); 
+            public virtual ICollection<ProjectPermission> Permissions { get; set; } = new List<ProjectPermission>(); 
         }
     }
 

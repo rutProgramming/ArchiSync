@@ -482,144 +482,7 @@
         }
       }
     },
-    "/api/Project/{id}": {
-      "get": {
-        "tags": [
-          "Project"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProjectDTO"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProjectDTO"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProjectDTO"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Project"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ProjectPostModel"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ProjectPostModel"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/ProjectPostModel"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Project"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/api/Project": {
-      "get": {
-        "tags": [
-          "Project"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ProjectDTO"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ProjectDTO"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ProjectDTO"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
       "post": {
         "tags": [
           "Project"
@@ -639,54 +502,6 @@
             "application/*+json": {
               "schema": {
                 "$ref": "#/components/schemas/ProjectPostModel"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProjectDTO"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProjectDTO"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProjectDTO"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/ProjectOrFolder": {
-      "post": {
-        "tags": [
-          "ProjectOrFolder"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ProjectOrFolderPostModel"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ProjectOrFolderPostModel"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/ProjectOrFolderPostModel"
               }
             }
           }
@@ -698,10 +513,10 @@
         }
       }
     },
-    "/api/ProjectOrFolder/{id}": {
+    "/api/Project/{id}": {
       "put": {
         "tags": [
-          "ProjectOrFolder"
+          "Project"
         ],
         "parameters": [
           {
@@ -718,17 +533,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ProjectOrFolderDTO"
+                "$ref": "#/components/schemas/ProjectDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/ProjectOrFolderDTO"
+                "$ref": "#/components/schemas/ProjectDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/ProjectOrFolderDTO"
+                "$ref": "#/components/schemas/ProjectDTO"
               }
             }
           }
@@ -741,7 +556,7 @@
       },
       "delete": {
         "tags": [
-          "ProjectOrFolder"
+          "Project"
         ],
         "parameters": [
           {
@@ -762,7 +577,7 @@
       },
       "get": {
         "tags": [
-          "ProjectOrFolder"
+          "Project"
         ],
         "parameters": [
           {
@@ -782,10 +597,10 @@
         }
       }
     },
-    "/api/ProjectOrFolder/all": {
+    "/api/Project/all": {
       "get": {
         "tags": [
-          "ProjectOrFolder"
+          "Project"
         ],
         "responses": {
           "200": {
@@ -794,10 +609,10 @@
         }
       }
     },
-    "/api/ProjectOrFolder/architect": {
+    "/api/Project/architect": {
       "get": {
         "tags": [
-          "ProjectOrFolder"
+          "Project"
         ],
         "responses": {
           "200": {
@@ -806,10 +621,10 @@
         }
       }
     },
-    "/api/ProjectOrFolder/UserAccess": {
+    "/api/Project/UserAccess": {
       "get": {
         "tags": [
-          "ProjectOrFolder"
+          "Project"
         ],
         "responses": {
           "200": {
@@ -818,10 +633,10 @@
         }
       }
     },
-    "/api/ProjectOrFolder/public": {
+    "/api/Project/public": {
       "get": {
         "tags": [
-          "ProjectOrFolder"
+          "Project"
         ],
         "responses": {
           "200": {
@@ -830,15 +645,58 @@
         }
       }
     },
-    "/api/upload/presigned-url": {
+    "/api/Upload/upload-url": {
       "get": {
         "tags": [
           "Upload"
         ],
         "parameters": [
           {
+            "name": "userId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "fileName",
             "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "contentType",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Upload/download-url/{fileName}": {
+      "get": {
+        "tags": [
+          "Upload"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fileName",
+            "in": "path",
+            "required": true,
             "schema": {
               "type": "string"
             }
@@ -1139,12 +997,12 @@
             "type": "string",
             "nullable": true
           },
-          "projectOrFolderId": {
+          "projectId": {
             "type": "integer",
             "format": "int32"
           },
-          "projectOrFolder": {
-            "$ref": "#/components/schemas/ProjectOrFolder"
+          "project": {
+            "$ref": "#/components/schemas/Project"
           },
           "ownerId": {
             "type": "integer",
@@ -1181,40 +1039,7 @@
         },
         "additionalProperties": false
       },
-      "ProjectDTO": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
-          },
-          "isPublic": {
-            "type": "boolean"
-          },
-          "ownerId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updatedAt": {
-            "type": "string",
-            "format": "date-time"
-          }
-        },
-        "additionalProperties": false
-      },
-      "ProjectOrFolder": {
+      "Project": {
         "required": [
           "name"
         ],
@@ -1235,7 +1060,7 @@
             "nullable": true
           },
           "parent": {
-            "$ref": "#/components/schemas/ProjectOrFolder"
+            "$ref": "#/components/schemas/Project"
           },
           "ownerId": {
             "type": "integer",
@@ -1272,7 +1097,7 @@
         },
         "additionalProperties": false
       },
-      "ProjectOrFolderDTO": {
+      "ProjectDTO": {
         "required": [
           "name"
         ],
@@ -1293,7 +1118,7 @@
             "nullable": true
           },
           "parent": {
-            "$ref": "#/components/schemas/ProjectOrFolder"
+            "$ref": "#/components/schemas/Project"
           },
           "ownerId": {
             "type": "integer",
@@ -1316,67 +1141,9 @@
           "children": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ProjectOrFolder"
+              "$ref": "#/components/schemas/Project"
             },
             "nullable": true
-          },
-          "files": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/File"
-            },
-            "nullable": true
-          },
-          "permissions": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ProjectPermission"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "ProjectOrFolderPostModel": {
-        "required": [
-          "name"
-        ],
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "name": {
-            "maxLength": 255,
-            "minLength": 1,
-            "type": "string"
-          },
-          "parentId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "parent": {
-            "$ref": "#/components/schemas/ProjectOrFolder"
-          },
-          "ownerId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "owner": {
-            "$ref": "#/components/schemas/User"
-          },
-          "isPublic": {
-            "type": "boolean"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updatedAt": {
-            "type": "string",
-            "format": "date-time"
           },
           "files": {
             "type": "array",
@@ -1402,12 +1169,12 @@
             "type": "integer",
             "format": "int32"
           },
-          "projectOrFolderId": {
+          "projectId": {
             "type": "integer",
             "format": "int32"
           },
-          "projectOrFolder": {
-            "$ref": "#/components/schemas/ProjectOrFolder"
+          "project": {
+            "$ref": "#/components/schemas/Project"
           },
           "userId": {
             "type": "integer",
@@ -1423,19 +1190,22 @@
         "additionalProperties": false
       },
       "ProjectPostModel": {
+        "required": [
+          "name"
+        ],
         "type": "object",
         "properties": {
-          "title": {
-            "type": "string",
-            "nullable": true
+          "name": {
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string"
           },
-          "description": {
-            "type": "string",
-            "nullable": true
-          },
-          "userId": {
+          "ownerId": {
             "type": "integer",
             "format": "int32"
+          },
+          "isPublic": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false

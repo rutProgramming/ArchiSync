@@ -1,101 +1,236 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using AutoMapper;
-using ArchiSyncServer.API.Models;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ArchiSyncServer.Core.DTOs;
-using ArchiSyncServer.Core.Iservices;
-using System;
+using ArchiSyncServer.Core.IServices;
+using System.Collections.Generic;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using ArchiSyncServer.API.Models;
+using AutoMapper;
 
-namespace ArchiSyncServer.Api.Controllers
+namespace ArchiSyncServer.API.Controllers
 {
-    [ApiController]
     [Route("api/[controller]")]
+    [ApiController]
     public class ProjectController : ControllerBase
     {
-        private readonly IProjectService _projectService;
+        private readonly IProjectService _ProjectService;
         private readonly IMapper _mapper;
 
-        public ProjectController(IProjectService projectService, IMapper mapper)
+        public ProjectController(IProjectService ProjectService, IMapper mapper)
         {
-            _projectService = projectService;
+            _ProjectService = ProjectService;
             _mapper = mapper;
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<ProjectDTO>> Get(int id)
-        {
-            try
-            {
-                var project = await _projectService.GetProjectAsync(id);
-                return Ok(project);
-            }
-            catch (ArgumentException ex)
-            {
-                return BadRequest(new { message = ex.Message });
-            }
-            catch (KeyNotFoundException)
-            {
-                return NotFound(new { message = "Project not found." });
-            }
-        }
+        private int GetUserId() => int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
+        private string GetUserRole() => User.FindFirst(ClaimTypes.Role)?.Value ?? "";
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<ProjectDTO>>> Get()
-        {
-            var projects = await _projectService.GetAllProjectsAsync();
-            return Ok(projects);
-        }
-
+        // POST: api/Project
+        [Authorize(Policy = "ArchitectOnly")]
         [HttpPost]
-        public async Task<ActionResult<ProjectDTO>> Post([FromBody] ProjectPostModel projectPostModel)
+
+        public async Task<IActionResult> CreateProject([FromBody] ProjectPostModel projectPostModel)
         {
             try
             {
+                projectPostModel.OwnerId = GetUserId();
+                if(!await _ProjectService.IsProjectNameUniqueAsync(projectPostModel.OwnerId, projectPostModel.Name))
+                {
+                    return Conflict("Project name already exists.");
+                }
                 var projectDto = _mapper.Map<ProjectDTO>(projectPostModel);
-                var createdProject = await _projectService.CreateProjectAsync(projectDto);
-                return CreatedAtAction(nameof(Get), new { id = createdProject.Id }, createdProject);
+                var createdProject = await _ProjectService.CreateProjectAsync(projectDto);
+                return CreatedAtAction(nameof(GetProject), new { id = createdProject.Id }, createdProject);
+            }
+            catch (ArgumentNullException ex)
+            {
+                return BadRequest(ex.Message);
             }
             catch (ArgumentException ex)
             {
-                return BadRequest(new { message = ex.Message });
+                return Conflict(ex.Message);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "An unexpected error occurred.");
             }
         }
 
+        // PUT: api/Project/{id}
+        [Authorize(Roles = "admin,architect")]
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] ProjectPostModel projectPostModel)
+        public async Task<IActionResult> UpdateProject(int id, [FromBody] ProjectDTO projectPostModel)
         {
             try
             {
+                if (projectPostModel.Id != id)
+                {
+                    return BadRequest("Project ID mismatch.");
+                }
+
+                var userId = GetUserId();
+                var userRole = GetUserRole();
+
+                if (userRole != "admin" && projectPostModel.OwnerId != userId)
+                {
+                    return Forbid("You do not have permission to update this project.");
+                }
+
                 var projectDto = _mapper.Map<ProjectDTO>(projectPostModel);
-                //await _projectService.UpdateProjectAsync(id, projectDto);
+                await _ProjectService.UpdateProjectAsync(id,projectDto);
                 return NoContent();
+            }
+            catch (ArgumentNullException ex)
+            {
+                return BadRequest(ex.Message);
             }
             catch (ArgumentException ex)
             {
-                return BadRequest(new { message = ex.Message });
+                return NotFound(ex.Message);
             }
-            catch (KeyNotFoundException)
+            catch (UnauthorizedAccessException ex)
             {
-                return NotFound(new { message = "Project not found." });
+                return Forbid(ex.Message);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "An unexpected error occurred.");
             }
         }
 
+        // DELETE: api/Project/{id}
+        [Authorize(Roles = "admin,architect")]
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> DeleteProject(int id)
         {
             try
             {
-                await _projectService.DeleteProjectAsync(id);
+                var userId = GetUserId();
+                var userRole = GetUserRole();
+
+                var project = await _ProjectService.GetProjectAsync(id);
+                if (project == null)
+                {
+                    return NotFound("Project not found.");
+                }
+
+                if (userRole != "admin" && project.OwnerId != userId)
+                {
+                    return Forbid("You do not have permission to delete this project.");
+                }
+
+                await _ProjectService.DeleteProjectAsync(id);
                 return NoContent();
             }
             catch (ArgumentException ex)
             {
-                return BadRequest(new { message = ex.Message });
+                return NotFound(ex.Message);
             }
-            catch (KeyNotFoundException)
+            catch (UnauthorizedAccessException ex)
             {
-                return NotFound(new { message = "Project not found." });
+                return Forbid(ex.Message);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "An unexpected error occurred.");
+            }
+        }
+
+        // GET: api/Project/{id}
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetProject(int id)
+        {
+            try
+            {
+                var project = await _ProjectService.GetProjectAsync(id);
+                if (project == null)
+                {
+                    return NotFound("Project not found.");
+                }
+
+                var userId = GetUserId();
+                var userRole = GetUserRole();
+
+                if (project.IsPublic || userRole == "admin" || project.OwnerId == userId)
+                {
+                    return Ok(project);
+                }
+
+                var accessibleProjects = await _ProjectService.GetUserAccessibleProjectsAsync(userId);
+                if (accessibleProjects.Any(p => p.Id == id))
+                {
+                    return Ok(project);
+                }
+
+                return Forbid();
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "An unexpected error occurred.");
+            }
+        }
+
+        // GET: api/Project/all
+        [Authorize(Policy = "AdminOnly")]
+        [HttpGet("all")]
+        public async Task<IActionResult> GetAllProjects()
+        {
+            try
+            {
+                var projects = await _ProjectService.GetAllProjectsAsync();
+                return Ok(projects);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "An unexpected error occurred.");
+            }
+        }
+
+        // GET: api/Project/architect
+        [Authorize(Policy = "ArchitectOnly")]
+        [HttpGet("architect")]
+        public async Task<IActionResult> GetArchitectProjects()
+        {
+            try
+            {
+                var projects = await _ProjectService.GetArchitectProjectsAsync(GetUserId());
+                return Ok(projects);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "An unexpected error occurred.");
+            }
+        }
+
+        // GET: api/Project/user
+        [Authorize(Policy = "UserAccess")]
+        [HttpGet("UserAccess")]
+
+        public async Task<IActionResult> GetUserAccessibleProjects()
+        {
+
+            try
+            {
+                var projects = await _ProjectService.GetUserAccessibleProjectsAsync(GetUserId());
+                return Ok(projects);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "An unexpected error occurred.");
+            }
+        }
+        [HttpGet("public")]
+        public async Task<IActionResult> GetPublicProjects()
+        {
+            try
+            {
+                var projects = await _ProjectService.GetPublicProjectsAsync();
+                return Ok(projects);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "An unexpected error occurred.");
             }
         }
     }

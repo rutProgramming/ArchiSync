@@ -2,14 +2,15 @@ import { configureStore } from "@reduxjs/toolkit";
 import urlReducer from "./UrlSlice";
 import idReducer from "./IdSlice";
 import userReducer from "./Connect"; 
-import ProgectsReducer from "./ProjectRedux";
+import ProgectsReducer from "./Folder";
 
 const store = configureStore({
     reducer: {
         connect: userReducer, 
         Projects:ProgectsReducer,
         url: urlReducer,   
-        id: idReducer,     
+        id: idReducer, 
+        projects: ProgectsReducer    
     },
 });
    

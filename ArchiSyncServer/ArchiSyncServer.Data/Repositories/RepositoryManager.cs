@@ -13,7 +13,7 @@ namespace ArchiSyncServer.Data.Repositories
     public class RepositoryManager : IRepositoryManager
     {
         private readonly ApplicationDbContext _context;
-        private readonly IProjectOrFolderRepository _projectOrFolderRepository;
+        private readonly IProjectRepository _ProjectRepository;
         private readonly IProjectRepository _projectRepository;
         private readonly IProjectPermissionRepository _projectPermission;
         private readonly ICommentRepository _commentRepository;
@@ -24,7 +24,7 @@ namespace ArchiSyncServer.Data.Repositories
         public RepositoryManager(ApplicationDbContext context)
         {
             _context = context;
-            _projectOrFolderRepository = new ProjectOrFolderRepository(context);
+            _ProjectRepository = new ProjectRepository(context);
             _projectRepository = new ProjectRepository(context);
             _projectPermission = new ProjectPermissionRepository(context);
             _commentRepository = new CommentRepository(context);
@@ -33,11 +33,7 @@ namespace ArchiSyncServer.Data.Repositories
             userRolesRepository = new UserRolesRepository(context);
         }
 
-        public IProjectOrFolderRepository ProjectorFolder => _projectOrFolderRepository;
-
-        public IProjectOrFolderRepository ProjectOrFolder => throw new NotImplementedException();
-
-        public IProjectRepository Project => _projectRepository;
+        public IProjectRepository Project => _ProjectRepository;
         public IProjectPermissionRepository projectPermission => _projectPermission;
         public ICommentRepository Comment => _commentRepository;
         public IUserRepository User => _userRepository;

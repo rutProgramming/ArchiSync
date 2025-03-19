@@ -1,0 +1,26 @@
+.button-primary {
+    background-color: black;
+    color: yellow;
+    border-color: yellow;
+    box-shadow: 0 0 10px yellow;
+}
+
+.button-secondary {
+    background-color: black;
+    color: white;
+    border-color: white;
+    box-shadow: 0 0 10px white;
+}
+
+
+.button-primary:hover {
+    box-shadow: 0 0 20px yellow;
+    background-color: yellow;
+    color: black;
+}
+
+.button-secondary:hover {
+    box-shadow: 0 0 20px white;
+    background-color: white;
+    color: black;
+}

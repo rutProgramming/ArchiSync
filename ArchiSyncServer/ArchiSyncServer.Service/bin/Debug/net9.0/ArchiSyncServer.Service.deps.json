@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v9.0": {
       "ArchiSyncServer.Service/1.0.0": {
         "dependencies": {
+          "AWSSDK.S3": "4.0.0-preview.10",
           "ArchiSyncServer.Core": "1.0.0",
           "Microsoft.AspNetCore.Cryptography.KeyDerivation": "9.0.3",
           "Microsoft.Extensions.Configuration.Abstractions": "9.0.3",
@@ -28,6 +29,25 @@
           "lib/net8.0/AutoMapper.dll": {
             "assemblyVersion": "14.0.0.0",
             "fileVersion": "14.0.0.0"
+          }
+        }
+      },
+      "AWSSDK.Core/4.0.0-preview.10": {
+        "runtime": {
+          "lib/net8.0/AWSSDK.Core.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
+          }
+        }
+      },
+      "AWSSDK.S3/4.0.0-preview.10": {
+        "dependencies": {
+          "AWSSDK.Core": "4.0.0-preview.10"
+        },
+        "runtime": {
+          "lib/net8.0/AWSSDK.S3.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
           }
         }
       },
@@ -192,6 +212,20 @@
       "sha512": "sha512-OC+1neAPM4oCCqQj3g2GJ2shziNNhOkxmNB9cVS8jtx4JbgmRzLcUOxB9Tsz6cVPHugdkHgCaCrTjjSI0Z5sCQ==",
       "path": "automapper/14.0.0",
       "hashPath": "automapper.14.0.0.nupkg.sha512"
+    },
+    "AWSSDK.Core/4.0.0-preview.10": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-2k6aZZEsuvxCd4d/+dkGIFSeB3CBbasto2D3LHKEFEBgNhVAVvHTrPfWbVL8BT9rYN6zTMUlWr6qUKnfw1YGmA==",
+      "path": "awssdk.core/4.0.0-preview.10",
+      "hashPath": "awssdk.core.4.0.0-preview.10.nupkg.sha512"
+    },
+    "AWSSDK.S3/4.0.0-preview.10": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-CR6yW78MhN3dAzXDoexPyA6zbPZruHNUQnPmNThNXIan9uAT4IJgoJvlLn+Z/5Ig4xY94RIEUZ7pDZZ+L6kp1w==",
+      "path": "awssdk.s3/4.0.0-preview.10",
+      "hashPath": "awssdk.s3.4.0.0-preview.10.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Cryptography.Internal/9.0.3": {
       "type": "package",

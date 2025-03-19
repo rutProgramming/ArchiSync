@@ -4,6 +4,7 @@ import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import { useNavigate } from "react-router";
 import "./home.css";
 import { centerStyle } from "./style";
+import "../App.css";
 
 const HomePage = () => {
     const navigate = useNavigate();

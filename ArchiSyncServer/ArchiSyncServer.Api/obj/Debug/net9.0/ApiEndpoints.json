@@ -286,134 +286,25 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "ArchiSyncServer.Api.Controllers.ProjectController",
-    "Method": "Get",
-    "RelativePath": "api/Project",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[ArchiSyncServer.Core.DTOs.ProjectDTO, ArchiSyncServer.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "ArchiSyncServer.Api.Controllers.ProjectController",
-    "Method": "Post",
-    "RelativePath": "api/Project",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "projectPostModel",
-        "Type": "ArchiSyncServer.API.Models.ProjectPostModel",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "ArchiSyncServer.Core.DTOs.ProjectDTO",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "ArchiSyncServer.Api.Controllers.ProjectController",
-    "Method": "Get",
-    "RelativePath": "api/Project/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "ArchiSyncServer.Core.DTOs.ProjectDTO",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "ArchiSyncServer.Api.Controllers.ProjectController",
-    "Method": "Put",
-    "RelativePath": "api/Project/{id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "projectPostModel",
-        "Type": "ArchiSyncServer.API.Models.ProjectPostModel",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "ArchiSyncServer.Api.Controllers.ProjectController",
-    "Method": "Delete",
-    "RelativePath": "api/Project/{id}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "ArchiSyncServer.API.Controllers.ProjectOrFolderController",
+    "ContainingType": "ArchiSyncServer.API.Controllers.ProjectController",
     "Method": "CreateProject",
-    "RelativePath": "api/ProjectOrFolder",
+    "RelativePath": "api/Project",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "projectPostModel",
-        "Type": "ArchiSyncServer.API.Models.ProjectOrFolderPostModel",
+        "Type": "ArchiSyncServer.API.Models.ProjectPostModel",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "ArchiSyncServer.API.Controllers.ProjectOrFolderController",
+    "ContainingType": "ArchiSyncServer.API.Controllers.ProjectController",
     "Method": "UpdateProject",
-    "RelativePath": "api/ProjectOrFolder/{id}",
+    "RelativePath": "api/Project/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -425,16 +316,16 @@
       },
       {
         "Name": "projectPostModel",
-        "Type": "ArchiSyncServer.Core.DTOs.ProjectOrFolderDTO",
+        "Type": "ArchiSyncServer.Core.DTOs.ProjectDTO",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "ArchiSyncServer.API.Controllers.ProjectOrFolderController",
+    "ContainingType": "ArchiSyncServer.API.Controllers.ProjectController",
     "Method": "DeleteProject",
-    "RelativePath": "api/ProjectOrFolder/{id}",
+    "RelativePath": "api/Project/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -448,9 +339,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "ArchiSyncServer.API.Controllers.ProjectOrFolderController",
+    "ContainingType": "ArchiSyncServer.API.Controllers.ProjectController",
     "Method": "GetProject",
-    "RelativePath": "api/ProjectOrFolder/{id}",
+    "RelativePath": "api/Project/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -464,9 +355,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "ArchiSyncServer.API.Controllers.ProjectOrFolderController",
+    "ContainingType": "ArchiSyncServer.API.Controllers.ProjectController",
     "Method": "GetAllProjects",
-    "RelativePath": "api/ProjectOrFolder/all",
+    "RelativePath": "api/Project/all",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -474,9 +365,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "ArchiSyncServer.API.Controllers.ProjectOrFolderController",
+    "ContainingType": "ArchiSyncServer.API.Controllers.ProjectController",
     "Method": "GetArchitectProjects",
-    "RelativePath": "api/ProjectOrFolder/architect",
+    "RelativePath": "api/Project/architect",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -484,9 +375,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "ArchiSyncServer.API.Controllers.ProjectOrFolderController",
+    "ContainingType": "ArchiSyncServer.API.Controllers.ProjectController",
     "Method": "GetPublicProjects",
-    "RelativePath": "api/ProjectOrFolder/public",
+    "RelativePath": "api/Project/public",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -494,9 +385,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "ArchiSyncServer.API.Controllers.ProjectOrFolderController",
+    "ContainingType": "ArchiSyncServer.API.Controllers.ProjectController",
     "Method": "GetUserAccessibleProjects",
-    "RelativePath": "api/ProjectOrFolder/UserAccess",
+    "RelativePath": "api/Project/UserAccess",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -505,14 +396,45 @@
   },
   {
     "ContainingType": "ArchiSyncServer.Api.Controllers.UploadController",
-    "Method": "GetPresignedUrl",
-    "RelativePath": "api/upload/presigned-url",
+    "Method": "GetDownloadUrl",
+    "RelativePath": "api/Upload/download-url/{fileName}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
         "Name": "fileName",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArchiSyncServer.Api.Controllers.UploadController",
+    "Method": "GetUploadUrl",
+    "RelativePath": "api/Upload/upload-url",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "fileName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "contentType",
         "Type": "System.String",
         "IsRequired": false
       }

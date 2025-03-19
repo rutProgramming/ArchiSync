@@ -2,11 +2,15 @@ import React, { useState } from "react";
 import axios from "axios";
 import { centerStyle } from "./style";
 import { v4 as uuidv4 } from "uuid";
+import { RootState } from "../store/reduxStore";
+import { useSelector } from "react-redux";
 
 const FileUploader = () => {
   const [file, setFile] = useState<File | null>(null);
   const [progress, setProgress] = useState(0);
   const [isUploading, setIsUploading] = useState(false);
+  const user = useSelector((state: RootState) => state.connect.user);
+
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -25,12 +29,12 @@ const FileUploader = () => {
 
     try {
       // Request presigned URL
-      const response = await axios.get("https://localhost:7218/api/Upload/presigned-url", {
-        params: { fileName: uniqueFileName }, 
-      });
-console.log(response)
+      const response = await axios.get("https://localhost:7218/api/Upload/upload-url",  {
+        params: { userId: user.id?.toString(), fileName: updatedFile.name, contentType: file.type },
+    });
+
       // Upload the file to S3
-      await axios.put(response.data.url, updatedFile, {
+      const res=await axios.put(response.data.url, updatedFile, {
         headers: { "Content-Type": updatedFile.type },
         onUploadProgress: (progressEvent) => {
           const percent = Math.round((progressEvent.loaded * 100) / (progressEvent.total || 1));
@@ -117,6 +121,7 @@ console.log(response)
         <button onClick={handleUpload} disabled={!file || isUploading} style={styles.button}>
           {isUploading ? "Uploading..." : "Upload File"}
         </button>
+
       </div>
     </div>
   );

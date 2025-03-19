@@ -10,6 +10,7 @@ import FileUploader from './components/FileUploader'
 import Projects from './components/Projects'
 import UploadComponent from './components/UploadComponent'
 import UploadWorkspace from './components/UploadComponent'
+import ArchitectProjects from './components/architectProjects'
 
 
 const ProtectedRoute = ({ element }: { element: ReactElement }) => {
@@ -26,6 +27,7 @@ export const router = createBrowserRouter([
       { path: "Home", element: <Home /> },
       // { path: "upload", element: <UploadWorkspace/> },
       { path: "upload", element: <FileUploader/> },
+      { path: "myProjects", element: <ArchitectProjects/> },
       {path:"/projects", element:<Projects /> }
 
 

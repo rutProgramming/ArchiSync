@@ -13,8 +13,6 @@ namespace ArchiSyncServer.Core.IRepositories
         IUserRepository User { get; }
         IUserRolesRepository UserRoles { get; }
         IRolesRepository Roles { get; }  
-        IProjectOrFolderRepository ProjectOrFolder { get; }
-      
 
         Task SaveAsync();
     }
