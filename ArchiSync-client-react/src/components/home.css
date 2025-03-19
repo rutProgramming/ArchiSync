@@ -58,18 +58,22 @@
     cursor: pointer;
     transition: all 0.3s ease-in-out;
 }
-
+/* 
 .button-primary {
     background-color: black;
     color: yellow;
     border-color: yellow;
+    box-shadow: 0 0 20px yellow;
+
 }
 
 .button-secondary {
     background-color: black;
     color: white;
     border-color: white;
-}
+    box-shadow: 0 0 20px white;
+
+} */
 
 .about-card{
     background-color: #222;
@@ -172,7 +176,7 @@
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(10px); }
 }
-
+/* 
 .button-primary:hover {
     box-shadow: 0 0 20px yellow;
     background-color: yellow;
@@ -183,4 +187,4 @@
     box-shadow: 0 0 20px white;
     background-color: white;
     color: black;
-}
+} */

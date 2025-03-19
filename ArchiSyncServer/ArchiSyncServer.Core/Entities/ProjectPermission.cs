@@ -13,8 +13,8 @@ namespace ArchiSyncServer.Core.Entities
         [Key]
         public int Id { get; set; }
 
-        public int ProjectOrFolderId { get; set; }
-        public virtual ProjectOrFolder ProjectOrFolder { get; set; }
+        public int ProjectId { get; set; }
+        public virtual Project Project { get; set; }
 
         public int UserId { get; set; }
         public virtual User User { get; set; }

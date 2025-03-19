@@ -1,34 +1,39 @@
-﻿// .NET Controller
-using Amazon.S3;
+﻿using Amazon.S3;
 using Amazon.S3.Model;
+using ArchiSyncServer.Core.IServices;
 using Microsoft.AspNetCore.Mvc;
 namespace ArchiSyncServer.Api.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("api/upload")]
     public class UploadController : ControllerBase
     {
-        private readonly IAmazonS3 _s3Client;
-
-        public UploadController(IAmazonS3 s3Client)
+        private readonly IS3Service _s3Service;
+        public UploadController(IS3Service s3Server)
         {
-            _s3Client = s3Client;
+            _s3Service = s3Server;
         }
 
-        [HttpGet("presigned-url")]
-        public async Task<IActionResult> GetPresignedUrl([FromQuery] string fileName)
-        {
-            var request = new GetPreSignedUrlRequest
-            {
-                BucketName = "ruth-shtraicher-storage-bucket",
-                Key = fileName,
-                Verb = HttpVerb.PUT,
-                Expires = DateTime.UtcNow.AddMinutes(5),
-                ContentType = "image/jpeg" // או סוג הקובץ המתאים
-            };
+        // ⬆️ שלב 1: קבלת URL להעלאת קובץ ל-S3
 
-            string url = _s3Client.GetPreSignedURL(request);
+        [HttpGet("upload-url")]
+        public async Task<IActionResult> GetUploadUrl([FromQuery] string userId, [FromQuery] string fileName, [FromQuery] string contentType)
+        {
+            if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(fileName))
+                return BadRequest("Missing userId or fileName");
+
+            var url = await _s3Service.GeneratePresignedUrlAsync(userId, fileName, contentType);
             return Ok(new { url });
         }
+
+        // ⬇️ שלב 2: קבלת URL להורדת קובץ מה-S3
+        [HttpGet("download-url/{fileName}")]
+        public async Task<IActionResult> GetDownloadUrl([FromQuery] string userId, string fileName)
+        {
+            var url = await _s3Service.GetDownloadUrlAsync(userId, fileName);
+            return Ok(new { downloadUrl = url });
+        }
+
+
     }
 }

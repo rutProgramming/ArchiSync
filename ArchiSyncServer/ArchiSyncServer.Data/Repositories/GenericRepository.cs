@@ -36,7 +36,8 @@ namespace ArchiSyncServer.Data.Repositories
 
         public async Task<T> CreateAsync(T entity)
         {
-             _dbSet.Add(entity);
+           
+            _dbSet.Add(entity);
             //await _context.SaveChangesAsync();
             return entity;
         }

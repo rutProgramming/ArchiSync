@@ -32,7 +32,7 @@ namespace ArchiSyncServer.Service.Services
 {
     public class DocumentService : IDocumentService
     {
-        //        private readonly IProjectOrFolderService _documentRepository;
+        //        private readonly IProjectService _documentRepository;
         //        private readonly IRepositoryManager _repositoryManager;
         //        private readonly IMapper _mapper;
 

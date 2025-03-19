@@ -14,12 +14,11 @@ namespace ArchiSyncServer.Core.Entities
         public string FileName { get; set; }
         [MaxLength(50)]
         public string FileType { get; set; }
-
         public long Size { get; set; }
         [MaxLength(500)]
         public string S3Key { get; set; }
-        public int ProjectOrFolderId { get; set; } // לאיזה פרויקט/תיקייה הקובץ שייך
-        public virtual ProjectOrFolder ProjectOrFolder { get; set; }
+        public int ProjectId { get; set; } // לאיזה פרויקט/תיקייה הקובץ שייך
+        public virtual Project Project { get; set; }
         public int OwnerId { get; set; }
         public User Owner { get; set; }
         public DateTime CreatedAt { get; set; }

@@ -38,6 +38,9 @@ const NavBar = () => {
         <IconButton component={Link} to="/upload" sx={{ color: "white" }}>
           <UploadIcon fontSize="large" />
         </IconButton>
+        <IconButton component={Link} to="/myProjects" sx={{ color: "white" }}>
+          <FolderIcon fontSize="large" />
+        </IconButton>
       </Stack>
 
       {/* צד ימין - פרופיל */}

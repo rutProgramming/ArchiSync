@@ -30,8 +30,6 @@ namespace ArchiSyncServer.Data
         public DbSet<Roles> Roles { get; set; }
         public DbSet<UserRoles> UserRoles { get; set; }
         public DbSet<Core.Entities.File> File { get; set; }
-        public DbSet<ProjectOrFolder> projectOrFolders { get; set; }
-
         public DbSet<Permissions> Permissions { get; set; }
         public DbSet<RolePermissions> RolePermissions { get; set; }
         public DbSet<ProjectPermission> ProjectPermissions { get; set; }

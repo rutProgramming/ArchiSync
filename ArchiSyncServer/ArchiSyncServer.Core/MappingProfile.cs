@@ -20,7 +20,7 @@ namespace ArchiSyncServer.core
             CreateMap<Project, ProjectDTO>().ReverseMap();
             CreateMap<Document, DocumentDTO>().ReverseMap();
             CreateMap<Comment, CommentDTO>().ReverseMap();
-            CreateMap<ProjectOrFolder, ProjectOrFolderDTO>().ReverseMap();
+            CreateMap<Project, ProjectDTO>().ReverseMap();
             CreateMap<User, UserDTO>().ReverseMap();
             CreateMap<UserRoles, UserRolesDTO>().ReverseMap();
 

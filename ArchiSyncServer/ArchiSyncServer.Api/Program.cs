@@ -21,17 +21,19 @@ using Amazon.S3;
 IdentityModelEventSource.ShowPII = true;
 
 var builder = WebApplication.CreateBuilder(args);
+//---------Amazon--------
 builder.Configuration.AddEnvironmentVariables();
-var accessKey = Environment.GetEnvironmentVariable("AWS_ACCESS_KEY_ID", EnvironmentVariableTarget.User);
-var secretKey = Environment.GetEnvironmentVariable("AWS_SECRET_ACCESS_KEY", EnvironmentVariableTarget.User);
-var region = Environment.GetEnvironmentVariable("AWS_REGION", EnvironmentVariableTarget.User);
+//var accessKey = Environment.GetEnvironmentVariable("AWS_ACCESS_KEY_ID", EnvironmentVariableTarget.User);
+//var secretKey = Environment.GetEnvironmentVariable("AWS_SECRET_ACCESS_KEY", EnvironmentVariableTarget.User);
+//var region = Environment.GetEnvironmentVariable("AWS_REGION", EnvironmentVariableTarget.User);
 
-var credentials = new BasicAWSCredentials(accessKey, secretKey);
+//var credentials = new BasicAWSCredentials(accessKey, secretKey);
 
-var regionEndpoint = Amazon.RegionEndpoint.GetBySystemName(region);
+//var regionEndpoint = Amazon.RegionEndpoint.GetBySystemName(region);
 
-var s3Client = new AmazonS3Client(credentials, regionEndpoint);
-builder.Services.AddSingleton<IAmazonS3>(s3Client);
+//var s3Client = new AmazonS3Client(credentials, regionEndpoint);
+//builder.Services.AddSingleton<IAmazonS3>(s3Client);
+
 
 
 
@@ -41,7 +43,7 @@ var configuration = builder.Configuration;
 /* ---------Repositories----------*/
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
-builder.Services.AddScoped<IProjectOrFolderRepository, ProjectOrFolderRepository>();
+builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
 builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 builder.Services.AddScoped<IRepositoryManager, RepositoryManager>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
@@ -52,13 +54,14 @@ builder.Services.AddScoped<IProjectPermissionRepository, ProjectPermissionReposi
 /* ---------Services----------*/
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IProjectService, ProjectService>();
-builder.Services.AddScoped<IProjectOrFolderService, ProjectOrFolderService>();
+builder.Services.AddScoped<IProjectService, ProjectService>();
 builder.Services.AddScoped<IUserRolesService, UserRolesService>();
 builder.Services.AddScoped<ICommentService, CommentService>();
 builder.Services.AddScoped<IHuggingFaceService, HuggingFaceService>();
 builder.Services.AddScoped<IDocumentService, DocumentService>();
 builder.Services.AddScoped<AuthService>();
-//builder.Services.AddAWSService<IAmazonS3>();
+builder.Services.AddScoped<IS3Service, S3Service>();
+
 
 /* ---------DataContext----------*/
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -112,6 +115,7 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy("ArchitectOnly", policy => policy.RequireRole("architect", "admin"));
     options.AddPolicy("UserAccess", policy => policy.RequireRole("user", "architect", "admin"));
 });
+
 
 // Add Swagger services
 builder.Services.AddSwaggerGen(options =>

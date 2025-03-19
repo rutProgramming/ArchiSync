@@ -112,7 +112,7 @@ namespace ArchiSyncServer.Data.Migrations
                     b.Property<int>("OwnerId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProjectOrFolderId")
+                    b.Property<int>("ProjectId")
                         .HasColumnType("int");
 
                     b.Property<string>("S3Key")
@@ -130,7 +130,7 @@ namespace ArchiSyncServer.Data.Migrations
 
                     b.HasIndex("OwnerId");
 
-                    b.HasIndex("ProjectOrFolderId");
+                    b.HasIndex("ProjectId");
 
                     b.ToTable("File");
                 });
@@ -157,51 +157,6 @@ namespace ArchiSyncServer.Data.Migrations
                 });
 
             modelBuilder.Entity("ArchiSyncServer.Core.Entities.Project", b =>
-                {
-                    b.Property<int>("ProjectId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProjectId"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ProjectName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ProjectId");
-
-                    b.ToTable("Projects");
-                });
-
-            modelBuilder.Entity("ArchiSyncServer.Core.Entities.ProjectDocument", b =>
-                {
-                    b.Property<int>("ProjectDocumentId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProjectDocumentId"));
-
-                    b.Property<int>("DocumentId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProjectId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ProjectDocumentId");
-
-                    b.ToTable("ProjectDocuments");
-                });
-
-            modelBuilder.Entity("ArchiSyncServer.Core.Entities.ProjectOrFolder", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -235,7 +190,26 @@ namespace ArchiSyncServer.Data.Migrations
 
                     b.HasIndex("ParentId");
 
-                    b.ToTable("projectOrFolders");
+                    b.ToTable("Projects");
+                });
+
+            modelBuilder.Entity("ArchiSyncServer.Core.Entities.ProjectDocument", b =>
+                {
+                    b.Property<int>("ProjectDocumentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProjectDocumentId"));
+
+                    b.Property<int>("DocumentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProjectId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProjectDocumentId");
+
+                    b.ToTable("ProjectDocuments");
                 });
 
             modelBuilder.Entity("ArchiSyncServer.Core.Entities.ProjectPermission", b =>
@@ -249,7 +223,7 @@ namespace ArchiSyncServer.Data.Migrations
                     b.Property<bool>("CanView")
                         .HasColumnType("bit");
 
-                    b.Property<int>("ProjectOrFolderId")
+                    b.Property<int>("ProjectId")
                         .HasColumnType("int");
 
                     b.Property<int>("UserId")
@@ -257,7 +231,7 @@ namespace ArchiSyncServer.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProjectOrFolderId");
+                    b.HasIndex("ProjectId");
 
                     b.HasIndex("UserId");
 
@@ -379,18 +353,18 @@ namespace ArchiSyncServer.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ArchiSyncServer.Core.Entities.ProjectOrFolder", "ProjectOrFolder")
+                    b.HasOne("ArchiSyncServer.Core.Entities.Project", "Project")
                         .WithMany("Files")
-                        .HasForeignKey("ProjectOrFolderId")
+                        .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Owner");
 
-                    b.Navigation("ProjectOrFolder");
+                    b.Navigation("Project");
                 });
 
-            modelBuilder.Entity("ArchiSyncServer.Core.Entities.ProjectOrFolder", b =>
+            modelBuilder.Entity("ArchiSyncServer.Core.Entities.Project", b =>
                 {
                     b.HasOne("ArchiSyncServer.Core.Entities.User", "Owner")
                         .WithMany()
@@ -398,7 +372,7 @@ namespace ArchiSyncServer.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ArchiSyncServer.Core.Entities.ProjectOrFolder", "Parent")
+                    b.HasOne("ArchiSyncServer.Core.Entities.Project", "Parent")
                         .WithMany()
                         .HasForeignKey("ParentId");
 
@@ -409,9 +383,9 @@ namespace ArchiSyncServer.Data.Migrations
 
             modelBuilder.Entity("ArchiSyncServer.Core.Entities.ProjectPermission", b =>
                 {
-                    b.HasOne("ArchiSyncServer.Core.Entities.ProjectOrFolder", "ProjectOrFolder")
+                    b.HasOne("ArchiSyncServer.Core.Entities.Project", "Project")
                         .WithMany("Permissions")
-                        .HasForeignKey("ProjectOrFolderId")
+                        .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -421,7 +395,7 @@ namespace ArchiSyncServer.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("ProjectOrFolder");
+                    b.Navigation("Project");
 
                     b.Navigation("User");
                 });
@@ -464,7 +438,7 @@ namespace ArchiSyncServer.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("ArchiSyncServer.Core.Entities.ProjectOrFolder", b =>
+            modelBuilder.Entity("ArchiSyncServer.Core.Entities.Project", b =>
                 {
                     b.Navigation("Files");
 
