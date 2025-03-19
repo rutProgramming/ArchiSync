@@ -26,8 +26,6 @@ var accessKey = Environment.GetEnvironmentVariable("AWS_ACCESS_KEY_ID", Environm
 var secretKey = Environment.GetEnvironmentVariable("AWS_SECRET_ACCESS_KEY", EnvironmentVariableTarget.User);
 var region = Environment.GetEnvironmentVariable("AWS_REGION", EnvironmentVariableTarget.User);
 
-Console.WriteLine($"AccessKey: {accessKey}");
-Console.WriteLine($"SecretKey: {secretKey}");
 var credentials = new BasicAWSCredentials(accessKey, secretKey);
 
 var regionEndpoint = Amazon.RegionEndpoint.GetBySystemName(region);
