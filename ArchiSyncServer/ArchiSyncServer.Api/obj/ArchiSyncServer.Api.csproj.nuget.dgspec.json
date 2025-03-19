@@ -60,9 +60,13 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+            "AWSSDK.Extensions.NETCore.Setup": {
+              "target": "Package",
+              "version": "[4.0.0-preview.10, )"
+            },
             "AWSSDK.S3": {
               "target": "Package",
-              "version": "[3.7.415.16, )"
+              "version": "[4.0.0-preview.10, )"
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",

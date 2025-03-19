@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, IconButton, Stack, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/reduxStore";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
@@ -7,6 +7,7 @@ import FolderIcon from "@mui/icons-material/Folder";
 import UploadIcon from "@mui/icons-material/Upload";
 import HomeIcon from "@mui/icons-material/Home";
 import Profile from "./profile";
+import UserMenu from "./UserMenu";
 
 const NavBar = () => {
 
@@ -28,20 +29,20 @@ const NavBar = () => {
         <Typography variant="h6" sx={{ fontWeight: "bold", color: "#FFD700" }}>
           ArchiSync
         </Typography>
-        <Link to="/" style={{ color: "white", textDecoration: "none" }}>
+        <IconButton component={Link} to="/" sx={{ color: "white" }}>
           <HomeIcon fontSize="large" />
-        </Link>
-        <Link to="/projects" style={{ color: "white", textDecoration: "none" }}>
+        </IconButton>
+        <IconButton component={Link} to="/projects" sx={{ color: "white" }}>
           <FolderIcon fontSize="large" />
-        </Link>
-        <Link to="/upload" style={{ color: "white", textDecoration: "none" }}>
+        </IconButton>
+        <IconButton component={Link} to="/upload" sx={{ color: "white" }}>
           <UploadIcon fontSize="large" />
-        </Link>
+        </IconButton>
       </Stack>
 
-      {/* Right Side - Profile Component */}
+      {/* צד ימין - פרופיל */}
       <Stack direction="row" spacing={2} alignItems="center">
-        <Profile />
+        <UserMenu />
       </Stack>
     </Box>
   );

@@ -1,226 +1,137 @@
-import  { useEffect } from "react";
 import { motion } from "framer-motion";
-import { Button, Container, Grid, Typography } from "@mui/material";
+import { Container, Grid, Typography } from "@mui/material";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import { useNavigate } from "react-router";
-import UploadComponent from "./UploadComponent";
+import "./home.css";
+import { centerStyle } from "./style";
 
 const HomePage = () => {
     const navigate = useNavigate();
-
-    const buildingVariants = {
-        hidden: { opacity: 0, y: 20 },
-        visible: (i = 5) => ({
-            opacity: 1,
-            y: 0,
-            transition: {
-                delay: i * 0.1,
-                duration: 0.8,
-            },
-        }),
+    const scrollToSection = () => {
+        window.scrollTo({
+            top: window.innerHeight,
+            behavior: "smooth",
+        });
     };
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            const root = document.documentElement;
-            const hue = (parseInt(getComputedStyle(root).getPropertyValue('--hue')) + 1) % 360;
-            root.style.setProperty('--hue', hue.toString());
-        }, 100);
-        return () => clearInterval(interval);
-    }, []);
-
+    
     return (
-        (
-            <Container maxWidth="md">
-                <Grid
-                    container
-                    direction="column"
-                    justifyContent="center"
-                    alignItems="center"
-                    style={{ minHeight: "100vh", textAlign: "center" }}
-                    sx={{
-                        color: "#c99a8f",
-                    }}
-                >
-                   
-                    <div className="relative w-screen h-screen overflow-hidden bg-gray-900 text-white">
-                        {/* Dynamic color CSS variables */}
-                        <style >{`
-        :root {
-          --hue: 220;
-          --primary: hsl(var(--hue), 80%, 60%);
-          --secondary: hsl(calc(var(--hue) + 60), 80%, 60%);
-          --accent: hsl(calc(var(--hue) + 180), 80%, 60%);
-        }
-      `}</style>
+        <div className="home-container">
+            <Container maxWidth="md" style={{ paddingTop: "15px", paddingBottom: "30px", ...centerStyle }}>
+                <Grid container direction="column" justifyContent="center" alignItems="center">
 
-                        {/* Animated background grid - architectural graph paper effect */}
-                        <div className="absolute inset-0 overflow-hidden">
-                            <div className="absolute inset-0 opacity-20">
-                                {[...Array(20)].map((_, i) => (
-                                    <div
-                                        key={`h-${i}`}
-                                        className="absolute h-px w-full bg-gradient-to-r from-transparent via-white to-transparent"
-                                        style={{ top: `${i * 5}%` }}
-                                    />
-                                ))}
-                                {[...Array(20)].map((_, i) => (
-                                    <div
-                                        key={`v-${i}`}
-                                        className="absolute w-px h-full bg-gradient-to-b from-transparent via-white to-transparent"
-                                        style={{ left: `${i * 5}%` }}
-                                    />
-                                ))}
-                            </div>
-                        </div>
+                    {/* כותרת ראשית עם אנימציה */}
+                    <motion.div
+                        animate={{
+                            color: ["#FFD700", "#FFFFFF", "#FFA500", "#FFFFE0", "#FFD700"]
+                        }}
+                        transition={{
+                            duration: 8,
+                            repeat: Infinity,
+                            repeatType: "reverse",
+                            ease: "linear"
+                        }}
+                    >
+                        <Typography variant="h2" className="hero-title">
+                            VISIONARY<span color="white">ARCHITECTURE</span>
 
-                        {/* Floating 3D architectural elements */}
-                        <div className="absolute inset-0 flex items-center justify-center">
-                            <div className="relative w-full h-full max-w-6xl mx-auto">
-                                <motion.div
-                                    className="absolute top-1/4 left-1/4 w-32 h-32 rounded-lg"
-                                    style={{ background: 'var(--primary)', filter: 'blur(15px)' }}
-                                    animate={{
-                                        rotate: 360,
-                                        x: [0, 20, 0, -20, 0],
-                                        y: [0, -20, 0, 20, 0],
-                                    }}
-                                    transition={{ repeat: Infinity, duration: 10 }}
-                                />
-                                <motion.div
-                                    className="absolute bottom-1/4 right-1/4 w-24 h-24"
-                                    style={{ background: 'var(--secondary)', filter: 'blur(10px)' }}
-                                    animate={{
-                                        rotate: -360,
-                                        x: [0, -30, 0, 30, 0],
-                                        y: [0, 20, 0, -20, 0],
-                                    }}
-                                    transition={{ repeat: Infinity, duration: 8 }}
-                                />
-                                <motion.div
-                                    className="absolute top-1/3 right-1/3 w-20 h-20 rounded-full"
-                                    style={{ background: 'var(--accent)', filter: 'blur(12px)' }}
-                                    animate={{
-                                        scale: [1, 1.2, 1, 0.8, 1],
-                                        x: [0, 40, 0, -40, 0],
-                                        y: [0, -40, 0, 40, 0],
-                                    }}
-                                    transition={{ repeat: Infinity, duration: 12 }}
-                                />
-                            </div>
-                        </div>
+                        </Typography>
 
-                        {/* Architectural blueprint lines animation */}
-                        <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
-                            <motion.div
-                                className="absolute w-full h-full"
-                                animate={{ rotate: 360 }}
-                                transition={{ repeat: Infinity, duration: 60, ease: "linear" }}
-                            >
-                                {[...Array(6)].map((_, i) => (
-                                    <motion.div
-                                        key={`line-${i}`}
-                                        className="absolute top-1/2 left-1/2 h-px"
-                                        style={{
-                                            width: "100%",
-                                            transformOrigin: "0 0",
-                                            transform: `rotate(${i * 30}deg)`,
-                                            background: "linear-gradient(90deg, transparent, var(--primary), transparent)",
-                                        }}
-                                    />
-                                ))}
-                            </motion.div>
-                        </div>
+                    </motion.div>
 
-                        {/* Centered main content */}
-                        <div className="absolute inset-0 flex items-center justify-center">
-                            <div className="relative z-10 text-center max-w-3xl px-8">
-                                {/* Building skyline animation */}
-                                <div className="flex justify-center mb-6 h-24">
-                                    {[...Array(9)].map((_, i) => (
-                                        <motion.div
-                                            key={`building-${i}`}
-                                            custom={i}
-                                            variants={buildingVariants}
-                                            initial="hidden"
-                                            animate="visible"
-                                            className="mx-1 w-8 bg-gradient-to-t from-white to-transparent backdrop-blur-sm rounded-t-lg"
-                                            style={{
-                                                height: `${Math.random() * 60 + 40}%`,
-                                                opacity: 0.7
-                                            }}
-                                        />
-                                    ))}
-                                </div>
+                    {/* כותרת משנה */}
+                    <motion.div
+                        animate={{
+                            color: ["#FFD700", "#FFFFFF", "#FFA500", "#FFFFE0", "#FFD700"]
+                        }}
+                        transition={{
+                            duration: 5,
+                            repeat: Infinity,
+                            repeatType: "reverse",
+                            ease: "linear"
+                        }}
+                    >
+                        <Typography variant="h5" className="hero-subtitle">
+                            Where innovative design meets timeless elegance.
+                            Transforming spaces into extraordinary experiences.
+                        </Typography>
+                    </motion.div>
 
-                                {/* Main heading with creative typography */}
-                                <motion.h1
-                                    className="text-6xl font-black tracking-tight"
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    transition={{ duration: 1.5 }}
-                                >
-                                    <span style={{ color: 'var(--primary)' }}><h1>VISIONARY</h1></span>
-                                    <span className="block mt-2 text-white"><h1>ARCHITECTURE</h1></span>
-                                </motion.h1>
+                    {/* כפתורים מעוצבים */}
+                    <div className="button-container">
+                        <motion.button
+                            className="button button-primary"
+                            whileHover={{ scale: 1.05, boxShadow: "0 0 20px yellow" }}
+                            whileTap={{ scale: 0.95 }}
+                            onClick={() => navigate("/projects")}
+                        >
+                            OUR PROJECTS
+                        </motion.button>
 
-                                {/* Animated underline */}
-                                <motion.div
-                                    className="h-1 mx-auto mt-4 mb-6 w-24 rounded-full"
-                                    style={{ background: 'var(--secondary)' }}
-                                    initial={{ width: 0 }}
-                                    animate={{ width: 120 }}
-                                    transition={{ delay: 0.5, duration: 1 }}
-                                />
-
-                                <motion.p
-                                    className="text-xl text-gray-300 backdrop-blur-sm py-4 px-6 rounded-xl"
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 0.9, y: 0 }}
-                                    transition={{ delay: 0.7, duration: 1 }}
-                                >
-                                    <Typography variant="h4" fontWeight="bold" gutterBottom>
-
-                                        Where innovative design meets timeless elegance. Transforming spaces into extraordinary experiences.
-                                    </Typography>
-                                </motion.p>
-
-                                {/* Interactive buttons */}
-                                <div className="mt-10 flex flex-wrap justify-center gap-4">
-                                    <motion.button
-                                        className="px-8 py-3 text-lg font-semibold rounded-lg"
-                                        style={{ background: 'var(--primary)' }}
-                                        whileHover={{ scale: 1.05, boxShadow: "0 0 20px var(--primary)" }}
-                                        whileTap={{ scale: 0.95 }}
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ delay: 1, duration: 0.5 }}
-                                        onClick={() => navigate("/projects")}
-                                    >
-                                        <Button  >
-
-                                            Our Projects
-                                        </Button>
-                                    </motion.button>
-                                    <motion.button
-                                        className="px-8 py-3 text-lg font-semibold border-2 rounded-lg"
-                                        style={{ borderColor: 'var(--secondary)' }}
-                                        whileHover={{ scale: 1.05, boxShadow: "0 0 20px var(--secondary)" }}
-                                        whileTap={{ scale: 0.95 }}
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ delay: 1.2, duration: 0.5 }}
-                                    >
-                                        <Button >
-                                            Contact Us
-                                        </Button>
-                                    </motion.button>
-                                </div>
-                            </div>
-                        </div>
+                        <motion.button
+                            className="button button-secondary"
+                            whileHover={{ scale: 1.05, boxShadow: "0 0 20px white"}}
+                            whileTap={{ scale: 0.95 }}
+                        >
+                            CONTACT US
+                        </motion.button>
                     </div>
                 </Grid>
+                <motion.div 
+    className="scroll-down" 
+    whileHover={{ scale: 1.2 }} 
+    whileTap={{ scale: 0.9 }}
+    onClick={scrollToSection}
+>
+    <ArrowDownwardIcon fontSize="large" />
+</motion.div>
             </Container>
-        ));
+
+            {/* אזור "מי אנחנו" */}
+            <section className="about-section">
+                <Typography variant="h4" className="section-title">Who We Are</Typography>
+                <div className="about-container">
+                    <div className="about-card">
+                        <h3> We are pioneers in architecture, blending modern design with innovative technologies to create extraordinary spaces. </h3>
+                    </div>
+                </div>
+
+            </section>
+
+            {/* אזור השירותים */}
+            <section className="services-section">
+                <Typography variant="h4" className="section-title">Our Services</Typography>
+                <div className="services-container">
+                    <div className="service-card">
+                        <h3>Innovative Design</h3>
+                        <p>Cutting-edge architecture that redefines spaces.</p>
+                    </div>
+                    <div className="service-card">
+                        <h3>Sustainable Solutions</h3>
+                        <p>Eco-friendly designs that merge with nature.</p>
+                    </div>
+                    <div className="service-card">
+                        <h3>Smart Technology</h3>
+                        <p>Integrating AI and automation into architectural solutions.</p>
+                    </div>
+                </div>
+            </section>
+
+            {/* אזור חוות דעת */}
+            <section className="testimonials-section">
+                <Typography variant="h4" className="section-title">What Our Clients Say</Typography>
+                <div className="testimonials-container">
+                    <div className="testimonial">
+                        <p>"Their designs are breathtaking and truly unique!"</p>
+                        <h5>- Sarah Johnson</h5>
+                    </div>
+                    <div className="testimonial">
+                        <p>"A revolutionary approach to architecture."</p>
+                        <h5>- Michael Adams</h5>
+                    </div>
+                </div>
+            </section>
+        </div>
+    );
 };
 
 export default HomePage;

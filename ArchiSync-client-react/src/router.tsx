@@ -24,7 +24,8 @@ export const router = createBrowserRouter([
     children: [
       { index: true, element: <Navigate to="/home" replace /> }, // הפניה אוטומטית ל-Home
       { path: "Home", element: <Home /> },
-      { path: "upload", element: <UploadWorkspace/> },
+      // { path: "upload", element: <UploadWorkspace/> },
+      { path: "upload", element: <FileUploader/> },
       {path:"/projects", element:<Projects /> }
 
 

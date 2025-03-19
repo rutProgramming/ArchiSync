@@ -830,7 +830,7 @@
         }
       }
     },
-    "/api/Upload/presigned-url": {
+    "/api/upload/presigned-url": {
       "get": {
         "tags": [
           "Upload"

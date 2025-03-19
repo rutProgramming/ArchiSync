@@ -506,7 +506,7 @@
   {
     "ContainingType": "ArchiSyncServer.Api.Controllers.UploadController",
     "Method": "GetPresignedUrl",
-    "RelativePath": "api/Upload/presigned-url",
+    "RelativePath": "api/upload/presigned-url",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
