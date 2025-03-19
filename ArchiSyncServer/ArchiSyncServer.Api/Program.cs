@@ -13,10 +13,30 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text.Json.Serialization;
 using System.Text;
+using Amazon.Runtime;
+using Amazon.S3;
+
+
 
 IdentityModelEventSource.ShowPII = true;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Configuration.AddEnvironmentVariables();
+var accessKey = Environment.GetEnvironmentVariable("AWS_ACCESS_KEY_ID", EnvironmentVariableTarget.User);
+var secretKey = Environment.GetEnvironmentVariable("AWS_SECRET_ACCESS_KEY", EnvironmentVariableTarget.User);
+var region = Environment.GetEnvironmentVariable("AWS_REGION", EnvironmentVariableTarget.User);
+
+Console.WriteLine($"AccessKey: {accessKey}");
+Console.WriteLine($"SecretKey: {secretKey}");
+var credentials = new BasicAWSCredentials(accessKey, secretKey);
+
+var regionEndpoint = Amazon.RegionEndpoint.GetBySystemName(region);
+
+var s3Client = new AmazonS3Client(credentials, regionEndpoint);
+builder.Services.AddSingleton<IAmazonS3>(s3Client);
+
+
+
 var configuration = builder.Configuration;
 
 // Add services to the container.

@@ -1,0 +1,186 @@
+/* רקע כללי */
+.home-container {
+    background-color: #111;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+}
+
+/* כותרת ראשית עם שינוי צבע */
+.hero-title {
+    font-size: 3rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+    animation: colorChange 3s infinite alternate ease-in-out; /* שינוי צבע דינמי */
+}
+
+/* כותרת משנה עם שינוי צבע */
+.hero-subtitle {
+    font-size: 1.2rem;
+    font-weight: 300;
+    max-width: 700px;
+    margin: 0 auto 20px auto;
+    line-height: 1.5;
+    animation: colorChangeText 3s infinite alternate ease-in-out; /* שינוי צבע דינמי */
+}
+
+/* אנימציות לשינוי צבע */
+@keyframes colorChange {
+    0% { color: yellow; }
+    100% { color: orange; }
+}
+
+@keyframes colorChangeText {
+    0% { color: rgba(255, 255, 255, 0.8); }
+    50% { color: #e1c44f; }
+    100% { color: #ffcc00; }
+}
+
+/* כפתורים */
+.button-container {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+}
+
+.button {
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.button-primary {
+    background-color: black;
+    color: yellow;
+    border-color: yellow;
+}
+
+.button-secondary {
+    background-color: black;
+    color: white;
+    border-color: white;
+}
+
+.about-card{
+    background-color: #222;
+    padding: 20px;
+    border-radius: 10px;
+    width: 700px;
+    color: white;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.about-card:hover{
+    transform: scale(1.05);
+    box-shadow: 0 0 15px yellow;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    color: yellow;
+    margin-bottom: 10px;
+}
+
+.section-text {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* אזור השירותים */
+.services-section {
+    padding: 80px 20px;
+    text-align: center;
+    background-color: #111;
+}
+
+.services-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.service-card {
+    background-color: #222;
+    padding: 20px;
+    border-radius: 10px;
+    width: 250px;
+    color: white;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.service-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px yellow;
+}
+
+
+/* אזור חוות דעת */
+.testimonials-section {
+    padding: 80px 20px;
+    text-align: center;
+    background-color: #111;
+    color: white;
+}
+
+.testimonials-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.testimonial {
+    background-color: #222;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    color: white;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.testimonial:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px yellow;
+}
+.scroll-down {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #FFD700;
+    cursor: pointer;
+    animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(10px); }
+}
+
+.button-primary:hover {
+    box-shadow: 0 0 20px yellow;
+    background-color: yellow;
+    color: black;
+}
+
+.button-secondary:hover {
+    box-shadow: 0 0 20px white;
+    background-color: white;
+    color: black;
+}

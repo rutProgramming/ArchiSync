@@ -50,13 +50,13 @@ namespace ArchiSyncServer.Api.Controllers
                 }
                 else if (roleName == "architect")
                 {
-                    var token = _authService.GenerateJwtToken(userRole.UserId, model.UserName, new[] { roleName });
-                    return Ok(new { Token = token, User = userRole.User, RoleName = roleName });
-                }
+                    var token = _authService.GenerateJwtToken(userRole.UserId, model.UserName, new[] { "architect" });
+                    return Ok(new { Token = token, User = userRole.User, RoleName = "architect" });
+                    }
                 else if (roleName == "user")
                 {
-                    var token = _authService.GenerateJwtToken(userRole.UserId, model.UserName, new[] { roleName });
-                    return Ok(new { Token = token, User = userRole.User, RoleName = roleName });
+                    var token = _authService.GenerateJwtToken(userRole.UserId, model.UserName, new[] { "user" });
+                    return Ok(new { Token = token, User = userRole.User, RoleName = "user" });
                 }
                 return Unauthorized();
             }

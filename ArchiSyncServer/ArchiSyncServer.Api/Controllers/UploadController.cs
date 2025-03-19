@@ -1,16 +1,13 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿// .NET Controller
 using Amazon.S3;
 using Amazon.S3.Model;
-
+using Microsoft.AspNetCore.Mvc;
 namespace ArchiSyncServer.Api.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/upload")]
     public class UploadController : ControllerBase
     {
-
-
         private readonly IAmazonS3 _s3Client;
 
         public UploadController(IAmazonS3 s3Client)
@@ -23,7 +20,7 @@ namespace ArchiSyncServer.Api.Controllers
         {
             var request = new GetPreSignedUrlRequest
             {
-                BucketName = "your-bucket-name",
+                BucketName = "ruth-shtraicher-storage-bucket",
                 Key = fileName,
                 Verb = HttpVerb.PUT,
                 Expires = DateTime.UtcNow.AddMinutes(5),
@@ -34,5 +31,4 @@ namespace ArchiSyncServer.Api.Controllers
             return Ok(new { url });
         }
     }
-
 }

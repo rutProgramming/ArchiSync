@@ -10,3 +10,16 @@ C:\Users\97250\Desktop\rut\ArchiSyncServer.Api\ArchiSyncServer.Core\obj\Debug\ne
 C:\Users\97250\Desktop\rut\ArchiSyncServer.Api\ArchiSyncServer.Core\obj\Debug\net9.0\refint\ArchiSyncServer.Core.dll
 C:\Users\97250\Desktop\rut\ArchiSyncServer.Api\ArchiSyncServer.Core\obj\Debug\net9.0\ArchiSyncServer.Core.pdb
 C:\Users\97250\Desktop\rut\ArchiSyncServer.Api\ArchiSyncServer.Core\obj\Debug\net9.0\ref\ArchiSyncServer.Core.dll
+C:\Users\97250\Desktop\rut\ArchiSync\ArchiSyncServer\ArchiSyncServer.Core\bin\Debug\net9.0\ArchiSyncServer.Core.deps.json
+C:\Users\97250\Desktop\rut\ArchiSync\ArchiSyncServer\ArchiSyncServer.Core\bin\Debug\net9.0\ArchiSyncServer.Core.dll
+C:\Users\97250\Desktop\rut\ArchiSync\ArchiSyncServer\ArchiSyncServer.Core\bin\Debug\net9.0\ArchiSyncServer.Core.pdb
+C:\Users\97250\Desktop\rut\ArchiSync\ArchiSyncServer\ArchiSyncServer.Core\obj\Debug\net9.0\ArchiSyncServer.Core.csproj.AssemblyReference.cache
+C:\Users\97250\Desktop\rut\ArchiSync\ArchiSyncServer\ArchiSyncServer.Core\obj\Debug\net9.0\ArchiSyncServer.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\97250\Desktop\rut\ArchiSync\ArchiSyncServer\ArchiSyncServer.Core\obj\Debug\net9.0\ArchiSyncServer.Core.AssemblyInfoInputs.cache
+C:\Users\97250\Desktop\rut\ArchiSync\ArchiSyncServer\ArchiSyncServer.Core\obj\Debug\net9.0\ArchiSyncServer.Core.AssemblyInfo.cs
+C:\Users\97250\Desktop\rut\ArchiSync\ArchiSyncServer\ArchiSyncServer.Core\obj\Debug\net9.0\ArchiSyncServer.Core.csproj.CoreCompileInputs.cache
+C:\Users\97250\Desktop\rut\ArchiSync\ArchiSyncServer\ArchiSyncServer.Core\obj\Debug\net9.0\ArchiSyncServer.Core.sourcelink.json
+C:\Users\97250\Desktop\rut\ArchiSync\ArchiSyncServer\ArchiSyncServer.Core\obj\Debug\net9.0\ArchiSyncServer.Core.dll
+C:\Users\97250\Desktop\rut\ArchiSync\ArchiSyncServer\ArchiSyncServer.Core\obj\Debug\net9.0\refint\ArchiSyncServer.Core.dll
+C:\Users\97250\Desktop\rut\ArchiSync\ArchiSyncServer\ArchiSyncServer.Core\obj\Debug\net9.0\ArchiSyncServer.Core.pdb
+C:\Users\97250\Desktop\rut\ArchiSync\ArchiSyncServer\ArchiSyncServer.Core\obj\Debug\net9.0\ref\ArchiSyncServer.Core.dll
