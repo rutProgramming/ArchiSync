@@ -2,5 +2,6 @@
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <Import Project="$(NuGetPackageRoot)microsoft.extensions.options\8.0.0\buildTransitive\net6.0\Microsoft.Extensions.Options.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.extensions.options\8.0.0\buildTransitive\net6.0\Microsoft.Extensions.Options.targets')" />
+    <Import Project="$(NuGetPackageRoot)awssdk.extensions.netcore.setup\4.0.0-preview.10\buildTransitive\net8.0\AWSSDK.Extensions.NETCore.Setup.targets" Condition="Exists('$(NuGetPackageRoot)awssdk.extensions.netcore.setup\4.0.0-preview.10\buildTransitive\net8.0\AWSSDK.Extensions.NETCore.Setup.targets')" />
   </ImportGroup>
 </Project>

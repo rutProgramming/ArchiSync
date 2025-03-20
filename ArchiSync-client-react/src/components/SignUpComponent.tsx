@@ -21,7 +21,7 @@ const SignUpComponent = ({ onClose }: { onClose: () => void }) => {
             userName: userNameRef.current?.value || '',
             email: emailRef.current?.value || '',
             password: passwordRef.current?.value || '',
-            roleName: roleNameRef.current?.value || '',
+            RoleName: roleNameRef.current?.value || '',
         };
 
         try {

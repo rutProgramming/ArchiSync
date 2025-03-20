@@ -80,7 +80,7 @@ namespace ArchiSyncServer.Api.Controllers
                 var userDto = _mapper.Map<UserDTO>(model);
                 var createdUser = await _userService.CreateUserAsync(userDto, model.RoleName);
                 var token = _authService.GenerateJwtToken(createdUser.UserId, model.UserName, new[] { model.RoleName });
-                return Ok(new { Token = token ,UserId=createdUser.UserId});
+                return Ok(new { Token = token ,UserId=createdUser.UserId, MainFolderId=createdUser.MainFolderId});
             }
             catch (ArgumentException ex)
             {

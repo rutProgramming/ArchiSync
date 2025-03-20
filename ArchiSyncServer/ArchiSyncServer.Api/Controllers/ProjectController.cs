@@ -35,6 +35,7 @@ namespace ArchiSyncServer.API.Controllers
             try
             {
                 projectPostModel.OwnerId = GetUserId();
+                 
                 if(!await _ProjectService.IsProjectNameUniqueAsync(projectPostModel.OwnerId, projectPostModel.Name))
                 {
                     return Conflict("Project name already exists.");

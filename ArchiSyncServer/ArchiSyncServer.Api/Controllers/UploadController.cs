@@ -17,20 +17,20 @@ namespace ArchiSyncServer.Api.Controllers
         // ⬆️ שלב 1: קבלת URL להעלאת קובץ ל-S3
 
         [HttpGet("upload-url")]
-        public async Task<IActionResult> GetUploadUrl([FromQuery] string userId, [FromQuery] string fileName, [FromQuery] string contentType)
+        public async Task<IActionResult> GetUploadUrl([FromQuery] string parentId, [FromQuery] string projectName, [FromQuery] string fileName, [FromQuery] string contentType)
         {
-            if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(fileName))
-                return BadRequest("Missing userId or fileName");
+            //if (string.IsNullOrEmpty(parentId) || string.IsNullOrEmpty(fileName)|| string.IsNullOrEmpty(projectName))
+            //    return BadRequest("Missing userId or fileName");
 
-            var url = await _s3Service.GeneratePresignedUrlAsync(userId, fileName, contentType);
+            var url = await _s3Service.GeneratePresignedUrlAsync( fileName, contentType);
             return Ok(new { url });
         }
 
         // ⬇️ שלב 2: קבלת URL להורדת קובץ מה-S3
-        [HttpGet("download-url/{fileName}")]
+        [HttpGet("download-url")]
         public async Task<IActionResult> GetDownloadUrl([FromQuery] string userId, string fileName)
         {
-            var url = await _s3Service.GetDownloadUrlAsync(userId, fileName);
+            var url = await _s3Service.GetDownloadUrlAsync( fileName);
             return Ok(new { downloadUrl = url });
         }
 

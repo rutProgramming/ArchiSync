@@ -8,6 +8,8 @@
     ".NETCoreApp,Version=v9.0": {
       "ArchiSyncServer.Service/1.0.0": {
         "dependencies": {
+          "AWSSDK.Core": "4.0.0-preview.10",
+          "AWSSDK.Extensions.NETCore.Setup": "4.0.0-preview.10",
           "AWSSDK.S3": "4.0.0-preview.10",
           "ArchiSyncServer.Core": "1.0.0",
           "Microsoft.AspNetCore.Cryptography.KeyDerivation": "9.0.3",
@@ -35,6 +37,20 @@
       "AWSSDK.Core/4.0.0-preview.10": {
         "runtime": {
           "lib/net8.0/AWSSDK.Core.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
+          }
+        }
+      },
+      "AWSSDK.Extensions.NETCore.Setup/4.0.0-preview.10": {
+        "dependencies": {
+          "AWSSDK.Core": "4.0.0-preview.10",
+          "Microsoft.Extensions.Configuration.Abstractions": "9.0.3",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "2.0.0"
+        },
+        "runtime": {
+          "lib/net8.0/AWSSDK.Extensions.NETCore.Setup.dll": {
             "assemblyVersion": "4.0.0.0",
             "fileVersion": "4.0.0.0"
           }
@@ -94,6 +110,14 @@
           "lib/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
             "assemblyVersion": "8.0.0.0",
             "fileVersion": "8.0.23.53103"
+          }
+        }
+      },
+      "Microsoft.Extensions.Logging.Abstractions/2.0.0": {
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.0.17205"
           }
         }
       },
@@ -220,6 +244,13 @@
       "path": "awssdk.core/4.0.0-preview.10",
       "hashPath": "awssdk.core.4.0.0-preview.10.nupkg.sha512"
     },
+    "AWSSDK.Extensions.NETCore.Setup/4.0.0-preview.10": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-o/4OOMWim9FHx5FrvCvX8NvZ6Py4qk4bg9NEHg8E84gpy6OU4Vx2nn5FvaCwnpm/mCAoHlL73Il6y8uPICmyUA==",
+      "path": "awssdk.extensions.netcore.setup/4.0.0-preview.10",
+      "hashPath": "awssdk.extensions.netcore.setup.4.0.0-preview.10.nupkg.sha512"
+    },
     "AWSSDK.S3/4.0.0-preview.10": {
       "type": "package",
       "serviceable": true,
@@ -261,6 +292,13 @@
       "sha512": "sha512-cjWrLkJXK0rs4zofsK4bSdg+jhDLTaxrkXu4gS6Y7MAlCvRyNNgwY/lJi5RDlQOnSZweHqoyvgvbdvQsRIW+hg==",
       "path": "microsoft.extensions.dependencyinjection.abstractions/8.0.0",
       "hashPath": "microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Logging.Abstractions/2.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-6ZCllUYGFukkymSTx3Yr0G/ajRxoNJp7/FqSxSB4fGISST54ifBhgu4Nc0ItGi3i6DqwuNd8SUyObmiC++AO2Q==",
+      "path": "microsoft.extensions.logging.abstractions/2.0.0",
+      "hashPath": "microsoft.extensions.logging.abstractions.2.0.0.nupkg.sha512"
     },
     "Microsoft.Extensions.Options/8.0.0": {
       "type": "package",

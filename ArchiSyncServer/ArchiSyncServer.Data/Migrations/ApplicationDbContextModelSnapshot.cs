@@ -190,8 +190,6 @@ namespace ArchiSyncServer.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OwnerId");
-
                     b.HasIndex("ParentId");
 
                     b.ToTable("Projects");
@@ -307,6 +305,9 @@ namespace ArchiSyncServer.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int?>("MainFolderId")
+                        .HasColumnType("int");
+
                     b.Property<string>("PasswordHash")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -319,6 +320,10 @@ namespace ArchiSyncServer.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("UserId");
+
+                    b.HasIndex("MainFolderId")
+                        .IsUnique()
+                        .HasFilter("[MainFolderId] IS NOT NULL");
 
                     b.HasIndex("Email", "UserName")
                         .IsUnique();
@@ -370,17 +375,9 @@ namespace ArchiSyncServer.Data.Migrations
 
             modelBuilder.Entity("ArchiSyncServer.Core.Entities.Project", b =>
                 {
-                    b.HasOne("ArchiSyncServer.Core.Entities.User", "Owner")
-                        .WithMany()
-                        .HasForeignKey("OwnerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("ArchiSyncServer.Core.Entities.Project", "Parent")
                         .WithMany()
                         .HasForeignKey("ParentId");
-
-                    b.Navigation("Owner");
 
                     b.Navigation("Parent");
                 });
@@ -423,6 +420,15 @@ namespace ArchiSyncServer.Data.Migrations
                     b.Navigation("Role");
                 });
 
+            modelBuilder.Entity("ArchiSyncServer.Core.Entities.User", b =>
+                {
+                    b.HasOne("ArchiSyncServer.Core.Entities.Project", "MainFolder")
+                        .WithOne("Owner")
+                        .HasForeignKey("ArchiSyncServer.Core.Entities.User", "MainFolderId");
+
+                    b.Navigation("MainFolder");
+                });
+
             modelBuilder.Entity("ArchiSyncServer.Core.Entities.UserRoles", b =>
                 {
                     b.HasOne("ArchiSyncServer.Core.Entities.Roles", "Role")
@@ -445,6 +451,9 @@ namespace ArchiSyncServer.Data.Migrations
             modelBuilder.Entity("ArchiSyncServer.Core.Entities.Project", b =>
                 {
                     b.Navigation("Files");
+
+                    b.Navigation("Owner")
+                        .IsRequired();
 
                     b.Navigation("Permissions");
                 });

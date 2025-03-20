@@ -652,7 +652,14 @@
         ],
         "parameters": [
           {
-            "name": "userId",
+            "name": "parentId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "projectName",
             "in": "query",
             "schema": {
               "type": "string"
@@ -680,7 +687,7 @@
         }
       }
     },
-    "/api/Upload/download-url/{fileName}": {
+    "/api/Upload/download-url": {
       "get": {
         "tags": [
           "Upload"
@@ -695,8 +702,7 @@
           },
           {
             "name": "fileName",
-            "in": "path",
-            "required": true,
+            "in": "query",
             "schema": {
               "type": "string"
             }
@@ -1218,6 +1224,11 @@
           },
           "isPublic": {
             "type": "boolean"
+          },
+          "parentId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -1268,6 +1279,14 @@
           "email": {
             "type": "string",
             "nullable": true
+          },
+          "mainFolderId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "mainFolder": {
+            "$ref": "#/components/schemas/Project"
           },
           "createdAt": {
             "type": "string",
