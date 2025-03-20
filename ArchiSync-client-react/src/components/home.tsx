@@ -26,7 +26,7 @@ const HomePage = () => {
                             color: ["#FFD700", "#FFFFFF", "#FFA500", "#FFFFE0", "#FFD700"]
                         }}
                         transition={{
-                            duration: 8,
+                            duration: 6,
                             repeat: Infinity,
                             repeatType: "reverse",
                             ease: "linear"

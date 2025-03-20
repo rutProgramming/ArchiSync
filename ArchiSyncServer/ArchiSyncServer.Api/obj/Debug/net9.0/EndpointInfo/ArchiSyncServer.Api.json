@@ -694,7 +694,14 @@
         ],
         "parameters": [
           {
-            "name": "userId",
+            "name": "parentId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "projectName",
             "in": "query",
             "schema": {
               "type": "string"

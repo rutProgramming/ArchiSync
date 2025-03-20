@@ -29,7 +29,6 @@ namespace ArchiSyncServer.API.Controllers
         // POST: api/Project
         [Authorize(Policy = "ArchitectOnly")]
         [HttpPost]
-
         public async Task<IActionResult> CreateProject([FromBody] ProjectPostModel projectPostModel)
         {
             try
