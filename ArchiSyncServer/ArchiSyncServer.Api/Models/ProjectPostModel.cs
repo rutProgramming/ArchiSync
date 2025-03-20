@@ -13,6 +13,8 @@ namespace ArchiSyncServer.API.Models
         public string Description { get; set; }
         public int OwnerId { get; set; }
         public bool IsPublic { get; set; } = true;
+        public int? ParentId { get; set; }
+
     }
 }
 

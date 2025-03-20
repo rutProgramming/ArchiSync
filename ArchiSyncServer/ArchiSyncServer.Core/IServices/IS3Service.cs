@@ -8,7 +8,7 @@ namespace ArchiSyncServer.Core.IServices
 {
     public interface IS3Service
     {
-      Task<string> GeneratePresignedUrlAsync(string userId, string fileName, string contentType);
-       Task<string> GetDownloadUrlAsync(string userId, string fileName);
+        Task<string> GeneratePresignedUrlAsync(string fileName, string contentType);
+       Task<string> GetDownloadUrlAsync( string fileName);
     }
 }

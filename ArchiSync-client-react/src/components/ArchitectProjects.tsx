@@ -6,6 +6,9 @@ import { addProject, GetProgectsArchitect } from "../store/Folder";
 import { AppDispatch, RootState } from "../store/reduxStore";
 import { Typography } from "@mui/material";
 import { PartialFolder } from "../types/types";
+import { FileUpload } from "@mui/icons-material";
+import FileUploader from "./FileUploader";
+import S3Uploader from "./File";
 
 const ArchitectProjects = () => {
     const projectNameRef = useRef<HTMLInputElement>(null);
@@ -26,9 +29,10 @@ const ArchitectProjects = () => {
             name: projectNameRef.current?.value || "",
             description: projectDescription.current?.value || "",
             ownerId: user?.userId ?? 0,
-            isPublic: publicRef.current?.checked || false
-
+            isPublic: publicRef.current?.checked || false,
+            parentId:user.mainFolderId,
         }
+        console.log(project);
         const resultAction = await dispatch(
             addProject({ project })
           );
@@ -84,7 +88,7 @@ const ArchitectProjects = () => {
                     
                 </div>
             </section>
-
+            <FileUploader />
         </>
     );
 };

@@ -4,6 +4,8 @@ import { centerStyle } from "./style";
 import { v4 as uuidv4 } from "uuid";
 import { RootState } from "../store/reduxStore";
 import { useSelector } from "react-redux";
+import { PartialFolder } from "../types/types";
+import { useParams } from "react-router";
 
 const FileUploader = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -30,9 +32,9 @@ const FileUploader = () => {
     try {
       // Request presigned URL
       const response = await axios.get("https://localhost:7218/api/Upload/upload-url",  {
-        params: { userId: user.id?.toString(), fileName: updatedFile.name, contentType: file.type },
+        params: { parentId: 1,projectName: "projectName", fileName: updatedFile.name, contentType: file.type },
     });
-
+console.log(response)
       // Upload the file to S3
       const res=await axios.put(response.data.url, updatedFile, {
         headers: { "Content-Type": updatedFile.type },
@@ -41,7 +43,10 @@ const FileUploader = () => {
           setProgress(percent);
         },
       });
-
+      const respo = await axios.get("https://localhost:7218/api/Upload/download-url",  {
+        params: { userId: user.userId, fileName: updatedFile.name },
+    });
+    console.log("arrr",respo)
       alert("File uploaded successfully");
     } catch (error) {
       console.error("Upload failed:", error);

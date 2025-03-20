@@ -1791,6 +1791,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v9.0",
         "dependencies": {
+          "AWSSDK.Core": "4.0.0-preview.10",
+          "AWSSDK.Extensions.NETCore.Setup": "4.0.0-preview.10",
           "AWSSDK.S3": "4.0.0-preview.10",
           "ArchiSyncServer.Core": "1.0.0",
           "Microsoft.AspNetCore.Cryptography.KeyDerivation": "9.0.3",

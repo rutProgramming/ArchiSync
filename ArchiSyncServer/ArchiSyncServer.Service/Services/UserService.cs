@@ -60,14 +60,32 @@ namespace ArchiSyncServer.Service.Services
             }
 
             var user = _mapper.Map<User>(userDto);
-            user.PasswordHash = PasswordHasher.HashPassword( userDto.PasswordHash); 
+            user.PasswordHash = PasswordHasher.HashPassword(userDto.PasswordHash);
             user.CreatedAt = DateTime.UtcNow;
             user.UpdatedAt = DateTime.UtcNow;
 
+            Project createMainFolderProjects = null;
+
+            if (roleName == "architect")
+            {
+                createMainFolderProjects = new Project()
+                {
+                    Name = "Main Folder",
+                    Owner = user,  
+                    Description = "main folder",
+                    IsPublic = false,
+                    CreatedAt = DateTime.UtcNow,
+                    UpdatedAt = DateTime.UtcNow
+                };
+
+                user.MainFolder = createMainFolderProjects;
+            }
+
             var createdUser = await _repositoryManager.User.CreateAsync(user);
-            var role =await _rolesRepository.GetRoleByNameAsync(roleName);
+
+            var role = await _rolesRepository.GetRoleByNameAsync(roleName);
             var createdUserRole = await _repositoryManager.UserRoles.CreateAsync(new UserRoles() { User = createdUser, Role = role });
-           
+
             if (createdUserRole == null || createdUser == null)
             {
                 throw new ArgumentException("User creation failed.");

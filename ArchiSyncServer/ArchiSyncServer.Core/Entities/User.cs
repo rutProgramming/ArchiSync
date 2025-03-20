@@ -21,6 +21,10 @@ namespace ArchiSyncServer.Core.Entities
         public string PasswordHash { get; set; }
 
         public string Email { get; set; }
+        [ForeignKey("MainFolder")]
+        public int? MainFolderId { get; set; }  
+
+        public virtual Project MainFolder { get; set; } 
         public DateTime CreatedAt { get; set; } 
         public DateTime UpdatedAt { get; set; } 
     }

@@ -397,7 +397,7 @@
   {
     "ContainingType": "ArchiSyncServer.Api.Controllers.UploadController",
     "Method": "GetDownloadUrl",
-    "RelativePath": "api/Upload/download-url/{fileName}",
+    "RelativePath": "api/Upload/download-url",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -410,7 +410,7 @@
       {
         "Name": "fileName",
         "Type": "System.String",
-        "IsRequired": true
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -424,7 +424,12 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "userId",
+        "Name": "parentId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "projectName",
         "Type": "System.String",
         "IsRequired": false
       },
