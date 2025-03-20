@@ -1,5 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./Workspace.css";
+import { v4 as uuidv4 } from "uuid";
+import axios from "axios";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/reduxStore";
 
 const Workspace = () => {
   const [uploadedImage, setUploadedImage] = useState<string | null>(null);
@@ -11,9 +15,11 @@ const Workspace = () => {
   const [isErasing, setIsErasing] = useState(false);
   const [brightness, setBrightness] = useState(100);
   const [contrast, setContrast] = useState(100);
-
+  const user = useSelector((state: RootState) => state.connect.user);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
+  const [progress, setProgress] = useState(0);
+  const [isUploading, setIsUploading] = useState(false);
 
   useEffect(() => {
     if (uploadedImage) {
@@ -44,12 +50,45 @@ const Workspace = () => {
       reader.readAsDataURL(file);
     }
   };
-
-  const handleGenerate = () => {
+  const handleGenerate = async () => {
     if (!uploadedImage) return;
-    setTimeout(() => {
-      setGeneratedImage(uploadedImage);
-    }, 2000);
+
+    try {
+      setIsUploading(true);
+      setProgress(0);
+
+      const response = await fetch(uploadedImage);
+      const blob = await response.blob();
+      const file = new File([blob], "generated_image.png", { type: "image/png" });
+
+      const uniqueFileName = `${uuidv4()}_${file.name}`;
+      const updatedFile = new File([file], uniqueFileName, { type: file.type });
+
+      // Request signed URL
+      const uploadResponse = await axios.get("https://localhost:7218/api/Upload/upload-url", {
+        params: { parentId: 1, projectName: "projectName", fileName: updatedFile.name, contentType: file.type },
+      });
+
+      // Upload to S3 with progress tracking
+      await axios.put(uploadResponse.data.url, updatedFile, {
+        headers: { "Content-Type": updatedFile.type },
+        onUploadProgress: (progressEvent) => {
+          const percentCompleted = Math.round((progressEvent.loaded * 100) / (progressEvent.total || 1));
+          setProgress(percentCompleted);
+        }
+      });
+
+      // Request download URL
+      const downloadResponse = await axios.get("https://localhost:7218/api/Upload/download-url", {
+        params: { parentId: 1, projectName: "projectName", fileName: updatedFile.name },
+      });
+
+      setGeneratedImage(downloadResponse.data.downloadUrl);
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    } finally {
+      setIsUploading(false);
+    }
   };
 
   const startDrawing = (e: React.MouseEvent<HTMLCanvasElement>) => {
@@ -70,9 +109,8 @@ const Workspace = () => {
 
     ctx.beginPath();
     ctx.moveTo(x, y);
-};
-
-const draw = (e: React.MouseEvent<HTMLCanvasElement>) => {
+  };
+  const draw = (e: React.MouseEvent<HTMLCanvasElement>) => {
     if (!drawing || !uploadedImage || !ctxRef.current || !canvasRef.current) return;
 
     const canvas = canvasRef.current;
@@ -96,14 +134,10 @@ const draw = (e: React.MouseEvent<HTMLCanvasElement>) => {
 
     ctx.beginPath();
     ctx.moveTo(x, y);
-};
-
-
-
+  };
   const stopDrawing = () => {
     setDrawing(false);
   };
-
   const clearCanvas = () => {
     if (!uploadedImage || !ctxRef.current || !canvasRef.current) return;
     const canvas = canvasRef.current;
@@ -115,7 +149,6 @@ const draw = (e: React.MouseEvent<HTMLCanvasElement>) => {
       ctxRef.current?.drawImage(img, 0, 0, img.width, img.height);
     };
   };
-
   return (
     <div className="workspace-container">
       <div className="image-section">
@@ -133,7 +166,6 @@ const draw = (e: React.MouseEvent<HTMLCanvasElement>) => {
             <div className="placeholder">Upload an image to start</div>
           )}
         </div>
-
         <div className="image-preview">
           {generatedImage ? (
             <img src={generatedImage} alt="Generated" className="output-image" />
@@ -142,7 +174,6 @@ const draw = (e: React.MouseEvent<HTMLCanvasElement>) => {
           )}
         </div>
       </div>
-
       <div className="controls">
         <input type="file" onChange={handleImageUpload} accept="image/*" />
         <input
@@ -190,6 +221,12 @@ const draw = (e: React.MouseEvent<HTMLCanvasElement>) => {
         </div>
 
         <button className="custom-btn generate-btn" onClick={handleGenerate}>Generate</button>
+        {isUploading && (
+          <div className="progress-container">
+            <progress value={progress} max="100"></progress>
+            <span>{progress}%</span>
+          </div>
+        )}
       </div>
     </div>
   );

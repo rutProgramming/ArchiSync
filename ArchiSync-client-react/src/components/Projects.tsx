@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { GetPublicProjects, GetAccessProjects } from "../store/ProjectRedux";
 
 const Projects = () => {
-    const projects = useSelector((state: RootState) => state.Projects.project);
+    const projects = useSelector((state: RootState) => state.Projects.projects);
     const user = useSelector((state: RootState) => state.connect.user);
     const loading = useSelector((state: RootState) => state.Projects.loading);
     const error = useSelector((state: RootState) => state.Projects.error);

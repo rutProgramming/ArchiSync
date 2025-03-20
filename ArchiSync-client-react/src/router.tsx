@@ -7,6 +7,9 @@ import { ReactElement } from 'react'
 import FileUploader from './components/FileUploader'
 import Projects from './components/Projects'
 import ArchitectProjects from './components/ArchitectProjects'
+import Addproject from './components/Addproject'
+import { path } from 'framer-motion/client'
+import SideBar from './components/SideBar'
 
 
 
@@ -20,14 +23,24 @@ export const router = createBrowserRouter([
     path: '/',
     element: <AppLayout />,
     children: [
-      { index: true, element: <Navigate to="/home" replace /> }, // הפניה אוטומטית ל-Home
+      { index: true, element: <Navigate to="/home" replace /> },
       { path: "Home", element: <Home /> },
       // { path: "upload", element: <UploadWorkspace/> },
-      { path: "myProjects", element: <ArchitectProjects/>,children:[
-        { path: "upload/:parentId/:projectName", element: <FileUploader/> },
 
-      ] },
-      {path:"/projects", element:<Projects /> }
+      {
+        path: "sideBar", element: <SideBar />, children: [
+          { path: "addProject", element: <Addproject /> },
+          {
+            path: "myProjects", element: <ArchitectProjects />, children: [
+              { path: "upload/:parentId/:projectName", element: <FileUploader /> },
+
+            ]
+          },
+        ]
+      },
+
+      { path: "/projects", element: <Projects /> },
+
 
 
       // {

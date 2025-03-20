@@ -1,4 +1,4 @@
-import { Button, Stack, Typography, Box, Menu, MenuItem, IconButton } from "@mui/material";
+import { Button, Stack, Menu, MenuItem, IconButton } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import SignInComponent from "./SignInComponent";
@@ -7,6 +7,7 @@ import { RootState } from "../store/reduxStore";
 import { logout } from "../store/Connect";
 import { motion } from "framer-motion";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { useNavigate } from "react-router";
 
 const buttonStyle = {
   backgroundColor: "#FFD700",
@@ -18,9 +19,10 @@ const buttonStyle = {
 const UserMenu = () => {
   const [isSignUpModalOpen, setSignUpModalOpen] = useState(false);
   const [isSignInModalOpen, setSignInModalOpen] = useState(false);
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null); // תפריט נפתח
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null); 
   const user = useSelector((state: RootState) => state.connect.user);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     dispatch(logout());
@@ -34,7 +36,10 @@ const UserMenu = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
+  const handleNavigate = (path: string) => {
+    navigate(path);
+    handleClose();  
+  };
   return (
     <Stack direction="row" alignItems="center" spacing={2}>
       {user.userName ? (
@@ -49,16 +54,17 @@ const UserMenu = () => {
             onClose={handleClose}
             sx={{
               "& .MuiPaper-root": {
-                backgroundColor: "#222", // רקע כהה
+                backgroundColor: "#222", 
                 color: "white",
                 borderRadius: "10px",
               },
             }}
           >
-            <MenuItem onClick={handleClose}>My Projects</MenuItem>
-            <MenuItem onClick={handleClose}>Settings</MenuItem>
-            <MenuItem onClick={handleLogout} sx={{ color: "red" }}>Log Out</MenuItem>
-{user.roleName==="architect"?<MenuItem onClick={handleClose}>Add Project</MenuItem>:null}
+      <MenuItem onClick={() => handleNavigate("sideBar/myProjects")}>My Projects</MenuItem>
+      <MenuItem onClick={() => handleNavigate("sideBar/addProject")}>Add project</MenuItem>
+{/* {user.RoleName==="architect"?<MenuItem onClick={handleClose}>Add Project</MenuItem>:null} */}
+    <MenuItem onClick={handleLogout} sx={{ color: "red" }}>Log Out</MenuItem>
+
           </Menu>
         </>
       ) : (

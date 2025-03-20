@@ -4,8 +4,6 @@ import { centerStyle } from "./style";
 import { v4 as uuidv4 } from "uuid";
 import { RootState } from "../store/reduxStore";
 import { useSelector } from "react-redux";
-import { PartialFolder } from "../types/types";
-import { useParams } from "react-router";
 
 const FileUploader = () => {
   const [file, setFile] = useState<File | null>(null);

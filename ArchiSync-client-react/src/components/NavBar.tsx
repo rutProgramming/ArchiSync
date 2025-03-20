@@ -1,12 +1,8 @@
 import { Link } from "react-router";
 import { Box, IconButton, Stack, Typography } from "@mui/material";
-import { useSelector } from "react-redux";
-import { RootState } from "../store/reduxStore";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import FolderIcon from "@mui/icons-material/Folder";
 import UploadIcon from "@mui/icons-material/Upload";
 import HomeIcon from "@mui/icons-material/Home";
-import Profile from "./profile";
 import UserMenu from "./UserMenu";
 
 const NavBar = () => {
