@@ -15,8 +15,9 @@ namespace ArchiSyncServer.Core.DTOs
 
         [Required, MaxLength(255)]
         public string Name { get; set; }
+        public string Description { get; set; }
 
-        public int? ParentId { get; set; } // Nullable כי תיקיית שורש אין לה אבא
+        public int? ParentId { get; set; } 
         public virtual Project Parent { get; set; }
 
         public int OwnerId { get; set; }

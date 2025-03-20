@@ -14,12 +14,13 @@ namespace ArchiSyncServer.Core.Entities
 
             [Required, MaxLength(255)]
             public string Name { get; set; }
+            public string Description { get; set; }
 
             public int? ParentId { get; set; } 
             public virtual Project Parent { get; set; }
             public int OwnerId { get; set; }
             public virtual User Owner { get; set; }
-            public bool IsPublic { get; set; } = true;
+            public bool IsPublic { get; set; } 
             public DateTime CreatedAt { get; set; } 
             public DateTime UpdatedAt { get; set; } 
             public virtual ICollection<File> Files { get; set; } = new List<File>(); 

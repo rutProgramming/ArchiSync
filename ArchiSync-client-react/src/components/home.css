@@ -176,15 +176,4 @@
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(10px); }
 }
-/* 
-.button-primary:hover {
-    box-shadow: 0 0 20px yellow;
-    background-color: yellow;
-    color: black;
-}
 
-.button-secondary:hover {
-    box-shadow: 0 0 20px white;
-    background-color: white;
-    color: black;
-} */
