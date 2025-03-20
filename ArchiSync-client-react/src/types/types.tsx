@@ -1,9 +1,10 @@
 export type User  ={
-   id: number,
+   userId: number,
    userName:string,
    email :string,
    password:string,
-   roleName :string,
+   
+RoleName :string,
    token :string
 }
 export type Puser = Partial<User>
@@ -21,10 +22,11 @@ export type Projects = {
 }
 
 export type Folder = {
-  Id: number,
-  Name: string,
-  OwnerId: number,
-  IsPublic:boolean
+  id: number,
+  name: string,
+  description:string,
+  ownerId: number,
+  isPublic:boolean
  
 }
 export type PartialProjects = Partial<Projects>

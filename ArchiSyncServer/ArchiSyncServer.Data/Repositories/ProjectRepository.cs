@@ -18,7 +18,7 @@ namespace ArchiSyncServer.Data.Repositories
 
         public async Task<Project> CreateProjectAsync(Project project)
         {
-            project.ParentId = project.OwnerId;
+           // project.ParentId = project.OwnerId;
             project.CreatedAt = DateTime.Now;
             project.UpdatedAt = DateTime.Now;
             _dbSet.Add(project);

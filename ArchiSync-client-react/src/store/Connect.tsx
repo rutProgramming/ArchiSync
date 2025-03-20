@@ -27,7 +27,7 @@ export const SignUp = createAsyncThunk('connect/signUp', async ({ user }: { user
         UserName: user.userName,
         Email: user.email, 
         PasswordHash: user.password,
-        RoleName: user.roleName,
+        RoleName: user.RoleName,
     };
     try {
         const response = await axios.post(url + 'register', userDetails);
@@ -39,7 +39,7 @@ export const SignUp = createAsyncThunk('connect/signUp', async ({ user }: { user
                 userName:user.userName,
                 email :user.email,
                 password:user.password,
-                roleName :user.roleName,
+                roleName :user.RoleName,
             }
             
              
@@ -79,7 +79,7 @@ const userSlice = createSlice({
         .addCase(SignIn.fulfilled, (state, action: PayloadAction<{  User: Puser; Token: string , RoleName: string}>) => {
             state.loading = false;
             state.user = {...action.payload.User};
-            state.user.roleName = action.payload.RoleName;
+            state.user.RoleName = action.payload.RoleName;
             sessionStorage.setItem('user', JSON.stringify(state.user));
             sessionStorage.setItem('token', JSON.stringify(action.payload.Token));
 

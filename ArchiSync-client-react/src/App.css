@@ -1,3 +1,5 @@
+/* -----button-------  */
+
 .button-primary {
     background-color: black;
     color: yellow;
@@ -23,4 +25,33 @@
     box-shadow: 0 0 20px white;
     background-color: white;
     color: black;
+}
+
+/*----cards----*/
+.cards-section {
+    padding: 80px 20px;
+    text-align: center;
+    background-color: #111;
+}
+
+.cards-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.cards-card {
+    background-color: #222;
+    padding: 20px;
+    border-radius: 10px;
+    width: 250px;
+    color: white;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.cards-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px yellow;
 }
