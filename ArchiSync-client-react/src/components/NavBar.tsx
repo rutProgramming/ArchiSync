@@ -14,7 +14,7 @@ const NavBar = () => {
         justifyContent: "space-between",
         alignItems: "center",
         padding: "10px 20px",
-        backgroundColor: "#282c34",
+        backgroundColor: "#222",
         color: "white",
         boxShadow: "0 4px 6px rgba(0,0,0,0.1)",
       }}
