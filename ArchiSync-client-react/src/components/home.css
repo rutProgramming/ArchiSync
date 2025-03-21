@@ -58,22 +58,6 @@
     cursor: pointer;
     transition: all 0.3s ease-in-out;
 }
-/* 
-.button-primary {
-    background-color: black;
-    color: yellow;
-    border-color: yellow;
-    box-shadow: 0 0 20px yellow;
-
-}
-
-.button-secondary {
-    background-color: black;
-    color: white;
-    border-color: white;
-    box-shadow: 0 0 20px white;
-
-} */
 
 .about-card{
     background-color: #222;
@@ -162,15 +146,7 @@
     transform: scale(1.05);
     box-shadow: 0 0 15px yellow;
 }
-.scroll-down {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: #FFD700;
-    cursor: pointer;
-    animation: bounce 1.5s infinite;
-}
+
 
 @keyframes bounce {
     0%, 100% { transform: translateY(0); }
