@@ -65,12 +65,22 @@ const AddProject = () => {
                 className={`custom-input ${isTyping && (descCount < 40 || descCount > 200) ? "error" : ""}`}
             />
             <FormControlLabel
-                control={<Checkbox inputRef={publicRef} className="custom-checkbox" />}
+                sx={{ color: "white" }}
+                control={
+                    <Checkbox
+                        inputRef={publicRef}
+                        sx={{
+                            color: "white",
+                            '&.Mui-checked': { color: "yellow" } 
+                        }}
+                    />
+                }
                 label="Public"
             />
 
+
             <button disabled={descCount < 40 || descCount > 200}
-                type="submit" className="button button-secondary">
+                type="submit" className="button button-primary">
                 Add Project
             </button>
         </Box>

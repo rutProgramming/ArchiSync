@@ -2,11 +2,13 @@ import { ArrowBack } from "@mui/icons-material"
 import { motion } from "framer-motion"
 import { PartialFolder } from "../types/types"
 import "../App.css"
-import {Stack, Tooltip } from "@mui/material"
+import { Modal, Stack, Tooltip } from "@mui/material"
 import { useState } from "react"
+import Workspace from "./Workspace"
 
 const ProjectDashboard = ({ openProject, handleBack }: { openProject: PartialFolder, handleBack: () => void }) => {
     const [userId, setUserId] = useState("");
+    const [im, setim] = useState(false);
 
     const handleAddPermission = () => {
         if (userId.trim() === "") return;
@@ -37,7 +39,7 @@ const ProjectDashboard = ({ openProject, handleBack }: { openProject: PartialFol
 
                     <div className="button-container">
                         <motion.button
-                            onClick={handleAddPermission}
+                            onClick={() => setim(!im)}
                             className="button button-secondary"
                             whileHover={{ scale: 1.05, boxShadow: "0 0 20px white" }}
                             whileTap={{ scale: 0.95 }}
@@ -78,6 +80,9 @@ const ProjectDashboard = ({ openProject, handleBack }: { openProject: PartialFol
             </section>
 
         </motion.div >
+        <Modal open={im} onClose={() => setim(false)}>
+            <Workspace />
+        </Modal>
     </>
     )
 }

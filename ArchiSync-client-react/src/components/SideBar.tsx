@@ -6,24 +6,54 @@ import CreateNewFolderIcon from "@mui/icons-material/CreateNewFolder";
 const SideBar = () => {
   return (
     <Stack direction="row" height="100vh">
-      <Box sx={{height:"500px", width: "220px", backgroundColor: "#222", padding: "20px", color: "white",position:"relative",top:"80px" }}>
-        <List>
-          <ListItemButton component={Link} to="./myProjects" sx={{ color: "white" }}>
-            <ListItemIcon>
-              <DashboardIcon sx={{ color: "white" }} />
-            </ListItemIcon>
-            <ListItemText primary="Projects" />
-          </ListItemButton>
+     <Box
+      sx={{
+        height: "200px",
+        width: "220px",
+        backgroundColor: "#222",
+        padding: "20px",
+        position: "relative",
+        top: "150px",
+        borderRadius: "20px",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        transition: "all 0.3s ease-in-out",
+        boxShadow: "0px 4px 10px rgba(246, 243, 176, 0.3)"
 
-          <ListItemButton component={Link} to="./addProject" sx={{ color: "white" }}>
-            <ListItemIcon>
-              <CreateNewFolderIcon sx={{ color: "white" }} />
-            </ListItemIcon>
-            <ListItemText primary="Add Project" />
-          </ListItemButton>
-        </List>
-      </Box>
+      }}
+    >
+      <List>
+        <ListItemButton
+          component={Link}
+          to="./myProjects"
+          sx={{
+            color: "white",
+            "&:hover": { backgroundColor: "#333", transition: "0.3s" },
+          }}
+        >
+          <ListItemIcon sx={{ minWidth: "40px" }}>
+            <DashboardIcon sx={{ color: "white", fontSize: "28px" }} />
+          </ListItemIcon>
+          <ListItemText primary="Projects" />
+        </ListItemButton>
 
+        <ListItemButton
+          component={Link}
+          to="./addProject"
+          sx={{
+            color: "white",
+            marginTop: "10px",
+            "&:hover": { backgroundColor: "#333", transition: "0.3s" },
+          }}
+        >
+          <ListItemIcon sx={{ minWidth: "40px" }}>
+            <CreateNewFolderIcon sx={{ color: "white", fontSize: "28px" }} />
+          </ListItemIcon>
+          <ListItemText primary="Add Project" />
+        </ListItemButton>
+      </List>
+    </Box>
       <Box sx={{ flex: 1, padding: "20px" }}>
         <Outlet />
       </Box>

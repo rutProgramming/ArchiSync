@@ -1,10 +1,10 @@
 import { FormEvent, useRef } from "react";
-import { Box, Button, Modal, TextField } from "@mui/material";
-import { buttonStyles, styleForm } from "./style";
+import { Modal, TextField } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../store/reduxStore";
 import { Puser } from "../types/types";
 import { SignUp } from "../store/Connect";
+import "../App.css";
 
 const SignUpComponent = ({ onClose }: { onClose: () => void }) => {
     const userNameRef = useRef<HTMLInputElement>(null);
@@ -12,7 +12,6 @@ const SignUpComponent = ({ onClose }: { onClose: () => void }) => {
     const passwordRef = useRef<HTMLInputElement>(null);
     const roleNameRef = useRef<HTMLInputElement>(null);
     const dispatch: AppDispatch = useDispatch();
-
 
     const handleSubmit = async (event: FormEvent) => {
         event.preventDefault();
@@ -43,7 +42,7 @@ const SignUpComponent = ({ onClose }: { onClose: () => void }) => {
         <Modal open={true} onClose={() => onClose()}>
                 <form onSubmit={handleSubmit} className="form-container">
                     <TextField
-                        label='User Name'
+                        label='UserName'
                         inputRef={userNameRef}
                         required
                         variant="outlined"
@@ -66,14 +65,14 @@ const SignUpComponent = ({ onClose }: { onClose: () => void }) => {
                         fullWidth
                         className="custom-input" />
                     <TextField 
-                        label='Role Name' 
+                        label='RoleName' 
                         inputRef={roleNameRef} 
                         required 
                         variant="outlined"
                         fullWidth
                         className="custom-input" />
                     <button
-                        type="submit" className="button button-secondary">
+                        type="submit" className="button button-primary">
                         Sign up
                     </button>
                 </form>

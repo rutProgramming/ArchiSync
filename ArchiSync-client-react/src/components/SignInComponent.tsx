@@ -2,8 +2,7 @@ import React, { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { SignIn } from '../store/Connect';
 import { AppDispatch } from '../store/reduxStore';
-import { Box, Modal, TextField } from '@mui/material';
-import {  styleForm } from './style';
+import { Modal, TextField } from '@mui/material';
 
 const SignInComponent = ({ onClose }: { onClose: () => void }) => {
     const dispatch: AppDispatch = useDispatch();
@@ -33,26 +32,26 @@ const SignInComponent = ({ onClose }: { onClose: () => void }) => {
     return (
         <>
             <Modal open={true} onClose={() => onClose()}>
-                    <form onSubmit={handleSubmit} className="form-container">
-                        <TextField
-                            label='User Name'
-                            inputRef={userNameRef}
-                            required
-                            variant="outlined"
-                            fullWidth
-                            className="custom-input" />
-                        <TextField
-                            label='Password'
-                            inputRef={passwordRef}
-                            type="password"
-                            required variant="outlined"
-                            fullWidth
-                            className="custom-input" />
-                        <button
-                            type="submit" className="button button-secondary">
-                                Sign in
-                        </button>                   
-                     </form>
+                <form onSubmit={handleSubmit} className="form-container">
+                    <TextField
+                        label='UserName'
+                        type='text'
+                        inputRef={userNameRef}
+                        required variant="outlined"
+                        fullWidth
+                        className="custom-input" />
+                    <TextField
+                        label='Password'
+                        inputRef={passwordRef}
+                        type="password"
+                        required variant="outlined"
+                        fullWidth
+                        className="custom-input" />
+                    <button
+                        type="submit" className="button button-primary">
+                        Sign in
+                    </button>
+                </form>
             </Modal>
 
         </>

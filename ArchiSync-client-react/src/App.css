@@ -71,7 +71,7 @@
     padding: 20px;
     background-color: #222;
     border-radius: 12px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 4px 10px rgba(246, 243, 176, 0.3);
 }
 
 /*------input fields-----*/
@@ -79,21 +79,20 @@
 .custom-input .MuiOutlinedInput-root {
     transition: border-color 0.3s ease, background-color 0.3s ease;
     background-color: #333;
-    color: white;
+    color:yellow;
     border-radius: 8px;
 }
 
 .custom-input .MuiOutlinedInput-root:hover fieldset {
-    border-color: white !important;
+    border-color: yellow !important;
 }
 
-/* Style the labels */
 .custom-input .MuiInputLabel-root {
-    color: white !important;
+    color:white!important;
 }
 
 .custom-input .MuiOutlinedInput-root.Mui-focused fieldset {
-    border-color:white !important;
+    border-color:yellow!important;
 }
 
 .custom-input .MuiOutlinedInput-root.Mui-focused {
@@ -101,7 +100,7 @@
 }
 
 .custom-input .MuiFormHelperText-root {
-    color: white !important;
+    color:yellow !important;
     font-size: 12px;
 }
 

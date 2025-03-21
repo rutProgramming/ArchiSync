@@ -49,7 +49,7 @@
   }
   
   input[type="file"],
-  input[type="text"] {
+  /* input[type="text"] {
     padding: 10px;
     border: 1px solid yellow;
     background: black;
@@ -58,7 +58,7 @@
     width: 300px;
     text-align: center;
   }
-  
+   */
   .tools {
     display: flex;
     align-items: center;
