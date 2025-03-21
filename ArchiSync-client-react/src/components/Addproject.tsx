@@ -1,67 +1,83 @@
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../store/reduxStore";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { PartialFolder } from "../types/types";
 import { addProject } from "../store/Folder";
-import { motion } from "framer-motion";
+import { Box, TextField, FormControlLabel, Checkbox } from "@mui/material";
 import "../App.css";
 
-const addProgect = () => {
+const AddProject = () => {
     const dispatch: AppDispatch = useDispatch();
     const projectNameRef = useRef<HTMLInputElement>(null);
-    const projectDescription = useRef<HTMLInputElement>(null);
+    const projectDescriptionRef = useRef<HTMLInputElement>(null);
     const publicRef = useRef<HTMLInputElement>(null);
     const user = useSelector((state: RootState) => state.connect.user);
+    const [descCount, setDescCount] = useState(0);
+    const [isTyping, setIsTyping] = useState(false);
 
+const handleDescriptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const words = e.target.value.split(/\s+/).filter(Boolean);
+    setDescCount(words.length);
+    setIsTyping(true);
+};
     const handleAddFolder = async (event: React.FormEvent) => {
         event.preventDefault();
         const project: PartialFolder = {
             name: projectNameRef.current?.value || "",
-            description: projectDescription.current?.value || "",
+            description: projectDescriptionRef.current?.value || "",
             ownerId: user?.userId ?? 0,
             isPublic: publicRef.current?.checked || false,
-            parentId: user.mainFolderId,
-        }
-        console.log(project);
-        const resultAction = await dispatch(
-            addProject({ project })
-        );
+            parentId: user?.mainFolderId ?? 0,
+        };
+
+        const resultAction = await dispatch(addProject({ project }));
 
         if (addProject.rejected.match(resultAction)) {
             console.error("Failed to add project:", resultAction.error.message);
-        }
-        else if (addProject.fulfilled.match(resultAction)) {
+        } else if (addProject.fulfilled.match(resultAction)) {
             projectNameRef.current!.value = "";
-            projectDescription.current!.value = "";
+            projectDescriptionRef.current!.value = "";
             publicRef.current!.checked = false;
-            // if (user?.userId)
-            //     dispatch(GetProgectsArchitect());
         }
     };
+
     return (
-        <form onSubmit={handleAddFolder}>
-            <motion.input
-                type="text"
-                placeholder="Project Name"
-                size={20}
-                ref={projectNameRef}
+        <Box component="form" onSubmit={handleAddFolder} className="form-container">
+            <TextField
+                inputRef={projectNameRef}
+                label="Project Name"
+                variant="outlined"
+                fullWidth
                 required
+                className="custom-input"
             />
-            <motion.input
-                type="text"
-                placeholder="Project description"
-                size={20}
-                ref={projectDescription}
-                required
+            <TextField
+        inputRef={projectDescriptionRef}
+        label="Project Description"
+        variant="outlined"
+        fullWidth
+        required
+        multiline
+        rows={3}
+        onChange={handleDescriptionChange}
+        helperText={"Description should be between 40-200 words"}
+        error={isTyping && (descCount < 40 || descCount > 200)}
+        className={`custom-input ${isTyping && (descCount < 40 || descCount > 200) ? "error" : ""}`}
+    />
+            <FormControlLabel
+                control={<Checkbox inputRef={publicRef} className="custom-checkbox" />}
+                label="Public"
             />
-            <input type="checkbox" id="publicCheckbox" ref={publicRef} />
-            <label htmlFor="publicCheckbox" style={{ color: "white" }}>Public</label>
 
-            <motion.button type="submit" className="button button-secondary">
+            <button disabled={descCount < 40 || descCount > 200}
+                type="submit" className="button button-secondary">
                 Add Project
-            </motion.button>
-        </form>
-    )
-}
+            </button>
+        </Box>
 
-export default addProgect
+
+
+    );
+};
+
+export default AddProject;

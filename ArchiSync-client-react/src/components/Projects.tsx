@@ -16,7 +16,7 @@ const Projects = () => {
         } else {
             dispatch(GetPublicProjects());
         }
-    }, [dispatch, user?.userName]); // הוספנו את `user.userName` לתלות
+    }, [dispatch, user?.userName]); 
 
     return (
         <>

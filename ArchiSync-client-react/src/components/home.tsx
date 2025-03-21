@@ -14,7 +14,7 @@ const HomePage = () => {
             behavior: "smooth",
         });
     };
-    
+
     return (
         <div className="home-container">
             <Container maxWidth="md" style={{ paddingTop: "15px", paddingBottom: "30px", ...centerStyle }}>
@@ -70,21 +70,22 @@ const HomePage = () => {
 
                         <motion.button
                             className="button button-secondary"
-                            whileHover={{ scale: 1.05, boxShadow: "0 0 20px white"}}
+                            whileHover={{ scale: 1.05, boxShadow: "0 0 20px white" }}
                             whileTap={{ scale: 0.95 }}
                         >
                             CONTACT US
                         </motion.button>
                     </div>
                 </Grid>
-                <motion.div 
-    className="scroll-down" 
-    whileHover={{ scale: 1.2 }} 
-    whileTap={{ scale: 0.9 }}
-    onClick={scrollToSection}
->
-    <ArrowDownwardIcon fontSize="large" />
-</motion.div>
+                <motion.div
+                    className="ArrowButton"
+                    whileHover={{ scale: 1.2 }}
+                    whileTap={{ scale: 0.9 }}
+                    onClick={scrollToSection}
+                    style={{position: "absolute",left: "50%"}}
+                >
+                    <ArrowDownwardIcon fontSize="large" />
+                </motion.div>
             </Container>
 
             {/* אזור "מי אנחנו" */}
