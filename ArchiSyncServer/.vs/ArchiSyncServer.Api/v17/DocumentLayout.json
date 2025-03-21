@@ -97,12 +97,11 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "dbo.Projects [Data]",
+              "Title": "dbo.Projects.sql",
               "DocumentMoniker": "ViewDataWindow_MSSQL__/LAPTOP_KOM2Q8SQ_SQLEXPRESS/ArchiVisionDB/True/SqlTable/dbo.Projects.sql",
-              "ToolTip": "dbo.Projects [Data]",
+              "ToolTip": "ViewDataWindow_MSSQL__/LAPTOP_KOM2Q8SQ_SQLEXPRESS/ArchiVisionDB/True/SqlTable/dbo.Projects.sql",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2025-03-21T00:19:10.308Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-21T00:19:10.308Z"
             },
             {
               "$type": "Document",
@@ -114,8 +113,7 @@
               "RelativeToolTip": "ArchiSyncServer.Api\\Models\\UserPostModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T23:18:27.332Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-20T23:18:27.332Z"
             },
             {
               "$type": "Document",
@@ -280,8 +278,7 @@
               "RelativeToolTip": "ArchiSyncServer.Core\\DTOs\\ProjectDTO.cs",
               "ViewState": "AgIAABEAAAAAAAAAAADgvwsAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T00:23:48.185Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-20T00:23:48.185Z"
             },
             {
               "$type": "Document",
@@ -293,8 +290,7 @@
               "RelativeToolTip": "ArchiSyncServer.Api\\Models\\ProjectPostModel.cs",
               "ViewState": "AgIAAAsAAAAAAAAAAAAAwA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T00:23:17.977Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-20T00:23:17.977Z"
             },
             {
               "$type": "Document",
@@ -330,8 +326,7 @@
               "RelativeToolTip": "ArchiSyncServer.Service\\Services\\ProjectService.cs",
               "ViewState": "AgIAAG8AAAAAAAAAAAAMwHgAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-19T21:33:52.405Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-19T21:33:52.405Z"
             },
             {
               "$type": "Document",
@@ -343,8 +338,7 @@
               "RelativeToolTip": "ArchiSyncServer.Api\\Controllers\\ProjectController.cs",
               "ViewState": "AgIAAB0AAAAAAAAAAAD4vyAAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-19T21:23:09.18Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-19T21:23:09.18Z"
             }
           ]
         }

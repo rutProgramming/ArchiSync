@@ -3,7 +3,7 @@ import { Box, Button, Modal, TextField } from "@mui/material";
 import { buttonStyles, styleForm } from "./style";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../store/reduxStore";
-import { Puser } from "../types/types"; 
+import { Puser } from "../types/types";
 import { SignUp } from "../store/Connect";
 
 const SignUpComponent = ({ onClose }: { onClose: () => void }) => {
@@ -12,7 +12,7 @@ const SignUpComponent = ({ onClose }: { onClose: () => void }) => {
     const passwordRef = useRef<HTMLInputElement>(null);
     const roleNameRef = useRef<HTMLInputElement>(null);
     const dispatch: AppDispatch = useDispatch();
-    
+
 
     const handleSubmit = async (event: FormEvent) => {
         event.preventDefault();
@@ -41,15 +41,42 @@ const SignUpComponent = ({ onClose }: { onClose: () => void }) => {
 
     return (
         <Modal open={true} onClose={() => onClose()}>
-            <Box sx={styleForm}>
-                <form onSubmit={handleSubmit}>
-                    <TextField label='User Name' inputRef={userNameRef} required />
-                    <TextField label='Email' inputRef={emailRef} type="email" required />
-                    <TextField label='Password' inputRef={passwordRef} type="password" required />
-                    <TextField label='Role Name' inputRef={roleNameRef} required />
-                    <Button type="submit" sx={buttonStyles}>Sign Up</Button>
+                <form onSubmit={handleSubmit} className="form-container">
+                    <TextField
+                        label='User Name'
+                        inputRef={userNameRef}
+                        required
+                        variant="outlined"
+                        fullWidth
+                        className="custom-input" />
+                    <TextField 
+                        label='Email' 
+                        inputRef={emailRef} 
+                        type="email" 
+                        required 
+                        variant="outlined"
+                        fullWidth
+                        className="custom-input" />
+                    <TextField 
+                        label='Password' 
+                        inputRef={passwordRef} 
+                        type="password" 
+                        required 
+                        variant="outlined"
+                        fullWidth
+                        className="custom-input" />
+                    <TextField 
+                        label='Role Name' 
+                        inputRef={roleNameRef} 
+                        required 
+                        variant="outlined"
+                        fullWidth
+                        className="custom-input" />
+                    <button
+                        type="submit" className="button button-secondary">
+                        Sign up
+                    </button>
                 </form>
-            </Box>
         </Modal>
     );
 };

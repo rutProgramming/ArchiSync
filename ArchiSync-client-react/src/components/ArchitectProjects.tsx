@@ -5,7 +5,7 @@ import { GetProgectsArchitect } from "../store/Folder";
 import { Typography } from "@mui/material";
 import { motion } from "framer-motion";
 import { PartialFolder } from "../types/types";
-import FilesInProject from "./FilesInProject";
+import ProjectDashboard from "./ProjectDashboard";
 
 
 const ArchitectProjects = () => {
@@ -53,7 +53,7 @@ const ArchitectProjects = () => {
                 </section>
             }
             {openProject && (
-                    <FilesInProject openProject={openProject} handleBack={() => setOpenProject(null)} />
+                    <ProjectDashboard openProject={openProject} handleBack={() => setOpenProject(null)} />
             )}
 
         </>

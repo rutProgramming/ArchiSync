@@ -15,11 +15,11 @@ const AddProject = () => {
     const [descCount, setDescCount] = useState(0);
     const [isTyping, setIsTyping] = useState(false);
 
-const handleDescriptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const words = e.target.value.split(/\s+/).filter(Boolean);
-    setDescCount(words.length);
-    setIsTyping(true);
-};
+    const handleDescriptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const words = e.target.value.split(/\s+/).filter(Boolean);
+        setDescCount(words.length);
+        setIsTyping(true);
+    };
     const handleAddFolder = async (event: React.FormEvent) => {
         event.preventDefault();
         const project: PartialFolder = {
@@ -52,18 +52,18 @@ const handleDescriptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
                 className="custom-input"
             />
             <TextField
-        inputRef={projectDescriptionRef}
-        label="Project Description"
-        variant="outlined"
-        fullWidth
-        required
-        multiline
-        rows={3}
-        onChange={handleDescriptionChange}
-        helperText={"Description should be between 40-200 words"}
-        error={isTyping && (descCount < 40 || descCount > 200)}
-        className={`custom-input ${isTyping && (descCount < 40 || descCount > 200) ? "error" : ""}`}
-    />
+                inputRef={projectDescriptionRef}
+                label="Project Description"
+                variant="outlined"
+                fullWidth
+                required
+                multiline
+                rows={3}
+                onChange={handleDescriptionChange}
+                helperText={"Description should be between 40-200 words"}
+                error={isTyping && (descCount < 40 || descCount > 200)}
+                className={`custom-input ${isTyping && (descCount < 40 || descCount > 200) ? "error" : ""}`}
+            />
             <FormControlLabel
                 control={<Checkbox inputRef={publicRef} className="custom-checkbox" />}
                 label="Public"

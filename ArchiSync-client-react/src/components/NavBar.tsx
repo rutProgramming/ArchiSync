@@ -1,7 +1,6 @@
 import { Link } from "react-router";
 import { Box, IconButton, Stack, Typography } from "@mui/material";
 import FolderIcon from "@mui/icons-material/Folder";
-import UploadIcon from "@mui/icons-material/Upload";
 import HomeIcon from "@mui/icons-material/Home";
 import UserMenu from "./UserMenu";
 
@@ -26,20 +25,13 @@ const NavBar = () => {
           ArchiSync
         </Typography>
         <IconButton component={Link} to="/" sx={{ color: "white" }}>
-          <HomeIcon fontSize="large" />
+          <HomeIcon fontSize="medium" />
         </IconButton>
         <IconButton component={Link} to="/projects" sx={{ color: "white" }}>
-          <FolderIcon fontSize="large" />
-        </IconButton>
-        <IconButton component={Link} to="/upload" sx={{ color: "white" }}>
-          <UploadIcon fontSize="large" />
-        </IconButton>
-        <IconButton component={Link} to="/myProjects" sx={{ color: "white" }}>
-          <FolderIcon fontSize="large" />
+          <FolderIcon fontSize="medium" />
         </IconButton>
       </Stack>
 
-      {/* צד ימין - פרופיל */}
       <Stack direction="row" spacing={2} alignItems="center">
         <UserMenu />
       </Stack>
