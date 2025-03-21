@@ -84,7 +84,7 @@
 }
 
 .custom-input .MuiOutlinedInput-root:hover fieldset {
-    border-color: yellow !important;
+    border-color: white !important;
 }
 
 /* Style the labels */
@@ -93,7 +93,7 @@
 }
 
 .custom-input .MuiOutlinedInput-root.Mui-focused fieldset {
-    border-color: yellow !important;
+    border-color:white !important;
 }
 
 .custom-input .MuiOutlinedInput-root.Mui-focused {
