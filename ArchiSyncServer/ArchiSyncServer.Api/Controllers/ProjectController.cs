@@ -58,13 +58,13 @@ namespace ArchiSyncServer.API.Controllers
         }
 
         // PUT: api/Project/{id}
-        [Authorize(Roles = "admin,architect")]
+        [Authorize(Policy = "ArchitectOnly")]
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] ProjectDTO projectPostModel)
+        public async Task<IActionResult> Put(int id, [FromBody] ProjectDTO projectDto)
         {
             try
             {
-                if (projectPostModel.Id != id)
+                if (projectDto.Id != id)
                 {
                     return BadRequest("Project ID mismatch.");
                 }
@@ -72,12 +72,11 @@ namespace ArchiSyncServer.API.Controllers
                 var userId = GetUserId();
                 var userRole = GetUserRole();
 
-                if (userRole != "admin" && projectPostModel.OwnerId != userId)
+                if (userRole != "admin" && projectDto.OwnerId != userId)
                 {
                     return Forbid("You do not have permission to update this project.");
                 }
 
-                var projectDto = _mapper.Map<ProjectDTO>(projectPostModel);
                 await _ProjectService.UpdateProjectAsync(id,projectDto);
                 return NoContent();
             }
@@ -100,7 +99,7 @@ namespace ArchiSyncServer.API.Controllers
         }
 
         // DELETE: api/Project/{id}
-        [Authorize(Roles = "admin,architect")]
+        [Authorize(Policy = "ArchitectOnly")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {

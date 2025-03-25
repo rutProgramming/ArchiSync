@@ -16,10 +16,11 @@ namespace ArchiSyncServer.Data.Repositories
         public ProjectPermissionRepository(ApplicationDbContext context) : base(context)
         {
         }
-        public async Task<bool> UserHasAccess(int userId, int projectId)
+        public async Task<bool> UserHasAccess( int projectId, int userId)
         {
             return await _context.ProjectPermissions
                 .AnyAsync(p => p.UserId == userId && p.ProjectId == projectId);
+
         }
     }
 

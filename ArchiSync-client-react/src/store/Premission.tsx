@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { GetHeaders } from "./Project";
+import { PartialProjectPermission } from "../types/types";
 const url = "https://localhost:7218/api/ProjectPermission/";
 
 
@@ -12,41 +13,57 @@ export const checkProjectAccess = createAsyncThunk(
       console.log("check-permission");
       const response = await axios.get(`${url}${projectId}/check-permission`, {
         headers: GetHeaders(),
-    });
-    console.log(response);
-    return { projectId, hasAccess: response.data.hasAccess };
+      });
+      console.log(response);
+      return { projectId, hasAccess: response.data.hasAccess };
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.response?.data || "Failed to check access");
     }
   }
 );
 
-
+export const addProjectPremmision = createAsyncThunk(
+  "projects/addProjectPremmision",
+  async (projectPremmision: PartialProjectPermission , thunkAPI) => {
+    try {
+      const response = await axios.post(url, projectPremmision, {
+        headers: GetHeaders(),
+      });
+      console.log(response);
+      return response.data;
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue(error.response?.data || "Failed to check access");
+    }
+  }
+);
 
 const premmisionSlice = createSlice({
-    name: 'premmision',
-    initialState: {
-        premmision:  ({} as boolean),
-        loading: false,
-        error: ""
-    },
-    reducers: {
-       
-    },
-    extraReducers: (builder) => {
-        builder
-        .addCase(checkProjectAccess.pending, (state) => {
-            state.loading = true;
-          })
-          .addCase(checkProjectAccess.fulfilled, (state, action: PayloadAction<{ projectId: number; hasAccess: boolean }>) => {
-            state.loading = false;
-            state.premmision = action.payload.hasAccess;
-          })
-          .addCase(checkProjectAccess.rejected, (state) => {
-            state.loading = false;
-          });
+  name: 'premmision',
+  initialState: {
+    premmision: ({} as PartialProjectPermission),
+    loading: false,
+    error: ""
+  },
+  reducers: {
 
-    },
+  },
+  extraReducers: (builder) => {
+    builder
+      
+      .addCase(addProjectPremmision.pending, (state) => {
+        state.loading = true;
+        state.error = "";
+      })
+      .addCase(addProjectPremmision.fulfilled, (state, action: PayloadAction<PartialProjectPermission>) => {
+        state.loading = false;
+        state.premmision = { ...action.payload };
+
+      })
+      .addCase(addProjectPremmision.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string || 'Failed to add ProjectPremmision';
+      });
+  },
 });
 
 export default premmisionSlice.reducer;

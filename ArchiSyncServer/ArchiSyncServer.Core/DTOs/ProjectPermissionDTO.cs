@@ -1,16 +1,14 @@
-﻿using System;
+﻿using ArchiSyncServer.Core.Entities;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ArchiSyncServer.Core.Entities
+namespace ArchiSyncServer.Core.DTOs
 {
-    public class ProjectPermission
+    public class ProjectPermissionDTO
     {
-        [Key]
         public int Id { get; set; }
 
         public int ProjectId { get; set; }

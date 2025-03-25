@@ -10,6 +10,7 @@ import ArchitectProjects from './components/ArchitectProjects'
 import Addproject from './components/Addproject'
 import { path } from 'framer-motion/client'
 import SideBar from './components/SideBar'
+import UserMessages from './components/UserNotifications'
 
 
 
@@ -36,6 +37,7 @@ export const router = createBrowserRouter([
 
             ]
           },
+          { path: "Messages", element: <UserMessages /> },
         ]
       },
 

@@ -43,8 +43,10 @@ namespace ArchiSyncServer.Api.Controllers
                 return NotFound(new { message = ex.Message });
             }
         }
-        [Authorize(Roles = "Architect")]
+
+        [Authorize(Policy = "ArchitectOnly")]
         [HttpGet("architect")]
+
         public async Task<ActionResult<IEnumerable<MessageDTO>>> GetArchitectMessages()
         {
             int architectId = GetUserId();
@@ -72,7 +74,7 @@ namespace ArchiSyncServer.Api.Controllers
             {
                 var messageDto = _mapper.Map<MessageDTO>(messagePostModel);
                 var createdMessage = await _messageService.CreateMessageAsync(messageDto);
-                return CreatedAtAction(nameof(Get), new { id = createdMessage.Id });
+                return CreatedAtAction(nameof(Get), new { id = createdMessage.Id, createdMessage });
             }
             catch (ArgumentException ex)
             {
@@ -81,11 +83,10 @@ namespace ArchiSyncServer.Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] MessagePostModel messagePostModel)
+        public async Task<IActionResult> Put(int id, [FromBody] MessageDTO messageDto)
         {
             try
             {
-                var messageDto = _mapper.Map<MessageDTO>(messagePostModel);
                 await _messageService.UpdateMessageAsync(id, messageDto);
                 return NoContent();
             }

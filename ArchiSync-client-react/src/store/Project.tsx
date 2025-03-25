@@ -15,8 +15,8 @@ export const addProject = createAsyncThunk(
     async ({ project }: {project: PartialProject }, thunkAPI) => {
         try {
             console.log(project);
-            await axios.post(url, project, { headers: GetHeaders() });
-            return true;
+            var response = await axios.post(url, project, { headers: GetHeaders() });
+            return response.data;
         } catch (error) {
             alert(error);
             return thunkAPI.rejectWithValue('Failed to add project');
@@ -123,6 +123,19 @@ const ProjectSlice = createSlice({
                 state.loading = false;
                 state.error = action.payload as string || 'Failed to get projects';
             })
+            .addCase(addProject.pending, (state) => {
+                state.loading = true;
+                state.error = "";
+            })
+            .addCase(addProject.fulfilled, (state, action: PayloadAction<PartialProject>) => {
+                state.loading = false;
+                state.projects.push(action.payload);
+                
+            })
+            .addCase(addProject.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload as string || 'Failed to add project';
+            });
     },
 });
 

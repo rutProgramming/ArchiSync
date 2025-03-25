@@ -18,19 +18,19 @@ namespace ArchiSyncServer.Core.DTOs
         public string Description { get; set; }
 
         public int? ParentId { get; set; } 
-       // public virtual Project Parent { get; set; }
+        public virtual Project Parent { get; set; }
 
         public int OwnerId { get; set; }
-       // public virtual User Owner { get; set; }
+        public virtual User Owner { get; set; }
 
         public bool IsPublic { get; set; } = true;
 
-       // public DateTime CreatedAt { get; set; } 
-       // public DateTime UpdatedAt { get; set; } 
+        public DateTime CreatedAt { get; set; } 
+        public DateTime UpdatedAt { get; set; } 
 
        // public virtual ICollection<Project> Children { get; set; } = new List<Project>(); // תתי-תיקיות
-       // public virtual ICollection<File> Files { get; set; } = new List<File>(); // קבצים בתוך הפרויקט/תיקייה
-       // public virtual ICollection<ProjectPermission> Permissions { get; set; } = new List<ProjectPermission>(); // הרשאות
+       public virtual ICollection<File> Files { get; set; } // קבצים בתוך הפרויקט/תיקייה
+        public virtual ICollection<ProjectPermission> Permissions { get; set; }  
     }
 
 

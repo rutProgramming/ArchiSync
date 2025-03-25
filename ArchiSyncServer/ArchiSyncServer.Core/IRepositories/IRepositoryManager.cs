@@ -12,7 +12,9 @@ namespace ArchiSyncServer.Core.IRepositories
         ICommentRepository Comment { get; }
         IUserRepository User { get; }
         IUserRolesRepository UserRoles { get; }
-        IRolesRepository Roles { get; }  
+        IRolesRepository Roles { get; }
+        IProjectPermissionRepository projectPermission { get; }
+        IMessageRepository Message { get; }
 
         Task SaveAsync();
     }

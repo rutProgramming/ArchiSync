@@ -262,8 +262,8 @@
         "IsRequired": true
       },
       {
-        "Name": "messagePostModel",
-        "Type": "ArchiSyncServer.API.Models.MessagePostModel",
+        "Name": "messageDto",
+        "Type": "ArchiSyncServer.Core.DTOs.MessageDTO",
         "IsRequired": true
       }
     ],
@@ -355,7 +355,7 @@
         "IsRequired": true
       },
       {
-        "Name": "projectPostModel",
+        "Name": "projectDto",
         "Type": "ArchiSyncServer.Core.DTOs.ProjectDTO",
         "IsRequired": true
       }
@@ -433,6 +433,32 @@
     "Order": 0,
     "Parameters": [],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArchiSyncServer.Api.Controllers.ProjectPermissionController",
+    "Method": "Post",
+    "RelativePath": "api/ProjectPermission",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "projectPermissionPostModel",
+        "Type": "ProjectPermissionPostModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ArchiSyncServer.Core.DTOs.MessageDTO, ArchiSyncServer.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "ArchiSyncServer.Api.Controllers.ProjectPermissionController",

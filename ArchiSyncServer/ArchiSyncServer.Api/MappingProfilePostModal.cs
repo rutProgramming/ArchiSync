@@ -11,23 +11,13 @@ namespace ArchiSyncServer.Api
     {
         public MappingProfilePostModal()
         {
-            // Project mappings
             CreateMap<ProjectPostModel, ProjectDTO>().ReverseMap();
-
-            // Document mappings
             CreateMap<MessagePostModel, MessageDTO>().ReverseMap();
-
-            // Comment mappings
             CreateMap<CommentPostModel, CommentDTO>().ReverseMap();
-
-            // ProjectDocument mappings
-            CreateMap<ProjectPostModel, ProjectDTO>().ReverseMap();
-
-            // User mappings
-
             CreateMap<UserPostModel, UserDTO>().ReverseMap();
-
             CreateMap<RegisterModel, UserDTO>().ReverseMap();
+            CreateMap<ProjectPermissionPostModel, ProjectPermissionDTO>().ReverseMap();
+
 
         }
     }
