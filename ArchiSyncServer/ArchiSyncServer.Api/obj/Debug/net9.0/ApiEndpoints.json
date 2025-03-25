@@ -121,115 +121,6 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "ArchiSyncServer.Api.Controllers.DocumentController",
-    "Method": "Get",
-    "RelativePath": "api/Document",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[ArchiSyncServer.Core.DTOs.DocumentDTO, ArchiSyncServer.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "ArchiSyncServer.Api.Controllers.DocumentController",
-    "Method": "Post",
-    "RelativePath": "api/Document",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "documentPostModel",
-        "Type": "ArchiSyncServer.API.Models.DocumentPostModel",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "ArchiSyncServer.Core.DTOs.DocumentDTO",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "ArchiSyncServer.Api.Controllers.DocumentController",
-    "Method": "Get",
-    "RelativePath": "api/Document/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "ArchiSyncServer.Core.DTOs.DocumentDTO",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "ArchiSyncServer.Api.Controllers.DocumentController",
-    "Method": "Put",
-    "RelativePath": "api/Document/{id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "documentPostModel",
-        "Type": "ArchiSyncServer.API.Models.DocumentPostModel",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "ArchiSyncServer.Api.Controllers.DocumentController",
-    "Method": "Delete",
-    "RelativePath": "api/Document/{id}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
     "ContainingType": "ArchiSyncServer.Api.Controllers.FileController",
     "Method": "AdminOnly",
     "RelativePath": "api/File/admin-only",
@@ -286,8 +177,157 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ArchiSyncServer.Api.Controllers.MessageController",
+    "Method": "Get",
+    "RelativePath": "api/Message",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ArchiSyncServer.Core.DTOs.MessageDTO, ArchiSyncServer.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ArchiSyncServer.Api.Controllers.MessageController",
+    "Method": "Post",
+    "RelativePath": "api/Message",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "messagePostModel",
+        "Type": "ArchiSyncServer.API.Models.MessagePostModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "ArchiSyncServer.Core.DTOs.MessageDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ArchiSyncServer.Api.Controllers.MessageController",
+    "Method": "Get",
+    "RelativePath": "api/Message/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "ArchiSyncServer.Core.DTOs.MessageDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ArchiSyncServer.Api.Controllers.MessageController",
+    "Method": "Put",
+    "RelativePath": "api/Message/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "messagePostModel",
+        "Type": "ArchiSyncServer.API.Models.MessagePostModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArchiSyncServer.Api.Controllers.MessageController",
+    "Method": "Delete",
+    "RelativePath": "api/Message/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArchiSyncServer.Api.Controllers.MessageController",
+    "Method": "GetArchitectMessages",
+    "RelativePath": "api/Message/architect",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ArchiSyncServer.Core.DTOs.MessageDTO, ArchiSyncServer.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ArchiSyncServer.Api.Controllers.MessageController",
+    "Method": "GetUserMessages",
+    "RelativePath": "api/Message/user",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ArchiSyncServer.Core.DTOs.MessageDTO, ArchiSyncServer.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "ArchiSyncServer.API.Controllers.ProjectController",
-    "Method": "CreateProject",
+    "Method": "Post",
     "RelativePath": "api/Project",
     "HttpMethod": "POST",
     "IsController": true,
@@ -303,7 +343,7 @@
   },
   {
     "ContainingType": "ArchiSyncServer.API.Controllers.ProjectController",
-    "Method": "UpdateProject",
+    "Method": "Put",
     "RelativePath": "api/Project/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
@@ -324,7 +364,7 @@
   },
   {
     "ContainingType": "ArchiSyncServer.API.Controllers.ProjectController",
-    "Method": "DeleteProject",
+    "Method": "Delete",
     "RelativePath": "api/Project/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
@@ -340,7 +380,7 @@
   },
   {
     "ContainingType": "ArchiSyncServer.API.Controllers.ProjectController",
-    "Method": "GetProject",
+    "Method": "Get",
     "RelativePath": "api/Project/{id}",
     "HttpMethod": "GET",
     "IsController": true,
@@ -393,6 +433,32 @@
     "Order": 0,
     "Parameters": [],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArchiSyncServer.Api.Controllers.ProjectPermissionController",
+    "Method": "CheckUserAccess",
+    "RelativePath": "api/ProjectPermission/{projectId}/check-permission",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "projectId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "ArchiSyncServer.Api.Controllers.UploadController",

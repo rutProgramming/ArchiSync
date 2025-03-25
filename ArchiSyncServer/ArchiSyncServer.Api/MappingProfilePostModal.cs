@@ -15,7 +15,7 @@ namespace ArchiSyncServer.Api
             CreateMap<ProjectPostModel, ProjectDTO>().ReverseMap();
 
             // Document mappings
-            CreateMap<DocumentPostModel, DocumentDTO>().ReverseMap();
+            CreateMap<MessagePostModel, MessageDTO>().ReverseMap();
 
             // Comment mappings
             CreateMap<CommentPostModel, CommentDTO>().ReverseMap();

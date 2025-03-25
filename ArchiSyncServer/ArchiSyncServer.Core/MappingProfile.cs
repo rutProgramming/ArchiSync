@@ -18,7 +18,7 @@ namespace ArchiSyncServer.core
         public MappingProfile()
         {
             CreateMap<Project, ProjectDTO>().ReverseMap();
-            CreateMap<Document, DocumentDTO>().ReverseMap();
+            CreateMap<Message, MessageDTO> ().ReverseMap();
             CreateMap<Comment, CommentDTO>().ReverseMap();
             CreateMap<Project, ProjectDTO>().ReverseMap();
             CreateMap<User, UserDTO>().ReverseMap();

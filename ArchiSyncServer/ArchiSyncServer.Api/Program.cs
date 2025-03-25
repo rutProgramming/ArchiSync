@@ -50,6 +50,7 @@ builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepositor
 builder.Services.AddScoped<IUserRolesRepository, UserRolesRepository>();
 builder.Services.AddScoped<IRolesRepository, RolesRepository>();
 builder.Services.AddScoped<IProjectPermissionRepository, ProjectPermissionRepository>();
+builder.Services.AddScoped<IMessageRepository, MessageRepository>();
 
 /* ---------Services----------*/
 builder.Services.AddScoped<IUserService, UserService>();
@@ -58,9 +59,10 @@ builder.Services.AddScoped<IProjectService, ProjectService>();
 builder.Services.AddScoped<IUserRolesService, UserRolesService>();
 builder.Services.AddScoped<ICommentService, CommentService>();
 builder.Services.AddScoped<IHuggingFaceService, HuggingFaceService>();
-builder.Services.AddScoped<IDocumentService, DocumentService>();
+builder.Services.AddScoped<IMessageService, MessageService>();
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<IS3Service, S3Service>();
+builder.Services.AddScoped<IProjectPermissionService, ProjectPermissionService>();
 
 
 /* ---------DataContext----------*/

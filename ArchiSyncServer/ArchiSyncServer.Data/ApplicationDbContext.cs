@@ -24,13 +24,13 @@ namespace ArchiSyncServer.Data
 
         public DbSet<User> Users { get; set; }
         public DbSet<Project> Projects { get; set; }
-        public DbSet<ProjectDocument> ProjectDocuments { get; set; }
+        public DbSet<Message> Messages { get; set; }
         public DbSet<Document> Documents { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Roles> Roles { get; set; }
         public DbSet<UserRoles> UserRoles { get; set; }
         public DbSet<Core.Entities.File> File { get; set; }
-        public DbSet<Permissions> Permissions { get; set; }
+       // public DbSet<Permissions> Permissions { get; set; }
         public DbSet<RolePermissions> RolePermissions { get; set; }
         public DbSet<ProjectPermission> ProjectPermissions { get; set; }
 

@@ -38,7 +38,6 @@ namespace ArchiSyncServer.Data.Repositories
         {
            
             _dbSet.Add(entity);
-            //await _context.SaveChangesAsync();
             return entity;
         }
 

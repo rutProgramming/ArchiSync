@@ -3,7 +3,7 @@ export type User = {
   userName: string,
   email: string,
   password: string,
-  mainFolderId: number
+  mainProjectId: number
   RoleName: string,
   token: string
 }
@@ -14,22 +14,26 @@ export type ActionReducer = {
 }
 export type ContextType = [Puser, React.Dispatch<ActionReducer>];
 
-export type Projects = {
+
+
+
+export type Project = {
   id: number,
-  title: string,
-  description: string,
-
+  description:string,
+  isPublic:boolean
+  name:string,
+  ownerId:number
+  parentId:number
 }
+export type PartialProject = Partial<Project>
 
-export type Folder = {
+
+export type Message = {
   id: number,
-  name: string,
-  description: string,
-  ownerId: number,
-  isPublic: boolean
-  parentId: number
+  isRead: boolean,
+  approved: boolean
+  userId: number,
+  projectId: number,
+  architectId: number
 }
-export type PartialProjects = Partial<Projects>
-export type PartialFolder = Partial<Folder>
-
-
+export type PartialMessage = Partial<Message>

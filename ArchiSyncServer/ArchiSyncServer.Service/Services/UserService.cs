@@ -71,7 +71,7 @@ namespace ArchiSyncServer.Service.Services
                 createMainFolderProjects = new Project()
                 {
                     Name = "Main Folder",
-                    Owner = user,  
+                    Owner = user,
                     Description = "main folder",
                     IsPublic = false,
                     CreatedAt = DateTime.UtcNow,
@@ -80,6 +80,8 @@ namespace ArchiSyncServer.Service.Services
 
                 user.MainFolder = createMainFolderProjects;
             }
+            else
+                user.MainFolderId = null;
 
             var createdUser = await _repositoryManager.User.CreateAsync(user);
 
