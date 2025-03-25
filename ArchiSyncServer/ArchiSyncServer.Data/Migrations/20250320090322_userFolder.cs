@@ -14,7 +14,7 @@ namespace ArchiSyncServer.Data.Migrations
                 name: "MainFolderId",
                 table: "Users",
                 type: "int",
-                nullable: false,
+                nullable: true,
                 defaultValue: 0);
         }
 

@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../store/reduxStore";
 import { useRef, useState } from "react";
-import { PartialFolder } from "../types/types";
-import { addProject } from "../store/Folder";
+import { PartialProject } from "../types/types";
 import { Box, TextField, FormControlLabel, Checkbox } from "@mui/material";
 import "../App.css";
+import { addProject } from "../store/Project";
 
 const AddProject = () => {
     const dispatch: AppDispatch = useDispatch();
@@ -20,14 +20,14 @@ const AddProject = () => {
         setDescCount(words.length);
         setIsTyping(true);
     };
-    const handleAddFolder = async (event: React.FormEvent) => {
+    const handleAddProject = async (event: React.FormEvent) => {
         event.preventDefault();
-        const project: PartialFolder = {
+        const project: PartialProject = {
             name: projectNameRef.current?.value || "",
             description: projectDescriptionRef.current?.value || "",
             ownerId: user?.userId ?? 0,
             isPublic: publicRef.current?.checked || false,
-            parentId: user?.mainFolderId ?? 0,
+            parentId: user?.mainProjectId ?? 0,
         };
 
         const resultAction = await dispatch(addProject({ project }));
@@ -42,7 +42,7 @@ const AddProject = () => {
     };
 
     return (
-        <Box component="form" onSubmit={handleAddFolder} className="form-container">
+        <Box component="form" onSubmit={handleAddProject} className="form-container">
             <TextField
                 inputRef={projectNameRef}
                 label="Project Name"

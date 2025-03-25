@@ -15,6 +15,7 @@ namespace ArchiSyncServer.Core.IRepositories
         Task<Project> GetByIdUserAccessibleAsync(int id, int userId);
         Task<IEnumerable<Project>> GetPublicProjectsAsync();
         Task<Project> CreateProjectAsync(Project project);
+        Task<IEnumerable<Project>> GetAllProjectsAsync();
 
         Task<bool> IsProjectNameUniqueAsync(int userId, string projectName);
         

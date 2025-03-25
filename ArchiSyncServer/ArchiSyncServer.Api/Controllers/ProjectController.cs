@@ -29,7 +29,7 @@ namespace ArchiSyncServer.API.Controllers
         // POST: api/Project
         [Authorize(Policy = "ArchitectOnly")]
         [HttpPost]
-        public async Task<IActionResult> CreateProject([FromBody] ProjectPostModel projectPostModel)
+        public async Task<IActionResult> Post([FromBody] ProjectPostModel projectPostModel)
         {
             try
             {
@@ -41,7 +41,7 @@ namespace ArchiSyncServer.API.Controllers
                 }
                 var projectDto = _mapper.Map<ProjectDTO>(projectPostModel);
                 var createdProject = await _ProjectService.CreateProjectAsync(projectDto);
-                return CreatedAtAction(nameof(GetProject), new { id = createdProject.Id }, createdProject);
+                return CreatedAtAction(nameof(Get), new { id = createdProject.Id }, createdProject);
             }
             catch (ArgumentNullException ex)
             {
@@ -60,7 +60,7 @@ namespace ArchiSyncServer.API.Controllers
         // PUT: api/Project/{id}
         [Authorize(Roles = "admin,architect")]
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateProject(int id, [FromBody] ProjectDTO projectPostModel)
+        public async Task<IActionResult> Put(int id, [FromBody] ProjectDTO projectPostModel)
         {
             try
             {
@@ -102,7 +102,7 @@ namespace ArchiSyncServer.API.Controllers
         // DELETE: api/Project/{id}
         [Authorize(Roles = "admin,architect")]
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteProject(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             try
             {
@@ -139,7 +139,7 @@ namespace ArchiSyncServer.API.Controllers
 
         // GET: api/Project/{id}
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetProject(int id)
+        public async Task<IActionResult> Get(int id)
         {
             try
             {
@@ -172,7 +172,7 @@ namespace ArchiSyncServer.API.Controllers
         }
 
         // GET: api/Project/all
-        [Authorize(Policy = "AdminOnly")]
+        [Authorize(Policy = "UserAccess")]
         [HttpGet("all")]
         public async Task<IActionResult> GetAllProjects()
         {
@@ -213,7 +213,8 @@ namespace ArchiSyncServer.API.Controllers
             try
             {
                 var projects = await _ProjectService.GetUserAccessibleProjectsAsync(GetUserId());
-                return Ok(projects);
+                
+                return Ok(_mapper.Map<ProjectDTO[]>(projects));
             }
             catch (Exception)
             {

@@ -135,6 +135,46 @@ namespace ArchiSyncServer.Data.Migrations
                     b.ToTable("File");
                 });
 
+            modelBuilder.Entity("ArchiSyncServer.Core.Entities.Message", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("Approved")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("ArchitectId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsRead")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("ProjectId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ArchitectId");
+
+                    b.HasIndex("ProjectId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Messages");
+                });
+
             modelBuilder.Entity("ArchiSyncServer.Core.Entities.Permissions", b =>
                 {
                     b.Property<int>("Id")
@@ -193,25 +233,6 @@ namespace ArchiSyncServer.Data.Migrations
                     b.HasIndex("ParentId");
 
                     b.ToTable("Projects");
-                });
-
-            modelBuilder.Entity("ArchiSyncServer.Core.Entities.ProjectDocument", b =>
-                {
-                    b.Property<int>("ProjectDocumentId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProjectDocumentId"));
-
-                    b.Property<int>("DocumentId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProjectId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ProjectDocumentId");
-
-                    b.ToTable("ProjectDocuments");
                 });
 
             modelBuilder.Entity("ArchiSyncServer.Core.Entities.ProjectPermission", b =>
@@ -371,6 +392,33 @@ namespace ArchiSyncServer.Data.Migrations
                     b.Navigation("Owner");
 
                     b.Navigation("Project");
+                });
+
+            modelBuilder.Entity("ArchiSyncServer.Core.Entities.Message", b =>
+                {
+                    b.HasOne("ArchiSyncServer.Core.Entities.User", "Architect")
+                        .WithMany()
+                        .HasForeignKey("ArchitectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ArchiSyncServer.Core.Entities.Project", "Project")
+                        .WithMany()
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ArchiSyncServer.Core.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Architect");
+
+                    b.Navigation("Project");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("ArchiSyncServer.Core.Entities.Project", b =>

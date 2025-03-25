@@ -59,6 +59,11 @@ namespace ArchiSyncServer.Data.Repositories
                 .Where(p => p.OwnerId ==userId)
                 .ToListAsync();
         }
-
+        public async Task<IEnumerable<Project>> GetAllProjectsAsync()
+        {
+            return await _context.Projects
+                .Where(p => p.Name != "Main Folder")
+                .ToListAsync();
+        }
     }
 }

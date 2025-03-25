@@ -1,8 +1,8 @@
 import { Link } from "react-router";
 import { Box, IconButton, Stack, Typography } from "@mui/material";
-import FolderIcon from "@mui/icons-material/Folder";
 import HomeIcon from "@mui/icons-material/Home";
 import UserMenu from "./UserMenu";
+import { Folder } from "@mui/icons-material";
 
 const NavBar = () => {
 
@@ -28,7 +28,7 @@ const NavBar = () => {
           <HomeIcon fontSize="medium" />
         </IconButton>
         <IconButton component={Link} to="/projects" sx={{ color: "white" }}>
-          <FolderIcon fontSize="medium" />
+          <Folder fontSize="medium" />
         </IconButton>
       </Stack>
 

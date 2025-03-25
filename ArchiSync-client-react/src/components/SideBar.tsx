@@ -1,7 +1,7 @@
 import { Outlet, Link } from "react-router";
 import { Box, Stack, List, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
 import DashboardIcon from "@mui/icons-material/Dashboard"; 
-import CreateNewFolderIcon from "@mui/icons-material/CreateNewFolder"; 
+import { Folder, Mail } from "@mui/icons-material";
 
 const SideBar = () => {
   return (
@@ -48,9 +48,24 @@ const SideBar = () => {
           }}
         >
           <ListItemIcon sx={{ minWidth: "40px" }}>
-            <CreateNewFolderIcon sx={{ color: "white", fontSize: "28px" }} />
+            <Folder sx={{ color: "white", fontSize: "28px" }} />
           </ListItemIcon>
           <ListItemText primary="Add Project" />
+        </ListItemButton>
+
+        <ListItemButton
+          component={Link}
+          to="./addProject"
+          sx={{
+            color: "white",
+            marginTop: "10px",
+            "&:hover": { backgroundColor: "#333", transition: "0.3s" },
+          }}
+        >
+          <ListItemIcon sx={{ minWidth: "40px" }}>
+            <Mail sx={{ color: "white", fontSize: "28px" }} />
+          </ListItemIcon>
+          <ListItemText primary="Messages" />
         </ListItemButton>
       </List>
     </Box>
@@ -66,7 +81,7 @@ export default SideBar;
 // import { Outlet, Link } from "react-router";
 // import { Box, Stack, List, ListItemButton, ListItemIcon, ListItemText, IconButton, Drawer } from "@mui/material";
 // import DashboardIcon from "@mui/icons-material/Dashboard";
-// import CreateNewFolderIcon from "@mui/icons-material/CreateNewFolder";
+// import CreateNewProjectIcon from "@mui/icons-material/CreateNewProject";
 // import MenuIcon from "@mui/icons-material/Menu";
 // import useMediaQuery from "@mui/material/useMediaQuery";
 
@@ -86,7 +101,7 @@ export default SideBar;
 //           <ListItemText primary="Projects" />
 //         </ListItemButton>
 //         <ListItemButton component={Link} to="/addProject" sx={{ color: "white" }}>
-//           <ListItemIcon><CreateNewFolderIcon sx={{ color: "white" }} /></ListItemIcon>
+//           <ListItemIcon><CreateNewProjectIcon sx={{ color: "white" }} /></ListItemIcon>
 //           <ListItemText primary="Add Project" />
 //         </ListItemButton>
 //       </List>

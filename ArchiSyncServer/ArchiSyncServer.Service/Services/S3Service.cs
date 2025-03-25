@@ -15,7 +15,6 @@ namespace ArchiSyncServer.Service.Services
 
         public S3Service(IConfiguration configuration)
         {
-            // שליפת האישורים ממשתני סביבה
             var accessKey = Environment.GetEnvironmentVariable("AWS_ACCESS_KEY_ID");
             var secretKey = Environment.GetEnvironmentVariable("AWS_SECRET_ACCESS_KEY");
             var region = Environment.GetEnvironmentVariable("AWS_REGION") ?? "eu-north-1";
@@ -24,7 +23,7 @@ namespace ArchiSyncServer.Service.Services
             var credentials = new BasicAWSCredentials(accessKey, secretKey);
             var regionEndpoint = Amazon.RegionEndpoint.GetBySystemName(region);
             _s3Client = new AmazonS3Client(credentials, regionEndpoint);
-            _bucketName = "ruth-shtraicher-storage-bucket";  // שם הדלי
+            _bucketName = "ruth-shtraicher-storage-bucket"; 
         }
 
         /// ⬆️ יצירת Pre-Signed URL להעלאת קובץ

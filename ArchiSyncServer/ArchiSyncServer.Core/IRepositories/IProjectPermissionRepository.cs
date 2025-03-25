@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 namespace ArchiSyncServer.Core.IRepositories
 {
 
-        public interface IProjectPermissionRepository:IGenericRepository<ProjectPermission>
+    public interface IProjectPermissionRepository : IGenericRepository<ProjectPermission>
     {
-            Task<bool> UserHasAccess(int userId, int projectId);
-        }
+        Task<bool> UserHasAccess(int userId, int projectId);
+    }
 
 }

@@ -1,12 +1,12 @@
 import { ArrowBack } from "@mui/icons-material"
 import { motion } from "framer-motion"
-import { PartialFolder } from "../types/types"
+import { PartialProject } from "../types/types"
 import "../App.css"
 import { Modal, Stack, Tooltip } from "@mui/material"
 import { useState } from "react"
 import Workspace from "./Workspace"
 
-const ProjectDashboard = ({ openProject, handleBack }: { openProject: PartialFolder, handleBack: () => void }) => {
+const ProjectDashboard = ({ openProject, handleBack }: { openProject: PartialProject, handleBack: () => void }) => {
     const [userId, setUserId] = useState("");
     const [im, setim] = useState(false);
 

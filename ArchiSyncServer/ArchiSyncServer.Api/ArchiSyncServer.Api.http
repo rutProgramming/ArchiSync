@@ -1,6 +1,11 @@
-@ArchiSyncServer.Api_HostAddress = http://localhost:5023
+@ArchiSyncServer.Api_HostAddress = https://localhost:7218
 
 GET {{ArchiSyncServer.Api_HostAddress}}/weatherforecast/
 Accept: application/json
+
+###
+
+@projectId=0
+GET {{ArchiSyncServer.Api_HostAddress}}/api/projectpermission/{{projectId}}/check-permission
 
 ###

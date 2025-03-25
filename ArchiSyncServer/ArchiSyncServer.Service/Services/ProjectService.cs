@@ -95,7 +95,7 @@ namespace ArchiSyncServer.Service.Services
         }
         public async Task<IEnumerable<ProjectDTO>> GetAllProjectsAsync()
         {
-            var projects = await _ProjectRepository.GetAllAsync();
+            var projects = await _ProjectRepository.GetAllProjectsAsync();
             return _mapper.Map<IEnumerable<ProjectDTO>>(projects);
         }
 
