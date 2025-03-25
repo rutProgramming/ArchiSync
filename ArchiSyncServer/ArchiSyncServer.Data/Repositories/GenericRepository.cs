@@ -50,6 +50,8 @@ namespace ArchiSyncServer.Data.Repositories
             }
 
             _context.Entry(existingEntity).CurrentValues.SetValues(entity);
+
+            _context.Entry(existingEntity).Property("Id").IsModified = false;
         }
 
         public async Task DeleteAsync(int id)

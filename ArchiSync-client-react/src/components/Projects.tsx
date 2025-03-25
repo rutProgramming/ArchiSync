@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../store/reduxStore";
 import { useEffect, useState } from "react";
-import { Message, PartialProject } from "../types/types";
+import {  PartialMessage, PartialProject } from "../types/types";
 import { Typography, Modal, Box, Button } from "@mui/material";
 import { motion } from "framer-motion";
 import { GetAllProjects, GetPublicProjects } from "../store/Project";
@@ -46,7 +46,7 @@ const Projects = () => {
     const accessRequest = async () => {
         if (!selectedProject) return;
         try {
-            const newMessage: Partial<Message> = {
+            const newMessage: PartialMessage = {
                 isRead: false,
                 approved: false,
                 userId: user.userId,

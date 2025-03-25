@@ -9,6 +9,7 @@ using System;
 using ArchiSyncServer.Core.Entities;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
+using ArchiSyncServer.Service.Services;
 
 namespace ArchiSyncServer.Api.Controllers
 {
@@ -17,17 +18,19 @@ namespace ArchiSyncServer.Api.Controllers
     public class ProjectPermissionController : ControllerBase
     {
         private readonly IProjectPermissionService _projectPermissionService;
+        private readonly IMapper _mapper;
 
-        public ProjectPermissionController(IProjectPermissionService projectPermissionService)
+        public ProjectPermissionController(IProjectPermissionService projectPermissionService, IMapper mapper)
         {
             _projectPermissionService = projectPermissionService;
+            _mapper = mapper;
         }
         private int GetUserId() => int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
 
 
-       [Authorize(Policy = "UserAccess")]
+        [Authorize(Policy = "UserAccess")]
         [HttpGet("{projectId}/check-permission")]
-        public async Task<ActionResult<bool>> CheckUserAccess( int projectId)
+        public async Task<ActionResult<bool>> CheckUserAccess(int projectId)
         {
             var userId = GetUserId();
             if (userId == null)
@@ -37,6 +40,22 @@ namespace ArchiSyncServer.Api.Controllers
 
             var hasAccess = await _projectPermissionService.UserHasAccess(projectId, userId);
             return Ok(new { hasAccess });
+        }
+
+        [Authorize(Policy = "ArchitectOnly")]
+        [HttpPost]
+        public async Task<ActionResult<IEnumerable<MessageDTO>>> Post([FromBody] ProjectPermissionPostModel projectPermissionPostModel)
+        {
+            try
+            {
+                var projectPermissionDto = _mapper.Map<ProjectPermissionDTO>(projectPermissionPostModel);
+                var createdProjectPermission = await _projectPermissionService.CreatePermissionAsync(projectPermissionDto);
+                return Ok( new { id = createdProjectPermission.Id, createdProjectPermission });
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
         }
 
     }

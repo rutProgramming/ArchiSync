@@ -55,7 +55,7 @@ const SideBar = () => {
 
         <ListItemButton
           component={Link}
-          to="./addProject"
+          to="./Messages"
           sx={{
             color: "white",
             marginTop: "10px",

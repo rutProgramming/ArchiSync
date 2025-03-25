@@ -37,3 +37,10 @@ export type Message = {
   architectId: number
 }
 export type PartialMessage = Partial<Message>
+
+export type ProjectPermission = {
+  id: number,
+  userId:number
+  projectId:number
+}
+export type PartialProjectPermission = Partial<ProjectPermission>

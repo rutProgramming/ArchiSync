@@ -23,6 +23,7 @@ namespace ArchiSyncServer.core
             CreateMap<Project, ProjectDTO>().ReverseMap();
             CreateMap<User, UserDTO>().ReverseMap();
             CreateMap<UserRoles, UserRolesDTO>().ReverseMap();
+            CreateMap<ProjectPermission, ProjectPermissionDTO>().ReverseMap();
 
         }
     }
