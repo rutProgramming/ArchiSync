@@ -8,6 +8,7 @@ using ArchiSyncServer.Core.DTOs;
 using ArchiSyncServer.Core.Entities;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using ArchiSyncServer.Core.Entities;
+using File = ArchiSyncServer.Core.Entities.File;
 
 namespace ArchiSyncServer.core
 {
@@ -24,6 +25,7 @@ namespace ArchiSyncServer.core
             CreateMap<User, UserDTO>().ReverseMap();
             CreateMap<UserRoles, UserRolesDTO>().ReverseMap();
             CreateMap<ProjectPermission, ProjectPermissionDTO>().ReverseMap();
+            CreateMap<File, FileDTO>().ReverseMap();
 
         }
     }

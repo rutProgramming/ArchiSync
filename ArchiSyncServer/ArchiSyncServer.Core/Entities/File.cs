@@ -17,7 +17,7 @@ namespace ArchiSyncServer.Core.Entities
         public long Size { get; set; }
         [MaxLength(500)]
         public string S3Key { get; set; }
-        public int ProjectId { get; set; } // לאיזה פרויקט/תיקייה הקובץ שייך
+        public int ProjectId { get; set; } 
         public virtual Project Project { get; set; }
         public int OwnerId { get; set; }
         public User Owner { get; set; }

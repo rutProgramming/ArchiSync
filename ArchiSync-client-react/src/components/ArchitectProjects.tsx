@@ -22,9 +22,6 @@ const ArchitectProjects = () => {
         }
     }, [dispatch, user?.userId]);
 
-
-    
-
     return (
         <>
             {!openProject &&

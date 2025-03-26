@@ -5,7 +5,6 @@ import UserMenu from "./UserMenu";
 import { Folder } from "@mui/icons-material";
 
 const NavBar = () => {
-
   return (
     <Box
       component="nav"

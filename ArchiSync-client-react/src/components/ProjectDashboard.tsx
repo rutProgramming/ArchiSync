@@ -1,21 +1,22 @@
-import { ArrowBack } from "@mui/icons-material"
+import { ArrowBack, UploadFile } from "@mui/icons-material"
 import { motion } from "framer-motion"
 import { PartialProject } from "../types/types"
 import "../App.css"
 import { Modal, Stack, Tooltip } from "@mui/material"
 import { useState } from "react"
 import Workspace from "./Workspace"
+import { AppDispatch, RootState } from "../store/reduxStore"
+import { useDispatch, useSelector } from "react-redux"
 
 const ProjectDashboard = ({ openProject, handleBack }: { openProject: PartialProject, handleBack: () => void }) => {
     const [userId, setUserId] = useState("");
     const [im, setim] = useState(false);
+    const user = useSelector((state: RootState) => state.connect.user);
+    const files = useSelector((state: RootState) => state.files.files);
+    const dispatch: AppDispatch = useDispatch();
+     
 
-    const handleAddPermission = () => {
-        if (userId.trim() === "") return;
-        console.log("Adding permission for user:", userId);
-        // TODO: Send request to backend to add permission
-        setUserId("");
-    };
+    
     return (<>
 
         <motion.div
@@ -51,7 +52,6 @@ const ProjectDashboard = ({ openProject, handleBack }: { openProject: PartialPro
                 </Tooltip>
                 <div className="button-container">
                     <motion.button
-                        onClick={handleAddPermission}
                         className="button button-secondary"
                         whileHover={{ scale: 1.05, boxShadow: "0 0 20px white" }}
                         whileTap={{ scale: 0.95 }}
@@ -66,15 +66,15 @@ const ProjectDashboard = ({ openProject, handleBack }: { openProject: PartialPro
                 <p style={{ color: "white" }}>{openProject.description}</p>
                 <div className="cards-container">
                     <h3 style={{ color: "yellow" }}>Files</h3>
-                    {/* <ul className="text-white">
-                                {openProject.files && openProject.files.length > 0 ? (
-                                    openProject.files.map((file, index) => (
-                                        <li key={index} className="p-2 border-b border-gray-600">{file.name}</li>
+                    <ul className="text-white">
+                                {files && files.length > 0 ? (
+                                    files.map((file, index) => (
+                                        <li key={index} className="p-2 border-b border-gray-600">{file.fileName}</li>
                                     ))
                                 ) : (
                                     <p className="text-gray-400">No files available.</p>
                                 )}
-                            </ul> */}
+                            </ul>
                 </div>
 
             </section>

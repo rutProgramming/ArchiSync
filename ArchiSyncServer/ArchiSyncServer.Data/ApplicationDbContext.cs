@@ -10,6 +10,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using static System.Collections.Specialized.BitVector32;
+using File = ArchiSyncServer.Core.Entities.File;
 
 namespace ArchiSyncServer.Data
 {
@@ -29,8 +30,7 @@ namespace ArchiSyncServer.Data
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Roles> Roles { get; set; }
         public DbSet<UserRoles> UserRoles { get; set; }
-        public DbSet<Core.Entities.File> File { get; set; }
-       // public DbSet<Permissions> Permissions { get; set; }
+        public DbSet<File> File { get; set; }
         public DbSet<RolePermissions> RolePermissions { get; set; }
         public DbSet<ProjectPermission> ProjectPermissions { get; set; }
 

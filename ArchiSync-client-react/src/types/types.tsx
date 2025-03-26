@@ -44,3 +44,12 @@ export type ProjectPermission = {
   projectId:number
 }
 export type PartialProjectPermission = Partial<ProjectPermission>
+
+export type File ={
+  fileName:string,
+  fileType:string,
+  ownerId:number,
+  projectId:number,
+  s3Key:string
+}
+export type PartialFile = Partial<File>
