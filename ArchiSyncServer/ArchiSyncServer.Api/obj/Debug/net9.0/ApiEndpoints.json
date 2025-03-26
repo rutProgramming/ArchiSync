@@ -122,42 +122,106 @@
   },
   {
     "ContainingType": "ArchiSyncServer.Api.Controllers.FileController",
-    "Method": "AdminOnly",
-    "RelativePath": "api/File/admin-only",
+    "Method": "GetAllFiles",
+    "RelativePath": "api/File",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
+    "Parameters": [
+      {
+        "Name": "projectId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "isPublic",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ArchiSyncServer.Core.DTOs.FileDTO, ArchiSyncServer.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "ArchiSyncServer.Api.Controllers.FileController",
-    "Method": "AuthenticatedOnly",
-    "RelativePath": "api/File/authenticated-only",
-    "HttpMethod": "GET",
+    "Method": "CreateFile",
+    "RelativePath": "api/File",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
+    "Parameters": [
+      {
+        "Name": "fileModel",
+        "Type": "ArchiSyncServer.Api.Models.FilePostModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "ArchiSyncServer.Core.DTOs.FileDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "ArchiSyncServer.Api.Controllers.FileController",
-    "Method": "EditorOrAdmin",
-    "RelativePath": "api/File/editor-or-admin",
+    "Method": "GetFileById",
+    "RelativePath": "api/File/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "ArchiSyncServer.Core.DTOs.FileDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "ArchiSyncServer.Api.Controllers.FileController",
-    "Method": "ViewerOnly",
-    "RelativePath": "api/File/viewer-only",
-    "HttpMethod": "GET",
+    "Method": "DeleteFile",
+    "RelativePath": "api/File/{id}",
+    "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {

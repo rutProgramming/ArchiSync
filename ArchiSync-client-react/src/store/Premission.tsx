@@ -8,7 +8,7 @@ const url = "https://localhost:7218/api/ProjectPermission/";
 
 export const checkProjectAccess = createAsyncThunk(
   "projects/checkAccess",
-  async ({ projectId }: { projectId: number }, thunkAPI) => {
+  async ( projectId: number , thunkAPI) => {
     try {
       console.log("check-permission");
       const response = await axios.get(`${url}${projectId}/check-permission`, {

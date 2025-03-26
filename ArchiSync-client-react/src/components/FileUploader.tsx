@@ -2,15 +2,18 @@ import React, { useState } from "react";
 import axios from "axios";
 import { centerStyle } from "./style";
 import { v4 as uuidv4 } from "uuid";
-import { RootState } from "../store/reduxStore";
-import { useSelector } from "react-redux";
+import { PartialFile, Project}from "../types/types";
+import { AppDispatch, RootState } from "../store/reduxStore";
+import { useDispatch, useSelector } from "react-redux";
+import { addFile } from "../store/File";
 
-const FileUploader = () => {
+const FileUploader = (project:Project) => {
   const [file, setFile] = useState<File | null>(null);
   const [progress, setProgress] = useState(0);
   const [isUploading, setIsUploading] = useState(false);
   const user = useSelector((state: RootState) => state.connect.user);
-
+  const dispatch:AppDispatch = useDispatch();
+\
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -34,13 +37,22 @@ const FileUploader = () => {
     });
 console.log(response)
       // Upload the file to S3
-      const res=await axios.put(response.data.url, updatedFile, {
+      await axios.put(response.data.url, updatedFile, {
         headers: { "Content-Type": updatedFile.type },
         onUploadProgress: (progressEvent) => {
           const percent = Math.round((progressEvent.loaded * 100) / (progressEvent.total || 1));
           setProgress(percent);
         },
       });
+      const fileServer:PartialFile={
+        fileName:updatedFile.name,
+        fileType:updatedFile.type,
+        ownerId:user.userId,
+        projectId:project.id,
+        s3Key:`$"users/${project.parentId}/${project.name}/${updatedFile.name}`
+      }
+      const res=dispatch(addFile(fileServer))
+      console.log(res)
       const respo = await axios.get("https://localhost:7218/api/Upload/download-url",  {
         params: { userId: user.userId, fileName: updatedFile.name },
     });

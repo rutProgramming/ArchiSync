@@ -33,7 +33,7 @@ export const router = createBrowserRouter([
           { path: "addProject", element: <Addproject /> },
           {
             path: "myProjects", element: <ArchitectProjects />, children: [
-              { path: "upload/:parentId/:projectName", element: <FileUploader /> },
+              { path: "upload/:parentId/:projectName", element: <FileUploader project={} /> },
 
             ]
           },

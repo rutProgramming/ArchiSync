@@ -39,7 +39,7 @@ const Workspace = () => {
       };
     }
   }, [uploadedImage, brightness, contrast]);
-
+  
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
@@ -81,9 +81,12 @@ const Workspace = () => {
       // Request download URL
       const downloadResponse = await axios.get("https://localhost:7218/api/Upload/download-url", {
         params: { parentId: 1, projectName: "projectName", fileName: updatedFile.name },
+
       });
 
       setGeneratedImage(downloadResponse.data.downloadUrl);
+      
+      console.log("Generated image URL:", downloadResponse.data.downloadUrl);
     } catch (error) {
       console.error("Error uploading image:", error);
     } finally {

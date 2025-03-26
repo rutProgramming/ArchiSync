@@ -51,6 +51,7 @@ builder.Services.AddScoped<IUserRolesRepository, UserRolesRepository>();
 builder.Services.AddScoped<IRolesRepository, RolesRepository>();
 builder.Services.AddScoped<IProjectPermissionRepository, ProjectPermissionRepository>();
 builder.Services.AddScoped<IMessageRepository, MessageRepository>();
+builder.Services.AddScoped<IFileRepository, FileRepository>();
 
 /* ---------Services----------*/
 builder.Services.AddScoped<IUserService, UserService>();
@@ -63,6 +64,7 @@ builder.Services.AddScoped<IMessageService, MessageService>();
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<IS3Service, S3Service>();
 builder.Services.AddScoped<IProjectPermissionService, ProjectPermissionService>();
+builder.Services.AddScoped<IFileService, FileService>();
 
 
 /* ---------DataContext----------*/

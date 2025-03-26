@@ -1,43 +1,102 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using ArchiSyncServer.API.Models;
+using ArchiSyncServer.Core.DTOs;
+using ArchiSyncServer.Core.IServices;
+using System;
+using ArchiSyncServer.Core.Entities;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
+using ArchiSyncServer.Service.Services;
+using ArchiSyncServer.Api.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace ArchiSyncServer.Api.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
+
     public class FileController : ControllerBase
     {
+        private readonly IFileService _fileService;
+        private readonly IMapper _mapper;
 
-
-        [HttpGet("admin-only")]
-        [Authorize(Policy = "AdminOnly")] // רק Admin יכול לגשת
-        public IActionResult AdminOnly()
+        public FileController(IFileService fileService, IMapper mapper)
         {
-            return Ok("This is accessible only by Admins.");
+            _fileService = fileService;
+            _mapper = mapper;
+        }
+        private int GetUserId() => int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<FileDTO>>> GetAllFiles(int projectId,bool isPublic=false, int userId = 0)
+        {
+            try
+            {
+                var files = await _fileService.GetAllFilesAsync(userId,projectId,isPublic);
+                return Ok(files);
+            }
+            catch (UnauthorizedAccessException ex) {
+                return Unauthorized(new { message = ex.Message });
+            }
         }
 
-        [HttpGet("editor-or-admin")]
-        [Authorize(Policy = "EditorOrAdmin")] // Editor או Admin יכולים לגשת
-        public IActionResult EditorOrAdmin()
+        [HttpGet("{id}")]
+        public async Task<ActionResult<FileDTO>> GetFileById(int id)
         {
-            return Ok("This is accessible by Editors and Admins.");
+            try
+            {
+                var file = await _fileService.GetFileAsync(id);
+                return Ok(file);
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(new { message = ex.Message });
+            }
+
         }
 
-        [HttpGet("viewer-only")]
-        [Authorize(Policy = "ViewerOnly")] // רק Viewer יכול לגשת
-        public IActionResult ViewerOnly()
+        [Authorize(Policy = "ArchitectOnly")]
+        [HttpPost]
+        public async Task<ActionResult<FileDTO>> CreateFile([FromBody] FilePostModel fileModel)
         {
-            return Ok("This is accessible only by Viewers.");
+            try
+            {
+                var fileDto = _mapper.Map<FileDTO>(fileModel);
+                var createdFile = await _fileService.CreateFileAsync(fileDto);
+                return CreatedAtAction(nameof(GetFileById), new { id = createdFile.Id }, createdFile);
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
         }
-
-        [HttpGet("authenticated-only")]
-        [Authorize] // כל משתמש מאומת יכול לגשת
-        public IActionResult AuthenticatedOnly()
+        [Authorize(Policy = "ArchitectOnly")]
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteFile(int id)
         {
-            return Ok("This is accessible by any authenticated user.");
+            try
+            {
+                var success = await _fileService.DeleteFileAsync(id);
+                return NoContent();
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(new { message = ex.Message });
+            }
         }
     }
-
 }
+
+
