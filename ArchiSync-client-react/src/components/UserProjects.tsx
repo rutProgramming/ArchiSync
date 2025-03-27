@@ -2,18 +2,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../store/reduxStore";
 import { useEffect, useState } from "react";
 import { PartialMessage, PartialProject } from "../types/types";
-import { Typography, Modal, Box, Button } from "@mui/material";
-import { motion } from "framer-motion";
+import { Typography, Modal } from "@mui/material";
 import { GetAllProjects, GetPublicProjects } from "../store/Project";
 import { createMessage } from "../store/Message";
 import { checkProjectAccess } from "../store/Premission";
 import { getFiles } from "../store/File";
+import ProjectsDisplay from "./ProjectsDisplay";
 
-const Projects = () => {
-    const projects = useSelector((state: RootState) => state.projects.projects);
+const UserProjects = () => {
     const user = useSelector((state: RootState) => state.connect.user);
     const dispatch: AppDispatch = useDispatch();
-    const [openProject, setOpenProject] = useState<PartialProject | null>(null);
     const [showRequestModal, setShowRequestModal] = useState(false);
     const [selectedProject, setSelectedProject] = useState<PartialProject | null>(null);
 
@@ -25,20 +23,15 @@ const Projects = () => {
         }
     }, [dispatch, user]);
 
-    const handleOpenProject = async (project: PartialProject) => {
-        console.log(project);
-       
+    const handleOpenProject = async (project: PartialProject):Promise<void> => {       
        if (project.id)
         {
             try {
                 let response=null;
                 if(user.userId){
                  response = await dispatch(checkProjectAccess(project.id)).unwrap();
-                 console.log(response)
-
                 }
                 if (response?.hasAccess||project.isPublic) {
-                    setOpenProject(project);
                     if(user.userId)
                     dispatch(getFiles({ projectId: project.id, userId: user.userId, isPublic: project.isPublic||false }));
                    else
@@ -76,24 +69,8 @@ const Projects = () => {
 
     return (
         <>
-            <section className="cards-section">
-                <Typography variant="h4" className="section-title">Projects</Typography>
-                <div className="cards-container">
-                    {projects.map((project) => (project && project.name && project.description ? (
-                        <div className="cards-card" key={project.id}>
-                            <h3>{project.name}</h3>
-                            <motion.button
-                                className="button button-primary"
-                                whileHover={{ scale: 1.05, boxShadow: "0 0 20px yellow" }}
-                                whileTap={{ scale: 0.95 }}
-                                onClick={() => handleOpenProject(project)}
-                            >
-                                Open
-                            </motion.button>
-                        </div>
-                    ) : null))}
-                </div>
-            </section>
+        <ProjectsDisplay handleOpenProject={handleOpenProject}/>
+           
 
             <Modal open={showRequestModal} onClose={() => setShowRequestModal(false)}>
                 <div className="form-container">
@@ -119,4 +96,4 @@ const Projects = () => {
     );
 };
 
-export default Projects;
+export default UserProjects;

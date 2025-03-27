@@ -2,9 +2,9 @@ import { motion } from "framer-motion";
 import { Container, Grid, Typography } from "@mui/material";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import { useNavigate } from "react-router";
-import "./home.css";
 import { centerStyle } from "./style";
 import "../App.css";
+import "../Style/home.css"
 
 const HomePage = () => {
     const navigate = useNavigate();

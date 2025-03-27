@@ -17,8 +17,7 @@ namespace ArchiSyncServer.Api
             CreateMap<UserPostModel, UserDTO>().ReverseMap();
             CreateMap<RegisterModel, UserDTO>().ReverseMap();
             CreateMap<ProjectPermissionPostModel, ProjectPermissionDTO>().ReverseMap();
-
-
+            CreateMap<FilePostModel, FileDTO>().ReverseMap();
         }
     }
 }

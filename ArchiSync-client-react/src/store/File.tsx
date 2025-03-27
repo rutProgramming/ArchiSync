@@ -2,15 +2,15 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { PartialFile } from "../types/types";
 import { GetHeaders } from "./Project";
-import { param } from "framer-motion/client";
-const url = "https://localhost:7218/api/File/";
+const url = "https://localhost:7218/api/File";
 
 
 export const addFile = createAsyncThunk(
     'Project/addFile',
     async (file: PartialFile, thunkAPI) => {
         try {
-            console.log(file);
+            console.log(file,GetHeaders());
+
             var response = await axios.post(url, file, { headers: GetHeaders() });
             return response.data;
         } catch (error) {
