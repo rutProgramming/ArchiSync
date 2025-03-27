@@ -13,10 +13,6 @@ export type ActionReducer = {
   data: Puser
 }
 export type ContextType = [Puser, React.Dispatch<ActionReducer>];
-
-
-
-
 export type Project = {
   id: number,
   description:string,
@@ -26,8 +22,6 @@ export type Project = {
   parentId:number
 }
 export type PartialProject = Partial<Project>
-
-
 export type Message = {
   id: number,
   isRead: boolean,
@@ -50,6 +44,7 @@ export type File ={
   fileType:string,
   ownerId:number,
   projectId:number,
-  s3Key:string
+  s3Key:string,
+  size:number
 }
 export type PartialFile = Partial<File>

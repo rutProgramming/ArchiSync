@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import "./Workspace.css";
+import "../Style/Workspace.css";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 import { useSelector } from "react-redux";
@@ -201,7 +201,7 @@ const Workspace = () => {
 
           <button className="custom-btn clear-btn" onClick={clearCanvas}>Clear</button>
           <button className="custom-btn erase-btn" onClick={() => setIsErasing(!isErasing)}>
-            {isErasing ? "🖌️ Draw" : "🧽 Erase"}
+            {isErasing ? " Draw" : " Erase"}
           </button>
 
           <label>Brightness:</label>

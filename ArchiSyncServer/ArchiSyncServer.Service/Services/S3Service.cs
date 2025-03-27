@@ -29,7 +29,7 @@ namespace ArchiSyncServer.Service.Services
         /// ⬆️ יצירת Pre-Signed URL להעלאת קובץ
         public async Task<string> GeneratePresignedUrlAsync(string parentId,string projectName,string fileName, string contentType)
         {
-            var key = $"users/{parentId}/{projectName}/{fileName}"; // הנתיב של הקובץ ב-S3
+            var key = $"users/{parentId}/{projectName}/{fileName}"; 
 
             var request = new GetPreSignedUrlRequest
             {

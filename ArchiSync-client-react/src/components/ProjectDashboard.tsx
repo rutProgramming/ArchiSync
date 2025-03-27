@@ -1,90 +1,105 @@
-import { ArrowBack, UploadFile } from "@mui/icons-material"
+import { ArrowBack } from "@mui/icons-material"
 import { motion } from "framer-motion"
-import { PartialProject } from "../types/types"
 import "../App.css"
 import { Modal, Stack, Tooltip } from "@mui/material"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Workspace from "./Workspace"
-import { AppDispatch, RootState } from "../store/reduxStore"
-import { useDispatch, useSelector } from "react-redux"
+import { RootState } from "../store/reduxStore"
+import { useSelector } from "react-redux"
+import { Outlet, useNavigate, useParams } from "react-router"
+import { PartialProject } from "../types/types"
 
-const ProjectDashboard = ({ openProject, handleBack }: { openProject: PartialProject, handleBack: () => void }) => {
-    const [userId, setUserId] = useState("");
+const ProjectDashboard = () => {
+    const { projectId } = useParams<{ projectId: string }>();
     const [im, setim] = useState(false);
-    const user = useSelector((state: RootState) => state.connect.user);
     const files = useSelector((state: RootState) => state.files.files);
-    const dispatch: AppDispatch = useDispatch();
-     
+    const navigate = useNavigate();
+    const projects = useSelector((state: RootState) => state.projects.projects);
+    const [openProject, setOpenProject] = useState<PartialProject | null>(null);
+    useEffect(() => {
+        if (projectId) {
+            const project = projects.find(project => project.id?.toString() === projectId);
+            setOpenProject(project || null);
+        } else {
+            setOpenProject(null);
+        }
+    }, [projects, projectId]);
 
-    
-    return (<>
+console.log(openProject)
+console.log(projectId)
+return (<>
 
+    <motion.div
+        initial={{ x: "100%" }}
+        animate={{ x: 0 }}
+        exit={{ x: "100%" }}
+        transition={{ duration: 0.3 }}
+    >
         <motion.div
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "100%" }}
-            transition={{ duration: 0.3 }}
+            className="ArrowButton"
+            whileHover={{ scale: 1.2 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={() => navigate(-1)}
         >
-            <motion.div
-                className="ArrowButton"
-                whileHover={{ scale: 1.2 }}
-                whileTap={{ scale: 0.9 }}
-                onClick={handleBack}
-            >
-                <ArrowBack fontSize="large" />
-            </motion.div>
+            <ArrowBack fontSize="large" />
+        </motion.div>
 
-            <Stack direction="row" spacing={3} alignItems="end" margin={"30px"} >
+        <Stack direction="row" spacing={3} alignItems="end" margin={"30px"} >
 
-                <Tooltip title="Open the AI-powered workspace to transform sketches into images.">
+            <Tooltip title="Open the AI-powered workspace to transform sketches into images.">
 
-                    <div className="button-container">
-                        <motion.button
-                            onClick={() => setim(!im)}
-                            className="button button-secondary"
-                            whileHover={{ scale: 1.05, boxShadow: "0 0 20px white" }}
-                            whileTap={{ scale: 0.95 }}
-                        >
-                            Sketch & Generate AI
-                        </motion.button>
-
-                    </div>
-                </Tooltip>
                 <div className="button-container">
                     <motion.button
+                        //onClick={() => setim(!im)}
                         className="button button-secondary"
                         whileHover={{ scale: 1.05, boxShadow: "0 0 20px white" }}
                         whileTap={{ scale: 0.95 }}
+                        onClick={() => navigate(`workSpace/${openProject?.name}`)}
+
                     >
-                        upload File
+                        Sketch & Generate AI
                     </motion.button>
+
                 </div>
-            </Stack>
-            <section className="cards-section"  >
+            </Tooltip>
+            <div className="button-container">
+                <motion.button
+                    className="button button-secondary"
+                    whileHover={{ scale: 1.05, boxShadow: "0 0 20px white" }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => navigate(`upload/${openProject?.name}`)}
 
-                <h2 style={{ color: "yellow" }} >{openProject.name}</h2>
-                <p style={{ color: "white" }}>{openProject.description}</p>
-                <div className="cards-container">
-                    <h3 style={{ color: "yellow" }}>Files</h3>
-                    <ul className="text-white">
-                                {files && files.length > 0 ? (
-                                    files.map((file, index) => (
-                                        <li key={index} className="p-2 border-b border-gray-600">{file.fileName}</li>
-                                    ))
-                                ) : (
-                                    <p className="text-gray-400">No files available.</p>
-                                )}
-                            </ul>
-                </div>
+                >
+                    upload File
+                </motion.button>
+            </div>
+        </Stack>
+        <section className="cards-section"  >
 
-            </section>
+            <h2 style={{ color: "yellow" }} >{openProject?.name}</h2>
+            <p style={{ color: "white" }}>{openProject?.description}</p>
+            <div className="cards-container">
+                <h3 style={{ color: "yellow" }}>Files</h3>
+                <ul className="text-white">
+                    {files && files.length > 0 ? (
+                        files.map((file, index) => (
+                            <li key={index} className="p-2 border-b border-gray-600">{file.fileName}</li>
+                        ))
+                    ) : (
+                        <p className="text-gray-400">No files available.</p>
+                    )}
+                </ul>
+            </div>
 
-        </motion.div >
-        <Modal open={im} onClose={() => setim(false)}>
-            <Workspace />
-        </Modal>
-    </>
-    )
+        </section>
+
+    </motion.div >
+    <Modal open={im} onClose={() => setim(false)}>
+        <Workspace />
+    </Modal>
+    <Outlet />
+</>
+)
 }
 
 export default ProjectDashboard
