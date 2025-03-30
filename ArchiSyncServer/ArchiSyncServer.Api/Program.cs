@@ -66,6 +66,7 @@ builder.Services.AddScoped<IS3Service, S3Service>();
 builder.Services.AddScoped<IProjectPermissionService, ProjectPermissionService>();
 builder.Services.AddScoped<IFileService, FileService>();
 
+builder.Services.AddHttpClient();
 
 /* ---------DataContext----------*/
 builder.Services.AddDbContext<ApplicationDbContext>(options =>

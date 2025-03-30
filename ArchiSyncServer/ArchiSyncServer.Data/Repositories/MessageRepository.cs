@@ -29,7 +29,21 @@ namespace ArchiSyncServer.Data.Repositories
                 .Where(m => m.UserId == userId)
                 .ToListAsync();
         }
+        public async Task<int> GetUsernreadMessagesCountAsync(int userId)
+        {
+            return await _context.Messages
+               .Where(m => m.UserId == userId&&!m.UserIsRead).CountAsync();
+        }
+
+        public async Task<int> GetArchitectnreadMessagesCountAsync(int userId)
+        {
+            return await _context.Messages
+               .Where(m => m.ArchitectId == userId && !m.ArchitectIsRead).CountAsync();
+        }
+
 
     }
+
 }
+
 

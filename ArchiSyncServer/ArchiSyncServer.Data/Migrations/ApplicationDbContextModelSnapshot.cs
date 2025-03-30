@@ -51,40 +51,6 @@ namespace ArchiSyncServer.Data.Migrations
                     b.ToTable("Comments");
                 });
 
-            modelBuilder.Entity("ArchiSyncServer.Core.Entities.Document", b =>
-                {
-                    b.Property<int>("DocumentId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DocumentId"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FileName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FilePath")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("DocumentId");
-
-                    b.ToTable("Documents");
-                });
-
             modelBuilder.Entity("ArchiSyncServer.Core.Entities.File", b =>
                 {
                     b.Property<int>("Id")
@@ -149,11 +115,11 @@ namespace ArchiSyncServer.Data.Migrations
                     b.Property<int>("ArchitectId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("ArchitectIsRead")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsRead")
-                        .HasColumnType("bit");
 
                     b.Property<int>("ProjectId")
                         .HasColumnType("int");
@@ -163,6 +129,9 @@ namespace ArchiSyncServer.Data.Migrations
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("UserIsRead")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 

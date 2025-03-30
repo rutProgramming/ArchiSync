@@ -14,7 +14,7 @@ const UserProjects = () => {
     const dispatch: AppDispatch = useDispatch();
     const [showRequestModal, setShowRequestModal] = useState(false);
     const [selectedProject, setSelectedProject] = useState<PartialProject | null>(null);
-
+    
     useEffect(() => {
         if (user?.userName) {
             dispatch(GetAllProjects());
@@ -22,7 +22,6 @@ const UserProjects = () => {
             dispatch(GetPublicProjects());
         }
     }, [dispatch, user]);
-
     const handleOpenProject = async (project: PartialProject):Promise<void> => {       
        if (project.id)
         {
@@ -51,7 +50,8 @@ const UserProjects = () => {
         if (!selectedProject) return;
         try {
             const newMessage: PartialMessage = {
-                isRead: false,
+                userIsRead : false,
+                architectIsRead : false,
                 approved: false,
                 userId: user.userId,
                 projectId: selectedProject.id,
@@ -69,9 +69,7 @@ const UserProjects = () => {
 
     return (
         <>
-        <ProjectsDisplay handleOpenProject={handleOpenProject}/>
-           
-
+        <ProjectsDisplay handleOpenProject={handleOpenProject} fetchProjects={null}/>
             <Modal open={showRequestModal} onClose={() => setShowRequestModal(false)}>
                 <div className="form-container">
                     <Typography variant="h6" sx={{color:"white"}}>Access Required</Typography>
@@ -88,10 +86,8 @@ const UserProjects = () => {
                         type="submit" className="button button-primary" onClick={() => setShowRequestModal(false)}>
                         Cancel
                     </button>
-
                 </div>
             </Modal >
-            
         </>
     );
 };

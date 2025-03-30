@@ -13,6 +13,13 @@ namespace ArchiSyncServer.Core.IRepositories
     {
         Task<IEnumerable<Message>> GetAllArchitectMessagesAsync(int archirectId);
         Task<IEnumerable<Message>> GetAllUserMessagesAsync(int userId);
+        Task<int> GetUsernreadMessagesCountAsync(int userId);
+         Task<int> GetArchitectnreadMessagesCountAsync(int userId);
+        
+    
+        
+
+
     }
 
 

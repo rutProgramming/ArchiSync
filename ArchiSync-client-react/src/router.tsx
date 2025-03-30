@@ -9,6 +9,10 @@ import ProjectDashboard from './components/ProjectDashboard'
 import AddProject from './components/Addproject'
 import UserProjects from './components/UserProjects'
 import Workspace from './components/Workspace'
+import { useSelector } from 'react-redux'
+import { RootState } from './store/reduxStore'
+import UserNotifications from './components/UserNotifications'
+import ArchitectNotifications from './components/ArchitectNotifications'
 
 
 
@@ -17,30 +21,37 @@ import Workspace from './components/Workspace'
 //   return id !== 0 ? element : null;
 // };
 
-export const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <AppLayout />,
-    children: [
-      { index: true, element: <Navigate to="/home" replace /> },
-      { path: "home", element: <Home /> },
+const ProtectedMessagesRoute = () => {
+  const user = useSelector((state: RootState) => state.connect.user);
+  return user.RoleName === "user" ? <UserNotifications /> : <ArchitectNotifications />;
+};
 
-      {
-        path: "sideBar",
-        element: <SideBar />,
-        children: [
-          { path: "addProject", element: <AddProject /> },
-          {path: "myProjects",element: <ArchitectProjects />},
-          { path: "myProjects/project/:projectId", element: <ProjectDashboard /> },
-          { path: "myProjects/project/:projectId/upload/:projectName", element: <FileUploader /> },
-          { path: "myProjects/project/:projectId/workSpace/:projectName", element: <Workspace /> },
+export const router = createBrowserRouter(
 
-          { path: "messages", element: <UserMessages /> },
-        ]
-      },
+  [
+    {
+      path: '/',
+      element: <AppLayout />,
+      children: [
+        { index: true, element: <Navigate to="/home" replace /> },
+        { path: "home", element: <Home /> },
 
-      { path: "projects", element: <UserProjects /> }
-    ]
-  }
-]);
+        {
+          path: "sideBar",
+          element: <SideBar />,
+          children: [
+            { path: "addProject", element: <AddProject /> },
+            { path: "myProjects", element: <ArchitectProjects /> },
+            { path: "myProjects/project/:projectId", element: <ProjectDashboard /> },
+            { path: "myProjects/project/:projectId/upload/:projectName", element: <FileUploader /> },
+            { path: "myProjects/project/:projectId/workSpace/:projectName", element: <Workspace /> },
+            { path: "messages", element: <ProtectedMessagesRoute /> }, 
+
+          ]
+        },
+
+        { path: "projects", element: <UserProjects /> }
+      ]
+    }
+  ]);
 

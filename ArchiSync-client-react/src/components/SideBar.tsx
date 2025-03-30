@@ -1,9 +1,21 @@
 import { Outlet, Link } from "react-router";
-import { Box, Stack, List, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
+import { Box, Stack, List, ListItemButton, ListItemIcon, ListItemText, Badge } from "@mui/material";
 import DashboardIcon from "@mui/icons-material/Dashboard"; 
 import { Folder, Mail } from "@mui/icons-material";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { AppDispatch, RootState } from "../store/reduxStore";
+import { fetchUnreadMessagesCount } from "../store/Message";
 
 const SideBar = () => {
+  const unreadCount = useSelector((state:RootState) => state.messages.unreadCount); 
+  const dispatch: AppDispatch = useDispatch();
+  
+useEffect(() => {
+  dispatch(fetchUnreadMessagesCount());
+  console.log("Unread messages count fetched:", unreadCount);
+}
+, [dispatch]);
   return (
     <Stack direction="row" height="100vh">
      <Box
@@ -63,7 +75,9 @@ const SideBar = () => {
           }}
         >
           <ListItemIcon sx={{ minWidth: "40px" }}>
+          <Badge badgeContent={unreadCount} color="error">
             <Mail sx={{ color: "white", fontSize: "28px" }} />
+            </Badge>
           </ListItemIcon>
           <ListItemText primary="Messages" />
         </ListItemButton>
@@ -77,56 +91,3 @@ const SideBar = () => {
 };
 
 export default SideBar;
-// import { useState } from "react";
-// import { Outlet, Link } from "react-router";
-// import { Box, Stack, List, ListItemButton, ListItemIcon, ListItemText, IconButton, Drawer } from "@mui/material";
-// import DashboardIcon from "@mui/icons-material/Dashboard";
-// import CreateNewProjectIcon from "@mui/icons-material/CreateNewProject";
-// import MenuIcon from "@mui/icons-material/Menu";
-// import useMediaQuery from "@mui/material/useMediaQuery";
-
-// const SideBar = () => {
-//   const [open, setOpen] = useState(false);
-//   const isMobile = useMediaQuery("(max-width: 768px)");
-
-//   const toggleDrawer = () => {
-//     setOpen(!open);
-//   };
-
-//   const sidebarContent = (
-//     <Box sx={{ width: 220, backgroundColor: "#222", height: "100vh", padding: "20px", color: "white" }}>
-//       <List>
-//         <ListItemButton component={Link} to="/myProjects" sx={{ color: "white" }}>
-//           <ListItemIcon><DashboardIcon sx={{ color: "white" }} /></ListItemIcon>
-//           <ListItemText primary="Projects" />
-//         </ListItemButton>
-//         <ListItemButton component={Link} to="/addProject" sx={{ color: "white" }}>
-//           <ListItemIcon><CreateNewProjectIcon sx={{ color: "white" }} /></ListItemIcon>
-//           <ListItemText primary="Add Project" />
-//         </ListItemButton>
-//       </List>
-//     </Box>
-//   );
-
-//   return (
-//     <Stack direction="row" height="100vh">
-//       {isMobile ? (
-//         <>
-//           <IconButton onClick={toggleDrawer} sx={{ position: "fixed", top: 20, left: 20, color: "white", zIndex: 1000 }}>
-//             <MenuIcon />
-//           </IconButton>
-//           <Drawer anchor="left" open={open} onClose={toggleDrawer}>
-//             {sidebarContent}
-//           </Drawer>
-//         </>
-//       ) : (
-//         <Box sx={{ position: "fixed", top: "100px", height: "100vh" }}>{sidebarContent}</Box>
-//       )}
-//       <Box sx={{ flex: 1, padding: "20px", marginLeft: isMobile ? 0 : "220px" }}>
-//         <Outlet />
-//       </Box>
-//     </Stack>
-//   );
-// };
-
-// export default SideBar;

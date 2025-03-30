@@ -19,6 +19,7 @@ namespace ArchiSyncServer.Core.DTOs
         [MaxLength(500)]
         public string S3Key { get; set; }
         public int ProjectId { get; set; }
+        public Project Project { get; set; }
         public int OwnerId { get; set; }
         public bool IsDeleted { get; set; }
     }

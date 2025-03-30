@@ -1,4 +1,4 @@
-import { Button, Stack, Menu, MenuItem, IconButton } from "@mui/material";
+import { Button, Stack, Menu, MenuItem, IconButton, Badge } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import SignInComponent from "./SignInComponent";
@@ -46,7 +46,6 @@ const UserMenu = () => {
       {user.userName ? (
         <>
 
-          {/* אייקון משתמש עם תפריט נפתח */}
           <IconButton onClick={handleClick} sx={{ color: "#FFD700" }}>
           <KeyboardArrowDown sx={{ color: "yellow", fontSize: 20 }} />
             <AccountCircleIcon fontSize="large" />
@@ -67,7 +66,6 @@ const UserMenu = () => {
           >
             <MenuItem onClick={() => handleNavigate("sideBar/myProjects")}>My Projects</MenuItem>
             <MenuItem onClick={() => handleNavigate("sideBar/addProject")}>Add project</MenuItem>
-            {/* {user.RoleName==="architect"?<MenuItem onClick={handleClose}>Add Project</MenuItem>:null} */}
             <MenuItem onClick={() => handleNavigate("sideBar/Messages")}>Messages</MenuItem>
             <MenuItem onClick={handleLogout} sx={{ color: "red" }}>Log Out</MenuItem>
 

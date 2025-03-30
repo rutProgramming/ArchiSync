@@ -18,6 +18,8 @@ namespace ArchiSyncServer.Core.IServices
         Task DeleteMessageAsync(int id);
         Task<IEnumerable<MessageDTO>> GetAllArchitectMessagesAsync(int architectId);
         Task<IEnumerable<MessageDTO>> GetAllUserMessagesAsync(int userId);
+        Task<int> GetUnreadMessagesCountAsync(int userId,string roleName);
+
 
     }
 }

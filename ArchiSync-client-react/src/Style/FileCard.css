@@ -1,0 +1,40 @@
+.file-card {
+    cursor: pointer;
+    background-color: black;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    transition: box-shadow 0.2s ease-in-out;
+  }
+  
+  .file-thumbnail {
+    max-width: 100px;
+    max-height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  
+  .modal-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+  }
+  
+  .modal-content {
+    background: black;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 90%;
+    max-height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .file-fullsize {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  

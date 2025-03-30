@@ -5,6 +5,37 @@
     "version": "v1"
   },
   "paths": {
+    "/api/generate-image": {
+      "post": {
+        "tags": [
+          "Api"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateImageRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateImageRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateImageRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Auth/login": {
       "post": {
         "tags": [
@@ -390,37 +421,6 @@
         }
       }
     },
-    "/api/Image/generate": {
-      "post": {
-        "tags": [
-          "Image"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "string"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "type": "string"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "type": "string"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/api/Message/{id}": {
       "get": {
         "tags": [
@@ -678,6 +678,18 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/api/Message/unread-count": {
+      "get": {
+        "tags": [
+          "Message"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
           }
         }
       }
@@ -1305,6 +1317,9 @@
             "type": "integer",
             "format": "int32"
           },
+          "project": {
+            "$ref": "#/components/schemas/Project"
+          },
           "ownerId": {
             "type": "integer",
             "format": "int32"
@@ -1351,6 +1366,28 @@
         },
         "additionalProperties": false
       },
+      "GenerateImageRequest": {
+        "type": "object",
+        "properties": {
+          "image": {
+            "type": "string",
+            "nullable": true
+          },
+          "scale": {
+            "type": "number",
+            "format": "double"
+          },
+          "prompt": {
+            "type": "string",
+            "nullable": true
+          },
+          "cnLineartStrength": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
       "LoginModel": {
         "type": "object",
         "properties": {
@@ -1372,10 +1409,13 @@
             "type": "integer",
             "format": "int32"
           },
-          "isRead": {
+          "approved": {
             "type": "boolean"
           },
-          "approved": {
+          "userIsRead": {
+            "type": "boolean"
+          },
+          "architectIsRead": {
             "type": "boolean"
           },
           "userId": {
@@ -1418,14 +1458,6 @@
           "architectId": {
             "type": "integer",
             "format": "int32"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updatedAt": {
-            "type": "string",
-            "format": "date-time"
           }
         },
         "additionalProperties": false

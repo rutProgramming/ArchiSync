@@ -25,6 +25,7 @@ namespace ArchiSyncServer.Api.Controllers
             _mapper = mapper;
         }
         private int GetUserId() => int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
+        private string GetUserRole() => User.FindFirst(ClaimTypes.Role)?.Value ?? "";
 
         [HttpGet("{id}")]
         public async Task<ActionResult<MessageDTO>> Get(int id)
@@ -73,6 +74,9 @@ namespace ArchiSyncServer.Api.Controllers
             try
             {
                 var messageDto = _mapper.Map<MessageDTO>(messagePostModel);
+                messageDto.CreatedAt = DateTime.Now;
+                messageDto.UpdatedAt = DateTime.Now;
+            
                 var createdMessage = await _messageService.CreateMessageAsync(messageDto);
                 return CreatedAtAction(nameof(Get), new { id = createdMessage.Id, createdMessage });
             }
@@ -115,6 +119,22 @@ namespace ArchiSyncServer.Api.Controllers
             catch (KeyNotFoundException ex)
             {
                 return NotFound(new { message = ex.Message});
+            }
+        }
+        [Authorize(Policy = "UserAccess")]
+        [HttpGet("unread-count")]
+        public async Task<IActionResult> GetUnreadMessagesCount()
+        {
+            try
+            {
+                var roleName = User.FindFirst(ClaimTypes.Role)?.Value;
+                var userId =int.Parse( User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+                int unreadCount = await _messageService.GetUnreadMessagesCountAsync(userId,roleName);
+                return Ok(new { unreadMessages = unreadCount });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
             }
         }
     }

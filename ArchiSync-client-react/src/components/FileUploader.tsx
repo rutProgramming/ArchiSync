@@ -4,14 +4,14 @@ import { v4 as uuidv4 } from "uuid";
 import { useDispatch, useSelector } from "react-redux";
 import { addFile } from "../store/File";
 import { AppDispatch, RootState } from "../store/reduxStore";
-import { ArrowBack } from "@mui/icons-material";
+import { ArrowBack, Public } from "@mui/icons-material";
 import { motion } from "framer-motion";
 import { Alert, Snackbar } from "@mui/material";
 import "../Style/FileUploader.css";
-import { getUploadUrl, uploadFileToS3 } from "../Services/UploadService";
+import { getDownloadUrl, getUploadUrl, uploadFileToS3 } from "../Services/uploadService";
 
 const FileUploader = () => {
-  const { projectId, projectName } = useParams<{ projectId: string; projectName: string }>();
+  const {parentId, projectId, projectName } = useParams<{parentId: string; projectId: string; projectName: string }>();
   const [file, setFile] = useState<File | null>(null);
   const [progress, setProgress] = useState(0);
   const [isUploading, setIsUploading] = useState(false);
@@ -28,7 +28,7 @@ const FileUploader = () => {
     }
   };
 
-  const handleUpload = async () => {
+   const handleUpload = async () => {
     if (!file || !projectId || !projectName) return;
 
     const uniqueFileName = `${uuidv4()}_${file.name}`;
@@ -47,7 +47,7 @@ const FileUploader = () => {
         size: updatedFile.size,
       };
       dispatch(addFile(fileServer));
-      //await getDownloadUrl(parseInt(parentId), projectName, updatedFile.name);
+      console.log("fileServer", fileServer);
       setSnackbar(true);
     } catch (error) {
       console.error("Upload failed:", error);

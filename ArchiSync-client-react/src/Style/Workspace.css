@@ -48,17 +48,41 @@
     margin-top: 20px;
   }
   
-  input[type="file"],
-  /* input[type="text"] {
-    padding: 10px;
-    border: 1px solid yellow;
-    background: black;
-    color: yellow;
-    margin: 10px 0;
-    width: 300px;
-    text-align: center;
+  input[type="range"] {
+    -webkit-appearance: none; 
+    height: 8px;
+    background-color: #FFD700;
+    border-radius: 5px;
+    outline: none;
+    opacity: 0.9;
+    transition: opacity 0.2s;
   }
-   */
+
+  
+input[type="range"]:hover {
+  opacity: 1;
+}
+
+/* עיצוב הכפתור שנגרר */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #FFD700; 
+  cursor: pointer;
+  border-radius: 50%;
+  border: 2px solid black;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: #FFD700;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 2px solid black;
+}
   .tools {
     display: flex;
     align-items: center;

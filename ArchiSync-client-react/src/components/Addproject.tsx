@@ -22,12 +22,13 @@ const AddProject = () => {
     };
     const handleAddProject = async (event: React.FormEvent) => {
         event.preventDefault();
+        console.log(user);
         const project: PartialProject = {
             name: projectNameRef.current?.value || "",
             description: projectDescriptionRef.current?.value || "",
             ownerId: user?.userId ?? 0,
             isPublic: publicRef.current?.checked || false,
-            parentId: user?.mainProjectId ?? 0,
+            parentId: user.mainFolderId,
         };
 
         const resultAction = await dispatch(addProject({ project }));

@@ -21,9 +21,9 @@ namespace ArchiSyncServer.Core.DTOs
         public virtual Project Parent { get; set; }
 
         public int OwnerId { get; set; }
-        public virtual User Owner { get; set; }
+        public  User Owner { get; set; }
 
-        public bool IsPublic { get; set; } = true;
+        public bool IsPublic { get; set; }
 
         public DateTime CreatedAt { get; set; } 
         public DateTime UpdatedAt { get; set; } 

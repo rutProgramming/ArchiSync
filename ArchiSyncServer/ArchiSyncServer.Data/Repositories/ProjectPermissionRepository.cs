@@ -20,7 +20,7 @@ namespace ArchiSyncServer.Data.Repositories
         {
            
             return await _context.ProjectPermissions
-                .AnyAsync(p => (p.UserId == userId && p.ProjectId == projectId)||p.Project.IsPublic);
+                .AnyAsync(p => (p.UserId == userId && p.ProjectId == projectId)||p.Project.IsPublic||p.Project.OwnerId==userId);
 
         }
     }

@@ -3,7 +3,7 @@ export type User = {
   userName: string,
   email: string,
   password: string,
-  mainProjectId: number
+  mainFolderId: number
   RoleName: string,
   token: string
 }
@@ -20,12 +20,14 @@ export type Project = {
   name:string,
   ownerId:number
   parentId:number
+  owner:User
 }
 export type PartialProject = Partial<Project>
 export type Message = {
   id: number,
-  isRead: boolean,
-  approved: boolean
+  userIsRead : boolean,
+  architectIsRead : boolean,  
+  approved: boolean,
   userId: number,
   projectId: number,
   architectId: number
@@ -40,10 +42,12 @@ export type ProjectPermission = {
 export type PartialProjectPermission = Partial<ProjectPermission>
 
 export type File ={
+  id:number,
   fileName:string,
   fileType:string,
   ownerId:number,
   projectId:number,
+  project:Project,
   s3Key:string,
   size:number
 }

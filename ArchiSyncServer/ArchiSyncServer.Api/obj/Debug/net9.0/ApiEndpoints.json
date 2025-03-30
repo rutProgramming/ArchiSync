@@ -225,16 +225,16 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "ArchiSyncServer.Api.Controllers.ImageController",
+    "ContainingType": "ArchiSyncServer.Api.Controllers.ApiController",
     "Method": "GenerateImage",
-    "RelativePath": "api/Image/generate",
+    "RelativePath": "api/generate-image",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "imagePath",
-        "Type": "System.String",
+        "Name": "request",
+        "Type": "ArchiSyncServer.Api.Controllers.GenerateImageRequest",
         "IsRequired": true
       }
     ],
@@ -368,6 +368,16 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "ArchiSyncServer.Api.Controllers.MessageController",
+    "Method": "GetUnreadMessagesCount",
+    "RelativePath": "api/Message/unread-count",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "ArchiSyncServer.Api.Controllers.MessageController",

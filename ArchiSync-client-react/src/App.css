@@ -35,12 +35,14 @@
 }
 
 .cards-container {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-top: 20px;
-}
-
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* שורות רספונסיביות */
+    gap: 20px; /* מרחק אחיד בין הכרטיסים */
+    justify-content: center; /* מרכז את הכרטיסים */
+    align-items: start;
+    max-width: 960px; /* מתאים ל-3 פרויקטים בשורה */
+    margin: auto; /* ממקם את כל הקונטיינר במרכז */
+  }
 .cards-card {
     background-color: #222;
     padding: 20px;

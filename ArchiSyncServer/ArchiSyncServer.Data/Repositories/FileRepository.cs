@@ -1,6 +1,7 @@
 ﻿
 using ArchiSyncServer.Core.Entities;
 using ArchiSyncServer.Core.IRepositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace ArchiSyncServer.Data.Repositories
         public async Task<IEnumerable<File>> GetFilesInProjectAsync(int projectId)
         {
             return _context.File
-           .Where(f => f.ProjectId == projectId && !f.IsDeleted)
+           .Where(f => f.ProjectId == projectId && !f.IsDeleted).Include(f=>f.Project)
            .ToList();
         }
 

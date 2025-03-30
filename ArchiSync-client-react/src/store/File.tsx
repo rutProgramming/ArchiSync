@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
-import { PartialFile } from "../types/types";
+import { File, PartialFile } from "../types/types";
 import { GetHeaders } from "./Project";
 const url = "https://localhost:7218/api/File";
 
@@ -21,6 +21,7 @@ export const addFile = createAsyncThunk(
 );
 
 export const getFiles = createAsyncThunk('Project/getFiles', async ({projectId,userId,isPublic}:{projectId:number,userId:number,isPublic:boolean}, thunkAPI) => {
+    console.log("getFiles",projectId,userId,isPublic)
     try {
         const response = await axios.get(url, {
             params: {
@@ -39,7 +40,7 @@ export const getFiles = createAsyncThunk('Project/getFiles', async ({projectId,u
 const FileSlice = createSlice({
     name: 'files',
     initialState: {
-        files: [] as PartialFile[],
+        files: [] as File[],
         loading: false,
         error: ""
     },
@@ -50,7 +51,7 @@ const FileSlice = createSlice({
                 state.loading = true;
                 state.error = "";
             })
-            .addCase(getFiles.fulfilled, (state, action: PayloadAction<PartialFile[]>) => {
+            .addCase(getFiles.fulfilled, (state, action: PayloadAction<File[]>) => {
                 state.loading = false;
                 state.files = action.payload;
             })
@@ -63,7 +64,7 @@ const FileSlice = createSlice({
                 state.loading = true;
                 state.error = "";
             })
-            .addCase(addFile.fulfilled, (state, action: PayloadAction<PartialFile>) => {
+            .addCase(addFile.fulfilled, (state, action: PayloadAction<File>) => {
                 state.loading = false;
                 state.files.push(action.payload);
 

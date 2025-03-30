@@ -32,7 +32,7 @@ namespace ArchiSyncServer.Data.Repositories
         }
         public async Task<IEnumerable<Project>> GetPublicProjectsAsync()
         {
-            return await _context.Projects.Where(p => p.IsPublic).ToListAsync();
+            return await _context.Projects.Where(p => p.IsPublic).Include(p => p.Owner).ToListAsync();
         }
 
         public async Task<bool> IsProjectNameUniqueAsync(int userId, string projectName)
@@ -55,13 +55,13 @@ namespace ArchiSyncServer.Data.Repositories
         public async Task<IEnumerable<Project>> GetArchitectProjectsAsync(int userId)
         {
             return await _context.Projects
-                .Where(p => p.OwnerId ==userId)
+                .Where(p => p.OwnerId ==userId).Include(p => p.Owner)
                 .ToListAsync();
         }
         public async Task<IEnumerable<Project>> GetAllProjectsAsync()
         {
             return await _context.Projects
-                .Where(p => p.Name != "Main Folder")
+                .Where(p => p.Name != "Main Folder").Include(p => p.Owner)
                 .ToListAsync();
         }
     }
