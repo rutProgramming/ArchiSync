@@ -1,25 +1,25 @@
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../store/reduxStore";
 import { useEffect } from "react";
-import { PartialMessage, PartialProjectPermission } from "../types/types";
+import { PartialMessage } from "../types/types";
 import { GetArchitectMessages, GetUserMessages, UpdateMessageStatus } from "../store/Message";
-import { Card, CardContent, Typography, CircularProgress, Alert, Stack, Box, IconButton, Button } from "@mui/material";
+import { Card, CardContent, Typography, CircularProgress, Alert, Stack, Box, IconButton } from "@mui/material";
 import { MarkEmailUnread, MarkEmailRead } from "@mui/icons-material";
-import { addProjectPremmision } from "../store/Premission";
 
-const UserMessages = () => {
+const UserNotifications = () => {
     const dispatch: AppDispatch = useDispatch();
     const messages = useSelector((state: RootState) => state.messages.messages);
     const loading = useSelector((state: RootState) => state.messages.loading);
     const error = useSelector((state: RootState) => state.messages.error);
     const user = useSelector((state: RootState) => state.connect.user);
-
     useEffect(() => {
-        if (user.RoleName === "architect") {
-            dispatch(GetArchitectMessages());
-        } else if (user.RoleName === "user") {
-            dispatch(GetUserMessages());
-        }
+        dispatch(GetUserMessages()); 
+
+        const interval = setInterval(() => {
+            dispatch(GetUserMessages()); 
+        }, 30000);
+    
+        return () => clearInterval(interval);      
     }, [dispatch, user]);
 
     return (
@@ -29,46 +29,38 @@ const UserMessages = () => {
             {error && <Alert severity="error">{error}</Alert>}
 
             <Stack spacing={2}>
-                <MessageSection title="" messages={messages}  RoleName={user.RoleName!} />
+                <MessageSection title="" messages={messages} />
             </Stack>
         </Box>
     );
 };
 
-const MessageSection = ({ title, messages, RoleName }: { title: string; messages: PartialMessage[]; RoleName: string; }) => (
+const MessageSection = ({ title, messages }: { title: string; messages: PartialMessage[]; }) => (
 
     <Box>
         <Typography variant="h5" gutterBottom sx={{ color: "#FFD700" }}>{title}</Typography>
         {messages.length === 0 ? <Typography sx={{ color: "#ffffff" }}>No messages</Typography> : messages.map((message) => (
-            <MessageCard key={message.id} message={message}  RoleName={RoleName} />
+            <MessageCard key={message.id} message={message}  />
         ))}
     </Box>
 );
 
-const MessageCard = ({ message, RoleName }: { 
+const MessageCard = ({ message }: { 
     message: PartialMessage; 
-    RoleName: string; 
 }) => {
     const dispatch: AppDispatch = useDispatch();
     const handleToggleReadStatus = (message: PartialMessage) => {
-        const updatedMessage: PartialMessage = { ...message, isRead: !message.isRead };
+        const updatedMessage: PartialMessage = { ...message, userIsRead: !message.userIsRead };
         dispatch(UpdateMessageStatus(updatedMessage));
+        dispatch(toggleUserMessageReadStatus());
     };
-    const handleApprove = (message: PartialMessage) => {
-        const projectPremmision: PartialProjectPermission = {
-            userId: message.userId,
-            projectId: message.projectId,
-        };
-        dispatch(addProjectPremmision(projectPremmision));
-        const updatedMessage: PartialMessage = { ...message, approved: !message.approved };
-        dispatch(UpdateMessageStatus(updatedMessage));
-    };
+   
     
 
     return (
         <Card variant="outlined" sx={{
             marginBottom: 2,
-            backgroundColor: message.isRead ? "#333" : "#222",
+            backgroundColor: message.userIsRead ? "#333" : "#222",
             borderColor: "#FFD700",
             width: "100%",
             transition: '0.3s',
@@ -78,29 +70,14 @@ const MessageCard = ({ message, RoleName }: {
         }}>
             <CardContent sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <Box>
-                    {RoleName === "user" ? (
                         <Typography variant="h6" color="white">
                             {message.approved ? `Project access request #${message.id} has been approved.` :
                             `A request - ${message.id} for project access has been submitted`}
                         </Typography>
-                    ) : null}
-
-                    {RoleName === "architect" ? (
-                        <Typography variant="h6" color="white">
-                            {message.approved
-                                ? `The access request for project #${message.id} has been approved.`
-                                : `A request for access for user: ${message.userId} to project #${message.id} has been submitted. Please review it for approval.`
-                            }
-                            {!message.approved && (
-                                <Button variant="contained" color="success" onClick={() => handleApprove(message)}>
-                                    Approve Request
-                                </Button>
-                            )}
-                        </Typography>
-                    ) : null}
                 </Box>
                 <IconButton onClick={() => handleToggleReadStatus(message)} sx={{ color: "#FFD700" }}>
-                    {message.isRead ? <MarkEmailUnread fontSize="large" /> : <MarkEmailRead fontSize="large" />}
+                
+                    {!message.userIsRead ? <MarkEmailUnread fontSize="large" /> : <MarkEmailRead fontSize="large" />}
                 </IconButton>
             </CardContent>
         </Card>
@@ -109,4 +86,8 @@ const MessageCard = ({ message, RoleName }: {
 
 
 
-export default UserMessages;
+export default UserNotifications;
+function toggleUserMessageReadStatus(): any {
+    throw new Error("Function not implemented.");
+}
+

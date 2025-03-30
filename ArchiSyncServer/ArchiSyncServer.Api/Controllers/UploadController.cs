@@ -14,7 +14,6 @@ namespace ArchiSyncServer.Api.Controllers
             _s3Service = s3Server;
         }
 
-        // ⬆️ שלב 1: קבלת URL להעלאת קובץ ל-S3
         [HttpGet("upload-url")]
         public async Task<IActionResult> GetUploadUrl([FromQuery] string parentId, [FromQuery] string projectName, [FromQuery] string fileName, [FromQuery] string contentType)
         {
@@ -25,12 +24,11 @@ namespace ArchiSyncServer.Api.Controllers
             return Ok(new { url });
         }
 
-        // ⬇️ שלב 2: קבלת URL להורדת קובץ מה-S3
         [HttpGet("download-url")]
         public async Task<IActionResult> GetDownloadUrl([FromQuery] string parentId, [FromQuery] string projectName, string fileName)
         {
             var url = await _s3Service.GetDownloadUrlAsync(parentId,projectName, fileName);
-            return Ok(new { downloadUrl = url });
+            return Ok( url);
         }
     }
 }

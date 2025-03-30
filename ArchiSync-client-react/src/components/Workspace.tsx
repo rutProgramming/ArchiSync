@@ -1,9 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
 import "../Style/Workspace.css";
 import { v4 as uuidv4 } from "uuid";
-import axios from "axios";
-import { useSelector } from "react-redux";
-import { RootState } from "../store/reduxStore";
+import { getDownloadUrl, getUploadUrl, uploadFileToS3 } from "../Services/uploadService";
+import { useParams } from "react-router";
+import { Button, Stack, TextField } from "@mui/material";
+import { Download, Save } from "@mui/icons-material";
 
 const Workspace = () => {
   const [uploadedImage, setUploadedImage] = useState<string | null>(null);
@@ -13,13 +14,11 @@ const Workspace = () => {
   const [color, setColor] = useState("#FFD700");
   const [lineWidth, setLineWidth] = useState(5);
   const [isErasing, setIsErasing] = useState(false);
-  const [brightness, setBrightness] = useState(100);
-  const [contrast, setContrast] = useState(100);
-  const user = useSelector((state: RootState) => state.connect.user);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
   const [progress, setProgress] = useState(0);
   const [isUploading, setIsUploading] = useState(false);
+  const { projectId, projectName } = useParams<{ projectId: string; projectName: string }>();
 
   useEffect(() => {
     if (uploadedImage) {
@@ -33,25 +32,25 @@ const Workspace = () => {
       img.onload = () => {
         canvas.width = img.width;
         canvas.height = img.height;
-        ctx.filter = `brightness(${brightness}%) contrast(${contrast}%)`;
         ctx.drawImage(img, 0, 0, img.width, img.height);
         ctxRef.current = ctx;
       };
     }
-  }, [uploadedImage, brightness, contrast]);
-  
+  }, [uploadedImage]);
+
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
-    if (file) {
+    if (file && file.type.startsWith("image/")) {
       const reader = new FileReader();
-      reader.onloadend = () => {
-        setUploadedImage(reader.result as string);
-      };
+      reader.onloadend = () => setUploadedImage(reader.result as string);
       reader.readAsDataURL(file);
+    } else {
+      alert("Please upload a valid image file.");
     }
   };
+
   const handleGenerate = async () => {
-    if (!uploadedImage) return;
+    if (!uploadedImage || !projectId || !projectName) return;
 
     try {
       setIsUploading(true);
@@ -64,29 +63,12 @@ const Workspace = () => {
       const uniqueFileName = `${uuidv4()}_${file.name}`;
       const updatedFile = new File([file], uniqueFileName, { type: file.type });
 
-      // Request signed URL
-      const uploadResponse = await axios.get("https://localhost:7218/api/Upload/upload-url", {
-        params: { parentId: 1, projectName: "projectName", fileName: updatedFile.name, contentType: file.type },
-      });
+      const uploadUrl = await getUploadUrl(projectId, projectName, updatedFile.name, updatedFile.type);
+      await uploadFileToS3(uploadUrl, updatedFile, setProgress);
+      const downloadResponse = await getDownloadUrl(parseInt(projectId), projectName, updatedFile.name);
 
-      // Upload to S3 with progress tracking
-      await axios.put(uploadResponse.data.url, updatedFile, {
-        headers: { "Content-Type": updatedFile.type },
-        onUploadProgress: (progressEvent) => {
-          const percentCompleted = Math.round((progressEvent.loaded * 100) / (progressEvent.total || 1));
-          setProgress(percentCompleted);
-        }
-      });
-
-      // Request download URL
-      const downloadResponse = await axios.get("https://localhost:7218/api/Upload/download-url", {
-        params: { parentId: 1, projectName: "projectName", fileName: updatedFile.name },
-
-      });
-
-      setGeneratedImage(downloadResponse.data.downloadUrl);
-      
-      console.log("Generated image URL:", downloadResponse.data.downloadUrl);
+      console.log(downloadResponse);
+      setGeneratedImage(downloadResponse.downloadUrl);
     } catch (error) {
       console.error("Error uploading image:", error);
     } finally {
@@ -101,30 +83,23 @@ const Workspace = () => {
     const canvas = canvasRef.current;
     const ctx = ctxRef.current;
     const rect = canvas.getBoundingClientRect();
-
-    // חישוב קנה המידה של התמונה ב-Canvas
     const scaleX = canvas.width / rect.width;
     const scaleY = canvas.height / rect.height;
-
-    // תיקון המיקום לפי קנה המידה
     const x = (e.clientX - rect.left) * scaleX;
     const y = (e.clientY - rect.top) * scaleY;
 
     ctx.beginPath();
     ctx.moveTo(x, y);
   };
+
   const draw = (e: React.MouseEvent<HTMLCanvasElement>) => {
     if (!drawing || !uploadedImage || !ctxRef.current || !canvasRef.current) return;
 
     const canvas = canvasRef.current;
     const ctx = ctxRef.current;
     const rect = canvas.getBoundingClientRect();
-
-    // חישוב קנה המידה של התמונה ב-Canvas
     const scaleX = canvas.width / rect.width;
     const scaleY = canvas.height / rect.height;
-
-    // תיקון המיקום לפי קנה המידה
     const x = (e.clientX - rect.left) * scaleX;
     const y = (e.clientY - rect.top) * scaleY;
 
@@ -138,20 +113,36 @@ const Workspace = () => {
     ctx.beginPath();
     ctx.moveTo(x, y);
   };
-  const stopDrawing = () => {
-    setDrawing(false);
-  };
+
+  const stopDrawing = () => setDrawing(false);
+
   const clearCanvas = () => {
     if (!uploadedImage || !ctxRef.current || !canvasRef.current) return;
     const canvas = canvasRef.current;
     ctxRef.current.clearRect(0, 0, canvas.width, canvas.height);
-
-    const img = new Image();
-    img.src = uploadedImage;
-    img.onload = () => {
-      ctxRef.current?.drawImage(img, 0, 0, img.width, img.height);
-    };
   };
+
+  const editedImage = () => {
+    if (!canvasRef.current) return;
+    const canvas = canvasRef.current;
+    const imageData = canvas.toDataURL("image/png");
+    return imageData;
+  };
+  const saveCanvas = () => {
+    const imageData = editedImage();
+    if (!imageData) return;
+    setUploadedImage(imageData);
+  }
+  const downloadImage = () => {
+    const imageData = editedImage();
+    if (!imageData) return;
+    const link = document.createElement("a");
+    link.href = imageData;
+    link.download = "sketch.png";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
   return (
     <div className="workspace-container">
       <div className="image-section">
@@ -163,75 +154,59 @@ const Workspace = () => {
               onMouseMove={draw}
               onMouseUp={stopDrawing}
               onMouseLeave={stopDrawing}
-              style={{ backgroundColor: "#f5f5f5", border: "2px solid #ccc" }}
+              className="canvas-style"
             />
-          ) : (
-            <div className="placeholder">Upload an image to start</div>
-          )}
+          ) : (<>
+            <input type="file" onChange={handleImageUpload} className="upload-input" />
+            <p style={{ color: "#F1C40F" }}>{uploadedImage ? uploadedImage : "Upload an image to start"}</p>
+
+          </>)}
+
         </div>
         <div className="image-preview">
-          {generatedImage ? (
-            <img src={generatedImage} alt="Generated" className="output-image" />
-          ) : (
-            <div className="placeholder">Generated image will appear here</div>
-          )}
+          {generatedImage ? <img src={generatedImage} alt="Generated" className="output-image" /> : <div className="placeholder">Generated image will appear here</div>}
         </div>
       </div>
-      <div className="controls">
-        <input type="file" onChange={handleImageUpload} accept="image/*" />
-        <input
-          type="text"
+
+
+      <Stack direction="row" className="controls">
+        <Button color="inherit" onClick={saveCanvas}>
+          <Save /> Save Changes
+        </Button>
+        <Button color="inherit" onClick={downloadImage}>
+          <Download /> Download
+        </Button>
+      </Stack>
+
+      <Stack direction="row" className="controls">
+        <label>Color:</label>
+        <input type="color" value={color} onChange={(e) => setColor(e.target.value)} />
+        <label>Line Width:</label>
+        <input type="range" min="1" max="20" value={lineWidth} onChange={(e) => setLineWidth(Number(e.target.value))}  />
+        <Button color="inherit" onClick={clearCanvas}>Clear</Button>
+        <Button color="inherit" onClick={() => setIsErasing(!isErasing)}>{isErasing ? "Draw" : "Erase"}</Button>
+      </Stack>
+      <Stack direction="row" className="controls">
+        <TextField
+          label="Describe your design..."
+          variant="outlined"
           value={description}
+          required
+          rows={3}
           onChange={(e) => setDescription(e.target.value)}
-          placeholder="Describe your design..."
+          helperText={"The more detailed the description, the better the generated image will be."}
+          className={`custom-input`}
         />
-
-        <div className="tools">
-          <label>Color:</label>
-          <input type="color" value={color} onChange={(e) => setColor(e.target.value)} />
-
-          <label>Line Width:</label>
-          <input
-            type="range"
-            min="1"
-            max="20"
-            value={lineWidth}
-            onChange={(e) => setLineWidth(Number(e.target.value))}
-          />
-
-          <button className="custom-btn clear-btn" onClick={clearCanvas}>Clear</button>
-          <button className="custom-btn erase-btn" onClick={() => setIsErasing(!isErasing)}>
-            {isErasing ? " Draw" : " Erase"}
-          </button>
-
-          <label>Brightness:</label>
-          <input
-            type="range"
-            min="50"
-            max="150"
-            value={brightness}
-            onChange={(e) => setBrightness(Number(e.target.value))}
-          />
-
-          <label>Contrast:</label>
-          <input
-            type="range"
-            min="50"
-            max="150"
-            value={contrast}
-            onChange={(e) => setContrast(Number(e.target.value))}
-          />
-        </div>
-
-        <button className="custom-btn generate-btn" onClick={handleGenerate}>Generate</button>
+        <Button color="inherit" onClick={handleGenerate}>Generate</Button>
         {isUploading && (
           <div className="progress-container">
             <progress value={progress} max="100"></progress>
             <span>{progress}%</span>
           </div>
         )}
-      </div>
+      </Stack>
     </div>
+
   );
 };
 

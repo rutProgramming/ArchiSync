@@ -1,3 +1,15 @@
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    text-align: center;
+}
+
+
+
+
 /* רקע כללי */
 .home-container {
     background-color: #111;
@@ -10,36 +22,46 @@
     padding: 20px;
 }
 
-/* כותרת ראשית עם שינוי צבע */
 .hero-title {
     font-size: 3rem;
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 2px;
     margin-bottom: 15px;
-    animation: colorChange 3s infinite alternate ease-in-out; /* שינוי צבע דינמי */
+    animation: colorChange 3s infinite alternate ease-in-out;
 }
 
-/* כותרת משנה עם שינוי צבע */
 .hero-subtitle {
     font-size: 1.2rem;
     font-weight: 300;
     max-width: 700px;
     margin: 0 auto 20px auto;
     line-height: 1.5;
-    animation: colorChangeText 3s infinite alternate ease-in-out; /* שינוי צבע דינמי */
+    animation: colorChangeText 3s infinite alternate ease-in-out;
 }
 
-/* אנימציות לשינוי צבע */
 @keyframes colorChange {
-    0% { color: yellow; }
-    100% { color: orange; }
+    0% {
+        color: yellow;
+    }
+
+    100% {
+        color: orange;
+    }
 }
 
 @keyframes colorChangeText {
-    0% { color: rgba(255, 255, 255, 0.8); }
-    50% { color: #e1c44f; }
-    100% { color: #ffcc00; }
+    0% {
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    50% {
+        color: #e1c44f;
+    }
+
+    100% {
+        color: #ffcc00;
+    }
 }
 
 /* כפתורים */
@@ -59,7 +81,7 @@
     transition: all 0.3s ease-in-out;
 }
 
-.about-card{
+.about-card {
     background-color: #222;
     padding: 20px;
     border-radius: 10px;
@@ -69,7 +91,7 @@
     transition: transform 0.3s ease-in-out;
 }
 
-.about-card:hover{
+.about-card:hover {
     transform: scale(1.05);
     box-shadow: 0 0 15px yellow;
 }
@@ -87,69 +109,14 @@
     line-height: 1.6;
 }
 
-/* אזור השירותים */
-.services-section {
-    padding: 80px 20px;
-    text-align: center;
-    background-color: #111;
-}
-
-.services-container {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-top: 20px;
-}
-
-.service-card {
-    background-color: #222;
-    padding: 20px;
-    border-radius: 10px;
-    width: 250px;
-    color: white;
-    text-align: center;
-    transition: transform 0.3s ease-in-out;
-}
-
-.service-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 15px yellow;
-}
-
-
-/* אזור חוות דעת */
-.testimonials-section {
-    padding: 80px 20px;
-    text-align: center;
-    background-color: #111;
-    color: white;
-}
-
-.testimonials-container {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-top: 20px;
-}
-
-.testimonial {
-    background-color: #222;
-    padding: 20px;
-    border-radius: 10px;
-    width: 300px;
-    color: white;
-    text-align: center;
-    transition: transform 0.3s ease-in-out;
-}
-
-.testimonial:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 15px yellow;
-}
-
-
 @keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(10px); }
-}
 
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(10px);
+    }
+}

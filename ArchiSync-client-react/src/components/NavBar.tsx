@@ -18,7 +18,6 @@ const NavBar = () => {
         boxShadow: "0 4px 6px rgba(0,0,0,0.1)",
       }}
     >
-      {/* Left Side - Website Name & Icons */}
       <Stack direction="row" spacing={3} alignItems="center">
         <Typography variant="h6" sx={{ fontWeight: "bold", color: "#FFD700" }}>
           ArchiSync

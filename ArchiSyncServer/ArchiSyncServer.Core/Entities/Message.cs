@@ -12,7 +12,8 @@ namespace ArchiSyncServer.Core.Entities
     {
         [Key]
         public int Id { get; set; }
-        public bool IsRead { get; set; }
+        public bool UserIsRead { get; set; }
+        public bool ArchitectIsRead { get; set; }
         public bool Approved { get; set; }
         public int UserId { get; set; }
         public User User { get; set; }

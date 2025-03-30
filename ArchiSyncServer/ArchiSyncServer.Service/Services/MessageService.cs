@@ -73,7 +73,6 @@ namespace ArchiSyncServer.Service.Services
                 var message = _mapper.Map<Message>(messageDto);
                 message.CreatedAt = DateTime.Now;
                 message.UpdatedAt = DateTime.Now;
-                message.IsRead = false;
                 var createdMessage = await _messageRepository.CreateAsync(message);
                 await _repositoryManager.SaveAsync();
                 return _mapper.Map<MessageDTO>(createdMessage);
@@ -109,6 +108,20 @@ namespace ArchiSyncServer.Service.Services
                 throw new Exception("Error deleting message.", ex);
             }
         }
+
+        public async Task<int> GetUnreadMessagesCountAsync(int userId, string roleName)
+        {
+            if (roleName == "architect")
+            {
+                return await _messageRepository.GetArchitectnreadMessagesCountAsync(userId);
+            }
+            else
+            {
+                return await _messageRepository.GetUsernreadMessagesCountAsync(userId);
+            }
+        }
+
+
 
     }
 }

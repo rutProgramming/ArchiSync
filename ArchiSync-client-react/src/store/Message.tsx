@@ -51,14 +51,47 @@ export const UpdateMessageStatus = createAsyncThunk('message/toggleMessageReadSt
         return thunkAPI.rejectWithValue(error.response.data || 'Failed to send request');
     }
 });
+export const fetchUnreadMessagesCount = createAsyncThunk('message/fetchUnreadMessagesCount', async (_, thunkAPI) => {
+    try {
+        const response = await axios.get(url + `unread-count`, {
+            headers: GetHeaders()
+        });
+        console.log(response)
+        const count = response.data.unreadMessages;
+        return count;
+    } catch (error: any) {
+        return thunkAPI.rejectWithValue(error.response.data || 'Failed to fetch unread messages count');
+    }
+
+});
+
 const messageSlice = createSlice({
     name: 'messages',
     initialState: {
         messages: [] as PartialMessage[],
         loading: false,
-        error: ""
+        error: "",
+        unreadCount: 0,
     },
-    reducers: {},
+    reducers: {
+        
+        toggleUserMessageReadStatus: (state, action: PayloadAction<number>) => {
+            const messageId = action.payload;
+            const message = state.messages.find((msg) => msg.id === messageId);
+            if (message) {
+              message.architectIsRead = !message.architectIsRead;
+              state.unreadCount = state.messages.filter((msg) => !msg.architectIsRead).length;
+            }
+          },
+        toggleArchitectMessageReadStatus: (state, action: PayloadAction<number>) => {
+            const messageId = action.payload;
+            const message = state.messages.find((msg) => msg.id === messageId);
+            if (message) {
+              message.architectIsRead = !message.architectIsRead;
+              state.unreadCount = state.messages.filter((msg) => !msg.architectIsRead).length;
+            }
+          },
+    },
     extraReducers: (builder) => {
         builder
             .addCase(createMessage.pending, (state) => {
@@ -92,10 +125,13 @@ const messageSlice = createSlice({
             .addCase(GetArchitectMessages.fulfilled, (state, action: PayloadAction<Message[]>) => {
                 state.loading = false;
                 state.messages = action.payload;
+                state.unreadCount = action.payload.filter((msg) => !msg.architectIsRead).length;
+
             })
             .addCase(GetArchitectMessages.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload as string || 'Failed to get Messages';
+
             })
             .addCase(UpdateMessageStatus.pending, (state) => {
                 state.loading = true;
@@ -104,18 +140,31 @@ const messageSlice = createSlice({
                 state.loading = false;
                 const index = state.messages.findIndex(m => m.id === action.payload.id);
                 if (index !== -1) {
-                    state.messages[index] = {...action.payload};
+                    state.messages[index] = { ...action.payload };
                 }
+                state.unreadCount = state.messages.filter((msg) => !msg.architectIsRead).length;
 
             })
             .addCase(UpdateMessageStatus.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload as string || 'Failed to update message';
+
             })
 
-
-    },
+            .addCase(fetchUnreadMessagesCount.pending, (state) => {
+                state.loading = true;
+                state.error = "";
+            })
+            .addCase(fetchUnreadMessagesCount.fulfilled, (state, action: PayloadAction<number>) => {
+                state.loading = false;
+                state.unreadCount = action.payload;
+            })
+            .addCase(fetchUnreadMessagesCount.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload as string || 'Failed to fetch unread messages count';
+            });
+    },            
 
 });
-
+// export const { toggleMessageReadStatus } = messagesSlice.action;
 export default messageSlice.reducer;

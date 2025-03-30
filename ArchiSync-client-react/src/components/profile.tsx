@@ -58,8 +58,8 @@ const Profile = () => {
               display: "flex",
               alignItems: "center",
               backgroundColor: "#444",
-              padding: "12px 16px", // מרווח גדול יותר
-              borderRadius: "25px", // עיגול רך יותר
+              padding: "12px 16px", 
+              borderRadius: "25px", 
             }}
           >
             <AccountCircleIcon fontSize="large" sx={{ color: "#FFD700", marginRight: "12px" }} />

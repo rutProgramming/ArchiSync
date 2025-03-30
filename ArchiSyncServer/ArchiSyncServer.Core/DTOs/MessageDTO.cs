@@ -11,8 +11,9 @@ namespace ArchiSyncServer.Core.DTOs
     public class MessageDTO
     {
         public int Id { get; set; }
-        public bool IsRead { get; set; }
         public bool Approved { get; set; }
+        public bool UserIsRead { get; set; } 
+        public bool ArchitectIsRead { get; set; }
         public int UserId { get; set; }
         public int ProjectId { get; set; }
         public int ArchitectId { get; set; }
