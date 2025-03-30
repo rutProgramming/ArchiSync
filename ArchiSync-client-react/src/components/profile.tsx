@@ -7,6 +7,7 @@ import { RootState } from "../store/reduxStore";
 import { logout } from "../store/Connect";
 import { motion } from "framer-motion";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { useNavigate } from "react-router";
 
 const buttonStyle = {
   backgroundColor: "#FFD700",
@@ -20,9 +21,10 @@ const Profile = () => {
   const [isSignInModalOpen, setSignInModalOpen] = useState(false);
   const user = useSelector((state: RootState) => state.connect.user);
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const handleLogout = () => {
     dispatch(logout());
+    navigate("/"); 
   };
 
   return (

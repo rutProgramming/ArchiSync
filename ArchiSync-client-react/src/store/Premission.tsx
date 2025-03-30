@@ -14,7 +14,6 @@ export const checkProjectAccess = createAsyncThunk(
       const response = await axios.get(`${url}${projectId}/check-permission`, {
         headers: GetHeaders(),
       });
-      console.log(response);
       return { projectId, hasAccess: response.data.hasAccess };
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.response?.data || "Failed to check access");

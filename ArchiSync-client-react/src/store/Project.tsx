@@ -28,6 +28,7 @@ export const GetProgectsArchitect = createAsyncThunk(
     async (_, thunkAPI) => {
         try {
             const response = await axios.get(url + "architect",  { headers: GetHeaders() });
+            console.log("architect",response);
             return response.data; 
         } catch (error) {
             alert(error);

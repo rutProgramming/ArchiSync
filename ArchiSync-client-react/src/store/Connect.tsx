@@ -35,7 +35,7 @@ export const SignUp = createAsyncThunk('connect/signUp', async ({ user }: { user
         console.log(response);
         return {
             user: {
-                id: response.data.userId,
+                userId: response.data.userId,
                 token: response.data.token,
                 mainFolderId: response.data.mainFolderId,
                 userName: user.userName,
@@ -53,6 +53,7 @@ export const SignUp = createAsyncThunk('connect/signUp', async ({ user }: { user
 const loadUserFromSession = (): Puser | null => {
     const userData = sessionStorage.getItem("user");
     if (userData) {
+        
         return JSON.parse(userData);
     }
     return null;
@@ -70,6 +71,7 @@ const userSlice = createSlice({
             sessionStorage.removeItem("token");
             state.user = {} as Puser;
             state.user.token = "";
+            
         },
     },
     extraReducers: (builder) => {
@@ -82,10 +84,10 @@ const userSlice = createSlice({
                 state.loading = false;
                 state.user = { ...action.payload.User };
                 state.user.RoleName = action.payload.RoleName;
+                console.log(state.user);
+
                 sessionStorage.setItem('user', JSON.stringify(state.user));
                 sessionStorage.setItem('token', JSON.stringify(action.payload.Token));
-
-
             })
             .addCase(SignIn.rejected, (state, action) => {
                 state.loading = false;
@@ -98,10 +100,9 @@ const userSlice = createSlice({
             .addCase(SignUp.fulfilled, (state, action: PayloadAction<{ user: Puser }>) => {
                 state.loading = false;
                 state.user = action.payload.user;
+                console.log(state.user);
                 sessionStorage.setItem('user', JSON.stringify(state.user));
                 sessionStorage.setItem('token', JSON.stringify(state.user.token));
-
-
             })
             .addCase(SignUp.rejected, (state, action) => {
                 state.loading = false;

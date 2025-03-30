@@ -67,7 +67,6 @@ const FileDisplay = ({ file }: FileDisplayProps) => {
         )}
       </motion.div>
 
-      {/* Modal for displaying the file */}
       {isModalOpen && (
         <div className="modal-overlay">
           <div className="modal-content">

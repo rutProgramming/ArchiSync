@@ -3,8 +3,7 @@ import { useEffect, useState } from "react";
 import { getDownloadUrl } from "../Services/uploadService";
 import { File } from "../types/types";
 import Modal from "@mui/material/Modal";
-import Box from "@mui/material/Box";
-import "../Style/FileCard.css"; 
+import "../Style/FileCard.css";
 export interface FileCardProps {
   file: File;
 }
@@ -19,6 +18,7 @@ const FileCard = ({ file }: FileCardProps) => {
     const fetchUrl = async () => {
       setLoading(true);
       try {
+        // console.log("Fetching URL for file:", file);
         if (file.project && file.project.name) {
           const downloadUrl = await getDownloadUrl(file.projectId, file.project.name, file.fileName);
           setUrl(downloadUrl);
@@ -37,11 +37,11 @@ const FileCard = ({ file }: FileCardProps) => {
 
   return (
     <>
-      <motion.div 
-        className="file-card" 
-        whileHover={{ scale: 1.05, boxShadow: "0 0 15px yellow" }} 
+      <motion.div
+        className="file-card"
+        whileHover={{ scale: 1.05, boxShadow: "0 0 15px yellow" }}
         whileTap={{ scale: 0.95 }}
-        onClick={() => setOpen(true)} 
+        onClick={() => setOpen(true)}
       >
         {loading ? (
           <p>Loading...</p>
@@ -56,12 +56,12 @@ const FileCard = ({ file }: FileCardProps) => {
             </>) : (
               <div className="file-icon">📄</div>
             )}
+            <div>{file.fileName.split("_").pop()}</div>
           </>
         )}
       </motion.div>
 
-      <Modal open={open} onClose={() => setOpen(!open)}>
-        <Box className="modal-container">
+      <Modal open={open} onClose={() => setOpen(!open)} className="modal-container">
           <motion.div className="modal-content" initial={{ scale: 0.8 }} animate={{ scale: 1 }} exit={{ scale: 0.8 }}>
             {loading ? (
               <p>Loading...</p>
@@ -79,7 +79,6 @@ const FileCard = ({ file }: FileCardProps) => {
               </>
             )}
           </motion.div>
-        </Box>
       </Modal>
     </>
   );

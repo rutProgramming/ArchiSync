@@ -11,11 +11,11 @@ import { PartialProject } from "../types/types";
 import { Tab, Tabs } from "@mui/material";
 
 const ProjectDashboard = () => {
+    console.log("ProjectDashboard");
     const { projectId } = useParams<{ projectId: string }>();
     const dispatch: AppDispatch = useDispatch();
     const navigate = useNavigate();
-    
-    const files = useSelector((state: RootState) => state.files.files);
+
     const user = useSelector((state: RootState) => state.connect.user);
     const projects = useSelector((state: RootState) => state.projects.projects);
 
@@ -42,48 +42,83 @@ const ProjectDashboard = () => {
             setOpenProject(null);
             localStorage.removeItem("openProject");
         }
-    }, [dispatch,openProject]);
+    }, [dispatch, projectId]);
 
     return (
         <>
             <motion.div initial={{ x: "100%" }} animate={{ x: 0 }} exit={{ x: "100%" }} transition={{ duration: 0.3 }}>
-                
+
                 <motion.div className="ArrowButton" whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }} onClick={() => navigate(-1)}>
                     <ArrowBack fontSize="large" />
                 </motion.div>
+                {user.RoleName==="architect"&&
 
-                <div className="button-container">
-                    <motion.button
-                        className="button button-secondary"
-                        whileHover={{ scale: 1.05, boxShadow: "0 0 20px white" }}
-                        whileTap={{ scale: 0.95 }}
-                        onClick={() => openProject ? navigate(`workSpace/${openProject.name}`) : alert("No project selected")}
-                    >
-                        Sketch & Generate AI
-                    </motion.button>
 
-                    <motion.button
-                        className="button button-secondary"
-                        whileHover={{ scale: 1.05, boxShadow: "0 0 20px white" }}
-                        whileTap={{ scale: 0.95 }}
-                        onClick={() => openProject ? navigate(`upload/${openProject.name}`) : alert("No project selected")}
-                    >
-                        Upload File
-                    </motion.button>
-                </div>
+                    <div className="button-container">
+                        <motion.button
+                            className="button button-secondary"
+                            whileHover={{ scale: 1.05, boxShadow: "0 0 20px white" }}
+                            whileTap={{ scale: 0.95 }}
+                            onClick={() => openProject ? navigate(`workSpace/${openProject.name}`) : alert("No project selected")}
+                        >
+                            Sketch & Generate AI
+                        </motion.button>
 
+                        <motion.button
+                            className="button button-secondary"
+                            whileHover={{ scale: 1.05, boxShadow: "0 0 20px white" }}
+                            whileTap={{ scale: 0.95 }}
+                            onClick={() => openProject ? navigate(`upload/${openProject.name}`) : alert("No project selected")}
+                        >
+                            Upload File
+                        </motion.button>
+                    </div>
+                }
+                
                 <section className="cards-section">
                     <h2 style={{ color: "yellow" }}>{openProject?.name}</h2>
                     <p style={{ color: "white" }}>{openProject?.description}</p>
 
-                    <Tabs value={selectedTab} onChange={(e, newValue) => setSelectedTab(newValue)} centered>
-                        <Tab label="Images" style={{ color: "yellow" }} />
-                        <Tab label="Documents" style={{ color: "yellow" }} />
+                    <Tabs
+                        value={selectedTab}
+                        onChange={(e, newValue) => setSelectedTab(newValue)}
+                        centered
+                        sx={{
+                            "& .MuiTabs-indicator": { backgroundColor: "yellow" }, 
+                        }}
+                    >
+                        <Tab
+                            label="Images"
+                            sx={{
+                                color: "yellow",
+                                "&:hover": {
+                                    backgroundColor: "yellow",
+                                    color: "black",
+                                },
+                                "&.Mui-selected": {
+                                    color: "yellow",
+                                },
+                            }}
+                        />
+                        <Tab
+                            label="Documents"
+                            sx={{
+                                color: "yellow",
+                                "&:hover": {
+                                    backgroundColor: "yellow",
+                                    color: "black",
+                                },
+                                "&.Mui-selected": {
+                                    color: "yellow",
+                                },
+                            }}
+                        />
                     </Tabs>
 
+
                     <div className="cards-container">
-                        {selectedTab === 0 && <ImageFilesDisplay onFileClick={() => { }} />}
-                        {selectedTab === 1 && <DocumentFilesDisplay onFileClick={() => { }} />}
+                        {selectedTab === 0 && <ImageFilesDisplay />}
+                        {selectedTab === 1 && <DocumentFilesDisplay />}
                     </div>
                 </section>
             </motion.div>

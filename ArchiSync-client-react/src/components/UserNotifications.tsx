@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../store/reduxStore";
 import { useEffect } from "react";
 import { PartialMessage } from "../types/types";
-import { GetArchitectMessages, GetUserMessages, UpdateMessageStatus } from "../store/Message";
+import {  GetUserMessages, UpdateMessageStatus } from "../store/Message";
 import { Card, CardContent, Typography, CircularProgress, Alert, Stack, Box, IconButton } from "@mui/material";
 import { MarkEmailUnread, MarkEmailRead } from "@mui/icons-material";
 
@@ -13,11 +13,9 @@ const UserNotifications = () => {
     const error = useSelector((state: RootState) => state.messages.error);
     const user = useSelector((state: RootState) => state.connect.user);
     useEffect(() => {
-        dispatch(GetUserMessages()); 
-
         const interval = setInterval(() => {
             dispatch(GetUserMessages()); 
-        }, 30000);
+        }, 60000);
     
         return () => clearInterval(interval);      
     }, [dispatch, user]);
@@ -52,7 +50,7 @@ const MessageCard = ({ message }: {
     const handleToggleReadStatus = (message: PartialMessage) => {
         const updatedMessage: PartialMessage = { ...message, userIsRead: !message.userIsRead };
         dispatch(UpdateMessageStatus(updatedMessage));
-        dispatch(toggleUserMessageReadStatus());
+        // dispatch(toggleUserMessageReadStatus());
     };
    
     
@@ -87,7 +85,5 @@ const MessageCard = ({ message }: {
 
 
 export default UserNotifications;
-function toggleUserMessageReadStatus(): any {
-    throw new Error("Function not implemented.");
-}
+
 

@@ -3,9 +3,11 @@ import { AppDispatch, RootState } from "../store/reduxStore";
 import { useEffect } from "react";
 import { PartialMessage, PartialProjectPermission } from "../types/types";
 import { GetArchitectMessages, UpdateMessageStatus } from "../store/Message";
-import { Card, CardContent, Typography, CircularProgress, Alert, Stack, Box, IconButton, Button } from "@mui/material";
+import { Card, CardContent, Typography, CircularProgress, Alert, Stack, Box, IconButton } from "@mui/material";
 import { MarkEmailUnread, MarkEmailRead } from "@mui/icons-material";
 import { addProjectPremmision } from "../store/Premission";
+
+import "../App.css"
 
 const ArchitectNotifications = () => {
     const dispatch: AppDispatch = useDispatch();
@@ -13,15 +15,12 @@ const ArchitectNotifications = () => {
     const loading = useSelector((state: RootState) => state.messages.loading);
     const error = useSelector((state: RootState) => state.messages.error);
     const user = useSelector((state: RootState) => state.connect.user);
-    const unreadCount = useSelector((state:RootState) => state.messages.unreadCount); 
     useEffect(() => {
-        dispatch(GetArchitectMessages()); 
-
         const interval = setInterval(() => {
-            dispatch(GetArchitectMessages()); 
-        }, 30000);
-    
-        return () => clearInterval(interval);      
+            dispatch(GetArchitectMessages());
+        }, 60000);
+
+        return () => clearInterval(interval);
     }, [dispatch, user]);
 
     return (
@@ -38,7 +37,6 @@ const ArchitectNotifications = () => {
 };
 
 const MessageSection = ({ title, messages }: { title: string; messages: PartialMessage[]; }) => (
-
     <Box>
         <Typography variant="h5" gutterBottom sx={{ color: "#FFD700" }}>{title}</Typography>
         {messages.length === 0 ? <Typography sx={{ color: "#ffffff" }}>No messages</Typography> : messages.map((message) => (
@@ -47,14 +45,13 @@ const MessageSection = ({ title, messages }: { title: string; messages: PartialM
     </Box>
 );
 
-const MessageCard = ({ message }: { 
-    message: PartialMessage; 
+const MessageCard = ({ message }: {
+    message: PartialMessage;
 }) => {
     const dispatch: AppDispatch = useDispatch();
     const handleToggleReadStatus = (message: PartialMessage) => {
         const updatedMessage: PartialMessage = { ...message, architectIsRead: !message.architectIsRead };
         dispatch(UpdateMessageStatus(updatedMessage));
-        dispatch(toggleArchitectMessageReadStatus()); 
 
     };
     const handleApprove = (message: PartialMessage) => {
@@ -66,7 +63,7 @@ const MessageCard = ({ message }: {
         const updatedMessage: PartialMessage = { ...message, approved: !message.approved };
         dispatch(UpdateMessageStatus(updatedMessage));
     };
-    
+
 
     return (
         <Card variant="outlined" sx={{
@@ -81,21 +78,21 @@ const MessageCard = ({ message }: {
         }}>
             <CardContent sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <Box>
-                                          <Typography variant="h6" color="white">
-                            {message.approved
-                                ? `The access request for project #${message.id} has been approved.`
-                                : `A request for access for user: ${message.userId} to project #${message.id} has been submitted. Please review it for approval.`
-                            }
-                            {!message.approved && (
-                                <Button variant="contained" color="success" onClick={() => handleApprove(message)}>
-                                    Approve Request
-                                </Button>
-                            )}
-                        </Typography>
+                    <Typography variant="h6" color="white">
+                        {message.approved
+                            ? `The access request for project #${message.id} has been approved.`
+                            : `A request for access for user: ${message.userId} to project #${message.id} has been submitted. Please review it for approval.`
+                        }
+                        {!message.approved && (
+                            <button className="button-primary" onClick={() => handleApprove(message)}>
+                                Approve Request
+                            </button>
+                        )}
+                    </Typography>
                 </Box>
                 <IconButton onClick={() => handleToggleReadStatus(message)} sx={{ color: "#FFD700" }}>
                     {!message.architectIsRead ? <MarkEmailUnread fontSize="large" /> : <MarkEmailRead fontSize="large" />}
-                
+
                 </IconButton>
             </CardContent>
         </Card>
@@ -105,7 +102,4 @@ const MessageCard = ({ message }: {
 
 
 export default ArchitectNotifications;
-function toggleArchitectMessageReadStatus(): any {
-    throw new Error("Function not implemented.");
-}
 

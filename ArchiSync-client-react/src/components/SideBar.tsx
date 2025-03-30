@@ -10,6 +10,7 @@ import { fetchUnreadMessagesCount } from "../store/Message";
 const SideBar = () => {
   const unreadCount = useSelector((state:RootState) => state.messages.unreadCount); 
   const dispatch: AppDispatch = useDispatch();
+  const user = useSelector((state: RootState) => state.connect.user);
   
 useEffect(() => {
   dispatch(fetchUnreadMessagesCount());
@@ -36,6 +37,7 @@ useEffect(() => {
       }}
     >
       <List>
+        {user.RoleName==="architect"&&(<>
         <ListItemButton
           component={Link}
           to="./myProjects"
@@ -64,7 +66,7 @@ useEffect(() => {
           </ListItemIcon>
           <ListItemText primary="Add Project" />
         </ListItemButton>
-
+        </>)}
         <ListItemButton
           component={Link}
           to="./Messages"
