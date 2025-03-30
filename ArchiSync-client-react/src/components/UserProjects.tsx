@@ -2,18 +2,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../store/reduxStore";
 import { useEffect, useState } from "react";
 import { PartialMessage, PartialProject } from "../types/types";
-import { Typography, Modal } from "@mui/material";
+import { Typography, Modal, Box, Button } from "@mui/material";
 import { GetAllProjects, GetPublicProjects } from "../store/Project";
 import { createMessage } from "../store/Message";
 import { checkProjectAccess } from "../store/Premission";
-import { getFiles } from "../store/File";
 import ProjectsDisplay from "./ProjectsDisplay";
+import {  useNavigate } from "react-router";
 
 const UserProjects = () => {
     const user = useSelector((state: RootState) => state.connect.user);
     const dispatch: AppDispatch = useDispatch();
     const [showRequestModal, setShowRequestModal] = useState(false);
     const [selectedProject, setSelectedProject] = useState<PartialProject | null>(null);
+    const [showSuccessModal, setShowSuccessModal] = useState(false);
+    const navigate = useNavigate();
     
     useEffect(() => {
         if (user?.userName) {
@@ -31,14 +33,11 @@ const UserProjects = () => {
                  response = await dispatch(checkProjectAccess(project.id)).unwrap();
                 }
                 if (response?.hasAccess||project.isPublic) {
-                    if(user.userId)
-                    dispatch(getFiles({ projectId: project.id, userId: user.userId, isPublic: project.isPublic||false }));
-                   else
-                   dispatch(getFiles({ projectId: project.id, userId: 0,isPublic: project.isPublic||true }));
-
+                    navigate(`project/${project.id}`)
                 } else {
                     setSelectedProject(project);
                     setShowRequestModal(true);
+                    console.log("No access to project:", user);
                 }
             } catch (error) {
                 console.error("check access failed:", error);
@@ -60,16 +59,15 @@ const UserProjects = () => {
 
             await dispatch(createMessage({ message: newMessage })).unwrap();
             setShowRequestModal(false);
-            alert("Your request has been sent! ✅");
+            setShowSuccessModal(true);
         } catch (error) {
             console.error("Request failed:", error);
-            alert("Failed to send request ❌");
+            alert("Failed to send request ");
         }
     };
 
-    return (
-        <>
-        <ProjectsDisplay handleOpenProject={handleOpenProject} fetchProjects={null}/>
+    return (<>
+          <ProjectsDisplay handleOpenProject={handleOpenProject} fetchProjects={null}/>
             <Modal open={showRequestModal} onClose={() => setShowRequestModal(false)}>
                 <div className="form-container">
                     <Typography variant="h6" sx={{color:"white"}}>Access Required</Typography>
@@ -88,8 +86,23 @@ const UserProjects = () => {
                     </button>
                 </div>
             </Modal >
-        </>
-    );
+
+            <Modal open={showSuccessModal} onClose={() => setShowSuccessModal(false)}>
+            <div className="form-container">
+                    <Typography variant="h6" sx={{ color: "#FFD700", textAlign: "center" }}>
+                        Request Sent!
+                    </Typography>
+                    <Typography variant="body1" sx={{ mt: 2, color: "white", textAlign: "center" }}>
+                        Your request has been sent to the project owner. Once approved, you will gain access.
+                    </Typography>
+                    <Box sx={{ mt: 3, display: "flex", justifyContent: "center" }}>
+                        <button type="submit" className="button button-primary" onClick={() => setShowSuccessModal(false)}>
+                            OK
+                        </button>
+                    </Box>
+                    </div>
+            </Modal>
+        </>);
 };
 
 export default UserProjects;

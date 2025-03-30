@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Fuse from "fuse.js";
 import { useDispatch, useSelector } from "react-redux";
-import { GetAllProjects, GetPublicProjects } from "../store/Project";
+import { GetAllProjects, GetProgectsArchitect, GetPublicProjects } from "../store/Project";
 import { AppDispatch, RootState } from "../store/reduxStore";
 import { PartialProject, Project } from "../types/types";
 import { AsyncThunk } from "@reduxjs/toolkit";
@@ -90,7 +90,11 @@ const ProjectsDisplay = ({ handleOpenProject, fetchProjects }: { handleOpenProje
     });
 
     useEffect(() => {
-        if (user?.userName) {
+        console.log("Fetching projects...",user.RoleName);
+        if(user.RoleName==="architect"){
+            dispatch(GetProgectsArchitect());
+        }
+        else if (user?.userName) {
             dispatch(GetAllProjects());
         } else {
             dispatch(GetPublicProjects());

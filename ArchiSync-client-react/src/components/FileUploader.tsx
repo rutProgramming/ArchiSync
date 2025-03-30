@@ -8,7 +8,7 @@ import { ArrowBack, Public } from "@mui/icons-material";
 import { motion } from "framer-motion";
 import { Alert, Snackbar } from "@mui/material";
 import "../Style/FileUploader.css";
-import { getDownloadUrl, getUploadUrl, uploadFileToS3 } from "../Services/uploadService";
+import { getUploadUrl, uploadFileToS3 } from "../Services/uploadService";
 
 const FileUploader = () => {
   const {parentId, projectId, projectName } = useParams<{parentId: string; projectId: string; projectName: string }>();
@@ -29,6 +29,7 @@ const FileUploader = () => {
   };
 
    const handleUpload = async () => {
+    console.log("Uploading file:", user);
     if (!file || !projectId || !projectName) return;
 
     const uniqueFileName = `${uuidv4()}_${file.name}`;
@@ -88,7 +89,7 @@ const FileUploader = () => {
           autoHideDuration={4000}
           onClose={() => {
             setSnackbar(false);
-            navigate(-1);
+            navigate(-2);
           }}
           anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
         >
