@@ -37,7 +37,6 @@ const UserProjects = () => {
                 } else {
                     setSelectedProject(project);
                     setShowRequestModal(true);
-                    console.log("No access to project:", user);
                 }
             } catch (error) {
                 console.error("check access failed:", error);

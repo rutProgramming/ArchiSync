@@ -18,7 +18,6 @@ const FileCard = ({ file }: FileCardProps) => {
     const fetchUrl = async () => {
       setLoading(true);
       try {
-        // console.log("Fetching URL for file:", file);
         if (file.project && file.project.name) {
           const downloadUrl = await getDownloadUrl(file.projectId, file.project.name, file.fileName);
           setUrl(downloadUrl);

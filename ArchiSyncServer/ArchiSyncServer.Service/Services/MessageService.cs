@@ -47,6 +47,7 @@ namespace ArchiSyncServer.Service.Services
             return _mapper.Map<IEnumerable<MessageDTO>>(messages);
         }
         public async Task<IEnumerable<MessageDTO>> GetAllArchitectMessagesAsync(int architectId)
+        
         {
             var messages = await _messageRepository.GetAllArchitectMessagesAsync(architectId);
             return _mapper.Map<IEnumerable<MessageDTO>>(messages);

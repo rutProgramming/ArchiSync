@@ -1,134 +1,98 @@
-﻿//using ArchiSyncServer.Core.IServices;
-//using Microsoft.AspNetCore.Http;
-//using Microsoft.AspNetCore.Mvc;
-//using Microsoft.AspNetCore.Mvc;
-//using System.Net.Http;
-//using System.Text;
-//using System.Threading.Tasks;
-//using Newtonsoft.Json;
-//namespace ArchiSyncServer.Api.Controllers
-//{
-
-
-//    [Route("api/[controller]")]
-//    [ApiController]
-//    public class ImageController : ControllerBase
-//    {
-//        private readonly HttpClient _httpClient;
-
-//        public ImageController(HttpClient httpClient)
-//        {
-//            _httpClient = httpClient;
-//        }
-
-//        [HttpPost("generate")]
-//        public async Task<IActionResult> GenerateImage([FromBody] ImageRequest request)
-//        {
-//            var nodeJsUrl = "http://localhost:3000/generate-image";
-
-//            var json = JsonConvert.SerializeObject(request);
-//            var content = new StringContent(json, Encoding.UTF8, "application/json");
-
-//            var response = await _httpClient.PostAsync(nodeJsUrl, content);
-//            var responseString = await response.Content.ReadAsStringAsync();
-
-//            return Ok(responseString);
-//        }
-//    }
-
-//    public class ImageRequest
-//    {
-//        public string Image { get; set; }
-//        public int Scale { get; set; }
-//        public string Prompt { get; set; }
-//        public int Cn_Lineart_Strength { get; set; }
-//    }
-
-//}
-
-using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using System.Text;
+﻿using ArchiSyncServer.Core.IServices;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using System.Net.Http.Headers;
+using Newtonsoft.Json.Linq;
+using ArchiSyncServer.Api.Models;
 namespace ArchiSyncServer.Api.Controllers
 {
-
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("api")]
-    public class ApiController : ControllerBase
+    public class SketchController : ControllerBase
     {
-        private static int apiCallCount = 0;
-        private const int maxApiCalls = 100;
         private readonly HttpClient _httpClient;
+        int numApi = 0;
 
-        public ApiController()
+        public SketchController(HttpClient httpClient)
         {
-            _httpClient = new HttpClient();
+            _httpClient = httpClient;
         }
 
-        [HttpPost("generate-image")]
-        public async Task<IActionResult> GenerateImage([FromBody] GenerateImageRequest request)
+        [HttpPost("convert")]
+        public async Task<IActionResult> ConvertSketch([FromBody] SketchRequest request)
         {
-            if (apiCallCount >= maxApiCalls)
+            numApi++;
+            if (numApi > 100)
+                return StatusCode(429, "API call limit exceeded. Please try again later.");
+            if (request == null || string.IsNullOrEmpty(request.ImageUrl))
+                return BadRequest("Invalid request. Image URL is required.");
+            string apiKey = Environment.GetEnvironmentVariable("REPLICATE_KEY");
+
+            string apiUrl = "https://api.replicate.com/v1/predictions";
+
+            var requestData = new
             {
-                return StatusCode(429, new { error = "API call limit exceeded. Please try again later." });
-            }
+                version = "feb7325e48612a443356bff3d0e03af21a42570f87bee6e8ea4f275f2bd3e6f9",
+                input = new
+                {
+                    seed = 0,
+                    image = request.ImageUrl,
+                    scale = 2,
+                    prompt = request.Prompt,
+                    cn_Lineart_Strength = 1
+                }
+            };
+
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", apiKey);
+            var json = JsonConvert.SerializeObject(requestData);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
 
             try
             {
-                Console.WriteLine("🔄 Sending request to Replicate...");
+                var response = await _httpClient.PostAsync(apiUrl, content);
+                var prediction = await response.Content.ReadAsStringAsync();
+                dynamic predictionData = JsonConvert.DeserializeObject(prediction);
+                string predictionId = predictionData.id;
 
-                var replicateApiKey = Environment.GetEnvironmentVariable("REPLICATE_API_KEY") ;
-                var replicateUrl = "https://api.replicate.com/v1/predictions";
-
-                var payload = new
+                string statusUrl = $"https://api.replicate.com/v1/predictions/{predictionId}";
+                while (true)
                 {
-                    version = "feb7325e48612a443356bff3d0e03af21a42570f87bee6e8ea4f275f2bd3e6f9",
-                    input = new
+                    var statusResponse = await _httpClient.GetAsync(statusUrl);
+                    var statusBody = await statusResponse.Content.ReadAsStringAsync();
+                    dynamic statusData = JsonConvert.DeserializeObject(statusBody);
+                    JObject jsonData = JObject.Parse(statusBody);
+
+                    string outputUrl = jsonData["output"]?.ToString();
+
+                    if (statusData.status == "succeeded")
                     {
-                        image = request.Image,
-                        scale = request.Scale,
-                        prompt = request.Prompt,
-                        cn_lineart_strength = request.CnLineartStrength
+
+                        return Ok(new { imageUrl = outputUrl });
                     }
-                };
+                    else if (statusData.status == "failed")
+                    {
 
-                var jsonPayload = JsonConvert.SerializeObject(payload);
-                var httpContent = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
+                        return StatusCode(500, "The prediction failed.");
+                    }
 
-                _httpClient.DefaultRequestHeaders.Add("Authorization", $"Token {replicateApiKey}");
-                var response = await _httpClient.PostAsync(replicateUrl, httpContent);
-
-                if (!response.IsSuccessStatusCode)
-                {
-                    Console.WriteLine("Error generating image:", response.ReasonPhrase);
-                    return StatusCode(500, new { error = "Error generating image" });
+                    await Task.Delay(5000);
                 }
-
-                var responseContent = await response.Content.ReadAsStringAsync();
-                var responseData = JsonConvert.DeserializeObject<Dictionary<string, object>>(responseContent);
-
-                apiCallCount++;
-                Console.WriteLine("Image generated! Here is the link:", responseData["output"]);
-
-                return Ok(new { imageUrl = responseData["output"] });
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error generating image:", ex.Message);
-                return StatusCode(500, new { error = "Error generating image" });
+
+                return StatusCode(500, $"Error: {ex.Message}");
             }
         }
     }
-
-    public class GenerateImageRequest
-    {
-        public string Image { get; set; }
-        public double Scale { get; set; }
-        public string Prompt { get; set; }
-        public double CnLineartStrength { get; set; }
-    }
 }
+
+
+
+
+
+

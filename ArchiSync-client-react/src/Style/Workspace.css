@@ -40,6 +40,9 @@
   .placeholder {
     color: gray;
   }
+  .process{
+    color: red;
+  }
   
   .controls {
     display: flex;

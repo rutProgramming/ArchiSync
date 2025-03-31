@@ -26,10 +26,9 @@ const SignUpComponent = ({ onClose }: { onClose: () => void }) => {
         try {
             const resultAction = await dispatch(SignUp({ user }));
             if (SignUp.fulfilled.match(resultAction)) {
-                console.log('Sign-up successful:', resultAction.payload);
                 onClose();
             } else {
-                console.error('Sign-up failed:', resultAction.error);
+                alert('Sign-up failed: '+ resultAction.error);
                 alert('Sign-up failed: ' + (resultAction.error.message || 'Unknown error'));
             }
         } catch (error: any) {

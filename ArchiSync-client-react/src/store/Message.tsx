@@ -7,7 +7,6 @@ const url = "https://localhost:7218/api/Message/";
 export const createMessage = createAsyncThunk('message/createMessage', async ({ message }: { message: PartialMessage }, thunkAPI) => {
     try {
         const response = await axios.post(url, message, { headers: GetHeaders() });
-        console.log(response)
         return response.data
 
     }
@@ -18,11 +17,8 @@ export const createMessage = createAsyncThunk('message/createMessage', async ({ 
 
 export const GetArchitectMessages = createAsyncThunk('message/GetArchitectMessages', async (_, thunkAPI) => {
     try {
-        console.log(GetHeaders())
         const response = await axios.get(url + "architect", { headers: GetHeaders() });
-        console.log(response)
         return response.data
-
     }
     catch (error: any) {
         return thunkAPI.rejectWithValue(error.response.data || 'Failed to send request');
@@ -32,7 +28,6 @@ export const GetArchitectMessages = createAsyncThunk('message/GetArchitectMessag
 export const GetUserMessages = createAsyncThunk('message/GetUserMessages', async (_, thunkAPI) => {
     try {
         const response = await axios.get(url + "user", { headers: GetHeaders() });
-        console.log(response)
         return response.data
 
     }
@@ -42,8 +37,7 @@ export const GetUserMessages = createAsyncThunk('message/GetUserMessages', async
 });
 export const UpdateMessageStatus = createAsyncThunk('message/toggleMessageReadStatus', async (message: PartialMessage, thunkAPI) => {
     try {
-        const response = await axios.put(url + message.id, message, { headers: GetHeaders() });
-        console.log(response)
+        await axios.put(url + message.id, message, { headers: GetHeaders() });
         return message;
 
     }
@@ -56,7 +50,6 @@ export const fetchUnreadMessagesCount = createAsyncThunk('message/fetchUnreadMes
         const response = await axios.get(url + `unread-count`, {
             headers: GetHeaders()
         });
-        console.log(response)
         const count = response.data.unreadMessages;
         return count;
     } catch (error: any) {
@@ -113,6 +106,7 @@ const messageSlice = createSlice({
             .addCase(GetUserMessages.fulfilled, (state, action: PayloadAction<Message[]>) => {
                 state.loading = false;
                 state.messages = action.payload;
+                state.unreadCount = action.payload.filter((msg) => !msg.architectIsRead).length;
             })
             .addCase(GetUserMessages.rejected, (state, action) => {
                 state.loading = false;
@@ -142,8 +136,7 @@ const messageSlice = createSlice({
                 if (index !== -1) {
                     state.messages[index] = { ...action.payload };
                 }
-                state.unreadCount = state.messages.filter((msg) => !msg.architectIsRead).length;
-
+                
             })
             .addCase(UpdateMessageStatus.rejected, (state, action) => {
                 state.loading = false;
@@ -166,5 +159,5 @@ const messageSlice = createSlice({
     },            
 
 });
-// export const { toggleMessageReadStatus } = messagesSlice.action;
+export const { toggleUserMessageReadStatus, toggleArchitectMessageReadStatus } = messageSlice.actions;
 export default messageSlice.reducer;

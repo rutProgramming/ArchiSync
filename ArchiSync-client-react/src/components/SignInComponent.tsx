@@ -19,10 +19,9 @@ const SignInComponent = ({ onClose }: { onClose: () => void }) => {
         try {
             const resultAction = await dispatch(SignIn({ user }));
             if (SignIn.fulfilled.match(resultAction)) {
-                console.log('Sign-in successful:', resultAction.payload);
                 onClose()
             } else {
-                console.error('Sign-in failed:', resultAction.error);
+                alert('Sign-in failed: '+ resultAction.error);
             }
         } catch (error) {
             console.error('Error dispatching SignIn:', error);

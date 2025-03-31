@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import "../Style/Workspace.css";
 import { v4 as uuidv4 } from "uuid";
-import { getDownloadUrl, getUploadUrl, uploadFileToS3 } from "../Services/uploadService";
+import { generateImage, getDownloadUrl, getUploadUrl, uploadFileToS3 } from "../Services/uploadService";
 import { useParams } from "react-router";
 import { Button, Stack, TextField } from "@mui/material";
 import { Download, Save } from "@mui/icons-material";
@@ -19,7 +19,7 @@ const Workspace = () => {
   const [progress, setProgress] = useState(0);
   const [isUploading, setIsUploading] = useState(false);
   const { projectId, projectName } = useParams<{ projectId: string; projectName: string }>();
-
+  const [replicateLoading, setReplicateLoading] = useState(false);
   useEffect(() => {
     if (uploadedImage) {
       const canvas = canvasRef.current;
@@ -55,6 +55,7 @@ const Workspace = () => {
     try {
       setIsUploading(true);
       setProgress(0);
+      setReplicateLoading(true);
 
       const response = await fetch(uploadedImage);
       const blob = await response.blob();
@@ -66,13 +67,20 @@ const Workspace = () => {
       const uploadUrl = await getUploadUrl(projectId, projectName, updatedFile.name, updatedFile.type);
       await uploadFileToS3(uploadUrl, updatedFile, setProgress);
       const downloadResponse = await getDownloadUrl(parseInt(projectId), projectName, updatedFile.name);
+      setIsUploading(false);
 
       console.log(downloadResponse);
-      setGeneratedImage(downloadResponse.downloadUrl);
+      var res=await generateImage(downloadResponse, description);
+    console.log(res);
+    setGeneratedImage(res.imageUrl);
+    setReplicateLoading(false);
+
     } catch (error) {
       console.error("Error uploading image:", error);
     } finally {
       setIsUploading(false);
+      setReplicateLoading(false);
+      setDescription("");
     }
   };
 
@@ -164,8 +172,19 @@ const Workspace = () => {
 
         </div>
         <div className="image-preview">
-          {generatedImage ? <img src={generatedImage} alt="Generated" className="output-image" /> : <div className="placeholder">Generated image will appear here</div>}
-        </div>
+            {replicateLoading ? (
+            <div  className="process">
+              Your generated image is ready! It took just a few minutes to process. You can view and download it using the link below:
+            </div>
+            ) : (
+            generatedImage ? (
+              <img src={generatedImage} alt="Generated" className="output-image" />
+            ) : (
+              <div className="placeholder">Generated image will appear here</div>
+            )
+            )}
+          
+          </div>
       </div>
 
 

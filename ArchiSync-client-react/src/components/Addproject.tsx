@@ -22,7 +22,6 @@ const AddProject = () => {
     };
     const handleAddProject = async (event: React.FormEvent) => {
         event.preventDefault();
-        console.log(user);
         const project: PartialProject = {
             name: projectNameRef.current?.value || "",
             description: projectDescriptionRef.current?.value || "",
@@ -34,7 +33,7 @@ const AddProject = () => {
         const resultAction = await dispatch(addProject({ project }));
 
         if (addProject.rejected.match(resultAction)) {
-            console.error("Failed to add project:", resultAction.error.message);
+            alert("Failed to add project: "+ resultAction.error.message);
         } else if (addProject.fulfilled.match(resultAction)) {
             projectNameRef.current!.value = "";
             projectDescriptionRef.current!.value = "";

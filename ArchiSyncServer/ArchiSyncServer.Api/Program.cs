@@ -79,6 +79,8 @@ builder.Services.AddControllers().AddJsonOptions(options =>
     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
     options.JsonSerializerOptions.WriteIndented = true;
 });
+builder.Services.AddHttpClient(); // ξερισ HttpClient μ-DI
+
 
 // Add JWT Authentication
 builder.Services.AddAuthentication(options =>
