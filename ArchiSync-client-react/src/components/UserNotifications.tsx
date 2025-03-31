@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../store/reduxStore";
 import { useEffect } from "react";
 import { PartialMessage } from "../types/types";
-import {  GetUserMessages, UpdateMessageStatus } from "../store/Message";
+import { GetUserMessages, toggleUserMessageReadStatus, UpdateMessageStatus } from "../store/Message";
 import { Card, CardContent, Typography, CircularProgress, Alert, Stack, Box, IconButton } from "@mui/material";
 import { MarkEmailUnread, MarkEmailRead } from "@mui/icons-material";
 
@@ -13,11 +13,12 @@ const UserNotifications = () => {
     const error = useSelector((state: RootState) => state.messages.error);
     const user = useSelector((state: RootState) => state.connect.user);
     useEffect(() => {
+        dispatch(GetUserMessages());
         const interval = setInterval(() => {
-            dispatch(GetUserMessages()); 
+            dispatch(GetUserMessages());
         }, 60000);
-    
-        return () => clearInterval(interval);      
+
+        return () => clearInterval(interval);
     }, [dispatch, user]);
 
     return (
@@ -38,22 +39,23 @@ const MessageSection = ({ title, messages }: { title: string; messages: PartialM
     <Box>
         <Typography variant="h5" gutterBottom sx={{ color: "#FFD700" }}>{title}</Typography>
         {messages.length === 0 ? <Typography sx={{ color: "#ffffff" }}>No messages</Typography> : messages.map((message) => (
-            <MessageCard key={message.id} message={message}  />
+            <MessageCard key={message.id} message={message} />
         ))}
     </Box>
 );
 
-const MessageCard = ({ message }: { 
-    message: PartialMessage; 
+const MessageCard = ({ message }: {
+    message: PartialMessage;
 }) => {
     const dispatch: AppDispatch = useDispatch();
     const handleToggleReadStatus = (message: PartialMessage) => {
         const updatedMessage: PartialMessage = { ...message, userIsRead: !message.userIsRead };
         dispatch(UpdateMessageStatus(updatedMessage));
-        // dispatch(toggleUserMessageReadStatus());
+        dispatch(toggleUserMessageReadStatus(updatedMessage.id!));
+        
     };
-   
-    
+
+
 
     return (
         <Card variant="outlined" sx={{
@@ -68,20 +70,19 @@ const MessageCard = ({ message }: {
         }}>
             <CardContent sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <Box>
-                        <Typography variant="h6" color="white">
-                            {message.approved ? `Project access request #${message.id} has been approved.` :
+                    <Typography variant="h6" color="white">
+                        {message.approved ? `Project access request #${message.id} has been approved.` :
                             `A request - ${message.id} for project access has been submitted`}
-                        </Typography>
+                    </Typography>
                 </Box>
                 <IconButton onClick={() => handleToggleReadStatus(message)} sx={{ color: "#FFD700" }}>
-                
+
                     {!message.userIsRead ? <MarkEmailUnread fontSize="large" /> : <MarkEmailRead fontSize="large" />}
                 </IconButton>
             </CardContent>
         </Card>
     );
 };
-
 
 
 export default UserNotifications;

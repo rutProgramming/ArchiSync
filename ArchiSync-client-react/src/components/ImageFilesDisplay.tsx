@@ -9,7 +9,6 @@ const ImageFilesDisplay = () => {
   const files = useSelector((state: RootState) => state.files.files);
   const [imageFiles, setImageFiles] = useState<File[]>([]);
   useEffect(() => {
-    console.log("ImageFilesDisplay files", files);
     setImageFiles(files.filter(file => file.fileType?.startsWith("image/"))
     .sort((a, b) => {
       const nameA = a.fileName.split("_").pop()?.toLowerCase() || "";

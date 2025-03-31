@@ -11,7 +11,6 @@ import { PartialProject } from "../types/types";
 import { Tab, Tabs } from "@mui/material";
 
 const ProjectDashboard = () => {
-    console.log("ProjectDashboard");
     const { projectId } = useParams<{ projectId: string }>();
     const dispatch: AppDispatch = useDispatch();
     const navigate = useNavigate();

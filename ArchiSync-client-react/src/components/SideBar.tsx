@@ -14,7 +14,6 @@ const SideBar = () => {
   
 useEffect(() => {
   dispatch(fetchUnreadMessagesCount());
-  console.log("Unread messages count fetched:", unreadCount);
 }
 , [dispatch]);
   return (

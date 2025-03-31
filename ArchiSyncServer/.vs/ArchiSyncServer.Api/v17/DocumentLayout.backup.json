@@ -3,14 +3,33 @@
   "WorkspaceRootPath": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/LAPTOP_KOM2Q8SQ_SQLEXPRESS/ArchiVisionDB/True/SqlTable/dbo.Users.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+      "AbsoluteMoniker": "D:0:0:{0DCC35E5-0696-4E29-A57C-CF0782B01842}|ArchiSyncServer.Api\\ArchiSyncServer.Api.csproj|c:\\users\\97250\\desktop\\rut\\archisync\\archisyncserver\\archisyncserver.api\\controllers\\imagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0DCC35E5-0696-4E29-A57C-CF0782B01842}|ArchiSyncServer.Api\\ArchiSyncServer.Api.csproj|solutionrelative:archisyncserver.api\\controllers\\imagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/LAPTOP_KOM2Q8SQ_SQLEXPRESS/ArchiVisionDB/True/SqlTable/dbo.Messages.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\97250\\AppData\\Local\\SourceServer\\7985a240fbbe0d3f763b73f7c3c72d80c2a34a18ead9d942317e1c4f8435e172\\ArchiSyncServer\\ArchiSyncServer.Api\\Controllers\\ImageController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0DCC35E5-0696-4E29-A57C-CF0782B01842}|ArchiSyncServer.Api\\ArchiSyncServer.Api.csproj|c:\\users\\97250\\desktop\\rut\\archisync\\archisyncserver\\archisyncserver.api\\controllers\\messagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0DCC35E5-0696-4E29-A57C-CF0782B01842}|ArchiSyncServer.Api\\ArchiSyncServer.Api.csproj|solutionrelative:archisyncserver.api\\controllers\\messagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9F10C67A-6299-4E9E-B43E-70209BECADD1}|ArchiSyncServer.Service\\ArchiSyncServer.Service.csproj|c:\\users\\97250\\desktop\\rut\\archisync\\archisyncserver\\archisyncserver.service\\services\\messageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9F10C67A-6299-4E9E-B43E-70209BECADD1}|ArchiSyncServer.Service\\ArchiSyncServer.Service.csproj|solutionrelative:archisyncserver.service\\services\\messageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0DCC35E5-0696-4E29-A57C-CF0782B01842}|ArchiSyncServer.Api\\ArchiSyncServer.Api.csproj|c:\\users\\97250\\desktop\\rut\\archisync\\archisyncserver\\archisyncserver.api\\controllers\\projectcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0DCC35E5-0696-4E29-A57C-CF0782B01842}|ArchiSyncServer.Api\\ArchiSyncServer.Api.csproj|solutionrelative:archisyncserver.api\\controllers\\projectcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0DCC35E5-0696-4E29-A57C-CF0782B01842}|ArchiSyncServer.Api\\ArchiSyncServer.Api.csproj|c:\\users\\97250\\desktop\\rut\\archisync\\archisyncserver\\archisyncserver.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0DCC35E5-0696-4E29-A57C-CF0782B01842}|ArchiSyncServer.Api\\ArchiSyncServer.Api.csproj|solutionrelative:archisyncserver.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/LAPTOP_KOM2Q8SQ_SQLEXPRESS/ArchiVisionDB/True/SqlTable/dbo.Users.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/LAPTOP_KOM2Q8SQ_SQLEXPRESS/ArchiVisionDB/True/SqlTable/dbo.Messages.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/LAPTOP_KOM2Q8SQ_SQLEXPRESS/ArchiVisionDB/True/SqlTable/dbo.Projects.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
@@ -23,50 +42,108 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "dbo.Users [Data]",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/LAPTOP_KOM2Q8SQ_SQLEXPRESS/ArchiVisionDB/True/SqlTable/dbo.Users.sql",
-              "ToolTip": "dbo.Users [Data]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2025-03-30T21:58:32.858Z",
-              "EditorCaption": ""
+              "DocumentIndex": 3,
+              "Title": "MessageService.cs",
+              "DocumentMoniker": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Service\\Services\\MessageService.cs",
+              "RelativeDocumentMoniker": "ArchiSyncServer.Service\\Services\\MessageService.cs",
+              "ToolTip": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Service\\Services\\MessageService.cs",
+              "RelativeToolTip": "ArchiSyncServer.Service\\Services\\MessageService.cs",
+              "ViewState": "AgIAAGkAAAAAAAAAAAAjwHgAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-31T20:06:24.314Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "dbo.Messages [Data]",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/LAPTOP_KOM2Q8SQ_SQLEXPRESS/ArchiVisionDB/True/SqlTable/dbo.Messages.sql",
-              "ToolTip": "dbo.Messages [Data]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2025-03-30T21:58:14.76Z",
-              "EditorCaption": ""
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Api\\Program.cs",
+              "RelativeDocumentMoniker": "ArchiSyncServer.Api\\Program.cs",
+              "ToolTip": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Api\\Program.cs",
+              "RelativeToolTip": "ArchiSyncServer.Api\\Program.cs",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAAAFIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-31T13:49:11.804Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "MessageController.cs",
+              "DocumentMoniker": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Api\\Controllers\\MessageController.cs",
+              "RelativeDocumentMoniker": "ArchiSyncServer.Api\\Controllers\\MessageController.cs",
+              "ToolTip": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Api\\Controllers\\MessageController.cs",
+              "RelativeToolTip": "ArchiSyncServer.Api\\Controllers\\MessageController.cs",
+              "ViewState": "AgIAAHgAAAAAAAAAAIAwwIAAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-31T13:52:36.307Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ImageController.cs",
+              "DocumentMoniker": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Api\\Controllers\\ImageController.cs",
+              "RelativeDocumentMoniker": "ArchiSyncServer.Api\\Controllers\\ImageController.cs",
+              "ToolTip": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Api\\Controllers\\ImageController.cs",
+              "RelativeToolTip": "ArchiSyncServer.Api\\Controllers\\ImageController.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAgwCIAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-30T23:11:36.73Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "ProjectController.cs",
               "DocumentMoniker": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Api\\Controllers\\ProjectController.cs",
               "RelativeDocumentMoniker": "ArchiSyncServer.Api\\Controllers\\ProjectController.cs",
               "ToolTip": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Api\\Controllers\\ProjectController.cs",
               "RelativeToolTip": "ArchiSyncServer.Api\\Controllers\\ProjectController.cs",
-              "ViewState": "AgIAAL8AAAAAAAAAAIAywMAAAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAnwA4AAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-30T19:23:34.558Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-30T19:23:34.558Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "dbo.Projects [Data]",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/LAPTOP_KOM2Q8SQ_SQLEXPRESS/ArchiVisionDB/True/SqlTable/dbo.Projects.sql",
-              "ToolTip": "dbo.Projects [Data]",
+              "DocumentIndex": 1,
+              "Title": "ImageController.cs",
+              "DocumentMoniker": "C:\\Users\\97250\\AppData\\Local\\SourceServer\\7985a240fbbe0d3f763b73f7c3c72d80c2a34a18ead9d942317e1c4f8435e172\\ArchiSyncServer\\ArchiSyncServer.Api\\Controllers\\ImageController.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\AppData\\Local\\SourceServer\\7985a240fbbe0d3f763b73f7c3c72d80c2a34a18ead9d942317e1c4f8435e172\\ArchiSyncServer\\ArchiSyncServer.Api\\Controllers\\ImageController.cs",
+              "ToolTip": "C:\\Users\\97250\\AppData\\Local\\SourceServer\\7985a240fbbe0d3f763b73f7c3c72d80c2a34a18ead9d942317e1c4f8435e172\\ArchiSyncServer\\ArchiSyncServer.Api\\Controllers\\ImageController.cs [Read Only]",
+              "RelativeToolTip": "..\\..\\..\\..\\AppData\\Local\\SourceServer\\7985a240fbbe0d3f763b73f7c3c72d80c2a34a18ead9d942317e1c4f8435e172\\ArchiSyncServer\\ArchiSyncServer.Api\\Controllers\\ImageController.cs [Read Only]",
+              "ViewState": "AgIAADwAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-31T14:04:50.069Z",
+              "EditorCaption": " [Read Only]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "dbo.Users.sql",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/LAPTOP_KOM2Q8SQ_SQLEXPRESS/ArchiVisionDB/True/SqlTable/dbo.Users.sql",
+              "ToolTip": "ViewDataWindow_MSSQL__/LAPTOP_KOM2Q8SQ_SQLEXPRESS/ArchiVisionDB/True/SqlTable/dbo.Users.sql",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2025-03-30T19:20:48.655Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-30T21:58:32.858Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "dbo.Messages.sql",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/LAPTOP_KOM2Q8SQ_SQLEXPRESS/ArchiVisionDB/True/SqlTable/dbo.Messages.sql",
+              "ToolTip": "ViewDataWindow_MSSQL__/LAPTOP_KOM2Q8SQ_SQLEXPRESS/ArchiVisionDB/True/SqlTable/dbo.Messages.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-03-30T21:58:14.76Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "dbo.Projects.sql",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/LAPTOP_KOM2Q8SQ_SQLEXPRESS/ArchiVisionDB/True/SqlTable/dbo.Projects.sql",
+              "ToolTip": "ViewDataWindow_MSSQL__/LAPTOP_KOM2Q8SQ_SQLEXPRESS/ArchiVisionDB/True/SqlTable/dbo.Projects.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-03-30T19:20:48.655Z"
             }
           ]
         }

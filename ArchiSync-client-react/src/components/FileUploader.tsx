@@ -29,7 +29,6 @@ const FileUploader = () => {
   };
 
    const handleUpload = async () => {
-    console.log("Uploading file:", user);
     if (!file || !projectId || !projectName) return;
 
     const uniqueFileName = `${uuidv4()}_${file.name}`;
@@ -48,7 +47,6 @@ const FileUploader = () => {
         size: updatedFile.size,
       };
       dispatch(addFile(fileServer));
-      console.log("fileServer", fileServer);
       setSnackbar(true);
     } catch (error) {
       console.error("Upload failed:", error);

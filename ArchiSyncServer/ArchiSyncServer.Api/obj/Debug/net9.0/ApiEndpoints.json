@@ -225,22 +225,6 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "ArchiSyncServer.Api.Controllers.ApiController",
-    "Method": "GenerateImage",
-    "RelativePath": "api/generate-image",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "request",
-        "Type": "ArchiSyncServer.Api.Controllers.GenerateImageRequest",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
     "ContainingType": "ArchiSyncServer.Api.Controllers.MessageController",
     "Method": "Get",
     "RelativePath": "api/Message",
@@ -559,6 +543,22 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "ArchiSyncServer.Api.Controllers.SketchController",
+    "Method": "ConvertSketch",
+    "RelativePath": "api/Sketch/convert",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "SketchRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "ArchiSyncServer.Api.Controllers.UploadController",

@@ -90,7 +90,6 @@ const ProjectsDisplay = ({ handleOpenProject, fetchProjects }: { handleOpenProje
     });
 
     useEffect(() => {
-        console.log("Fetching projects...",user.RoleName);
         if(user.RoleName==="architect"){
             dispatch(GetProgectsArchitect());
         }

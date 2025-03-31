@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../store/reduxStore";
 import { useEffect } from "react";
 import { PartialMessage, PartialProjectPermission } from "../types/types";
-import { GetArchitectMessages, UpdateMessageStatus } from "../store/Message";
+import { GetArchitectMessages, toggleArchitectMessageReadStatus, UpdateMessageStatus } from "../store/Message";
 import { Card, CardContent, Typography, CircularProgress, Alert, Stack, Box, IconButton } from "@mui/material";
 import { MarkEmailUnread, MarkEmailRead } from "@mui/icons-material";
 import { addProjectPremmision } from "../store/Premission";
@@ -16,6 +16,8 @@ const ArchitectNotifications = () => {
     const error = useSelector((state: RootState) => state.messages.error);
     const user = useSelector((state: RootState) => state.connect.user);
     useEffect(() => {
+        dispatch(GetArchitectMessages());
+
         const interval = setInterval(() => {
             dispatch(GetArchitectMessages());
         }, 60000);
@@ -25,7 +27,7 @@ const ArchitectNotifications = () => {
 
     return (
         <Box sx={{ width: "100%", maxWidth: "800px", margin: "auto", padding: 2, backgroundColor: "#121212" }}>
-            <Typography variant="h4" gutterBottom sx={{ color: "#FFD700" }}>User Messages</Typography>
+            <Typography variant="h4" gutterBottom sx={{ color: "#FFD700" }}>Architect Messages</Typography>
             {loading && <CircularProgress />}
             {error && <Alert severity="error">{error}</Alert>}
 
@@ -52,6 +54,7 @@ const MessageCard = ({ message }: {
     const handleToggleReadStatus = (message: PartialMessage) => {
         const updatedMessage: PartialMessage = { ...message, architectIsRead: !message.architectIsRead };
         dispatch(UpdateMessageStatus(updatedMessage));
+        dispatch(toggleArchitectMessageReadStatus(updatedMessage.id!));
 
     };
     const handleApprove = (message: PartialMessage) => {
