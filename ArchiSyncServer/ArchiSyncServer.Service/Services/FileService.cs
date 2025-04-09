@@ -26,10 +26,11 @@ namespace ArchiSyncServer.Service.Services
             _repositoryManager = repositoryManager;
         }
 
-        public async Task<IEnumerable<FileDTO>> GetAllFilesAsync(int userId, int projectId,bool isPublic)
+        public async Task<IEnumerable<FileDTO>> GetAllFilesAsync(int userId, int projectId)
         {
             var hasAcsses = await _repositoryManager.projectPermission.UserHasAccess(projectId, userId);
-            if (hasAcsses||isPublic)
+            Project project=await _repositoryManager.Project.GetByIdAsync(projectId);
+            if (hasAcsses||project.IsPublic||project.OwnerId==userId)
             {
                 var files = await _fileRepository.GetFilesInProjectAsync(projectId);
                 return _mapper.Map<IEnumerable<FileDTO>>(files);

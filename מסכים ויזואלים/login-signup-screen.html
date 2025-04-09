@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>התחברות והרשמה</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background-color: #f5f7fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      direction: rtl;
+    }
+    
+    .container {
+      display: flex;
+      width: 900px;
+      height: 600px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    
+    .login-image {
+      flex: 1;
+      background-color: #4a6cf7;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      padding: 40px;
+    }
+    
+    .login-form {
+      flex: 1;
+      background-color: white;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    h1 {
+      font-size: 24px;
+      margin-bottom: 30px;
+      color: #333;
+    }
+    
+    .tabs {
+      display: flex;
+      margin-bottom: 30px;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .tab {
+      padding: 10px 20px;
+      cursor: pointer;
+      font-weight: 500;
+    }
+    
+    .tab.active {
+      color: #4a6cf7;
+      border-bottom: 2px solid #4a6cf7;
+    }
+    
+    .input-group {
+      margin-bottom: 20px;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: #555;
+    }
+    
+    input {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 14px;
+      transition: border 0.3s;
+    }
+    
+    input:focus {
+      outline: none;
+      border-color: #4a6cf7;
+    }
+    
+    .forgot-password {
+      text-align: left;
+      margin-bottom: 20px;
+      font-size: 14px;
+      color: #4a6cf7;
+      text-decoration: none;
+    }
+    
+    button {
+      background-color: #4a6cf7;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    
+    button:hover {
+      background-color: #3a5bd9;
+    }
+    
+    .security-features {
+      margin-top: 30px;
+      display: flex;
+      flex-wrap: wrap;
+    }
+    
+    .security-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      width: 100%;
+      font-size: 13px;
+      color: #666;
+    }
+    
+    .security-icon {
+      margin-left: 10px;
+      color: #4a6cf7;
+      font-weight: bold;
+    }
+    
+    .login-image h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+    
+    .login-image p {
+      text-align: center;
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+    
+    .circle {
+      width: 150px;
+      height: 150px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      margin-bottom: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 50px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="login-image">
+      <div class="circle">🔒</div>
+      <h2>ברוכים הבאים</h2>
+      <p>התחברו למערכת לניהול פרויקטים מאובטחת ופשוטה לשימוש. נהלו את הפרויקטים שלכם בצורה יעילה ונוחה.</p>
+    </div>
+    <div class="login-form">
+      <h1>הזדהות מאובטחת</h1>
+      
+      <div class="tabs">
+        <div class="tab active">התחברות</div>
+        <div class="tab">הרשמה</div>
+      </div>
+      
+      <div class="input-group">
+        <label for="email">כתובת אימייל</label>
+        <input type="email" id="email" placeholder="הכנס את כתובת האימייל שלך">
+      </div>
+      
+      <div class="input-group">
+        <label for="password">סיסמה</label>
+        <input type="password" id="password" placeholder="הכנס את הסיסמה שלך">
+      </div>
+      
+      <a href="#" class="forgot-password">שכחת סיסמה?</a>
+      
+      <button>התחבר</button>
+      
+      <div class="security-features">
+        <div class="security-item">
+          <span class="security-icon">✓</span>
+          אימות דו-שלבי
+        </div>
+        <div class="security-item">
+          <span class="security-icon">✓</span>
+          הצפנת SSL/TLS
+        </div>
+        <div class="security-item">
+          <span class="security-icon">✓</span>
+          ניטור פעילות חשודה
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

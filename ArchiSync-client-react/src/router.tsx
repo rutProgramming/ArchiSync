@@ -19,7 +19,6 @@ import { ReactElement } from 'react'
 
 const ProtectedRoute = ({ element }: { element: ReactElement }) => {
   const user = useSelector((state: RootState) => state.connect.user);
-
   if (user?.RoleName === "architect") {
     return element;
   }
@@ -30,7 +29,6 @@ const ProtectedRoute = ({ element }: { element: ReactElement }) => {
 
 const ProtectedMessagesRoute = () => {
   const user = useSelector((state: RootState) => state.connect.user);
-  console.log("UserNotifications",user,user.RoleName);
   return user.RoleName === "user" ? <UserNotifications /> : <ArchitectNotifications />;
 };
 

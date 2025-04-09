@@ -57,20 +57,3 @@ export const generateImage = async (imageUrl: string, prompt: string) => {
   }
 }
 
-
-// export const generateImage = async (
-//   imageUrl: string,
-//  // scale: number,
-//   prompt: string,
-//   //cn_lineart_strength: number
-// ): Promise<string> => {
-//   const response = await fetch(" https://localhost:7218/api/Sketch/convert", {
-//       method: "POST",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify({ imageUrl, prompt })
-//   });
-
-//   const data = await response.json();
-//   console.log(data);
-//   return data.imageUrl;
-// };
