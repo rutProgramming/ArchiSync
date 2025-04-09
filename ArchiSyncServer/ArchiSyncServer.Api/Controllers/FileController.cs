@@ -36,7 +36,7 @@ namespace ArchiSyncServer.Api.Controllers
         {
             try
             {
-                var files = await _fileService.GetAllFilesAsync(userId,projectId,isPublic);
+                var files = await _fileService.GetAllFilesAsync(userId,projectId);
                 return Ok(files);
             }
             catch (UnauthorizedAccessException ex) {

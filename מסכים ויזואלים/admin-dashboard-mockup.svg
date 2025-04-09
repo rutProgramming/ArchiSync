@@ -1,0 +1,177 @@
+<svg viewBox="0 0 1200 900" xmlns="http://www.w3.org/2000/svg">
+  <!-- רקע -->
+  <rect width="1200" height="900" fill="#f5f7fa"/>
+  
+  <!-- סרגל צד -->
+  <rect x="0" y="0" width="220" height="900" fill="#2c3e50"/>
+  <text x="30" y="50" font-family="Arial" font-size="22" fill="white" font-weight="bold">מערכת ניהול</text>
+  
+  <!-- פריטי תפריט -->
+  <rect x="15" y="100" width="190" height="50" fill="#3498db" rx="5"/>
+  <text x="50" y="130" font-family="Arial" font-size="16" fill="white">ניהול משתמשים</text>
+  
+  <rect x="15" y="160" width="190" height="50" fill="#2c3e50" rx="5"/>
+  <text x="50" y="190" font-family="Arial" font-size="16" fill="white">סטטיסטיקות</text>
+  
+  <rect x="15" y="220" width="190" height="50" fill="#2c3e50" rx="5"/>
+  <text x="50" y="250" font-family="Arial" font-size="16" fill="white">הגדרות מערכת</text>
+  
+  <rect x="15" y="280" width="190" height="50" fill="#2c3e50" rx="5"/>
+  <text x="50" y="310" font-family="Arial" font-size="16" fill="white">דוחות</text>
+  
+  <!-- כותרת מסך ראשי -->
+  <text x="250" y="50" font-family="Arial" font-size="24" fill="#2c3e50" font-weight="bold">ניהול משתמשים והרשאות</text>
+  
+  <!-- סרגל חיפוש -->
+  <rect x="250" y="70" width="400" height="40" fill="white" stroke="#ddd" stroke-width="1" rx="5"/>
+  <text x="270" y="95" font-family="Arial" font-size="14" fill="#95a5a6">חיפוש משתמשים...</text>
+  <rect x="670" y="70" width="100" height="40" fill="#3498db" rx="5"/>
+  <text x="700" y="95" font-family="Arial" font-size="14" fill="white" text-anchor="middle">חפש</text>
+  
+  <!-- כפתור הוספת משתמש -->
+  <rect x="790" y="70" width="150" height="40" fill="#2ecc71" rx="5"/>
+  <text x="865" y="95" font-family="Arial" font-size="14" fill="white" text-anchor="middle">+ הוסף משתמש חדש</text>
+  
+  <!-- טבלת משתמשים -->
+  <rect x="250" y="130" width="900" height="300" fill="white" stroke="#ddd" stroke-width="1"/>
+  
+  <!-- כותרות טבלה -->
+  <rect x="250" y="130" width="900" height="40" fill="#ecf0f1"/>
+  <line x1="250" y1="170" x2="1150" y2="170" stroke="#ddd" stroke-width="1"/>
+  
+  <text x="290" y="155" font-family="Arial" font-size="14" fill="#7f8c8d" text-anchor="middle">תמונה</text>
+  <text x="400" y="155" font-family="Arial" font-size="14" fill="#7f8c8d">שם משתמש</text>
+  <text x="550" y="155" font-family="Arial" font-size="14" fill="#7f8c8d">דוא"ל</text>
+  <text x="750" y="155" font-family="Arial" font-size="14" fill="#7f8c8d">הרשאות</text>
+  <text x="900" y="155" font-family="Arial" font-size="14" fill="#7f8c8d">סטטוס</text>
+  <text x="1050" y="155" font-family="Arial" font-size="14" fill="#7f8c8d">פעולות</text>
+  
+  <!-- שורות נתונים -->
+  <!-- שורה 1 -->
+  <circle cx="290" cy="200" r="20" fill="#bdc3c7"/>
+  <text x="290" y="205" font-family="Arial" font-size="12" fill="white" text-anchor="middle">אר</text>
+  <text x="400" y="205" font-family="Arial" font-size="14" fill="#2c3e50">אריאל כהן</text>
+  <text x="550" y="205" font-family="Arial" font-size="14" fill="#2c3e50">ariel@example.com</text>
+  <text x="750" y="205" font-family="Arial" font-size="14" fill="#2c3e50">מנהל מערכת</text>
+  <rect x="860" y="190" width="80" height="25" fill="#2ecc71" rx="12"/>
+  <text x="900" y="205" font-family="Arial" font-size="12" fill="white" text-anchor="middle">פעיל</text>
+  <rect x="1020" y="190" width="60" height="25" fill="#3498db" rx="3"/>
+  <text x="1050" y="205" font-family="Arial" font-size="12" fill="white" text-anchor="middle">ערוך</text>
+  
+  <!-- שורה 2 -->
+  <circle cx="290" cy="240" r="20" fill="#bdc3c7"/>
+  <text x="290" y="245" font-family="Arial" font-size="12" fill="white" text-anchor="middle">של</text>
+  <text x="400" y="245" font-family="Arial" font-size="14" fill="#2c3e50">שלומית לוי</text>
+  <text x="550" y="245" font-family="Arial" font-size="14" fill="#2c3e50">shlomit@example.com</text>
+  <text x="750" y="245" font-family="Arial" font-size="14" fill="#2c3e50">משתמש רגיל</text>
+  <rect x="860" y="230" width="80" height="25" fill="#2ecc71" rx="12"/>
+  <text x="900" y="245" font-family="Arial" font-size="12" fill="white" text-anchor="middle">פעיל</text>
+  <rect x="1020" y="230" width="60" height="25" fill="#3498db" rx="3"/>
+  <text x="1050" y="245" font-family="Arial" font-size="12" fill="white" text-anchor="middle">ערוך</text>
+  
+  <!-- שורה 3 -->
+  <circle cx="290" cy="280" r="20" fill="#bdc3c7"/>
+  <text x="290" y="285" font-family="Arial" font-size="12" fill="white" text-anchor="middle">רג</text>
+  <text x="400" y="285" font-family="Arial" font-size="14" fill="#2c3e50">רונן גולדברג</text>
+  <text x="550" y="285" font-family="Arial" font-size="14" fill="#2c3e50">ronen@example.com</text>
+  <text x="750" y="285" font-family="Arial" font-size="14" fill="#2c3e50">עורך תוכן</text>
+  <rect x="860" y="270" width="80" height="25" fill="#e74c3c" rx="12"/>
+  <text x="900" y="285" font-family="Arial" font-size="12" fill="white" text-anchor="middle">לא פעיל</text>
+  <rect x="1020" y="270" width="60" height="25" fill="#3498db" rx="3"/>
+  <text x="1050" y="285" font-family="Arial" font-size="12" fill="white" text-anchor="middle">ערוך</text>
+  
+  <!-- שורה 4 -->
+  <circle cx="290" cy="320" r="20" fill="#bdc3c7"/>
+  <text x="290" y="325" font-family="Arial" font-size="12" fill="white" text-anchor="middle">תמ</text>
+  <text x="400" y="325" font-family="Arial" font-size="14" fill="#2c3e50">תמר אברהם</text>
+  <text x="550" y="325" font-family="Arial" font-size="14" fill="#2c3e50">tamar@example.com</text>
+  <text x="750" y="325" font-family="Arial" font-size="14" fill="#2c3e50">מנהל תוכן</text>
+  <rect x="860" y="310" width="80" height="25" fill="#2ecc71" rx="12"/>
+  <text x="900" y="325" font-family="Arial" font-size="12" fill="white" text-anchor="middle">פעיל</text>
+  <rect x="1020" y="310" width="60" height="25" fill="#3498db" rx="3"/>
+  <text x="1050" y="325" font-family="Arial" font-size="12" fill="white" text-anchor="middle">ערוך</text>
+  
+  <!-- פאגינציה -->
+  <rect x="250" y="430" width="900" height="40" fill="white"/>
+  <rect x="600" y="435" width="30" height="30" fill="#3498db" rx="3"/>
+  <text x="615" y="455" font-family="Arial" font-size="14" fill="white" text-anchor="middle">1</text>
+  <rect x="640" y="435" width="30" height="30" fill="white" stroke="#ddd" stroke-width="1" rx="3"/>
+  <text x="655" y="455" font-family="Arial" font-size="14" fill="#7f8c8d" text-anchor="middle">2</text>
+  <rect x="680" y="435" width="30" height="30" fill="white" stroke="#ddd" stroke-width="1" rx="3"/>
+  <text x="695" y="455" font-family="Arial" font-size="14" fill="#7f8c8d" text-anchor="middle">3</text>
+  <rect x="720" y="435" width="30" height="30" fill="white" stroke="#ddd" stroke-width="1" rx="3"/>
+  <text x="735" y="455" font-family="Arial" font-size="14" fill="#7f8c8d" text-anchor="middle">></text>
+  
+  <!-- מסך סטטיסטיקות -->
+  <rect x="250" y="500" width="900" height="350" fill="white" stroke="#ddd" stroke-width="1"/>
+  <text x="250" y="490" font-family="Arial" font-size="24" fill="#2c3e50" font-weight="bold">סטטיסטיקות כניסה למערכת</text>
+  
+  <!-- טבלת נתונים עיקריים -->
+  <rect x="270" y="520" width="200" height="100" fill="white" stroke="#ecf0f1" stroke-width="2" rx="5"/>
+  <text x="290" y="550" font-family="Arial" font-size="14" fill="#7f8c8d">משתמשים רשומים</text>
+  <text x="290" y="590" font-family="Arial" font-size="32" fill="#3498db" font-weight="bold">142</text>
+  
+  <rect x="490" y="520" width="200" height="100" fill="white" stroke="#ecf0f1" stroke-width="2" rx="5"/>
+  <text x="510" y="550" font-family="Arial" font-size="14" fill="#7f8c8d">כניסות היום</text>
+  <text x="510" y="590" font-family="Arial" font-size="32" fill="#2ecc71" font-weight="bold">37</text>
+  
+  <rect x="710" y="520" width="200" height="100" fill="white" stroke="#ecf0f1" stroke-width="2" rx="5"/>
+  <text x="730" y="550" font-family="Arial" font-size="14" fill="#7f8c8d">משתמשים פעילים</text>
+  <text x="730" y="590" font-family="Arial" font-size="32" fill="#e74c3c" font-weight="bold">89</text>
+  
+  <rect x="930" y="520" width="200" height="100" fill="white" stroke="#ecf0f1" stroke-width="2" rx="5"/>
+  <text x="950" y="550" font-family="Arial" font-size="14" fill="#7f8c8d">זמן ממוצע בדקות</text>
+  <text x="950" y="590" font-family="Arial" font-size="32" fill="#f39c12" font-weight="bold">24</text>
+  
+  <!-- גרף פעילות -->
+  <rect x="270" y="650" width="420" height="180" fill="white" stroke="#ecf0f1" stroke-width="2" rx="5"/>
+  <text x="290" y="680" font-family="Arial" font-size="16" fill="#2c3e50" font-weight="bold">פעילות לאורך זמן</text>
+  
+  <!-- גרף קווי -->
+  <polyline points="290,780 330,760 370,770 410,720 450,740 490,710 530,690 570,720 610,700 650,670" 
+           fill="none" stroke="#3498db" stroke-width="3"/>
+           
+  <!-- צירים -->
+  <line x1="290" y1="780" x2="660" y2="780" stroke="#ecf0f1" stroke-width="1"/>
+  <line x1="290" y1="780" x2="290" y2="680" stroke="#ecf0f1" stroke-width="1"/>
+  
+  <!-- סימוני ציר X -->
+  <text x="330" y="800" font-family="Arial" font-size="10" fill="#7f8c8d" text-anchor="middle">א</text>
+  <text x="370" y="800" font-family="Arial" font-size="10" fill="#7f8c8d" text-anchor="middle">ב</text>
+  <text x="410" y="800" font-family="Arial" font-size="10" fill="#7f8c8d" text-anchor="middle">ג</text>
+  <text x="450" y="800" font-family="Arial" font-size="10" fill="#7f8c8d" text-anchor="middle">ד</text>
+  <text x="490" y="800" font-family="Arial" font-size="10" fill="#7f8c8d" text-anchor="middle">ה</text>
+  <text x="530" y="800" font-family="Arial" font-size="10" fill="#7f8c8d" text-anchor="middle">ו</text>
+  <text x="570" y="800" font-family="Arial" font-size="10" fill="#7f8c8d" text-anchor="middle">ש</text>
+  
+  <!-- גרף פאי -->
+  <rect x="710" y="650" width="420" height="180" fill="white" stroke="#ecf0f1" stroke-width="2" rx="5"/>
+  <text x="730" y="680" font-family="Arial" font-size="16" fill="#2c3e50" font-weight="bold">התפלגות משתמשים לפי הרשאות</text>
+  
+  <!-- גרף עוגה -->
+  <circle cx="810" cy="740" r="50" fill="#3498db"/>
+  <path d="M810,740 L810,690 A50,50 0 0,1 852,720 z" fill="#2ecc71"/>
+  <path d="M810,740 L852,720 A50,50 0 0,1 845,762 z" fill="#f39c12"/>
+  <path d="M810,740 L845,762 A50,50 0 0,1 810,790 z" fill="#e74c3c"/>
+  <path d="M810,740 L810,790 A50,50 0 0,1 765,762 z" fill="#9b59b6"/>
+  <path d="M810,740 L765,762 A50,50 0 0,1 770,700 z" fill="#1abc9c"/>
+  
+  <!-- מקרא -->
+  <rect x="880" y="710" width="15" height="15" fill="#3498db"/>
+  <text x="905" y="722" font-family="Arial" font-size="12" fill="#2c3e50">מנהלי מערכת (20%)</text>
+  
+  <rect x="880" y="735" width="15" height="15" fill="#2ecc71"/>
+  <text x="905" y="747" font-family="Arial" font-size="12" fill="#2c3e50">עורכי תוכן (35%)</text>
+  
+  <rect x="880" y="760" width="15" height="15" fill="#f39c12"/>
+  <text x="905" y="772" font-family="Arial" font-size="12" fill="#2c3e50">משתמשים רגילים (25%)</text>
+  
+  <rect x="880" y="785" width="15" height="15" fill="#e74c3c"/>
+  <text x="905" y="797" font-family="Arial" font-size="12" fill="#2c3e50">צפייה בלבד (15%)</text>
+  
+  <rect x="1020" y="710" width="15" height="15" fill="#9b59b6"/>
+  <text x="1045" y="722" font-family="Arial" font-size="12" fill="#2c3e50">אורחים (3%)</text>
+  
+  <rect x="1020" y="735" width="15" height="15" fill="#1abc9c"/>
+  <text x="1045" y="747" font-family="Arial" font-size="12" fill="#2c3e50">אחר (2%)</text>
+</svg>

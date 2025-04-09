@@ -70,7 +70,7 @@ const UserMenu = () => {
               <MenuItem key="myProjects" onClick={() => handleNavigate("sideBar/myProjects")}>My Projects</MenuItem>,
               <MenuItem key="addProject" onClick={() => handleNavigate("sideBar/addProject")}>Add project</MenuItem>
             ])}
-            <MenuItem onClick={() => handleNavigate("sideBar/Messages")}>Messages</MenuItem>
+            <MenuItem onClick={() => handleNavigate("sideBar/Messages")}>Messages </MenuItem>
             <MenuItem onClick={handleLogout} sx={{ color: "red" }}>Log Out</MenuItem>
 
           </Menu>

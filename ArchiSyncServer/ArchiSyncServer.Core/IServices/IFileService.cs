@@ -9,7 +9,7 @@ namespace ArchiSyncServer.Service.Services
 {
     public interface IFileService
     {
-        Task<IEnumerable<FileDTO>> GetAllFilesAsync(int userId, int projectId,bool isPublic);
+        Task<IEnumerable<FileDTO>> GetAllFilesAsync(int userId, int projectId);
         Task<FileDTO> GetFileAsync(int id);
         Task<FileDTO> CreateFileAsync(FileDTO fileDto);
         Task<bool> DeleteFileAsync(int id);

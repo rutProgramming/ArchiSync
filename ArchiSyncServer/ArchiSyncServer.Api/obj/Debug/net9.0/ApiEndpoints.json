@@ -554,7 +554,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "SketchRequest",
+        "Type": "ArchiSyncServer.Api.Models.SketchRequest",
         "IsRequired": true
       }
     ],

@@ -18,9 +18,9 @@ namespace ArchiSyncServer.Data.Repositories
         }
         public async Task<bool> UserHasAccess( int projectId, int userId)
         {
-           
+
             return await _context.ProjectPermissions
-                .AnyAsync(p => (p.UserId == userId && p.ProjectId == projectId)||p.Project.IsPublic||p.Project.OwnerId==userId);
+                .AnyAsync(p => (p.UserId == userId && p.ProjectId == projectId) || p.Project.IsPublic || p.Project.OwnerId == userId);
 
         }
     }

@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>העלאת קבצים</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background-color: #f5f7fa;
+      color: #333;
+      direction: rtl;
+    }
+    
+    .dashboard {
+      display: flex;
+      min-height: 100vh;
+    }
+    
+    .sidebar {
+      width: 250px;
+      background-color: #2c3e50;
+      color: white;
+      padding: 20px 0;
+    }
+    
+    .logo {
+      padding: 0 20px 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      margin-bottom: 20px;
+      font-size: 22px;
+      font-weight: bold;
+    }
+    
+    .nav-item {
+      padding: 12px 25px;
+      display: flex;
+      align-items: center;
+      color: rgba(255, 255, 255, 0.7);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .nav-item:hover, .nav-item.active {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: white;
+    }
+    
+    .nav-item i {
+      margin-left: 15px;
+      font-size: 18px;
+    }
+    
+    .main-content {
+      flex: 1;
+      padding: 30px;
+    }
+    
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+    
+    .page-title {
+      font-size: 24px;
+      font-weight: 500;
+    }
+    
+    .action-buttons {
+      display: flex;
+    }
+    
+    .btn {
+      padding: 10px 20px;
+      border-radius: 5px;
+      border: none;
+      font-size: 14px;
+      cursor: pointer;
+      margin-right: 10px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .btn-primary {
+      background-color: #4a6cf7;
+      color: white;
+    }
+    
+    .btn-outline {
+      background-color: transparent;
+      border: 1px solid #ddd;
+    }
+    
+    .btn i {
+      margin-left: 8px;
+    }
+    
+    .content-area {
+      display: flex;
+      gap: 20px;
+    }
+    
+    .upload-section {
+      flex: 2;
+      background-color: white;
+      border-radius: 8px;
+      padding: 25px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+    
+    .files-section {
+      flex: 1;
+      background-color: white;
+      border-radius: 8px;
+      padding: 25px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      max-height: 700px;
+      overflow-y: auto;
+    }
+    
+    .section-title {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    
+    .dropzone {
+      border: 2px dashed #ddd;
+      border-radius: 10px;
+      padding: 40px;
+      text-align: center;
+      cursor: pointer;
+      transition: border 0.3s;
+      margin-bottom: 30px;
+    }
+    
+    .dropzone:hover {
+      border-color: #4a6cf7;
+    }
+    
+    .dropzone-icon {
+      font-size: 50px;
+      color: #4a6cf7;
+      margin-bottom: 15px;
+    }
+    
+    .dropzone-text {
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+    
+    .dropzone-subtext {
+      color: #888;
+      font-size: 14px;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: #555;
+    }
+    
+    input, select, textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 14px;
+      transition: border 0.3s;
+    }
+    
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #4a6cf7;
+    }
+    
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+    
+    .tags-input {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 5px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    
+    .tag {
+      background-color: #e1effe;
+      color: #4a6cf7;
+      padding: 5px 10px;
+      border-radius: 15px;
+      margin: 5px;
+      display: flex;
+      align-items: center;
+      font-size: 13px;
+    }
+    
+    .tag-remove {
+      margin-right: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    
+    .tag-input {
+      flex: 1;
+      min-width: 100px;
+      padding: 5px;
+      border: none;
+    }
+    
+    .tag-input:focus {
+      outline: none;
+    }
+    
+    .file-item {
+      display: flex;
+      align-items: center;
+      padding: 12px;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .file-icon {
+      width: 40px;
+      height: 40px;
+      background-color: #f0f3f8;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 15px;
+      font-size: 20px;
+      color: #4a6cf7;
+    }
+    
+    .file-details {
+      flex: 1;
+    }
+    
+    .file-name {
+      font-size: 14px;
+      font-weight: 500;
+    }
+    
+    .file-info {
+      font-size: 12px;
+      color: #777;
+      margin-top: 3px;
+    }
+    
+    .file-actions {
+      display: flex;
+    }
+    
+    .file-action {
+      cursor: pointer;
+      color: #777;
+      margin-right: 10px;
+      font-size: 16px;
+      transition: color 0.3s;
+    }
+    
+    .file-action:hover {
+      color: #4a6cf7;
+    }
+    
+    .progress-container {
+      margin-top: 20px;
+    }
+    
+    .progress-item {
+      margin-bottom: 15px;
+    }
+    
+    .progress-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+      font-size: 14px;
+    }
+    
+    .progress-bar {
+      height: 8px;
+      background-color: #eee;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    
+    .progress-value {
+      height: 100%;
+      background-color: #4a6cf7;
+      width: 75%;
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard">
+    <div class="sidebar">
+      <div class="logo">ProjectHub</div>
+      <div class="nav-item">
+        <i>📊</i>
+        <span>פרויקטים</span>
+      </div>
+      <div class="nav-item active">
+        <i>📁</i>
+        <span>קבצים</span>
+      </div>
+      <div class="nav-item">
+        <i>👥</i>
+        <span>משתמשים</span>
+      </div>
+      <div class="nav-item">
+        <i>📊</i>
+        <span>סטטיסטיקות</span>
+      </div>
+      <div class="nav-item">
+        <i>⚙️</i>
+        <span>הגדרות</span>
+      </div>
+    </div>
+    
+    <div class="main-content">
+      <div class="header">
+        <h1 class="page-title">העלאת קבצים וסקיצות</h1>
+        <div class="action-buttons">
+          <button class="btn btn-outline">
+            <i>↓</i>
+            ייבוא בהמוני
+          </button>
+        </div>
+      </div>
+      
+      <div class="content-area">
+        <div class="upload-section">
+          <h2 class="section-title">העלאת קבצים חדשים</h2>
+          
+          <div class="dropzone">
+            <div class="dropzone-icon">📤</div>
+            <div class="dropzone-text">גרור קבצים לכאן או לחץ לבחירת קבצים</div>
+            <div class="dropzone-subtext">PNG, JPG, PDF, PSD, AI, SVG עד 25MB</div>
+          </div>
+          
+          <div class="form-group">
+            <label>שם הקובץ</label>
+            <input type="text" placeholder="הזן שם לקובץ">
+          </div>
+          
+          <div class="form-group">
+            <label>פרויקט</label>
+            <select>
+              <option>בחר פרויקט</option>
+              <option>פיתוח אפליקציית מובייל</option>
+              <option>עיצוב מחדש של אתר החברה</option>
+              <option>קמפיין שיווקי חדש</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label>תיאור</label>
+            <textarea placeholder="תיאור הקובץ"></textarea>
+          </div>
+          
+          <div class="form-group">
+            <label>תגיות</label>
+            <div class="tags-input">
+              <div class="tag">
+                <span>עיצוב</span>
+                <span class="tag-remove">×</span>
+              </div>
+              <div class="tag">
+                <span>סקיצה</span>
+                <span class="tag-remove">×</span>
+              </div>
+              <input class="tag-input" type="text" placeholder="הוסף תגיות...">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label>הרשאות</label>
+            <select>
+              <option>פרטי - רק אני אוכל לצפות</option>
+              <option>צוות - רק חברי הצוות יוכלו לצפות</option>
+              <option>ציבורי - כולם יוכלו לצפות</option>
+            </select>
+          </div>
+          
+          <button class="btn btn-primary" style="width: 100%;">העלאה</button>
+          
+          <div class="progress-container">
+            <div class="progress-item">
+              <div class="progress-header">
+                <span>design_mockup.psd</span>
+                <span>75%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-value"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="files-section">
+          <h2 class="section-title">קבצים אחרונים</h2>
+          
+          <div class="file-item">
+            <div class="file-icon">
+              <span>🖼️</span>
+            </div>
+            <div class="file-details">
+              <div class="file-name">סקיצת דף הבית.jpg</div>
+              <div class="file-info">1.2MB • 09/04/2025</div>
+            </div>
+            <div class="file-actions">
+              <span class="file-action">✏️</span>
+              <span class="file-action">🗑️</span>
+            </div>
+          </div>
+          
+          <div class="file-item">
+            <div class="file-icon">
+              <span>📄</span>
+            </div>
+            <div class="file-details">
+              <div class="file-name">מפרט אפליקציה.pdf</div>
+              <div class="file-info">2.5MB • 08/04/2025</div>
+            </div>
+            <div class="file-actions">
+              <span class="file-action">✏️</span>
+              <span class="file-action">🗑️</span>
+            </div>
+          </div>
+          
+          <div class="file-item">
+            <div class="file-icon">
+              <span>🎨</span>
+            </div>
+            <div class="file-details">
+              <div class="file-name">לוגו חדש.ai</div>
+              <div class="file-info">5.7MB • 07/04/2025</div>
+            </div>
+            <div class="file-actions">
+              <span class="file-action">✏️</span>
+              <span class="file-action">🗑️</span>
+            </div>
+          </div>
+          
+          <div class="file-item">
+            <div class="file-icon">
+              <span>🖌️</span>
+            </div>
+            <div class="file-details">
+              <div class="file-name">סקיצת ממשק משתמש.psd</div>
+              <div class="file-info">8.3MB • 05/04/2025</div>
+            </div>
+            <div class="file-actions">
+              <span class="file-action">✏️</span>
+              <span class="file-action">🗑️</span>
+            </div>
+          </div>
+          
+          <div class="file-item">
+            <div class="file-icon">
+              <span>📊</span>
+            </div>
+            <div class="file-details">
+              <div class="file-name">נתוני שימוש.xlsx</div>
+              <div class="file-info">1.8MB • 04/04/2025</div>
+            </div>
+            <div class="file-actions">
+              <span class="file-action">✏️</span>
+              <span class="file-action">🗑️</span>
+            </div>
+          </div>
+          
+          <div class="file-item">
+            <div class="file-icon">
+              <span>📱</span>
+            </div>
+            <div class="file-details">
+              <div class="file-name">מסך התחברות.svg</div>
+              <div class="file-info">0.5MB • 03/04/2025</div>
+            </div>
+            <div class="file-actions">
+              <span class="file-action">✏️</span>
+              <span class="file-action">🗑️</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
