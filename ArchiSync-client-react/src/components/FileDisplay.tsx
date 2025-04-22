@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { getDownloadUrl } from "../Services/uploadService";
 import { File } from "../types/types";
-import { FileDownload } from "@mui/icons-material";
+// import { FileDownload } from "@mui/icons-material";
 
 interface FileDisplayProps {
   file: File;
@@ -41,14 +41,14 @@ const FileDisplay = ({ file }: FileDisplayProps) => {
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
-  const handleDownload = () => {
-    if (url) {
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = file.fileName;
-      link.click();
-    }
-  };
+  // const handleDownload = () => {
+  //   if (url) {
+  //     const link = document.createElement("a");
+  //     link.href = url;
+  //     link.download = file.fileName;
+  //     link.click();
+  //   }
+  // };
   return (
     <>
       <motion.div
