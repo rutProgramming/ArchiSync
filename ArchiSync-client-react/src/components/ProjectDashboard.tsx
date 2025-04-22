@@ -80,7 +80,7 @@ const ProjectDashboard = () => {
 
                     <Tabs
                         value={selectedTab}
-                        onChange={(e, newValue) => setSelectedTab(newValue)}
+                        onChange={(_e, newValue) => setSelectedTab(newValue)}
                         centered
                         sx={{
                             "& .MuiTabs-indicator": { backgroundColor: "yellow" }, 

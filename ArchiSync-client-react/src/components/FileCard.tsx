@@ -4,6 +4,8 @@ import { getDownloadUrl } from "../Services/uploadService";
 import { File } from "../types/types";
 import Modal from "@mui/material/Modal";
 import "../Style/FileCard.css";
+import { FileDownload } from "@mui/icons-material";
+import { Style } from "../Style/Style";
 export interface FileCardProps {
   file: File;
 }
@@ -33,7 +35,14 @@ const FileCard = ({ file }: FileCardProps) => {
 
     fetchUrl();
   }, [file]);
-
+  const handleDownload = () => {
+    if (url) {
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = file.fileName;
+      link.click();
+    }
+  };
   return (
     <>
       <motion.div
@@ -48,11 +57,11 @@ const FileCard = ({ file }: FileCardProps) => {
           <p style={{ color: "red" }}>{error}</p>
         ) : (
           <>
-            {file.fileType.startsWith("image/") && url ? (<>
+            {file.fileType.startsWith("image/") && url ? (
               <img src={url} alt={file.fileName} className="file-thumbnail" />
-            </>) : file.fileType.startsWith("application/pdf") && url ? (<>
+            ) : file.fileType.startsWith("application/pdf") && url ? (
               <iframe src={url} className="file-thumbnail" title={file.fileName} />
-            </>) : (
+            ) : (
               <div className="file-icon">📄</div>
             )}
             <div>{file.fileName.split("_").pop()}</div>
@@ -61,23 +70,24 @@ const FileCard = ({ file }: FileCardProps) => {
       </motion.div>
 
       <Modal open={open} onClose={() => setOpen(!open)} className="modal-container">
-          <motion.div className="modal-content" initial={{ scale: 0.8 }} animate={{ scale: 1 }} exit={{ scale: 0.8 }}>
-            {loading ? (
-              <p>Loading...</p>
-            ) : error ? (
-              <p style={{ color: "red" }}>{error}</p>
-            ) : (
-              <>
-                {file.fileType.startsWith("image/") && url ? (
-                  <img src={url} alt={file.fileName} className="file-fullsize" />
-                ) : file.fileType.startsWith("application/pdf") && url ? (
-                  <iframe src={url} className="file-fullsize" title={file.fileName} />
-                ) : (
-                  <p>File format not supported.</p>
-                )}
-              </>
-            )}
-          </motion.div>
+        <motion.div className="modal-content" initial={{ scale: 0.8 }} animate={{ scale: 1 }} exit={{ scale: 0.8 }}>
+          {loading ? (
+            <p>Loading...</p>
+          ) : error ? (
+            <p style={{ color: "red" }}>{error}</p>
+          ) : (
+            <>
+              {file.fileType.startsWith("image/") && url ? (
+                <img src={url} alt={file.fileName} className="file-fullsize" />
+              ) : file.fileType.startsWith("application/pdf") && url ? (
+                <iframe src={url} className="file-fullsize" title={file.fileName} />
+              ) : (
+                <p>File format not supported.</p>
+              )}
+              <FileDownload onClick={handleDownload} sx={Style.file_download_button}></FileDownload>
+            </>
+          )}
+        </motion.div>
       </Modal>
     </>
   );

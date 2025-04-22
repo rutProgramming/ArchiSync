@@ -4,11 +4,11 @@ import { v4 as uuidv4 } from "uuid";
 import { useDispatch, useSelector } from "react-redux";
 import { addFile } from "../store/File";
 import { AppDispatch, RootState } from "../store/reduxStore";
-import { ArrowBack, Public } from "@mui/icons-material";
 import { motion } from "framer-motion";
 import { Alert, Snackbar } from "@mui/material";
 import "../Style/FileUploader.css";
 import { getUploadUrl, uploadFileToS3 } from "../Services/uploadService";
+import { ArrowBack } from "@mui/icons-material";
 
 const FileUploader = () => {
   const {parentId, projectId, projectName } = useParams<{parentId: string; projectId: string; projectName: string }>();
@@ -16,7 +16,7 @@ const FileUploader = () => {
   const [progress, setProgress] = useState(0);
   const [isUploading, setIsUploading] = useState(false);
   const [snackbar, setSnackbar] = useState(false);
-
+   console.log(parentId)
   const user = useSelector((state: RootState) => state.connect.user);
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();

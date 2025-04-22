@@ -64,7 +64,7 @@ const FileSlice = createSlice({
                 state.loading = true;
                 state.error = "";
             })
-            .addCase(addFile.fulfilled, (state, action: PayloadAction<File>) => {
+            .addCase(addFile.fulfilled, (state, _action: PayloadAction<File>) => {
                 state.loading = false;
 
             })

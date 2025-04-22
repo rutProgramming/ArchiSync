@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { getDownloadUrl } from "../Services/uploadService";
 import { File } from "../types/types";
+import { FileDownload } from "@mui/icons-material";
 
 interface FileDisplayProps {
   file: File;
@@ -40,7 +41,14 @@ const FileDisplay = ({ file }: FileDisplayProps) => {
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
-
+  const handleDownload = () => {
+    if (url) {
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = file.fileName;
+      link.click();
+    }
+  };
   return (
     <>
       <motion.div
@@ -55,6 +63,7 @@ const FileDisplay = ({ file }: FileDisplayProps) => {
           <p style={{ color: "red" }}>{error}</p>
         ) : (
           <>
+
             {file.fileType.startsWith("image/") && url ? (
               <img src={url} alt={file.fileName} className="file-thumbnail" />
             ) : file.fileType.startsWith("application/pdf") && url ? (
@@ -63,6 +72,7 @@ const FileDisplay = ({ file }: FileDisplayProps) => {
               <div className="file-icon">📄</div>
             )}
             <p>{file.fileName}</p>
+
           </>
         )}
       </motion.div>
@@ -72,9 +82,9 @@ const FileDisplay = ({ file }: FileDisplayProps) => {
           <div className="modal-content">
             <button className="close-button" onClick={handleCloseModal}>Close</button>
             <h2>{file.fileName}</h2>
-            {file.fileType.startsWith("image/")&&url ? (
+            {file.fileType.startsWith("image/") && url ? (
               <img src={url} alt={file.fileName} width="100%" />
-            ) : file.fileType.startsWith("application/pdf")&&url ? (
+            ) : file.fileType.startsWith("application/pdf") && url ? (
               <iframe src={url} title={file.fileName} width="100%" height="500px" />
             ) : (
               <p>File cannot be displayed.</p>

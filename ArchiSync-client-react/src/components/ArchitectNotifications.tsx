@@ -66,8 +66,6 @@ const MessageCard = ({ message }: {
         const updatedMessage: PartialMessage = { ...message, approved: !message.approved };
         dispatch(UpdateMessageStatus(updatedMessage));
     };
-
-
     return (
         <Card variant="outlined" sx={{
             marginBottom: 2,

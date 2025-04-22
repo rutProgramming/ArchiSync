@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../store/reduxStore";
 import { useEffect, useState } from "react";
 import { PartialMessage, PartialProject } from "../types/types";
-import { Typography, Modal, Box, Button } from "@mui/material";
+import { Typography, Modal, Box } from "@mui/material";
 import { GetAllProjects, GetPublicProjects } from "../store/Project";
 import { createMessage } from "../store/Message";
 import { checkProjectAccess } from "../store/Premission";
