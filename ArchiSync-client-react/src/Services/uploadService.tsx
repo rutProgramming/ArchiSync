@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const getUploadUrl = async (parentId: string, projectName: string, fileName: string, contentType: string) => {
   try {
-    const response = await axios.get("https://localhost:7218/api/Upload/upload-url", {
+    const response = await axios.get("https://archisync-server.onrender.com/api/Upload/upload-url", {
       params: { parentId, projectName, fileName, contentType },
     });
     return response.data.url;
@@ -31,7 +31,7 @@ export const uploadFileToS3 = async (url: string, file: File, onUploadProgress?:
 
 export const getDownloadUrl = async (parentId: number, projectName: string, fileName: string) => {
   try {
-    const response = await axios.get("https://localhost:7218/api/Upload/download-url", {
+    const response = await axios.get("https://archisync-server.onrender.com/api/Upload/download-url", {
       params: { parentId, projectName, fileName },
     });
     return response.data;
@@ -44,7 +44,7 @@ export const generateImage = async (imageUrl: string, prompt: string) => {
   try {
     const requestData = { imageUrl, prompt };
     const response = await axios.post(
-      "https://localhost:7218/api/Sketch/convert",
+      "https://archisync-server.onrender.com/api/Sketch/convert",
       requestData,
       { headers: { "Content-Type": "application/json" } }
     );
