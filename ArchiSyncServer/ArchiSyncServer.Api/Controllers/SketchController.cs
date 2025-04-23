@@ -27,6 +27,7 @@ namespace ArchiSyncServer.Api.Controllers
         [HttpPost("convert")]
         public async Task<IActionResult> ConvertSketch([FromBody] SketchRequest request)
         {
+            Console.WriteLine(request.ImageUrl);
             numApi++;
             if (numApi > 100)
                 return StatusCode(429, "API call limit exceeded. Please try again later.");
@@ -48,7 +49,7 @@ namespace ArchiSyncServer.Api.Controllers
                     cn_Lineart_Strength = 1
                 }
             };
-            Console.WriteLine("requestData: "+requestData);
+            Console.WriteLine("requestData: "+requestData+", "+requestData.input.image);
 
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", apiKey);
             var json = JsonConvert.SerializeObject(requestData);
