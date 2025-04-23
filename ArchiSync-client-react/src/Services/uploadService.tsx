@@ -42,6 +42,7 @@ export const getDownloadUrl = async (parentId: number, projectName: string, file
 };
 export const generateImage = async (imageUrl: string, prompt: string) => {
   try {
+    console.log(imageUrl, prompt);
     const requestData = { imageUrl, prompt };
     const response = await axios.post(
       "https://archisync-server.onrender.com/api/Sketch/convert",

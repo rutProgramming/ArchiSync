@@ -28,7 +28,7 @@
               "RelativeDocumentMoniker": "ArchiSyncServer.Api\\Controllers\\SketchController.cs",
               "ToolTip": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Api\\Controllers\\SketchController.cs",
               "RelativeToolTip": "ArchiSyncServer.Api\\Controllers\\SketchController.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAYwEEAAAArAAAAAAAAAA==",
+              "ViewState": "AgIAABkAAAAAAAAAAAAQwBsAAABPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-23T22:03:38.141Z",
               "EditorCaption": ""
@@ -43,8 +43,7 @@
               "RelativeToolTip": "ArchiSyncServer.Service\\Services\\S3Service.cs",
               "ViewState": "AgIAABAAAAAAAAAAAAAswBsAAABTAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-23T21:51:41.776Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-23T21:51:41.776Z"
             }
           ]
         }
