@@ -15,9 +15,10 @@ namespace ArchiSyncServer.Service.Services
 
         public S3Service(IConfiguration configuration)
         {
-            var accessKey = Environment.GetEnvironmentVariable("AWS_ACCESS_KEY_ID");
-            var secretKey = Environment.GetEnvironmentVariable("AWS_SECRET_ACCESS_KEY");
-            var region = Environment.GetEnvironmentVariable("AWS_REGION") ?? "eu-north-1";
+            var accessKey = configuration["AWS_ACCESS_KEY_ID"];
+            var secretKey = configuration["AWS_SECRET_ACCESS_KEY"];
+            var region = configuration["AWS_REGION"] ?? "eu-north-1";
+            _bucketName = configuration["AWS_BUCKET_NAME"]; 
             if (string.IsNullOrEmpty(accessKey) || string.IsNullOrEmpty(secretKey))
                 throw new Exception("AWS credentials are missing in environment variables.");
             var credentials = new BasicAWSCredentials(accessKey, secretKey);
@@ -26,7 +27,6 @@ namespace ArchiSyncServer.Service.Services
             _bucketName = "ruth-shtraicher-storage-bucket"; 
         }
 
-        /// ⬆️ יצירת Pre-Signed URL להעלאת קובץ
         public async Task<string> GeneratePresignedUrlAsync(string parentId,string projectName,string fileName, string contentType)
         {
             var key = $"users/{parentId}/{projectName}/{fileName}"; 
@@ -45,7 +45,6 @@ namespace ArchiSyncServer.Service.Services
         }
 
 
-        /// ⬇️ יצירת Pre-Signed URL להורדת קובץ
         public async Task<string> GetDownloadUrlAsync(string parentId,string projectName, string fileName)
         {
             var key = $"users/{parentId}/{projectName}/{fileName}"; 

@@ -29,4 +29,6 @@
     <ProjectReference Include="..\ArchiSyncServer.Service\ArchiSyncServer.Service.csproj" />
   </ItemGroup>
 
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="https://www.asyncapi.com/schema-store/all.schema-store.json" /></VisualStudio></ProjectExtensions>
+
 </Project>
