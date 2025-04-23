@@ -60,8 +60,8 @@ namespace ArchiSyncServer.Service.Services
             {
 
                 var projectPermission = _mapper.Map<ProjectPermission>(projectPermissionDto);
-                projectPermission.CreatedAt = DateTime.Now;
-                projectPermission.UpdatedAt = DateTime.Now;
+                projectPermission.CreatedAt = DateTime.UtcNow;
+                projectPermission.UpdatedAt = DateTime.UtcNow;
                 var createdProjectPermission = await _repositoryManager.projectPermission.CreateAsync(projectPermission);
                 var message = await _repositoryManager.Message.GetByIdAsync(projectPermission.Id);
 

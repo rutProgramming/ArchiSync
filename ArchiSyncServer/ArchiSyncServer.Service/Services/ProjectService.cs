@@ -52,6 +52,8 @@ namespace ArchiSyncServer.Service.Services
             }
 
             var projectEntity = _mapper.Map<Project>(projectDto);
+            projectEntity.CreatedAt = DateTime.UtcNow;
+            projectEntity.UpdatedAt = DateTime.UtcNow;
             var createdProject = await _ProjectRepository.CreateProjectAsync(projectEntity);
             await _repositoryManager.SaveAsync();
 
@@ -66,6 +68,7 @@ namespace ArchiSyncServer.Service.Services
             }
 
             var existingProject = await _ProjectRepository.GetByIdAsync(projectDto.Id);
+
             if (existingProject == null)
             {
                 throw new ArgumentException("Project doesn't exist.");
@@ -77,6 +80,7 @@ namespace ArchiSyncServer.Service.Services
             }
 
             var updatedProject = _mapper.Map<Project>(projectDto);
+            updatedProject.UpdatedAt = DateTime.UtcNow;
             await _ProjectRepository.UpdateAsync(id,updatedProject);
             await _repositoryManager.SaveAsync();
         }

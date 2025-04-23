@@ -72,8 +72,8 @@ namespace ArchiSyncServer.Service.Services
             {
 
                 var message = _mapper.Map<Message>(messageDto);
-                message.CreatedAt = DateTime.Now;
-                message.UpdatedAt = DateTime.Now;
+                message.CreatedAt = DateTime.UtcNow;
+                message.UpdatedAt = DateTime.UtcNow;
                 var createdMessage = await _messageRepository.CreateAsync(message);
                 await _repositoryManager.SaveAsync();
                 return _mapper.Map<MessageDTO>(createdMessage);
@@ -86,7 +86,7 @@ namespace ArchiSyncServer.Service.Services
             {
                 await GetMessageAsync(id);
                 var message = _mapper.Map<Message>(messageDto);
-                message.UpdatedAt = DateTime.Now;
+                message.UpdatedAt = DateTime.UtcNow;
                 await _messageRepository.UpdateAsync(id, message);
                 await _repositoryManager.SaveAsync();
             }

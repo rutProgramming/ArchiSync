@@ -74,8 +74,8 @@ namespace ArchiSyncServer.Api.Controllers
             try
             {
                 var messageDto = _mapper.Map<MessageDTO>(messagePostModel);
-                messageDto.CreatedAt = DateTime.Now;
-                messageDto.UpdatedAt = DateTime.Now;
+                messageDto.CreatedAt = DateTime.UtcNow;
+                messageDto.UpdatedAt = DateTime.UtcNow;
             
                 var createdMessage = await _messageService.CreateMessageAsync(messageDto);
                 return CreatedAtAction(nameof(Get), new { id = createdMessage.Id, createdMessage });

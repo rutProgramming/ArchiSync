@@ -69,8 +69,8 @@ namespace ArchiSyncServer.Service.Services
             catch (KeyNotFoundException)
             {
                 var file = _mapper.Map<File>(fileDto);
-                file.CreatedAt = DateTime.Now;
-                file.UpdatedAt = DateTime.Now;
+                file.CreatedAt = DateTime.UtcNow;
+                file.UpdatedAt = DateTime.UtcNow;
                 file.IsDeleted = false;
                 var createdFile = await _fileRepository.CreateAsync(file);
                 await _repositoryManager.SaveAsync();

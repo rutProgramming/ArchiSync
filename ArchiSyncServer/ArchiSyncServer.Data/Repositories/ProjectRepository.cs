@@ -18,8 +18,7 @@ namespace ArchiSyncServer.Data.Repositories
 
         public async Task<Project> CreateProjectAsync(Project project)
         {
-            project.CreatedAt = DateTime.Now;
-            project.UpdatedAt = DateTime.Now;
+           
             _dbSet.Add(project);
             return project;
         }

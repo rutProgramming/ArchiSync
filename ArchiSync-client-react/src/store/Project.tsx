@@ -17,6 +17,7 @@ export const addProject = createAsyncThunk(
             console.log(project);
             var response = await axios.post(url, project, { headers: GetHeaders() });
             return response.data;
+                
         } catch (error) {
             alert(error);
             return thunkAPI.rejectWithValue('Failed to add project');
