@@ -33,7 +33,6 @@ namespace ArchiSyncServer.Api.Controllers
             if (request == null || string.IsNullOrEmpty(request.ImageUrl))
                 return BadRequest("Invalid request. Image URL is required.");
             string apiKey = _configuration["REPLICATE_KEY"];
-            Console.WriteLine(apiKey);
 
             string apiUrl = "https://api.replicate.com/v1/predictions";
 
@@ -57,6 +56,7 @@ namespace ArchiSyncServer.Api.Controllers
             try
             {
                 var response = await _httpClient.PostAsync(apiUrl, content);
+                Console.WriteLine(response);
                 var prediction = await response.Content.ReadAsStringAsync();
                 dynamic predictionData = JsonConvert.DeserializeObject(prediction);
                 string predictionId = predictionData.id;
