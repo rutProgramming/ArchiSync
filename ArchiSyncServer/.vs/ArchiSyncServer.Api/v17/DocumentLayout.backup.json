@@ -3,6 +3,58 @@
   "WorkspaceRootPath": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{9F10C67A-6299-4E9E-B43E-70209BECADD1}|ArchiSyncServer.Service\\ArchiSyncServer.Service.csproj|c:\\users\\97250\\desktop\\rut\\archisync\\archisyncserver\\archisyncserver.service\\services\\projectservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9F10C67A-6299-4E9E-B43E-70209BECADD1}|ArchiSyncServer.Service\\ArchiSyncServer.Service.csproj|solutionrelative:archisyncserver.service\\services\\projectservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A27DE6B-DC2C-4186-993E-8C4F896C68A8}|ArchiSyncServer.Data\\ArchiSyncServer.Data.csproj|c:\\users\\97250\\desktop\\rut\\archisync\\archisyncserver\\archisyncserver.data\\repositories\\projectrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A27DE6B-DC2C-4186-993E-8C4F896C68A8}|ArchiSyncServer.Data\\ArchiSyncServer.Data.csproj|solutionrelative:archisyncserver.data\\repositories\\projectrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9F10C67A-6299-4E9E-B43E-70209BECADD1}|ArchiSyncServer.Service\\ArchiSyncServer.Service.csproj|c:\\users\\97250\\desktop\\rut\\archisync\\archisyncserver\\archisyncserver.service\\services\\projectpermissionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9F10C67A-6299-4E9E-B43E-70209BECADD1}|ArchiSyncServer.Service\\ArchiSyncServer.Service.csproj|solutionrelative:archisyncserver.service\\services\\projectpermissionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9F10C67A-6299-4E9E-B43E-70209BECADD1}|ArchiSyncServer.Service\\ArchiSyncServer.Service.csproj|c:\\users\\97250\\desktop\\rut\\archisync\\archisyncserver\\archisyncserver.service\\services\\huggingfaceservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9F10C67A-6299-4E9E-B43E-70209BECADD1}|ArchiSyncServer.Service\\ArchiSyncServer.Service.csproj|solutionrelative:archisyncserver.service\\services\\huggingfaceservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9F10C67A-6299-4E9E-B43E-70209BECADD1}|ArchiSyncServer.Service\\ArchiSyncServer.Service.csproj|c:\\users\\97250\\desktop\\rut\\archisync\\archisyncserver\\archisyncserver.service\\services\\fileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9F10C67A-6299-4E9E-B43E-70209BECADD1}|ArchiSyncServer.Service\\ArchiSyncServer.Service.csproj|solutionrelative:archisyncserver.service\\services\\fileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9F10C67A-6299-4E9E-B43E-70209BECADD1}|ArchiSyncServer.Service\\ArchiSyncServer.Service.csproj|c:\\users\\97250\\desktop\\rut\\archisync\\archisyncserver\\archisyncserver.service\\services\\commentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9F10C67A-6299-4E9E-B43E-70209BECADD1}|ArchiSyncServer.Service\\ArchiSyncServer.Service.csproj|solutionrelative:archisyncserver.service\\services\\commentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9F10C67A-6299-4E9E-B43E-70209BECADD1}|ArchiSyncServer.Service\\ArchiSyncServer.Service.csproj|c:\\users\\97250\\desktop\\rut\\archisync\\archisyncserver\\archisyncserver.service\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9F10C67A-6299-4E9E-B43E-70209BECADD1}|ArchiSyncServer.Service\\ArchiSyncServer.Service.csproj|solutionrelative:archisyncserver.service\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A27DE6B-DC2C-4186-993E-8C4F896C68A8}|ArchiSyncServer.Data\\ArchiSyncServer.Data.csproj|c:\\users\\97250\\desktop\\rut\\archisync\\archisyncserver\\archisyncserver.data\\repositories\\projectpermissionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A27DE6B-DC2C-4186-993E-8C4F896C68A8}|ArchiSyncServer.Data\\ArchiSyncServer.Data.csproj|solutionrelative:archisyncserver.data\\repositories\\projectpermissionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A27DE6B-DC2C-4186-993E-8C4F896C68A8}|ArchiSyncServer.Data\\ArchiSyncServer.Data.csproj|c:\\users\\97250\\desktop\\rut\\archisync\\archisyncserver\\archisyncserver.data\\repositories\\messagerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A27DE6B-DC2C-4186-993E-8C4F896C68A8}|ArchiSyncServer.Data\\ArchiSyncServer.Data.csproj|solutionrelative:archisyncserver.data\\repositories\\messagerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A27DE6B-DC2C-4186-993E-8C4F896C68A8}|ArchiSyncServer.Data\\ArchiSyncServer.Data.csproj|c:\\users\\97250\\desktop\\rut\\archisync\\archisyncserver\\archisyncserver.data\\repositories\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A27DE6B-DC2C-4186-993E-8C4F896C68A8}|ArchiSyncServer.Data\\ArchiSyncServer.Data.csproj|solutionrelative:archisyncserver.data\\repositories\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A27DE6B-DC2C-4186-993E-8C4F896C68A8}|ArchiSyncServer.Data\\ArchiSyncServer.Data.csproj|c:\\users\\97250\\desktop\\rut\\archisync\\archisyncserver\\archisyncserver.data\\repositories\\filerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A27DE6B-DC2C-4186-993E-8C4F896C68A8}|ArchiSyncServer.Data\\ArchiSyncServer.Data.csproj|solutionrelative:archisyncserver.data\\repositories\\filerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A27DE6B-DC2C-4186-993E-8C4F896C68A8}|ArchiSyncServer.Data\\ArchiSyncServer.Data.csproj|c:\\users\\97250\\desktop\\rut\\archisync\\archisyncserver\\archisyncserver.data\\repositories\\commentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A27DE6B-DC2C-4186-993E-8C4F896C68A8}|ArchiSyncServer.Data\\ArchiSyncServer.Data.csproj|solutionrelative:archisyncserver.data\\repositories\\commentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0DCC35E5-0696-4E29-A57C-CF0782B01842}|ArchiSyncServer.Api\\ArchiSyncServer.Api.csproj|c:\\users\\97250\\desktop\\rut\\archisync\\archisyncserver\\archisyncserver.api\\controllers\\projectcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0DCC35E5-0696-4E29-A57C-CF0782B01842}|ArchiSyncServer.Api\\ArchiSyncServer.Api.csproj|solutionrelative:archisyncserver.api\\controllers\\projectcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{9F10C67A-6299-4E9E-B43E-70209BECADD1}|ArchiSyncServer.Service\\ArchiSyncServer.Service.csproj|c:\\users\\97250\\desktop\\rut\\archisync\\archisyncserver\\archisyncserver.service\\services\\s3service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9F10C67A-6299-4E9E-B43E-70209BECADD1}|ArchiSyncServer.Service\\ArchiSyncServer.Service.csproj|solutionrelative:archisyncserver.service\\services\\s3service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -25,10 +77,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{9F10C67A-6299-4E9E-B43E-70209BECADD1}|ArchiSyncServer.Service\\ArchiSyncServer.Service.csproj|c:\\users\\97250\\desktop\\rut\\archisync\\archisyncserver\\archisyncserver.service\\services\\userrolesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9F10C67A-6299-4E9E-B43E-70209BECADD1}|ArchiSyncServer.Service\\ArchiSyncServer.Service.csproj|solutionrelative:archisyncserver.service\\services\\userrolesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9F10C67A-6299-4E9E-B43E-70209BECADD1}|ArchiSyncServer.Service\\ArchiSyncServer.Service.csproj|c:\\users\\97250\\desktop\\rut\\archisync\\archisyncserver\\archisyncserver.service\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9F10C67A-6299-4E9E-B43E-70209BECADD1}|ArchiSyncServer.Service\\ArchiSyncServer.Service.csproj|solutionrelative:archisyncserver.service\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0DCC35E5-0696-4E29-A57C-CF0782B01842}|ArchiSyncServer.Api\\ArchiSyncServer.Api.csproj|c:\\users\\97250\\desktop\\rut\\archisync\\archisyncserver\\archisyncserver.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
@@ -105,11 +153,167 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 11,
+          "SelectedChildIndex": 10,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ProjectPermissionService.cs",
+              "DocumentMoniker": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Service\\Services\\ProjectPermissionService.cs",
+              "RelativeDocumentMoniker": "ArchiSyncServer.Service\\Services\\ProjectPermissionService.cs",
+              "ToolTip": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Service\\Services\\ProjectPermissionService.cs",
+              "RelativeToolTip": "ArchiSyncServer.Service\\Services\\ProjectPermissionService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-23T17:31:05.889Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "HuggingFaceService.cs",
+              "DocumentMoniker": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Service\\Services\\HuggingFaceService.cs",
+              "RelativeDocumentMoniker": "ArchiSyncServer.Service\\Services\\HuggingFaceService.cs",
+              "ToolTip": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Service\\Services\\HuggingFaceService.cs",
+              "RelativeToolTip": "ArchiSyncServer.Service\\Services\\HuggingFaceService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-23T17:31:04.664Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "FileService.cs",
+              "DocumentMoniker": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Service\\Services\\FileService.cs",
+              "RelativeDocumentMoniker": "ArchiSyncServer.Service\\Services\\FileService.cs",
+              "ToolTip": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Service\\Services\\FileService.cs",
+              "RelativeToolTip": "ArchiSyncServer.Service\\Services\\FileService.cs",
+              "ViewState": "AgIAAE8AAAAAAAAAAAAkwEcAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-23T17:30:12.248Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 5,
+              "Title": "CommentService.cs",
+              "DocumentMoniker": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Service\\Services\\CommentService.cs",
+              "RelativeDocumentMoniker": "ArchiSyncServer.Service\\Services\\CommentService.cs",
+              "ToolTip": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Service\\Services\\CommentService.cs",
+              "RelativeToolTip": "ArchiSyncServer.Service\\Services\\CommentService.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-23T17:30:06.084Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ProjectPermissionRepository.cs",
+              "DocumentMoniker": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Data\\Repositories\\ProjectPermissionRepository.cs",
+              "RelativeDocumentMoniker": "ArchiSyncServer.Data\\Repositories\\ProjectPermissionRepository.cs",
+              "ToolTip": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Data\\Repositories\\ProjectPermissionRepository.cs",
+              "RelativeToolTip": "ArchiSyncServer.Data\\Repositories\\ProjectPermissionRepository.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-23T17:29:38.925Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "MessageRepository.cs",
+              "DocumentMoniker": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Data\\Repositories\\MessageRepository.cs",
+              "RelativeDocumentMoniker": "ArchiSyncServer.Data\\Repositories\\MessageRepository.cs",
+              "ToolTip": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Data\\Repositories\\MessageRepository.cs",
+              "RelativeToolTip": "ArchiSyncServer.Data\\Repositories\\MessageRepository.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-23T17:29:35.32Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "GenericRepository.cs",
+              "DocumentMoniker": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Data\\Repositories\\GenericRepository.cs",
+              "RelativeDocumentMoniker": "ArchiSyncServer.Data\\Repositories\\GenericRepository.cs",
+              "ToolTip": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Data\\Repositories\\GenericRepository.cs",
+              "RelativeToolTip": "ArchiSyncServer.Data\\Repositories\\GenericRepository.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-23T17:29:28.669Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "FileRepository.cs",
+              "DocumentMoniker": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Data\\Repositories\\FileRepository.cs",
+              "RelativeDocumentMoniker": "ArchiSyncServer.Data\\Repositories\\FileRepository.cs",
+              "ToolTip": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Data\\Repositories\\FileRepository.cs",
+              "RelativeToolTip": "ArchiSyncServer.Data\\Repositories\\FileRepository.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-23T17:29:24.208Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "CommentRepository.cs",
+              "DocumentMoniker": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Data\\Repositories\\CommentRepository.cs",
+              "RelativeDocumentMoniker": "ArchiSyncServer.Data\\Repositories\\CommentRepository.cs",
+              "ToolTip": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Data\\Repositories\\CommentRepository.cs",
+              "RelativeToolTip": "ArchiSyncServer.Data\\Repositories\\CommentRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-23T17:29:22.56Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ProjectRepository.cs",
+              "DocumentMoniker": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Data\\Repositories\\ProjectRepository.cs",
+              "RelativeDocumentMoniker": "ArchiSyncServer.Data\\Repositories\\ProjectRepository.cs",
+              "ToolTip": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Data\\Repositories\\ProjectRepository.cs",
+              "RelativeToolTip": "ArchiSyncServer.Data\\Repositories\\ProjectRepository.cs",
+              "ViewState": "AgIAADMAAAAAAAAAAAAgwBQAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-23T17:09:52.953Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ProjectService.cs",
+              "DocumentMoniker": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Service\\Services\\ProjectService.cs",
+              "RelativeDocumentMoniker": "ArchiSyncServer.Service\\Services\\ProjectService.cs",
+              "ToolTip": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Service\\Services\\ProjectService.cs",
+              "RelativeToolTip": "ArchiSyncServer.Service\\Services\\ProjectService.cs",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAkwFIAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-23T17:08:50.767Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ProjectController.cs",
+              "DocumentMoniker": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Api\\Controllers\\ProjectController.cs",
+              "RelativeDocumentMoniker": "ArchiSyncServer.Api\\Controllers\\ProjectController.cs",
+              "ToolTip": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Api\\Controllers\\ProjectController.cs",
+              "RelativeToolTip": "ArchiSyncServer.Api\\Controllers\\ProjectController.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAAwAwAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-23T17:01:34.084Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
               "Title": "UserRolesService.cs",
               "DocumentMoniker": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Service\\Services\\UserRolesService.cs",
               "RelativeDocumentMoniker": "ArchiSyncServer.Service\\Services\\UserRolesService.cs",
@@ -127,13 +331,14 @@
               "RelativeDocumentMoniker": "ArchiSyncServer.Service\\Services\\AuthService.cs",
               "ToolTip": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Service\\Services\\AuthService.cs",
               "RelativeToolTip": "ArchiSyncServer.Service\\Services\\AuthService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACcAAAAyAAAAAAAAAA==",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAACcAAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-23T16:26:06.32Z"
+              "WhenOpened": "2025-04-23T16:26:06.32Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 20,
               "Title": "MappingProfilePostModal.cs",
               "DocumentMoniker": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Api\\MappingProfilePostModal.cs",
               "RelativeDocumentMoniker": "ArchiSyncServer.Api\\MappingProfilePostModal.cs",
@@ -145,7 +350,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 19,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Api\\appsettings.json",
               "RelativeDocumentMoniker": "ArchiSyncServer.Api\\appsettings.json",
@@ -157,7 +362,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 22,
               "Title": "ArchiSyncServer.Api.http",
               "DocumentMoniker": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Api\\ArchiSyncServer.Api.http",
               "RelativeDocumentMoniker": "ArchiSyncServer.Api\\ArchiSyncServer.Api.http",
@@ -169,7 +374,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 24,
               "Title": "ApplicationDbContextModelSnapshot.cs",
               "DocumentMoniker": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Data\\Migrations\\ApplicationDbContextModelSnapshot.cs",
               "RelativeDocumentMoniker": "ArchiSyncServer.Data\\Migrations\\ApplicationDbContextModelSnapshot.cs",
@@ -181,7 +386,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 27,
               "Title": "Container.targets",
               "DocumentMoniker": "C:\\Users\\97250\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.21.0\\build\\Container.targets",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.21.0\\build\\Container.targets",
@@ -193,7 +398,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 21,
               "Title": "Dockerfile",
               "DocumentMoniker": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Api\\Dockerfile",
               "RelativeDocumentMoniker": "ArchiSyncServer.Api\\Dockerfile",
@@ -205,7 +410,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 23,
               "Title": "ApplicationDbContext.cs",
               "DocumentMoniker": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Data\\ApplicationDbContext.cs",
               "RelativeDocumentMoniker": "ArchiSyncServer.Data\\ApplicationDbContext.cs",
@@ -217,7 +422,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 26,
               "Title": "20250422154357_Initial.cs",
               "DocumentMoniker": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Data\\Migrations\\20250422154357_Initial.cs",
               "RelativeDocumentMoniker": "ArchiSyncServer.Data\\Migrations\\20250422154357_Initial.cs",
@@ -229,7 +434,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 25,
               "Title": "20250422153500_Initialization.cs",
               "DocumentMoniker": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Data\\Migrations\\20250422153500_Initialization.cs",
               "RelativeDocumentMoniker": "ArchiSyncServer.Data\\Migrations\\20250422153500_Initialization.cs",
@@ -241,7 +446,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 13,
               "Title": "S3Service.cs",
               "DocumentMoniker": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Service\\Services\\S3Service.cs",
               "RelativeDocumentMoniker": "ArchiSyncServer.Service\\Services\\S3Service.cs",
@@ -254,7 +459,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 28,
               "Title": "UserService.cs",
               "DocumentMoniker": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Service\\Services\\UserService.cs",
               "RelativeDocumentMoniker": "ArchiSyncServer.Service\\Services\\UserService.cs",
@@ -266,7 +471,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 29,
               "Title": "AuthController.cs",
               "DocumentMoniker": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Api\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "ArchiSyncServer.Api\\Controllers\\AuthController.cs",
@@ -278,7 +483,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 17,
               "Title": "FileController.cs",
               "DocumentMoniker": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Api\\Controllers\\FileController.cs",
               "RelativeDocumentMoniker": "ArchiSyncServer.Api\\Controllers\\FileController.cs",
@@ -290,7 +495,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 30,
               "Title": "CommentController.cs",
               "DocumentMoniker": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Api\\Controllers\\CommentController.cs",
               "RelativeDocumentMoniker": "ArchiSyncServer.Api\\Controllers\\CommentController.cs",
@@ -302,7 +507,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 14,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Api\\Program.cs",
               "RelativeDocumentMoniker": "ArchiSyncServer.Api\\Program.cs",
@@ -310,12 +515,11 @@
               "RelativeToolTip": "ArchiSyncServer.Api\\Program.cs",
               "ViewState": "AgIAAEgAAAAAAAAAAAAAAGYAAABwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T16:18:40.734Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-08T16:18:40.734Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 31,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Core\\Entities\\User.cs",
               "RelativeDocumentMoniker": "ArchiSyncServer.Core\\Entities\\User.cs",
@@ -327,7 +531,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 16,
               "Title": "UserController.cs",
               "DocumentMoniker": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Api\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "ArchiSyncServer.Api\\Controllers\\UserController.cs",
@@ -339,7 +543,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 15,
               "Title": "UploadController.cs",
               "DocumentMoniker": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Api\\Controllers\\UploadController.cs",
               "RelativeDocumentMoniker": "ArchiSyncServer.Api\\Controllers\\UploadController.cs",
@@ -347,12 +551,11 @@
               "RelativeToolTip": "ArchiSyncServer.Api\\Controllers\\UploadController.cs",
               "ViewState": "AgIAAA0AAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-31T22:53:51.861Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-31T22:53:51.861Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 33,
               "Title": "MessageController.cs",
               "DocumentMoniker": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Api\\Controllers\\MessageController.cs",
               "RelativeDocumentMoniker": "ArchiSyncServer.Api\\Controllers\\MessageController.cs",
@@ -360,11 +563,12 @@
               "RelativeToolTip": "ArchiSyncServer.Api\\Controllers\\MessageController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-31T22:53:49.584Z"
+              "WhenOpened": "2025-03-31T22:53:49.584Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 35,
               "Title": "FilePostModel.cs",
               "DocumentMoniker": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Api\\Models\\FilePostModel.cs",
               "RelativeDocumentMoniker": "ArchiSyncServer.Api\\Models\\FilePostModel.cs",
@@ -376,7 +580,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 34,
               "Title": "SketchRequest.cs",
               "DocumentMoniker": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Api\\Models\\SketchRequest.cs",
               "RelativeDocumentMoniker": "ArchiSyncServer.Api\\Models\\SketchRequest.cs",
@@ -388,7 +592,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 32,
               "Title": "ImageController.cs",
               "DocumentMoniker": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Api\\Controllers\\ImageController.cs",
               "RelativeDocumentMoniker": "ArchiSyncServer.Api\\Controllers\\ImageController.cs",

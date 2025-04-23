@@ -15,11 +15,13 @@ namespace ArchiSyncServer.Api.Controllers
     public class SketchController : ControllerBase
     {
         private readonly HttpClient _httpClient;
+        private readonly IConfiguration _configuration;
         int numApi = 0;
 
-        public SketchController(HttpClient httpClient)
+        public SketchController(HttpClient httpClient, IConfiguration configuration)
         {
             _httpClient = httpClient;
+            _configuration = configuration;
         }
 
         [HttpPost("convert")]
@@ -30,7 +32,7 @@ namespace ArchiSyncServer.Api.Controllers
                 return StatusCode(429, "API call limit exceeded. Please try again later.");
             if (request == null || string.IsNullOrEmpty(request.ImageUrl))
                 return BadRequest("Invalid request. Image URL is required.");
-            string apiKey = Environment.GetEnvironmentVariable("REPLICATE_KEY");
+            string apiKey = _configuration["REPLICATE_KEY"];
 
             string apiUrl = "https://api.replicate.com/v1/predictions";
 
