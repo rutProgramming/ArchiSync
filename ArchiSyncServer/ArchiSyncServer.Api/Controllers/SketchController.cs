@@ -48,6 +48,7 @@ namespace ArchiSyncServer.Api.Controllers
                     cn_Lineart_Strength = 1
                 }
             };
+            Console.WriteLine("requestData: "+requestData);
 
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", apiKey);
             var json = JsonConvert.SerializeObject(requestData);
@@ -62,6 +63,7 @@ namespace ArchiSyncServer.Api.Controllers
                 string predictionId = predictionData.id;
 
                 string statusUrl = $"https://api.replicate.com/v1/predictions/{predictionId}";
+                Console.WriteLine(statusUrl);
                 while (true)
                 {
                     var statusResponse = await _httpClient.GetAsync(statusUrl);
@@ -70,7 +72,7 @@ namespace ArchiSyncServer.Api.Controllers
                     JObject jsonData = JObject.Parse(statusBody);
 
                     string outputUrl = jsonData["output"]?.ToString();
-
+                    Console.WriteLine(outputUrl);
                     if (statusData.status == "succeeded")
                     {
 
