@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios, {  AxiosRequestConfig } from "axios";
 import { PartialProject } from "../types/types";
-const url = "https://localhost:7218/api/Project/";
+const url = "https://archisync-server.onrender.com/api/Project/";
 
 export const GetHeaders = (): AxiosRequestConfig['headers'] => {
     const token = sessionStorage.getItem('token') || ''; 

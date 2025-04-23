@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { Puser } from "../types/types";
-const url = "https://localhost:7218/api/Auth/";
+const url = "https://archisync-server.onrender.com/api/Auth/";
 
 export const SignIn = createAsyncThunk('connect/signIn', async ({ user }: { user: Puser }, thunkAPI) => {
     try {
