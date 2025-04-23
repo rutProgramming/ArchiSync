@@ -57,6 +57,7 @@ namespace ArchiSyncServer.Api.Controllers
 
             try
             {
+                Console.WriteLine(content+", "+apiKey);
                 var response = await _httpClient.PostAsync(apiUrl, content);
                 Console.WriteLine(response);
                 var prediction = await response.Content.ReadAsStringAsync();
