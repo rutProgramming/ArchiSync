@@ -33,6 +33,7 @@ namespace ArchiSyncServer.Api.Controllers
             if (request == null || string.IsNullOrEmpty(request.ImageUrl))
                 return BadRequest("Invalid request. Image URL is required.");
             string apiKey = _configuration["REPLICATE_KEY"];
+            Console.WriteLine(apiKey);
 
             string apiUrl = "https://api.replicate.com/v1/predictions";
 
