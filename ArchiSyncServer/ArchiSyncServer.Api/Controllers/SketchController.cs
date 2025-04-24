@@ -54,7 +54,6 @@ namespace ArchiSyncServer.Api.Controllers
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", apiKey);
             var json = JsonConvert.SerializeObject(requestData);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-            _httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("ArchiSyncClient/1.0");
 
             Console.WriteLine(_httpClient.DefaultRequestHeaders);
             try
@@ -94,7 +93,7 @@ namespace ArchiSyncServer.Api.Controllers
             catch (Exception ex)
             {
 
-                return StatusCode(500, $"Error: {ex.Message}");
+                return StatusCode(500, $"Error: {ex}");
             }
         }
     }
