@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using System.Net.Http.Headers;
 using Newtonsoft.Json.Linq;
 using ArchiSyncServer.Api.Models;
+using Amazon.Runtime.Internal.Endpoints.StandardLibrary;
 namespace ArchiSyncServer.Api.Controllers
 {
     [Route("api/[controller]")]
@@ -55,6 +56,13 @@ namespace ArchiSyncServer.Api.Controllers
             var json = JsonConvert.SerializeObject(requestData);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             _httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("ArchiSyncClient/1.0");
+            Console.WriteLine($"URL: {apiUrl}");
+            Console.WriteLine($"Content: {await content.ReadAsStringAsync()}");
+
+            foreach (var header in _httpClient.DefaultRequestHeaders)
+            {
+                Console.WriteLine($"Header: {header.Key} = {string.Join(",", header.Value)}");
+            }
 
 
             Console.WriteLine(_httpClient.DefaultRequestHeaders);
