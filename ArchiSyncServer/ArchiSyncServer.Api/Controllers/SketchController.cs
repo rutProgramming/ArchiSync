@@ -55,7 +55,6 @@ namespace ArchiSyncServer.Api.Controllers
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", apiKey);
             var json = JsonConvert.SerializeObject(requestData);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-            _httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("ArchiSyncClient/1.0");
             Console.WriteLine($"URL: {apiUrl}");
             Console.WriteLine($"Content: {await content.ReadAsStringAsync()}");
 
@@ -64,8 +63,6 @@ namespace ArchiSyncServer.Api.Controllers
                 Console.WriteLine($"Header: {header.Key} = {string.Join(",", header.Value)}");
             }
 
-
-            Console.WriteLine(_httpClient.DefaultRequestHeaders);
             try
             {
                 Console.WriteLine(content+", "+apiKey);
@@ -102,8 +99,8 @@ namespace ArchiSyncServer.Api.Controllers
             }
             catch (Exception ex)
             {
-
-                return StatusCode(500, $"Error: {ex}");
+                Console.WriteLine(ex);
+                return StatusCode(500, $"Error: {ex.Message}");
             }
         }
     }
