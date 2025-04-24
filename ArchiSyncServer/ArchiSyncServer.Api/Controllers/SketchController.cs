@@ -54,7 +54,9 @@ namespace ArchiSyncServer.Api.Controllers
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", apiKey);
             var json = JsonConvert.SerializeObject(requestData);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-            Console.WriteLine(_httpClient);
+            _httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("ArchiSyncClient/1.0");
+
+            Console.WriteLine(_httpClient.DefaultRequestHeaders);
             try
             {
                 Console.WriteLine(content+", "+apiKey);
