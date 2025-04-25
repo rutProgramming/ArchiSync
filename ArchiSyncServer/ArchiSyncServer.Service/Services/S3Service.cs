@@ -24,7 +24,6 @@ namespace ArchiSyncServer.Service.Services
             var credentials = new BasicAWSCredentials(accessKey, secretKey);
             var regionEndpoint = Amazon.RegionEndpoint.GetBySystemName(region);
             _s3Client = new AmazonS3Client(credentials, regionEndpoint);
-            _bucketName = "ruth-shtraicher-storage-bucket";
             Console.WriteLine(accessKey+", "+secretKey+", "+region+", "+_bucketName);
         }
 
