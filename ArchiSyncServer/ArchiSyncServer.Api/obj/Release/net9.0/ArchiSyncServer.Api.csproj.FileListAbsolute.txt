@@ -155,3 +155,6 @@ C:\Users\97250\Desktop\rut\ArchiSync\ArchiSyncServer\ArchiSyncServer.Api\obj\Rel
 C:\Users\97250\Desktop\rut\ArchiSync\ArchiSyncServer\ArchiSyncServer.Api\obj\Release\net9.0\ArchiSyncServer.Api.pdb
 C:\Users\97250\Desktop\rut\ArchiSync\ArchiSyncServer\ArchiSyncServer.Api\obj\Release\net9.0\ArchiSyncServer.Api.genruntimeconfig.cache
 C:\Users\97250\Desktop\rut\ArchiSync\ArchiSyncServer\ArchiSyncServer.Api\obj\Release\net9.0\ref\ArchiSyncServer.Api.dll
+C:\Users\97250\Desktop\rut\ArchiSync\ArchiSyncServer\ArchiSyncServer.Api\bin\Release\net9.0\Microsoft.Extensions.Diagnostics.Abstractions.dll
+C:\Users\97250\Desktop\rut\ArchiSync\ArchiSyncServer\ArchiSyncServer.Api\bin\Release\net9.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Users\97250\Desktop\rut\ArchiSync\ArchiSyncServer\ArchiSyncServer.Api\bin\Release\net9.0\Microsoft.Extensions.Hosting.Abstractions.dll

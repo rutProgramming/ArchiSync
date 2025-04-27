@@ -344,6 +344,10 @@
               "target": "Package",
               "version": "[9.0.3, )"
             },
+            "Microsoft.Extensions.Hosting.Abstractions": {
+              "target": "Package",
+              "version": "[9.0.3, )"
+            },
             "Microsoft.IdentityModel.Tokens": {
               "target": "Package",
               "version": "[8.0.1, )"

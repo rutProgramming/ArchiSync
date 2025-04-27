@@ -1,0 +1,16 @@
+C:\Users\97250\Desktop\rut\ArchiSync\ArchiSyncServer\ArchiSyncServer.Service\bin\Release\net9.0\linux-x64\ArchiSyncServer.Service.deps.json
+C:\Users\97250\Desktop\rut\ArchiSync\ArchiSyncServer\ArchiSyncServer.Service\bin\Release\net9.0\linux-x64\ArchiSyncServer.Service.dll
+C:\Users\97250\Desktop\rut\ArchiSync\ArchiSyncServer\ArchiSyncServer.Service\bin\Release\net9.0\linux-x64\ArchiSyncServer.Service.pdb
+C:\Users\97250\Desktop\rut\ArchiSync\ArchiSyncServer\ArchiSyncServer.Service\bin\Release\net9.0\linux-x64\ArchiSyncServer.Core.dll
+C:\Users\97250\Desktop\rut\ArchiSync\ArchiSyncServer\ArchiSyncServer.Service\bin\Release\net9.0\linux-x64\ArchiSyncServer.Core.pdb
+C:\Users\97250\Desktop\rut\ArchiSync\ArchiSyncServer\ArchiSyncServer.Service\obj\Release\net9.0\linux-x64\ArchiSyncServer.Service.csproj.AssemblyReference.cache
+C:\Users\97250\Desktop\rut\ArchiSync\ArchiSyncServer\ArchiSyncServer.Service\obj\Release\net9.0\linux-x64\ArchiSyncServer.Service.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\97250\Desktop\rut\ArchiSync\ArchiSyncServer\ArchiSyncServer.Service\obj\Release\net9.0\linux-x64\ArchiSyncServer.Service.AssemblyInfoInputs.cache
+C:\Users\97250\Desktop\rut\ArchiSync\ArchiSyncServer\ArchiSyncServer.Service\obj\Release\net9.0\linux-x64\ArchiSyncServer.Service.AssemblyInfo.cs
+C:\Users\97250\Desktop\rut\ArchiSync\ArchiSyncServer\ArchiSyncServer.Service\obj\Release\net9.0\linux-x64\ArchiSyncServer.Service.csproj.CoreCompileInputs.cache
+C:\Users\97250\Desktop\rut\ArchiSync\ArchiSyncServer\ArchiSyncServer.Service\obj\Release\net9.0\linux-x64\ArchiSyncServer.Service.sourcelink.json
+C:\Users\97250\Desktop\rut\ArchiSync\ArchiSyncServer\ArchiSyncServer.Service\obj\Release\net9.0\linux-x64\ArchiSyn.E8DE691F.Up2Date
+C:\Users\97250\Desktop\rut\ArchiSync\ArchiSyncServer\ArchiSyncServer.Service\obj\Release\net9.0\linux-x64\ArchiSyncServer.Service.dll
+C:\Users\97250\Desktop\rut\ArchiSync\ArchiSyncServer\ArchiSyncServer.Service\obj\Release\net9.0\linux-x64\refint\ArchiSyncServer.Service.dll
+C:\Users\97250\Desktop\rut\ArchiSync\ArchiSyncServer\ArchiSyncServer.Service\obj\Release\net9.0\linux-x64\ArchiSyncServer.Service.pdb
+C:\Users\97250\Desktop\rut\ArchiSync\ArchiSyncServer\ArchiSyncServer.Service\obj\Release\net9.0\linux-x64\ref\ArchiSyncServer.Service.dll

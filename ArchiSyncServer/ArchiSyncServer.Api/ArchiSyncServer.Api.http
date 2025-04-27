@@ -9,3 +9,21 @@ Accept: application/json
 GET {{ArchiSyncServer.Api_HostAddress}}/api/projectpermission/{{projectId}}/check-permission
 
 ###
+
+POST {{ArchiSyncServer.Api_HostAddress}}/api/sketch/convert
+Content-Type: application/json
+
+{
+  //SketchRequest
+}
+
+###
+
+POST {{ArchiSyncServer.Api_HostAddress}}/api/auth/register
+Content-Type: application/json
+
+{
+  //RegisterModel
+}
+
+###

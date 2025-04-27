@@ -264,6 +264,44 @@
         }
       },
       "Microsoft.Extensions.DependencyModel/9.0.3": {},
+      "Microsoft.Extensions.Diagnostics.Abstractions/9.0.3": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.3",
+          "Microsoft.Extensions.Options": "9.0.3"
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.Extensions.Diagnostics.Abstractions.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.325.11113"
+          }
+        }
+      },
+      "Microsoft.Extensions.FileProviders.Abstractions/9.0.3": {
+        "dependencies": {
+          "Microsoft.Extensions.Primitives": "9.0.3"
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.Extensions.FileProviders.Abstractions.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.325.11113"
+          }
+        }
+      },
+      "Microsoft.Extensions.Hosting.Abstractions/9.0.3": {
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Abstractions": "9.0.3",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.3",
+          "Microsoft.Extensions.Diagnostics.Abstractions": "9.0.3",
+          "Microsoft.Extensions.FileProviders.Abstractions": "9.0.3",
+          "Microsoft.Extensions.Logging.Abstractions": "9.0.3"
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.Extensions.Hosting.Abstractions.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.325.11113"
+          }
+        }
+      },
       "Microsoft.Extensions.Logging/9.0.3": {
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection": "9.0.3",
@@ -538,6 +576,7 @@
           "ArchiSyncServer.Core": "1.0.0",
           "Microsoft.AspNetCore.Cryptography.KeyDerivation": "9.0.3",
           "Microsoft.Extensions.Configuration.Abstractions": "9.0.3",
+          "Microsoft.Extensions.Hosting.Abstractions": "9.0.3",
           "Microsoft.IdentityModel.Tokens": "8.0.1",
           "Newtonsoft.Json": "13.0.3",
           "RestSharp": "112.1.0",
@@ -760,6 +799,27 @@
       "sha512": "sha512-194P+NOekDXrPHmM2R8678T4bRfZ2isQXDDAsXKE5qI0QLUnXbwB0upljAkyxk+Kkt1DV1tV+9tHOtHEEh3ksw==",
       "path": "microsoft.extensions.dependencymodel/9.0.3",
       "hashPath": "microsoft.extensions.dependencymodel.9.0.3.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Diagnostics.Abstractions/9.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/fn0Xe8t+3YbMfwyTk4hFirWyAG1pBA5ogVYsrKAuuD2gbqOWhFuSA28auCmS3z8Y2eq3miDIKq4pFVRWA+J6g==",
+      "path": "microsoft.extensions.diagnostics.abstractions/9.0.3",
+      "hashPath": "microsoft.extensions.diagnostics.abstractions.9.0.3.nupkg.sha512"
+    },
+    "Microsoft.Extensions.FileProviders.Abstractions/9.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-umczZ3+QPpzlrW/lkvy+IB0p52+qZ5w++aqx2lTCMOaPKzwcbVdrJgiQ3ajw5QWBp7gChLUiCYkSlWUpfjv24g==",
+      "path": "microsoft.extensions.fileproviders.abstractions/9.0.3",
+      "hashPath": "microsoft.extensions.fileproviders.abstractions.9.0.3.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Hosting.Abstractions/9.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-rHabYVhQsGYNfgnfnYLqZRx/hLe85i6jW5rnDjA9pjt3x7yjPv8T/EXcgN5T9T38FAVwZRA+RMGUkEHbxvCOBQ==",
+      "path": "microsoft.extensions.hosting.abstractions/9.0.3",
+      "hashPath": "microsoft.extensions.hosting.abstractions.9.0.3.nupkg.sha512"
     },
     "Microsoft.Extensions.Logging/9.0.3": {
       "type": "package",

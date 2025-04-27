@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ArchiSyncServer.Core")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c92ddb0e9d2c2054f9e5411f1d4536b3556d28b2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c37350f072b35d8a110970acfec2250a19cea346")]
 [assembly: System.Reflection.AssemblyProductAttribute("ArchiSyncServer.Core")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ArchiSyncServer.Core")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

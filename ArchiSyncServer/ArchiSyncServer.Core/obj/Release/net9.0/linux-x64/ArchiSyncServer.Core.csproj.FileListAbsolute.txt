@@ -1,0 +1,13 @@
+C:\Users\97250\Desktop\rut\ArchiSync\ArchiSyncServer\ArchiSyncServer.Core\bin\Release\net9.0\linux-x64\ArchiSyncServer.Core.deps.json
+C:\Users\97250\Desktop\rut\ArchiSync\ArchiSyncServer\ArchiSyncServer.Core\bin\Release\net9.0\linux-x64\ArchiSyncServer.Core.dll
+C:\Users\97250\Desktop\rut\ArchiSync\ArchiSyncServer\ArchiSyncServer.Core\bin\Release\net9.0\linux-x64\ArchiSyncServer.Core.pdb
+C:\Users\97250\Desktop\rut\ArchiSync\ArchiSyncServer\ArchiSyncServer.Core\obj\Release\net9.0\linux-x64\ArchiSyncServer.Core.csproj.AssemblyReference.cache
+C:\Users\97250\Desktop\rut\ArchiSync\ArchiSyncServer\ArchiSyncServer.Core\obj\Release\net9.0\linux-x64\ArchiSyncServer.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\97250\Desktop\rut\ArchiSync\ArchiSyncServer\ArchiSyncServer.Core\obj\Release\net9.0\linux-x64\ArchiSyncServer.Core.AssemblyInfoInputs.cache
+C:\Users\97250\Desktop\rut\ArchiSync\ArchiSyncServer\ArchiSyncServer.Core\obj\Release\net9.0\linux-x64\ArchiSyncServer.Core.AssemblyInfo.cs
+C:\Users\97250\Desktop\rut\ArchiSync\ArchiSyncServer\ArchiSyncServer.Core\obj\Release\net9.0\linux-x64\ArchiSyncServer.Core.csproj.CoreCompileInputs.cache
+C:\Users\97250\Desktop\rut\ArchiSync\ArchiSyncServer\ArchiSyncServer.Core\obj\Release\net9.0\linux-x64\ArchiSyncServer.Core.sourcelink.json
+C:\Users\97250\Desktop\rut\ArchiSync\ArchiSyncServer\ArchiSyncServer.Core\obj\Release\net9.0\linux-x64\ArchiSyncServer.Core.dll
+C:\Users\97250\Desktop\rut\ArchiSync\ArchiSyncServer\ArchiSyncServer.Core\obj\Release\net9.0\linux-x64\refint\ArchiSyncServer.Core.dll
+C:\Users\97250\Desktop\rut\ArchiSync\ArchiSyncServer\ArchiSyncServer.Core\obj\Release\net9.0\linux-x64\ArchiSyncServer.Core.pdb
+C:\Users\97250\Desktop\rut\ArchiSync\ArchiSyncServer\ArchiSyncServer.Core\obj\Release\net9.0\linux-x64\ref\ArchiSyncServer.Core.dll

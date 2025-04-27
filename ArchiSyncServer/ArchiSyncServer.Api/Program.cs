@@ -43,7 +43,6 @@ var configuration = builder.Configuration;
 /* ---------Repositories----------*/
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
-builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
 builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 builder.Services.AddScoped<IRepositoryManager, RepositoryManager>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
@@ -56,7 +55,6 @@ builder.Services.AddScoped<IFileRepository, FileRepository>();
 /* ---------Services----------*/
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IProjectService, ProjectService>();
-builder.Services.AddScoped<IProjectService, ProjectService>();
 builder.Services.AddScoped<IUserRolesService, UserRolesService>();
 builder.Services.AddScoped<ICommentService, CommentService>();
 builder.Services.AddScoped<IHuggingFaceService, HuggingFaceService>();
@@ -65,7 +63,8 @@ builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<IS3Service, S3Service>();
 builder.Services.AddScoped<IProjectPermissionService, ProjectPermissionService>();
 builder.Services.AddScoped<IFileService, FileService>();
-
+builder.Services.AddSingleton<ISketchJobQueueService, SketchJobQueueService>();
+builder.Services.AddHostedService<SketchWorkerService>();
 builder.Services.AddHttpClient();
 
 /* ---------DataContext----------*/

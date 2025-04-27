@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "w4cY0YqmNnM=",
+  "dgSpecHash": "434y/eu7+i0=",
   "success": true,
   "projectFilePath": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Api\\ArchiSyncServer.Api.csproj",
   "expectedPackageFiles": [
@@ -33,6 +33,9 @@
     "C:\\Users\\97250\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\9.0.3\\microsoft.extensions.dependencyinjection.9.0.3.nupkg.sha512",
     "C:\\Users\\97250\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\9.0.3\\microsoft.extensions.dependencyinjection.abstractions.9.0.3.nupkg.sha512",
     "C:\\Users\\97250\\.nuget\\packages\\microsoft.extensions.dependencymodel\\9.0.3\\microsoft.extensions.dependencymodel.9.0.3.nupkg.sha512",
+    "C:\\Users\\97250\\.nuget\\packages\\microsoft.extensions.diagnostics.abstractions\\9.0.3\\microsoft.extensions.diagnostics.abstractions.9.0.3.nupkg.sha512",
+    "C:\\Users\\97250\\.nuget\\packages\\microsoft.extensions.fileproviders.abstractions\\9.0.3\\microsoft.extensions.fileproviders.abstractions.9.0.3.nupkg.sha512",
+    "C:\\Users\\97250\\.nuget\\packages\\microsoft.extensions.hosting.abstractions\\9.0.3\\microsoft.extensions.hosting.abstractions.9.0.3.nupkg.sha512",
     "C:\\Users\\97250\\.nuget\\packages\\microsoft.extensions.logging\\9.0.3\\microsoft.extensions.logging.9.0.3.nupkg.sha512",
     "C:\\Users\\97250\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\9.0.3\\microsoft.extensions.logging.abstractions.9.0.3.nupkg.sha512",
     "C:\\Users\\97250\\.nuget\\packages\\microsoft.extensions.options\\9.0.3\\microsoft.extensions.options.9.0.3.nupkg.sha512",

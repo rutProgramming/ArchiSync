@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "/DSKVYR9+Mjzsk8BhTf+vYAWo5wvFfdTiU6W+2PSri4=",
+  "Source": "ArchiSyncServer.Api",
+  "BasePath": "_content/ArchiSyncServer.Api",
+  "Mode": "Default",
+  "ManifestType": "Publish",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
