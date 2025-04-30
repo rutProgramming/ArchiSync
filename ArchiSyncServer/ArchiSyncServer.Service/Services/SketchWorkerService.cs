@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
+
+
 namespace ArchiSyncServer.Service.Services
 {
     public class SketchWorkerService : BackgroundService
@@ -17,23 +19,27 @@ namespace ArchiSyncServer.Service.Services
         private readonly HttpClient _httpClient;
         private readonly IConfiguration _config;
         private readonly ILogger<SketchWorkerService> _logger;
+        private readonly ISketchNotifier _notifier;
 
-        public SketchWorkerService(ISketchJobQueueService jobQueue, HttpClient httpClient, IConfiguration config, ILogger<SketchWorkerService> logger)
+        public SketchWorkerService(
+            ISketchJobQueueService jobQueue,
+            HttpClient httpClient,
+            IConfiguration config,
+            ILogger<SketchWorkerService> logger,
+            ISketchNotifier notifier)
         {
             _jobQueue = jobQueue;
             _httpClient = httpClient;
             _config = config;
             _logger = logger;
+            _notifier = notifier;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             while (!stoppingToken.IsCancellationRequested)
             {
-                // ממתינים עד שמגיעות עבודות חדשות בתור
                 var job = await _jobQueue.DequeueAsync(stoppingToken);
-
-                if (job == null) continue;
 
                 try
                 {
@@ -54,7 +60,7 @@ namespace ArchiSyncServer.Service.Services
                     var content = new StringContent(json, Encoding.UTF8, "application/json");
 
                     _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", _config["REPLICATE_KEY"]);
-
+                    _logger.LogInformation(_httpClient.DefaultRequestHeaders.Authorization.ToString());
                     var response = await _httpClient.PostAsync("https://api.replicate.com/v1/predictions", content);
                     var result = await response.Content.ReadAsStringAsync();
                     var prediction = JsonConvert.DeserializeObject<dynamic>(result);
@@ -62,7 +68,6 @@ namespace ArchiSyncServer.Service.Services
 
                     string statusUrl = $"https://api.replicate.com/v1/predictions/{predictionId}";
 
-                    // ביצוע מעקב אחר הסטטוס של התחזית
                     while (true)
                     {
                         var statusRes = await _httpClient.GetAsync(statusUrl);
@@ -73,7 +78,8 @@ namespace ArchiSyncServer.Service.Services
                         {
                             string outputUrl = statusData.output;
                             _logger.LogInformation($"✅ Prediction succeeded. URL: {outputUrl}");
-                            // כאן תוכל לשמור את התוצאה במסד נתונים או להחזיר למשתמש
+
+                            await _notifier.NotifySketchCompletedAsync(job.ConnectionId, outputUrl);
                             break;
                         }
                         else if (statusData.status == "failed")
@@ -82,7 +88,7 @@ namespace ArchiSyncServer.Service.Services
                             break;
                         }
 
-                        await Task.Delay(5000, stoppingToken);  // המתנה עד לבדוק שוב
+                        await Task.Delay(5000, stoppingToken);
                     }
                 }
                 catch (Exception ex)
@@ -93,3 +99,4 @@ namespace ArchiSyncServer.Service.Services
         }
     }
 }
+

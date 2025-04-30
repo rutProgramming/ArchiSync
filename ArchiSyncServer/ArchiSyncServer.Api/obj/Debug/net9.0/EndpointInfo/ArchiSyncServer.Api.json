@@ -1678,6 +1678,10 @@
           "prompt": {
             "type": "string",
             "nullable": true
+          },
+          "connectionId": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false

@@ -1,8 +1,9 @@
 import axios from "axios";
+const url = import.meta.env.VITE_BASE_URL
 
 export const getUploadUrl = async (parentId: string, projectName: string, fileName: string, contentType: string) => {
   try {
-    const response = await axios.get("https://archisync-server.onrender.com/api/Upload/upload-url", {
+    const response = await axios.get(`${url}/api/Upload/upload-url`, {
       params: { parentId, projectName, fileName, contentType },
     });
     return response.data.url;
@@ -31,7 +32,7 @@ export const uploadFileToS3 = async (url: string, file: File, onUploadProgress?:
 
 export const getDownloadUrl = async (parentId: number, projectName: string, fileName: string) => {
   try {
-    const response = await axios.get("https://archisync-server.onrender.com/api/Upload/download-url", {
+    const response = await axios.get(`${url}/api/Upload/download-url`, {
       params: { parentId, projectName, fileName },
     });
     return response.data;
@@ -40,21 +41,35 @@ export const getDownloadUrl = async (parentId: number, projectName: string, file
     throw e;
   }
 };
-export const generateImage = async (imageUrl: string, prompt: string) => {
-  try {
-    console.log(imageUrl, prompt);
-    const requestData = { imageUrl, prompt };
-    const response = await axios.post(
-      "https://archisync-server.onrender.com/api/Sketch/convert",
-      requestData,
-      { headers: { "Content-Type": "application/json" } }
-    );
+// export const generateImage = async (imageUrl: string, prompt: string) => {
+//   try {
+//     console.log(imageUrl, prompt);
+//     const requestData = { imageUrl, prompt };
+//     const response = await axios.post(
+//       `${url}/api/Sketch/convert`,
+//       requestData,
+//       { headers: { "Content-Type": "application/json" } }
+//     );
 
-    console.log(response);
-    return response.data
-  }
-  catch (e) {
-    throw e;
-  }
-}
+//     console.log(response);
+//     return response.data
+//   }
+//   catch (e) {
+//     throw e;
+//   }
+// }
 
+
+export const generateImage = async (imageUrl: string, prompt: string, connectionId: string) => {
+  const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/sketch/convert`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ imageUrl, prompt, connectionId })
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to request image generation.");
+  }
+
+  return response.json();
+};

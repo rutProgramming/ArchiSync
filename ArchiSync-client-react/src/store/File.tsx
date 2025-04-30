@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { File, PartialFile } from "../types/types";
 import { GetHeaders } from "./Project";
-const url = "https://archisync-server.onrender.com/api/File";
+const url = import.meta.env.VITE_BASE_URL+"/api/File"
 
 
 export const addFile = createAsyncThunk(

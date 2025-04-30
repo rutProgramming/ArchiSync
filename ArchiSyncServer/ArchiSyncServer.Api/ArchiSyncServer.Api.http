@@ -27,3 +27,12 @@ Content-Type: application/json
 }
 
 ###
+
+POST {{ArchiSyncServer.Api_HostAddress}}/api/sketch/convert
+Content-Type: application/json
+
+{
+  //SketchRequest
+}
+
+###

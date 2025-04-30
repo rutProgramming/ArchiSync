@@ -10,7 +10,7 @@ namespace ArchiSyncServer.Core.DTOs
     {
         public string ImageUrl { get; set; }
         public string Prompt { get; set; }
-        public string PredictionId { get; set; }
+        public string ConnectionId { get; set; }
     }
 
 

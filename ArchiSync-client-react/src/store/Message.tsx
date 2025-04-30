@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { Message, PartialMessage } from "../types/types";
 import { GetHeaders } from "./Project";
-const url = "https://archisync-server.onrender.com/api/Message/";
+const url = import.meta.env.VITE_BASE_URL+"/api/Message/"
 
 export const createMessage = createAsyncThunk('message/createMessage', async ({ message }: { message: PartialMessage }, thunkAPI) => {
     try {

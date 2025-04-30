@@ -15,6 +15,8 @@ using System.Text.Json.Serialization;
 using System.Text;
 using Amazon.Runtime;
 using Amazon.S3;
+using ArchiSyncServer.Api.Notifiers;
+using ArchiSyncServer.Api.Hubs;
 
 
 
@@ -63,9 +65,14 @@ builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<IS3Service, S3Service>();
 builder.Services.AddScoped<IProjectPermissionService, ProjectPermissionService>();
 builder.Services.AddScoped<IFileService, FileService>();
+
+/*------ai-------*/
 builder.Services.AddSingleton<ISketchJobQueueService, SketchJobQueueService>();
 builder.Services.AddHostedService<SketchWorkerService>();
+builder.Services.AddSignalR();
 builder.Services.AddHttpClient();
+builder.Services.AddSingleton<ISketchNotifier, SketchSignalRNotifier>();
+
 
 /* ---------DataContext----------*/
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -157,20 +164,22 @@ builder.Services.AddSwaggerGen(options =>
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAllOrigins",
-        builder => builder.AllowAnyOrigin()
+    options.AddPolicy("AllowSpecificOrigin",
+        builder => builder.WithOrigins("http://localhost:5173") // או כתובת ה-Frontend שלך בפרודקשן
+                          .AllowAnyHeader()
                           .AllowAnyMethod()
-                          .AllowAnyHeader());
+                          .AllowCredentials());
 });
 
 var app = builder.Build();
 
-app.UseCors("AllowAllOrigins");
+//app.UseCors("AllowAllOrigins");
+app.UseCors("AllowSpecificOrigin");
 
 // Configure the HTTP request pipeline.
 //if (app.Environment.IsDevelopment())
 //{
-    app.UseDeveloperExceptionPage();
+app.UseDeveloperExceptionPage();
     app.UseSwagger();
     app.UseSwaggerUI(options =>
     {
@@ -179,7 +188,13 @@ app.UseCors("AllowAllOrigins");
 //}
 
 app.UseHttpsRedirection();
+app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
-app.MapControllers();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+    endpoints.MapHub<SketchHub>("/sketchhub"); 
+});
 app.Run();

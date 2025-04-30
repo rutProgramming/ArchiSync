@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { GetHeaders } from "./Project";
 import { PartialProjectPermission } from "../types/types";
-const url = "https://archisync-server.onrender.com/api/ProjectPermission/";
+const url = import.meta.env.VITE_BASE_URL+"/api/ProjectPermission/"
 
 
 

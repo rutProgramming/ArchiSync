@@ -107,63 +107,46 @@
 //}
 
 
-
-
 using ArchiSyncServer.Api.Models;
-using ArchiSyncServer.Core.DTOs; 
-using ArchiSyncServer.Core.Entities; 
+using ArchiSyncServer.Core.DTOs;
 using ArchiSyncServer.Core.IServices;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
-namespace ArchiSyncServer.Controllers
+namespace ArchiSyncServer.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class SketchController : ControllerBase
     {
         private readonly ISketchJobQueueService _jobQueue;
-        private readonly ILogger<SketchController> _logger;
 
-        public SketchController(ISketchJobQueueService jobQueue, ILogger<SketchController> logger)
+        public SketchController(ISketchJobQueueService jobQueue)
         {
             _jobQueue = jobQueue;
-            _logger = logger;
         }
 
         [HttpPost("convert")]
         public IActionResult ConvertSketch([FromBody] SketchRequest request)
         {
-            // אם לא נמסרה URL של תמונה
-            if (string.IsNullOrEmpty(request.ImageUrl))
-            {
-                _logger.LogWarning("ImageUrl is required.");
-                return BadRequest("ImageUrl is required");
-            }
+            if (string.IsNullOrEmpty(request.ImageUrl) || string.IsNullOrEmpty(request.ConnectionId))
+                return BadRequest("ImageUrl and ConnectionId are required");
 
-            // יצירת Job חדש עם ה-ImageUrl וה-Prompt שנמסרו בבקשה
             var job = new SketchJobDTO
             {
                 ImageUrl = request.ImageUrl,
-                Prompt = request.Prompt
+                Prompt = request.Prompt,
+                ConnectionId = request.ConnectionId
             };
 
-            try
-            {
-                // הוספת העבודה לתור
-                _jobQueue.Enqueue(job);
-                _logger.LogInformation($"Job added to the queue for image URL: {request.ImageUrl}");
+            _jobQueue.Enqueue(job);
 
-                // מחזירים תגובה למשתמש שהבקשה בתהליך
-                return Accepted("Your request is being processed.");
-            }
-            catch (Exception ex)
+            //return Accepted("Your request is being processed.");
+            return Accepted(new
             {
-                _logger.LogError($"Error occurred while adding job to the queue: {ex.Message}");
-                return StatusCode(500, "An error occurred while processing your request.");
-            }
+                message = "Your request is being processed.",
+                
+            });
         }
     }
 }
-
 
