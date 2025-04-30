@@ -126,8 +126,7 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAE4AAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-25T13:11:01.172Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -139,8 +138,7 @@
               "RelativeToolTip": "ArchiSyncServer.Api\\Notifiers\\SketchSignalRNotifier.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAAQwBMAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-28T21:36:56.447Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-28T21:36:56.447Z"
             },
             {
               "$type": "Document",
@@ -152,8 +150,7 @@
               "RelativeToolTip": "ArchiSyncServer.Api\\Hubs\\SketchHub.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-28T21:35:53.81Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-28T21:35:53.81Z"
             },
             {
               "$type": "Document",
@@ -165,8 +162,7 @@
               "RelativeToolTip": "ArchiSyncServer.Core\\IServices\\ISketchNotifier.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-28T21:33:39.071Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-28T21:33:39.071Z"
             },
             {
               "$type": "Document",
@@ -178,8 +174,7 @@
               "RelativeToolTip": "ArchiSyncServer.Api\\ArchiSyncServer.Api.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAABVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-04-28T21:24:03.886Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-28T21:24:03.886Z"
             },
             {
               "$type": "Document",
@@ -251,8 +246,7 @@
               "RelativeToolTip": "ArchiSyncServer.Service\\Services\\SketchJobQueueService.cs",
               "ViewState": "AgIAAA8AAAAAAAAAAAAAABkAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-25T13:04:41.29Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-25T13:04:41.29Z"
             },
             {
               "$type": "Document",
@@ -324,8 +318,7 @@
               "RelativeToolTip": "ArchiSyncServer.Core\\ArchiSyncServer.Core.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-04-24T19:37:17.099Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-24T19:37:17.099Z"
             },
             {
               "$type": "Document",
@@ -382,7 +375,7 @@
               "RelativeDocumentMoniker": "ArchiSyncServer.Api\\appsettings.json",
               "ToolTip": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Api\\appsettings.json",
               "RelativeToolTip": "ArchiSyncServer.Api\\appsettings.json",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAmwAsAAAADAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2025-04-24T15:06:16.281Z",
               "EditorCaption": ""
@@ -409,8 +402,7 @@
               "RelativeToolTip": "ArchiSyncServer.Api\\Program.cs",
               "ViewState": "AgIAALwAAAAAAAAAAAAIwMUAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-24T09:52:09.837Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-24T09:52:09.837Z"
             },
             {
               "$type": "Document",
@@ -422,8 +414,7 @@
               "RelativeToolTip": "ArchiSyncServer.Api\\Controllers\\SketchController.cs",
               "ViewState": "AgIAAH4AAAAAAAAAAAAAwIEAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-23T22:03:38.141Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-23T22:03:38.141Z"
             },
             {
               "$type": "Document",
