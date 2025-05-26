@@ -111,9 +111,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store/reduxStore";
 import { useEffect, useState, useMemo } from "react";
-import { PartialMessage, PartialProject } from "../../types/types";
+import { PartialMessage } from "../../types/types";
 import { Typography, Modal, Box } from "@mui/material";
-import { GetAllProjects, GetPublicProjects } from "../../store/Project";
+import { GetAllProjects, GetProjectById } from "../../store/Project";
 import { createMessage } from "../../store/Message";
 import { checkProjectAccess } from "../../store/Premission";
 import { useNavigate } from "react-router";
@@ -121,7 +121,6 @@ import { Search, Filter, Grid3X3, List, Eye } from "lucide-react";
 import Button from "../S/Button";
 import "./Projects.css";
 import "../Dashboard/Dashboard.css";
-import { Project, ProjectDTO } from "../../types/Project";
 import ProjectCard from "./ProjectCard";
 
 type SortOption = 'title' | 'updatedAt' | 'isPublic'
@@ -133,11 +132,10 @@ const UserProjects = () => {
     const projects = useSelector((state: RootState) => state.projects.projects);
     const dispatch: AppDispatch = useDispatch();
     const [showRequestModal, setShowRequestModal] = useState(false);
-    const [selectedProject, setSelectedProject] = useState<ProjectDTO | null>(null);
+    //const [selectedProject, setSelectedProject] = useState<ProjectDTO | null>(null);
     const [showSuccessModal, setShowSuccessModal] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
-    
     // State for enhanced UI
     const [searchTerm, setSearchTerm] = useState("");
     const [accessFilter, setAccessFilter] = useState<string>("all");
@@ -145,6 +143,7 @@ const UserProjects = () => {
     const [sortDirection, setSortDirection] = useState<SortDirection>('desc');
     const [viewMode, setViewMode] = useState<ViewMode>('grid');
     const [filterVisible, setFilterVisible] = useState(false);
+    const selectedProject =useSelector((state: RootState) => state.projects.selectedProject)
 
     useEffect(() => {
         setIsLoading(true);
@@ -222,6 +221,10 @@ const UserProjects = () => {
     };
 
     const accessRequest = async () => {
+       // if (!selectedProject) return;
+       var id=sessionStorage.getItem("projectId");
+
+       dispatch(GetProjectById(id!));
         if (!selectedProject) return;
         try {
             const newMessage: PartialMessage = {
@@ -242,14 +245,14 @@ const UserProjects = () => {
         }
     };
 
-    const handleSort = (option: SortOption) => {
-        if (sortBy === option) {
-            setSortDirection(prev => prev === 'asc' ? 'desc' : 'asc');
-        } else {
-            setSortBy(option);
-            setSortDirection('asc');
-        }
-    };
+    // const handleSort = (option: SortOption) => {
+    //     if (sortBy === option) {
+    //         setSortDirection(prev => prev === 'asc' ? 'desc' : 'asc');
+    //     } else {
+    //         setSortBy(option);
+    //         setSortDirection('asc');
+    //     }
+    // };
 
     const resetFilters = () => {
         setSearchTerm("");

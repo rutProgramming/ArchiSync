@@ -96,14 +96,14 @@ const Projects = () => {
     navigate(`/projects/${projectId}`)
   }
 
-  const handleSort = (option: SortOption) => {
-    if (sortBy === option) {
-      setSortDirection(prev => prev === 'asc' ? 'desc' : 'asc')
-    } else {
-      setSortBy(option)
-      setSortDirection('asc')
-    }
-  }
+  // const handleSort = (option: SortOption) => {
+  //   if (sortBy === option) {
+  //     setSortDirection(prev => prev === 'asc' ? 'desc' : 'asc')
+  //   } else {
+  //     setSortBy(option)
+  //     setSortDirection('asc')
+  //   }
+  // }
 
   const resetFilters = () => {
     setSearchTerm("")

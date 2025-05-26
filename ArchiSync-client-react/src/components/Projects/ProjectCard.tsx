@@ -20,7 +20,6 @@ import {
 } from "lucide-react"
 import {ProjectDTO } from "../../types/Project"
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router"
 import { getDownloadUrl } from "../../Services/uploadService"
 
 interface ProjectCardProps {
@@ -48,7 +47,7 @@ const ProjectCard = ({
   const [isImageLoaded, setIsImageLoaded] = useState(false)
   const [isFavorite, setIsFavorite] = useState(false)
   const [imageUrl, setImageUrl] = useState<string | undefined>(undefined);
-  const navigate = useNavigate()
+  //const navigate = useNavigate()
 
   useEffect(() => {
     let isMounted = true;
