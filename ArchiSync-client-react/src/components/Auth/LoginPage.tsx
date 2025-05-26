@@ -37,7 +37,7 @@ const LoginPage = () => {
     try {
       const resultAction = await dispatch(SignIn({ user }));
       if (SignIn.fulfilled.match(resultAction)) {
-        navigate("/layout", { replace: true });
+        navigate("/", { replace: true });
       } else {
         setFormError(resultAction.error.message || "Login failed");
       }

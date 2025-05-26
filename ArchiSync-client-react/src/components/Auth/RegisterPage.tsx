@@ -40,7 +40,7 @@ const RegisterPage = () => {
     try {
       const resultAction = await dispatch(SignUp({ user }));
       if (SignUp.fulfilled.match(resultAction)) {
-        navigate("/layout", { replace: true });
+        navigate("/", { replace: true });
       } else {
         setFormError(resultAction.error.message || "Registration failed");
       }
