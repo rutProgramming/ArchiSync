@@ -205,7 +205,7 @@ const UserProjects = () => {
             try {
                 let response = null;
                 if (user?.userId) {
-                    response = await dispatch(checkProjectAccess(projectId));
+                    response = await dispatch(checkProjectAccess(projectId)).unwrap();
                     console.log("Project access response:", response);
                 }
                 if (response?.hasAccess) {
@@ -427,7 +427,7 @@ const UserProjects = () => {
                                   <ProjectCard 
                                     project={project} 
                                     viewMode={viewMode}
-                                    onClick={() => handleOpenProject(project.id)}
+                                    handleOpenProject={() => handleOpenProject(project.id)}
                                   />
                                 </div>
                               ))}

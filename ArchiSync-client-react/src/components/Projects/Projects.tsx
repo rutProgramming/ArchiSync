@@ -322,7 +322,7 @@ const Projects = () => {
               <ProjectCard 
                 project={project} 
                 viewMode={viewMode}
-                onClick={() => handleProjectClick(project.id)}
+                handleOpenProject={() => handleProjectClick(project.id)}
               />
             </div>
           ))}
