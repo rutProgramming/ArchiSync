@@ -22,8 +22,11 @@ import UserProjects from './components/Projects/UserProjects.tsx'
 //   return user.RoleName === "user" ? <UserNotifications /> : <ArchitectNotifications />;
 // };
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
-  const user = useSelector((state: RootState) => state.connect.user)
-  return user?.token ? <>{children}</> : <Navigate to="/" replace />
+  const isAuthenticated = useSelector((state: RootState) => state.connect.user)
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />
+  }
+  return <>{children}</>
 }
 
 const RootElement = () => {
