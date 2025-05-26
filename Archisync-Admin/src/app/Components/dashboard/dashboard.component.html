@@ -1,0 +1,11 @@
+<div class="dashboard-container">
+
+  <div class="button-group">
+    <button mat-raised-button  [routerLink]="['users']">Users</button>
+    <button mat-raised-button [routerLink]="['analytics']"> Analytics</button>
+  </div>
+
+  <div class="child-view">
+    <router-outlet></router-outlet>
+  </div>
+</div>

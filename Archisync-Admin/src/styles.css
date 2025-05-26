@@ -1,0 +1,35 @@
+/* You can add global styles to this file, and also import other style files */
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
+
+html, body { height: 100%;background-color: var(--background); }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+:root {
+  --background: #121212;
+  --foreground: #f4f4f5;
+
+  --card:  #1f1e1e;
+  --card-foreground: #f4f4f5;
+
+  --primary: linear-gradient(135deg, #f3d3bd, #d4af86, #cfa18d, #b97d61);
+  --primary-foreground: #121212;
+
+  --secondary: #2a2a2a;
+  --secondary-foreground: #f4f4f5;
+
+  --muted: #2a2a2a;
+  --muted-foreground: #a1a1aa;
+
+  --accent: #d6a477; /* Rose Gold עם נגיעת זהב */
+  --accent-foreground: #121212;
+
+  --destructive: #ef4444;
+  --destructive-foreground: #f8fafc;
+
+  --border: #3a2f2f; /* טון חם, תואם Rose Gold */
+  --input: #2a2a2a;
+  --ring: #d4af86; /* גוון זהוב-חם שמתאים לרוז גולד */
+
+  --radius: 0.5rem;
+}
+

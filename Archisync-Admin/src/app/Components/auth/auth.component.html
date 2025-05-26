@@ -1,0 +1,33 @@
+<div class="auth-page">
+  <div class="auth-container">
+    <div class="auth-form-container">
+      <h2>Login to your account</h2>
+      <p class="auth-subtitle">Welcome back! Please enter your credentials.</p>
+      @if(errorMessage){
+      <div class="auth-error">{{ errorMessage }}</div>
+      }
+      <form [formGroup]="loginForm" (ngSubmit)="login()" class="auth-form">
+        <div class="input-with-icon">
+          <span class="input-icon">
+            <mat-icon>person</mat-icon>
+          </span>
+          <input class="form-input" placeholder="Username" formControlName="userName" type="text" />
+        </div>
+
+        <div class="input-with-icon">
+          <span class="input-icon">
+            <mat-icon>lock</mat-icon>
+          </span>
+          <input class="form-input" placeholder="Password" formControlName="password" type="password" />
+
+        </div>
+
+
+          <button mat-raised-button class="auth-button" type="submit" [disabled]="isSubmitting">
+            {{ isSubmitting ? 'Logging in...' : 'Login' }}
+          </button>
+
+      </form>
+    </div>
+  </div>
+</div>
