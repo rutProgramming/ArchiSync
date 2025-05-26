@@ -23,7 +23,7 @@ import UserProjects from './components/Projects/UserProjects.tsx'
 // };
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const user = useSelector((state: RootState) => state.connect.user)
-  return user?.token ? <>{children}</> : <Navigate to="/login" replace />
+  return user?.token ? <>{children}</> : <Navigate to="/" replace />
 }
 
 const RootElement = () => {

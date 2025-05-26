@@ -17,6 +17,7 @@ using Amazon.Runtime;
 using Amazon.S3;
 using ArchiSyncServer.Api.Notifiers;
 using ArchiSyncServer.Api.Hubs;
+using static System.Net.WebRequestMethods;
 
 
 
@@ -162,11 +163,11 @@ builder.Services.AddSwaggerGen(options =>
         }
     });
 });
-string[] urls = ["http://localhost:5173", "http://localhost:4200", "http://localhost:53141"];
+string[] urls = ["http://localhost:5173", "http://localhost:4200", "https://archisync.onrender.com", "https://archisync-principle.onrender.com"];
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigin",
-        builder => builder.WithOrigins(urls) // או כתובת ה-Frontend שלך בפרודקשן
+        builder => builder.WithOrigins(urls) 
                           .AllowAnyHeader()
                           .AllowAnyMethod()
                           .AllowCredentials());
