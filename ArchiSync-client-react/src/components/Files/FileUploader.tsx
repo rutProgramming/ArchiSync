@@ -174,7 +174,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { Upload, X, File, FileText, ImageIcon, Film } from "lucide-react";
 import { Snackbar, Alert } from "@mui/material";
-import { motion } from "framer-motion";
 import { ArrowBack } from "@mui/icons-material";
 //import "../Style/FileUploader.css";
 import { getUploadUrl, uploadFileToS3 } from "../../Services/uploadService";

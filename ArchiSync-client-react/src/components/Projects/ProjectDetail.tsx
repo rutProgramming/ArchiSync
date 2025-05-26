@@ -27,20 +27,20 @@ const ProjectDetail = () => {
     }
   }, [dispatch, id, user])
 
-  const handleAddComment = (content: string, parentId?: string) => {
-    console.log("Adding comment:", content, parentId)
-    // In a real app, this would call an API to add the comment
-  }
+  // const handleAddComment = (content: string, parentId?: string) => {
+  //   console.log("Adding comment:", content, parentId)
+  //   // In a real app, this would call an API to add the comment
+  // }
 
-  const handleLikeComment = (id: string) => {
-    console.log("Liking comment:", id)
-    // In a real app, this would call an API to like the comment
-  }
+  // const handleLikeComment = (id: string) => {
+  //   console.log("Liking comment:", id)
+  //   // In a real app, this would call an API to like the comment
+  // }
 
-  const handleFileUpload = (files: File[]) => {
-    console.log("Uploading files:", files)
-    // In a real app, this would call an API to upload the files
-  }
+  // const handleFileUpload = (files: File[]) => {
+  //   console.log("Uploading files:", files)
+  //   // In a real app, this would call an API to upload the files
+  // }
   const [activeTab, setActiveTab] = useState<"Upload Files" | "AI Workspace">("Upload Files")
 
   return (

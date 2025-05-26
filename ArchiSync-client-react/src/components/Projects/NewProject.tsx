@@ -1,7 +1,7 @@
 
 import { useState, useRef } from "react"
 import { useNavigate } from "react-router"
-import { Upload, X, Plus } from "lucide-react"
+import { X, Plus } from "lucide-react"
 import Button from "../S/Button"
 import "./NewProject.css"
 import "../../App.css"
@@ -10,7 +10,6 @@ import { addProject } from "../../store/Project"
 import toast from "react-hot-toast"
 import { Project, ProjectDTO, ProjectStatus, ProjectType } from "../../types/Project"
 import { RootState, AppDispatch } from "../../store/reduxStore"
-import { FileUpload } from "@mui/icons-material"
 import FileUploader from "../Files/FileUploader"
 
 const NewProject = () => {
@@ -18,9 +17,9 @@ const NewProject = () => {
   const user = useSelector((state: RootState) => state.connect.user)
   const architectRef = useRef<HTMLInputElement>(null!)
   const [step, setStep] = useState(1)
-  const [projectImage, setProjectImage] = useState<File | null>(null)
-  const [projectImageUrl, setProjectImageUrl] = useState<string>("")
-  const [projectId, setProjectId] = useState<number | null>(null)
+  // const [projectImage, setProjectImage] = useState<File | null>(null)
+  // const [projectImageUrl, setProjectImageUrl] = useState<string>("")
+  // const [projectId, setProjectId] = useState<number | null>(null)
   const project = useSelector((state: RootState) => state.projects.selectedProject);
 
   const [formData, setFormData] = useState<Project>({
@@ -71,7 +70,7 @@ const NewProject = () => {
     setLoading(true)
     dispatch(addProject({ project: formData as ProjectDTO }))
       .unwrap()
-      .then((data) => {
+      .then(() => {
         setLoading(false)
         toast.success("Project created successfully!")
         setStep(2)

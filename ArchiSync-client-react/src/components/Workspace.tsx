@@ -643,8 +643,6 @@
 import React, { useEffect , useRef, useState} from "react";
 import * as signalR from "@microsoft/signalr";
 import { v4 as uuidv4 } from "uuid";
-import { Button, TextField, Stack } from "@mui/material";
-import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { getUploadUrl, uploadFileToS3, getDownloadUrl, generateImage } from "../Services/uploadService";
 import { Upload, Image, Wand2, Download, Save, Loader2, Camera, FileImage, Sparkles } from "lucide-react";
@@ -663,16 +661,16 @@ const Workspace: React.FC<WorkspaceProps> = ({ projectId, projectName }) => {
   // const [description, setDescription] = useState("");
   // const [progress, setProgress] = useState(0);
   // const [isUploading, setIsUploading] = useState(false);
-  const [isGenerating, setIsGenerating] = useState(false);
+  const [isGenerating, _setIsGenerating] = useState(false);
   // const [file, setFile] = useState(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
-    const [connection, setConnection] = useState<signalR.HubConnection | null>(null);
+  const [connection, setConnection] = useState<signalR.HubConnection | null>(null);
   const [connectionId, setConnectionId] = useState<string>("");
   const [uploadedImage, setUploadedImage] = useState<string | null>(null);
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
   const [description, setDescription] = useState("");
   const [progress, setProgress] = useState(0);
-  const [isUploading, setIsUploading] = useState(false);
+  const [_isUploading, setIsUploading] = useState(false);
   const [file, setFile] = useState<File | null>(null);
   const uniqueNameRef = useRef<string | null>(null);
   const user = useSelector((state: RootState) => state.connect.user);
@@ -687,8 +685,8 @@ const Workspace: React.FC<WorkspaceProps> = ({ projectId, projectName }) => {
     newConnection
       .start()
       .then(() => {
-        console.log("Connected to SignalR hub");
         setConnection(newConnection);
+        console.log("Connected to SignalR hub",connection);
 
         newConnection.on("SketchCompleted", (data: { outputUrl: string }) => {
           console.log("Image received from SignalR:", data.outputUrl);

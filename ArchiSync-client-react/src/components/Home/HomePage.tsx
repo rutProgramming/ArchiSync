@@ -6,8 +6,6 @@ import TestimonialsSection from "./TestimonialsSection"
 import CTASection from "./CTASection "
 import "../../App.css"
 
-import { Environment, OrbitControls, Stage, useGLTF } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
 
 const HomePage = () => {
   return (<>

@@ -23,7 +23,7 @@ export const deleteFile = createAsyncThunk(
     'Project/deleteFile',
     async (file: PartialFile, thunkAPI) => {
         try {
-            const response = await axios.delete(`${url}/${file.id}`, {
+            await axios.delete(`${url}/${file.id}`, {
                 headers: GetHeaders(),
             });
                 return file.id;
