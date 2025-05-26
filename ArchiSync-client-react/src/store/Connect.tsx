@@ -29,7 +29,7 @@ export const SignUp = createAsyncThunk('connect/signUp', async ({ user }: { user
     const userDetails = {
         UserName: user.userName,
         Email: user.email,
-        PasswordHash: user.password,
+        Password: user.password,
         RoleName: user.RoleName,
     };
     try {
@@ -40,11 +40,10 @@ export const SignUp = createAsyncThunk('connect/signUp', async ({ user }: { user
             user: {
                 userId: response.data.userId,
                 token: response.data.token,
-                mainFolderId: response.data.mainFolderId,
                 userName: user.userName,
                 email: user.email,
                 password: user.password,
-                roleName: user.RoleName,
+                RoleName: user.RoleName,
             }
 
 
@@ -70,11 +69,11 @@ const userSlice = createSlice({
     },
     reducers: {
         logout: (state) => {
+            
             sessionStorage.removeItem("user");
             sessionStorage.removeItem("token");
             state.user = {} as Puser;
-            state.user.token = "";
-            
+            state.user.token = "";            
         },
     },
     extraReducers: (builder) => {

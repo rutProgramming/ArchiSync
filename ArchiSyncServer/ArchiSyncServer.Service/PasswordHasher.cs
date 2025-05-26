@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 
 namespace ArchiSyncServer.Service.Services
 {
-    public static class PasswordHasher
+    public static class Passworder
     {
         private const int SaltSize = 16;  // 128-bit salt
         private const int HashSize = 32;  // 256-bit hash
@@ -56,10 +56,10 @@ namespace ArchiSyncServer.Service.Services
 
                 // Extract salt and hash
                 byte[] salt = new byte[SaltSize];
-                byte[] storedPasswordHash = new byte[HashSize];
+                byte[] storedPassword = new byte[HashSize];
 
                 Array.Copy(hashBytes, 0, salt, 0, SaltSize);
-                Array.Copy(hashBytes, SaltSize, storedPasswordHash, 0, HashSize);
+                Array.Copy(hashBytes, SaltSize, storedPassword, 0, HashSize);
 
                 // Hash input password with extracted salt
                 byte[] computedHash = KeyDerivation.Pbkdf2(
@@ -70,7 +70,7 @@ namespace ArchiSyncServer.Service.Services
                     numBytesRequested: HashSize);
 
                 // Compare hashes securely
-                return CryptographicOperations.FixedTimeEquals(storedPasswordHash, computedHash);
+                return CryptographicOperations.FixedTimeEquals(storedPassword, computedHash);
             }
             catch (FormatException)
             {

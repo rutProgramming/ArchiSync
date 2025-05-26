@@ -10,9 +10,11 @@ namespace ArchiSyncServer.Core.Entities
     public class Comment
     {
         [Key]
-        public int CommentId { get; set; }
-        public int DocumentId { get; set; }
+        public int Id { get; set; }
+        public int ProjectId { get; set; }
+        public Project Project { get; set; }
         public int UserId { get; set; }
+        public User User { get; set; }
         public string Content { get; set; }
         public DateTime CreatedAt { get; set; } 
         public DateTime UpdatedAt { get; set; } 

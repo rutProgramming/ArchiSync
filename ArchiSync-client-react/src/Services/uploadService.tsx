@@ -1,10 +1,13 @@
 import axios from "axios";
+import { GetHeaders } from "../store/Project";
 const url = import.meta.env.VITE_BASE_URL
 
-export const getUploadUrl = async (parentId: string, projectName: string, fileName: string, contentType: string) => {
+export const getUploadUrl = async ( projectName: string, fileName: string, contentType: string) => {
+  console.log("getUploadUrl", projectName, fileName, contentType);
   try {
-    const response = await axios.get(`${url}/api/Upload/upload-url`, {
-      params: { parentId, projectName, fileName, contentType },
+    const response = await axios.get(`${url}/api/S3/upload-url`, {
+      params: { projectName, fileName, contentType },
+      headers: GetHeaders()
     });
     return response.data.url;
   }
@@ -15,8 +18,6 @@ export const getUploadUrl = async (parentId: string, projectName: string, fileNa
 
 export const uploadFileToS3 = async (url: string, file: File, onUploadProgress?: (progress: number) => void) => {
   try {
-
-
     await axios.put(url, file, {
       headers: { "Content-Type": file.type },
       onUploadProgress: (progressEvent) => {
@@ -30,10 +31,11 @@ export const uploadFileToS3 = async (url: string, file: File, onUploadProgress?:
   }
 };
 
-export const getDownloadUrl = async (parentId: number, projectName: string, fileName: string) => {
+export const getDownloadUrl = async (S3key: string) => {
   try {
-    const response = await axios.get(`${url}/api/Upload/download-url`, {
-      params: { parentId, projectName, fileName },
+    const response = await axios.get(`${url}/api/S3/download-url`, {
+      params: { S3key },
+      headers: GetHeaders()
     });
     return response.data;
   }

@@ -1,63 +1,127 @@
 import { createBrowserRouter, Navigate } from 'react-router'
-import Home from './components/home'
-import AppLayout from './components/AppLayout'
-import FileUploader from './components/FileUploader'
-import ArchitectProjects from './components/ArchitectProjects'
-import SideBar from './components/SideBar'
-import ProjectDashboard from './components/ProjectDashboard'
-import AddProject from './components/Addproject'
-import UserProjects from './components/UserProjects'
-import Workspace from './components/Workspace'
+import AppLayout from './components/Layout/AppLayout'
+import Dashboard from './components/Dashboard/Dashboard.tsx'
 import { useSelector } from 'react-redux'
 import { RootState } from './store/reduxStore'
-import UserNotifications from './components/UserNotifications'
-import ArchitectNotifications from './components/ArchitectNotifications'
-import { ReactElement } from 'react'
+import HomePage from './components/Home/HomePage'
+import LoginPage from './components/Auth/LoginPage'
+import RegisterPage from './components/Auth/RegisterPage'
+import Projects from './components/Projects/Projects'
+import NewProject from './components/Projects/NewProject'
+import ProjectDetail from './components/Projects/ProjectDetail'
+import AIAssistant from './components/Ai/AIAssistant.tsx'
+import UserMessages from './components/Messages/UserNotifications.tsx'
+import ArchitectMessages from './components/Messages/ArchitectNotifications.tsx'
+import UserProjects from './components/Projects/UserProjects.tsx'
 
 
 
 
-const ProtectedRoute = ({ element }: { element: ReactElement }) => {
-  const user = useSelector((state: RootState) => state.connect.user);
-  if (user?.RoleName === "architect") {
-    return element;
+// const ProtectedMessagesRoute = () => {
+//   const user = useSelector((state: RootState) => state.connect.user);
+//   return user.RoleName === "user" ? <UserNotifications /> : <ArchitectNotifications />;
+// };
+const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
+  const isAuthenticated = useSelector((state: RootState) => state.connect.user)
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />
   }
+  return <>{children}</>
+}
+const RootElement = () => {
+  const user = useSelector((state: RootState) => state.connect.user)
+  return user.token ? <AppLayout /> : <HomePage />
+}
+const ProjectsElement = () => {
+  const user = useSelector((state: RootState) => state.connect.user)
+  if (!user || !user.token) {
+    return <Navigate to="/login" replace />
+  }
+  console.log("User Role:", user)
+  if (user.RoleName === "user") {
+    return <UserProjects />
+  } else if (user.RoleName === "architect") {
+    return <Projects />
+  }
+}
 
-  return null;
-};
-
-
-const ProtectedMessagesRoute = () => {
-  const user = useSelector((state: RootState) => state.connect.user);
-  return user.RoleName === "user" ? <UserNotifications /> : <ArchitectNotifications />;
-};
-
+const MessageElement = () => {
+  const user = useSelector((state: RootState) => state.connect.user)
+  if (!user || !user.RoleName) {
+    return <Navigate to="/login" replace />
+  }
+  if (user.RoleName === "user") {
+    return <UserMessages />
+  } else if (user.RoleName === "architect") {
+    return <ArchitectMessages />
+  }
+}
 export const router = createBrowserRouter(
 
   [
-    {
-      path: '/',
-      element: <AppLayout />,
-      children: [
-        { index: true, element: <Navigate to="/home" replace /> },
-        { path: "home", element: <Home /> },
-
-        {
-          path: "sideBar",
-          element: <SideBar />,
-          children: [
-            { path: "addProject", element: <ProtectedRoute element={<AddProject />} /> },
-            { path: "myProjects", element: <ProtectedRoute element={<ArchitectProjects />} /> },
-            { path: "myProjects/project/:projectId", element: <ProtectedRoute element={<ProjectDashboard />} /> },
-            { path: "myProjects/project/:projectId/upload/:projectName", element: <ProtectedRoute element={<FileUploader />} /> },
-            { path: "myProjects/project/:projectId/workSpace/:projectName", element: <ProtectedRoute element={<Workspace />} /> },
-            { path: "messages", element: <ProtectedMessagesRoute /> },
-          ]
-        },
-
-        { path: "projects", element: <UserProjects /> },
-          { path: "projects/project/:projectId", element: <ProjectDashboard /> }
-      ]
+    { path: "/login", element: <LoginPage /> },
+    { path: "/register", element: <RegisterPage /> },
+  {
+    path: "/",
+    element: (
+      <ProtectedRoute>
+        <RootElement />
+      </ProtectedRoute>
+    ),
+    children: [
+       {
+      index: true,
+      element: <Navigate to="/dashboard" replace />
     },
-  ]);
+      { path: "dashboard",
+        element: (
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        )
+      },
+      { path: "projects",
+        element: (
+          <ProtectedRoute>
+          <ProjectsElement />
+        </ProtectedRoute>
+      )
+    },
+    {
+      path: "new",
+      element: (
+        <ProtectedRoute>
+            <NewProject/>
+        </ProtectedRoute>
+      )
+    },
+    {
+      path: "projects/:id",
+      element: (
+        <ProtectedRoute>
+            <ProjectDetail />
+        </ProtectedRoute>
+      )
+    },
+
+    { path: "messages",
+      element: (
+        <ProtectedRoute>
+            <MessageElement />
+        </ProtectedRoute>
+      )
+    },
+    {
+      path: "ai-assistant",
+      element: (
+        <ProtectedRoute>
+            <AIAssistant />
+        </ProtectedRoute>
+      )
+    },
+    { path: "*", element: <Navigate to="/" replace /> }
+    ]
+    }
+  ]
+);
 

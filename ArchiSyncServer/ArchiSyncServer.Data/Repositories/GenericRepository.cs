@@ -41,6 +41,24 @@ namespace ArchiSyncServer.Data.Repositories
             return entity;
         }
 
+        //public async Task UpdateAsync(int id, T entity)
+        //{
+        //    var existingEntity = await _dbSet.FindAsync(id);
+        //    if (existingEntity == null)
+        //    {
+        //        throw new KeyNotFoundException($"Entity with ID {id} not found.");
+        //    }
+
+        //    var property = typeof(T).GetProperty("Id");
+        //    if (property != null && property.CanWrite)
+        //    {
+        //        property.SetValue(entity, id);
+        //    }
+
+        //    _context.Entry(existingEntity).CurrentValues.SetValues(entity);
+
+        //    _context.Entry(existingEntity).Property("Id").IsModified = false;
+        //}
         public async Task UpdateAsync(int id, T entity)
         {
             var existingEntity = await _dbSet.FindAsync(id);
@@ -49,10 +67,25 @@ namespace ArchiSyncServer.Data.Repositories
                 throw new KeyNotFoundException($"Entity with ID {id} not found.");
             }
 
-            _context.Entry(existingEntity).CurrentValues.SetValues(entity);
 
-            _context.Entry(existingEntity).Property("Id").IsModified = false;
+            var keyProperty = _context.Model.FindEntityType(typeof(T)).FindPrimaryKey().Properties.First();
+            var keyName = keyProperty.Name;
+
+            var property = typeof(T).GetProperty(keyName);
+            if (property != null && property.CanWrite)
+            {
+                property.SetValue(entity, id);
+            }
+            var entry = _context.Entry(existingEntity);
+            foreach (var prop in typeof(T).GetProperties())
+            {
+                if (prop.Name == keyName) continue; 
+                var value = prop.GetValue(entity);
+                entry.Property(prop.Name).CurrentValue = value;
+            }
+            await _context.SaveChangesAsync();
         }
+
 
         public async Task DeleteAsync(int id)
         {

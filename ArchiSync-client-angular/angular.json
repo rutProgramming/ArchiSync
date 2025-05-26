@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "project": {
+    "Archisync-Admin": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/project",
+            "outputPath": "dist/archisync-admin",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -37,8 +37,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "700kB",
-                  "maximumError": "1.2MB"
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
                 }
               ],
               "outputHashing": "all"
@@ -55,10 +60,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "project:build:production"
+              "buildTarget": "Archisync-Admin:build:production"
             },
             "development": {
-              "buildTarget": "project:build:development"
+              "buildTarget": "Archisync-Admin:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -91,6 +96,6 @@
     }
   },
   "cli": {
-    "analytics": "452ab693-10cd-403d-8af2-a94455da6e58"
+    "analytics": false
   }
 }

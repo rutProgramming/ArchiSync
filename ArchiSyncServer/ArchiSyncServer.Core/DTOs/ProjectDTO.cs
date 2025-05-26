@@ -14,24 +14,40 @@ namespace ArchiSyncServer.Core.DTOs
         public int Id { get; set; }
 
         [Required, MaxLength(255)]
-        public string Name { get; set; }
+        public string Title { get; set; } = string.Empty;
         public string Description { get; set; }
 
         public int? ParentId { get; set; } 
-        public virtual Project Parent { get; set; }
+        //public virtual Project Parent { get; set; }
 
         public int OwnerId { get; set; }
-        public  User Owner { get; set; }
+        public  UserDTO Owner { get; set; }
 
         public bool IsPublic { get; set; }
+        public ProjectType Type { get; set; }
 
-        public DateTime CreatedAt { get; set; } 
-        public DateTime UpdatedAt { get; set; } 
+        public ProjectStatus Status { get; set; }
+        public string Location { get; set; } = string.Empty;
+        public string ProjectImage { get; set; }
 
-       // public virtual ICollection<Project> Children { get; set; } = new List<Project>(); // תתי-תיקיות
-       public virtual ICollection<File> Files { get; set; } // קבצים בתוך הפרויקט/תיקייה
-        public virtual ICollection<ProjectPermission> Permissions { get; set; }  
+        public int ClientId { get; set; }
+        public string ClientUserName { get; set; }
+
+        public UserDTO Client { get; set; }
+
+
+        public DateTime StartDate { get; set; }
+        public DateTime UpdatedAt { get; set; }
+        public DateTime? EndDate { get; set; }
+
+        public virtual ICollection<File> Files { get; set; }
+        public virtual ICollection<ProjectPermission> Permissions { get; set; }
+        public List<string> ArchitectUserNames { get; set; } = new List<string>();
+
+        public ICollection<User> Architects { get; set; }
+
     }
 
 
 }
+

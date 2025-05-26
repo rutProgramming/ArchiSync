@@ -11,8 +11,8 @@ namespace ArchiSyncServer.Core.IRepositories
     public interface IFileRepository : IGenericRepository<File>
     {
         Task<IEnumerable<File>> GetFilesInProjectAsync(int projectId);
+        Task<int> CountAllAsync();
 
     }
-
 
 }

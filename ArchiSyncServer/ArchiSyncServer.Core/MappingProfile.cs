@@ -12,21 +12,24 @@ using File = ArchiSyncServer.Core.Entities.File;
 
 namespace ArchiSyncServer.core
 {
-    
+
 
     public class MappingProfile : Profile
     {
         public MappingProfile()
         {
-            CreateMap<Project, ProjectDTO>().ReverseMap();
-            CreateMap<Message, MessageDTO> ().ReverseMap();
+            CreateMap<Project, ProjectDTO>()
+                .ForMember(dest => dest.Architects, opt => opt.MapFrom(src =>
+                    src.ProjectArchitects.Select(pa => pa.Architect).ToList()
+                ))
+
+                .ReverseMap();
+            CreateMap<Message, MessageDTO>().ReverseMap();
             CreateMap<Comment, CommentDTO>().ReverseMap();
-            CreateMap<Project, ProjectDTO>().ReverseMap();
             CreateMap<User, UserDTO>().ReverseMap();
             CreateMap<UserRoles, UserRolesDTO>().ReverseMap();
             CreateMap<ProjectPermission, ProjectPermissionDTO>().ReverseMap();
             CreateMap<File, FileDTO>().ReverseMap();
-
         }
     }
 

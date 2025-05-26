@@ -9,7 +9,11 @@ namespace ArchiSyncServer.Core.IRepositories
 {
     public interface IUserRepository : IGenericRepository<User>
     {
-         Task<User> GetUserByUsernameAsync(string userName);
+        Task<User> GetUserByUserNameAsync(string userName);
+        Task<List<DateTime>> GetLoginDatesAsync();
+        Task<int> CountUserTotal();
+        Task<List<User>> GetUsersByUserNamesAsync(IEnumerable<string> userNames);
+
     }
 
 

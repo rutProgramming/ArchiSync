@@ -29,8 +29,8 @@ namespace ArchiSyncServer.Api.Controllers
             _fileService = fileService;
             _mapper = mapper;
         }
-        private int GetUserId() => int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
 
+        [Authorize(Policy = "ArchitectOnly")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<FileDTO>>> GetAllFiles(int projectId,bool isPublic=false, int userId = 0)
         {
@@ -43,6 +43,7 @@ namespace ArchiSyncServer.Api.Controllers
                 return Unauthorized(new { message = ex.Message });
             }
         }
+
 
         [HttpGet("{id}")]
         public async Task<ActionResult<FileDTO>> GetFileById(int id)

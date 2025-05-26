@@ -14,7 +14,6 @@ namespace ArchiSyncServer.Data.Repositories
     {
         private readonly ApplicationDbContext _context;
         private readonly IProjectRepository _ProjectRepository;
-        private readonly IProjectRepository _projectRepository;
         private readonly IProjectPermissionRepository _projectPermission;
         private readonly ICommentRepository _commentRepository;
         private readonly IUserRepository _userRepository;
@@ -26,7 +25,6 @@ namespace ArchiSyncServer.Data.Repositories
         {
             _context = context;
             _ProjectRepository = new ProjectRepository(context);
-            _projectRepository = new ProjectRepository(context);
             _projectPermission = new ProjectPermissionRepository(context);
             _commentRepository = new CommentRepository(context);
             _userRepository = new UserRepository(context);

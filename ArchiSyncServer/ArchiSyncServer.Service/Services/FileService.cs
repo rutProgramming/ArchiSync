@@ -52,7 +52,7 @@ namespace ArchiSyncServer.Service.Services
             {
                 throw new KeyNotFoundException("File not found.");
             }
-            return file == null ? null : _mapper.Map<FileDTO>(file);
+            return _mapper.Map<FileDTO>(file);
         }
 
         public async Task<FileDTO> CreateFileAsync(FileDTO fileDto)
@@ -61,37 +61,32 @@ namespace ArchiSyncServer.Service.Services
             {
                 throw new ArgumentNullException(nameof(fileDto), "File data cannot be null.");
             }
-            try
+
+            var existing = await _fileRepository.GetByIdAsync(fileDto.Id);
+            if (existing != null)
             {
-                await GetFileAsync(fileDto.Id);
                 throw new ArgumentException("File already exists.");
             }
-            catch (KeyNotFoundException)
-            {
-                var file = _mapper.Map<File>(fileDto);
-                file.CreatedAt = DateTime.UtcNow;
-                file.UpdatedAt = DateTime.UtcNow;
-                file.IsDeleted = false;
-                var createdFile = await _fileRepository.CreateAsync(file);
-                await _repositoryManager.SaveAsync();
-                return _mapper.Map<FileDTO>(createdFile);
-            }
-           
+
+            var file = _mapper.Map<File>(fileDto);
+            file.CreatedAt = DateTime.UtcNow;
+            file.UpdatedAt = DateTime.UtcNow;
+
+            var createdFile = await _fileRepository.CreateAsync(file);
+            await _repositoryManager.SaveAsync();
+
+            return _mapper.Map<FileDTO>(createdFile);
         }
         public async Task<bool> DeleteFileAsync(int id)
         {
-            try
-            {
-                var file = await _fileRepository.GetByIdAsync(id);
-                if (file == null) return false;
-                file.IsDeleted = true;
+            
+                var fileDto =await GetFileAsync(id);
+                fileDto.IsDeleted = true;
+                var file=_mapper.Map<File>(fileDto);
                 await _fileRepository.UpdateAsync(id, file);
+                await _repositoryManager.SaveAsync();
                 return true;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error deleting File.", ex);
-            }
+            
         }
 
         

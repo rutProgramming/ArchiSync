@@ -19,7 +19,7 @@ namespace ArchiSyncServer.Service.Services
             _configuration = configuration;
         }
 
-        public string GenerateJwtToken(int userId, string username, string[] roles)
+        public string GenerateJwtToken(int userId, string username, string role)
         {
 
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT_SECRET_KEY"]));
@@ -28,19 +28,16 @@ namespace ArchiSyncServer.Service.Services
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.NameIdentifier, userId.ToString()),
-                new Claim(ClaimTypes.Name, username) 
+                new Claim(ClaimTypes.Name, username),
+                new Claim(ClaimTypes.Role, role)
             };
 
-            foreach (var role in roles)
-            {
-                claims.Add(new Claim(ClaimTypes.Role, role));
-            }
 
             var token = new JwtSecurityToken(
                 issuer: _configuration["JWT_ISSUER"],
                 audience: _configuration["JWT_AUDIENCE"],
                 claims: claims,
-                expires: DateTime.UtcNow.AddHours(2),
+                expires: DateTime.UtcNow.AddHours(12),
                 signingCredentials: credentials
             );
 

@@ -44,30 +44,28 @@ namespace ArchiSyncServer.Service.Services
             }
             return _mapper.Map<ProjectPermissionDTO>(projectPermission);
         }
-
         public async Task<ProjectPermissionDTO> CreatePermissionAsync(ProjectPermissionDTO projectPermissionDto)
         {
             if (projectPermissionDto == null)
             {
                 throw new ArgumentNullException(nameof(projectPermissionDto), "ProjectPermission data cannot be null.");
             }
-            try
-            {
-                await GetprojectPermissionAsync(projectPermissionDto.Id);
-                throw new ArgumentException("ProjectPermission already exists.");
-            }
-            catch (KeyNotFoundException)
-            {
 
-                var projectPermission = _mapper.Map<ProjectPermission>(projectPermissionDto);
-                projectPermission.CreatedAt = DateTime.UtcNow;
-                projectPermission.UpdatedAt = DateTime.UtcNow;
-                var createdProjectPermission = await _repositoryManager.projectPermission.CreateAsync(projectPermission);
-                var message = await _repositoryManager.Message.GetByIdAsync(projectPermission.Id);
-
-                await _repositoryManager.SaveAsync();
-                return _mapper.Map<ProjectPermissionDTO>(createdProjectPermission);
+            var existingPermission = await _projectPermissionRepository.GetByIdAsync(projectPermissionDto.Id);
+            if (existingPermission != null)
+            {
+                throw new ArgumentException("Permission already exists.");
             }
+
+            var projectPermission = _mapper.Map<ProjectPermission>(projectPermissionDto);
+            projectPermission.CreatedAt = DateTime.UtcNow;
+            projectPermission.UpdatedAt = DateTime.UtcNow;
+
+            var createdProjectPermission = await _repositoryManager.projectPermission.CreateAsync(projectPermission);
+
+            await _repositoryManager.SaveAsync();
+
+            return _mapper.Map<ProjectPermissionDTO>(createdProjectPermission);
         }
 
     }

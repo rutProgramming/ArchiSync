@@ -11,8 +11,9 @@ namespace ArchiSyncServer.Core.IServices
 {
     public interface IProjectService
     {
-        Task<ProjectDTO> GetProjectAsync(int id);
-        Task<ProjectDTO> CreateProjectAsync(ProjectDTO project);
+
+        Task<ProjectDTO> GetProjectAsync(int id,int userId,string roleName);
+        Task<ProjectDTO> CreateProjectAsync(ProjectDTO project,int ownerId);
         Task UpdateProjectAsync(int id,ProjectDTO project);
         Task<bool> DeleteProjectAsync(int projectId);
         Task<IEnumerable<ProjectDTO>> GetAllProjectsAsync();
@@ -22,6 +23,7 @@ namespace ArchiSyncServer.Core.IServices
         Task<IEnumerable<ProjectDTO>> GetUserAccessibleProjectsAsync(int userId);
         Task<IEnumerable<ProjectDTO>> GetPublicProjectsAsync();
         Task<bool> IsProjectNameUniqueAsync(int userId, string projectName);
+
 
 
     }

@@ -1,0 +1,129 @@
+
+
+/* מיכל ראשי */
+.dashboard-container {
+  padding: 20px;
+  color: var(--ring);
+  margin: 0 auto;
+  border-radius: 10px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* כותרת ראשית */
+.dashboard-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+  user-select: none;
+}
+
+/* סיכום סטטיסטיקות - עיצוב ישן */
+.stats-summary {
+  margin-bottom: 30px;
+  font-size: 16px;
+  color: var(--ring);
+  background-color: var(--card);
+  padding: 30px;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 10px;
+}
+
+.stat-card {
+  background-color: var(--background);
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid var(--ring);
+  flex: 1;
+  margin: 0 10px;
+  box-sizing: border-box;
+  text-align: center;
+  user-select: none;
+}
+
+.stat-card:first-child {
+  margin-left: 0;
+}
+
+.stat-card:last-child {
+  margin-right: 0;
+}
+
+.stat-title {
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.stat-value {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--ring);
+}
+
+.charts-grid {
+ display: flex;
+  flex-wrap: wrap;
+  flex-flow: column;
+  gap: 20px; /* gap-5 */
+  justify-content: center;
+  margin-top: 20px; /* mt-5 */
+}
+
+@media (min-width: 768px) {
+  .charts-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .charts-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.chart-card {
+  background-color: var(--card);
+  border-radius: 1rem; /* rounded-xl */
+  padding: 2rem; /* p-8 */
+  box-shadow: 0 10px 15px rgba(0,0,0,0.1); /* shadow-lg */
+  transition: box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chart-card:hover {
+  box-shadow: 0 15px 25px rgba(0,0,0,0.2); /* hover:shadow-2xl */
+}
+
+.chart-title {
+  font-size: 1.5rem; /* text-2xl */
+  font-weight: 700; /* font-bold */
+  margin-bottom: 2rem; /* mb-8 */
+  color: #d97706; /* text-yellow-600 */
+  display: flex;
+  align-items: center;
+  gap: 0.75rem; /* gap-3 */
+}
+
+.chart-canvas {
+  width: 100%;
+  max-width: 384px; /* max-w-sm */
+  height: 18rem; /* h-72 */
+}
+/* רספונסיביות */
+@media (min-width: 768px) {
+  .charts-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .stat-card {
+    margin: 0 15px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .charts-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}

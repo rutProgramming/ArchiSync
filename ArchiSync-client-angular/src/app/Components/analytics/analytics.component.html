@@ -1,0 +1,35 @@
+<div class="dashboard-container">
+  <h2 class="dashboard-title">Statistics Dashboard</h2>
+
+  <div class="stats-summary">
+    <div class="stat-card">
+      <h3 class="stat-title">Total Users</h3>
+      <p class="stat-value">{{ totalUsers }}</p>
+    </div>
+    <div class="stat-card">
+      <h3 class="stat-title">Total Projects</h3>
+      <p class="stat-value">{{ totalProjects }}</p>
+    </div>
+    <div class="stat-card">
+      <h3 class="stat-title">Total Files</h3>
+      <p class="stat-value">{{ totalFiles }}</p>
+    </div>
+  </div>
+
+  <div class="charts-grid">
+    <div class="chart-card">
+      <h3 class="chart-title">Project Types</h3>
+      <canvas baseChart [data]="pieData" chartType="pie"></canvas>
+    </div>
+
+    <div class="chart-card">
+      <h3 class="chart-title">Daily Logins</h3>
+      <canvas baseChart [data]="barData" chartType="bar"></canvas>
+    </div>
+
+    <div class="chart-card">
+      <h3 class="chart-title">Active Users</h3>
+      <canvas baseChart [data]="barData_project" chartType="bar"></canvas>
+    </div>
+  </div>
+</div>

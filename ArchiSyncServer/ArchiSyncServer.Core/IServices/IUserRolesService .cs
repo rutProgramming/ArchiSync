@@ -11,11 +11,7 @@ namespace ArchiSyncServer.Core.Iservices
 {
     public interface IUserRolesService
     {
-        Task<UserRolesDTO> GetUserRolesAsync(int id);
-        Task<IEnumerable<UserRolesDTO>> GetAllUserRolesAsync();
-        Task<UserRolesDTO> CreateUserRolesAsync(UserRolesDTO userRolesDto);
-        Task UpdateUserRolesAsync(UserRolesDTO userRolesDto);
-        Task DeleteUserRolesAsync(int id);
+        Task<UserRolesDTO> CreateUserRolesAsync(int userId, string roleName);
     }
     
 

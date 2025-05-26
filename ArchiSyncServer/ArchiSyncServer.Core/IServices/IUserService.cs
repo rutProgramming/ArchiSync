@@ -13,8 +13,8 @@ namespace ArchiSyncServer.Core.Iservices
     {
         Task<UserDTO> GetUserAsync(int id);
         Task<IEnumerable<UserDTO>> GetAllUsersAsync();
-        Task<UserDTO> CreateUserAsync(UserDTO userDto,string roleName);
-        Task UpdateUserAsync(int id,UserDTO userDto);
+        Task<UserDTO> CreateUserAsync(UserForCreationDTO userDto,string roleName);
+        Task UpdateUserAsync(int id,UserForCreationDTO userDto);
         Task DeleteUserAsync(int id);
         Task<UserRoles> Authenticate(string userName,string password);
 

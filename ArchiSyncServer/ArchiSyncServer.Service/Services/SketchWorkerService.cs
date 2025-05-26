@@ -60,7 +60,6 @@ namespace ArchiSyncServer.Service.Services
                     var content = new StringContent(json, Encoding.UTF8, "application/json");
 
                     _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", _config["REPLICATE_KEY"]);
-                    _logger.LogInformation(_httpClient.DefaultRequestHeaders.Authorization.ToString());
                     var response = await _httpClient.PostAsync("https://api.replicate.com/v1/predictions", content);
                     var result = await response.Content.ReadAsStringAsync();
                     var prediction = JsonConvert.DeserializeObject<dynamic>(result);
@@ -77,14 +76,13 @@ namespace ArchiSyncServer.Service.Services
                         if (statusData.status == "succeeded")
                         {
                             string outputUrl = statusData.output;
-                            _logger.LogInformation($"✅ Prediction succeeded. URL: {outputUrl}");
-
+                            _logger.LogInformation($"Prediction succeeded. URL: {outputUrl}");
                             await _notifier.NotifySketchCompletedAsync(job.ConnectionId, outputUrl);
                             break;
                         }
                         else if (statusData.status == "failed")
                         {
-                            _logger.LogError("❌ Prediction failed.");
+                            _logger.LogError("Prediction failed.");
                             break;
                         }
 

@@ -25,7 +25,75 @@ namespace ArchiSyncServer.Api.Controllers
             _mapper = mapper;
         }
         private int GetUserId() => int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
-        private string GetUserRole() => User.FindFirst(ClaimTypes.Role)?.Value ?? "";
+
+
+        //============Used functions===============
+       
+        [Authorize(Policy = "ArchitectOnly")]
+        [HttpGet("architect")]
+        public async Task<ActionResult<IEnumerable<MessageDTO>>> GetArchitectMessages()
+        {
+            int architectId = GetUserId();
+            var messages = await _messageService.GetAllArchitectMessagesAsync(architectId);
+            return Ok(messages);
+        }
+
+
+        [Authorize(Policy = "UserAccess")]
+        [HttpGet("user")]
+        public async Task<ActionResult<IEnumerable<MessageDTO>>> GetUserMessages()
+        {
+            int userId = GetUserId();
+            var messages = await _messageService.GetAllUserMessagesAsync(userId);
+            return Ok(messages);
+        }
+
+        [Authorize(Policy = "UserAccess")]
+        [HttpPost]
+        public async Task<ActionResult<MessageDTO>> Post([FromBody] MessagePostModel messagePostModel)
+        {
+            try
+            {
+                var messageDto = _mapper.Map<MessageDTO>(messagePostModel);
+                messageDto.CreatedAt = DateTime.UtcNow;
+                messageDto.UpdatedAt = DateTime.UtcNow;
+
+                var createdMessage = await _messageService.CreateMessageAsync(messageDto);
+                return CreatedAtAction(nameof(Get), new { id = createdMessage.Id, createdMessage });
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+
+        [Authorize(Policy = "UserAccess")]
+        [HttpGet("unread-count")]
+        public async Task<IActionResult> GetUnreadMessagesCount()
+        {
+            try
+            {
+                var roleName = User.FindFirst(ClaimTypes.Role)?.Value;
+                var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+                int unreadCount = await _messageService.GetUnreadMessagesCountAsync(userId, roleName);
+                return Ok(new { unreadMessages = unreadCount });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
+        }
+
+        //============Unused functions for future extenion===============
+
+
+        [Authorize(Policy ="AdminOnly")]
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<MessageDTO>>> Get()
+        {
+            var messages = await _messageService.GetAllMessagesAsync();
+            return Ok(messages);
+        }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<MessageDTO>> Get(int id)
@@ -45,47 +113,8 @@ namespace ArchiSyncServer.Api.Controllers
             }
         }
 
-        [Authorize(Policy = "ArchitectOnly")]
-        [HttpGet("architect")]
 
-        public async Task<ActionResult<IEnumerable<MessageDTO>>> GetArchitectMessages()
-        {
-            int architectId = GetUserId();
-            var messages = await _messageService.GetAllArchitectMessagesAsync(architectId);
-            return Ok(messages);
-        }
         [Authorize(Policy = "UserAccess")]
-        [HttpGet("user")]
-        public async Task<ActionResult<IEnumerable<MessageDTO>>> GetUserMessages()
-        {
-            int userId = GetUserId();
-            var messages = await _messageService.GetAllUserMessagesAsync(userId);
-            return Ok(messages);
-        }
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<MessageDTO>>> Get()
-        {
-            var messages = await _messageService.GetAllMessagesAsync();
-            return Ok(messages);
-        }
-        [HttpPost]
-        public async Task<ActionResult<MessageDTO>> Post([FromBody] MessagePostModel messagePostModel)
-        {
-            try
-            {
-                var messageDto = _mapper.Map<MessageDTO>(messagePostModel);
-                messageDto.CreatedAt = DateTime.UtcNow;
-                messageDto.UpdatedAt = DateTime.UtcNow;
-            
-                var createdMessage = await _messageService.CreateMessageAsync(messageDto);
-                return CreatedAtAction(nameof(Get), new { id = createdMessage.Id, createdMessage });
-            }
-            catch (ArgumentException ex)
-            {
-                return BadRequest(new { message = ex.Message });
-            }
-        }
-
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] MessageDTO messageDto)
         {
@@ -104,6 +133,8 @@ namespace ArchiSyncServer.Api.Controllers
             }
         }
 
+
+        [Authorize(Policy = "UserAccess")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -121,21 +152,7 @@ namespace ArchiSyncServer.Api.Controllers
                 return NotFound(new { message = ex.Message});
             }
         }
-        [Authorize(Policy = "UserAccess")]
-        [HttpGet("unread-count")]
-        public async Task<IActionResult> GetUnreadMessagesCount()
-        {
-            try
-            {
-                var roleName = User.FindFirst(ClaimTypes.Role)?.Value;
-                var userId =int.Parse( User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
-                int unreadCount = await _messageService.GetUnreadMessagesCountAsync(userId,roleName);
-                return Ok(new { unreadMessages = unreadCount });
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"An error occurred: {ex.Message}");
-            }
-        }
+       
+      
     }
 }

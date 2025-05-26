@@ -152,25 +152,45 @@ namespace ArchiSyncServer.Data.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<int>("ClientId")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<DateTime?>("EndDate")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<bool>("IsPublic")
                         .HasColumnType("boolean");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int?>("OwnerId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("ParentId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("ProjectImage")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)");
 
-                    b.Property<int>("OwnerId")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("ParentId")
+                    b.Property<int>("Type")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("UpdatedAt")
@@ -178,9 +198,36 @@ namespace ArchiSyncServer.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ClientId");
+
+                    b.HasIndex("OwnerId");
+
                     b.HasIndex("ParentId");
 
                     b.ToTable("Projects");
+                });
+
+            modelBuilder.Entity("ArchiSyncServer.Core.Entities.ProjectArchitect", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ProjectId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProjectId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ProjectArchitect");
                 });
 
             modelBuilder.Entity("ArchiSyncServer.Core.Entities.ProjectPermission", b =>
@@ -210,27 +257,6 @@ namespace ArchiSyncServer.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("ProjectPermissions");
-                });
-
-            modelBuilder.Entity("ArchiSyncServer.Core.Entities.RolePermissions", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("PermissionId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("RoleId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("RolePermissions");
                 });
 
             modelBuilder.Entity("ArchiSyncServer.Core.Entities.Roles", b =>
@@ -275,10 +301,10 @@ namespace ArchiSyncServer.Data.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int?>("MainFolderId")
-                        .HasColumnType("integer");
+                    b.Property<DateTime>("LastLoginDate")
+                        .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("PasswordHash")
+                    b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -290,9 +316,6 @@ namespace ArchiSyncServer.Data.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("UserId");
-
-                    b.HasIndex("MainFolderId")
-                        .IsUnique();
 
                     b.HasIndex("Email", "UserName")
                         .IsUnique();
@@ -371,11 +394,44 @@ namespace ArchiSyncServer.Data.Migrations
 
             modelBuilder.Entity("ArchiSyncServer.Core.Entities.Project", b =>
                 {
+                    b.HasOne("ArchiSyncServer.Core.Entities.User", "Client")
+                        .WithMany()
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ArchiSyncServer.Core.Entities.User", "Owner")
+                        .WithMany()
+                        .HasForeignKey("OwnerId");
+
                     b.HasOne("ArchiSyncServer.Core.Entities.Project", "Parent")
                         .WithMany()
                         .HasForeignKey("ParentId");
 
+                    b.Navigation("Client");
+
+                    b.Navigation("Owner");
+
                     b.Navigation("Parent");
+                });
+
+            modelBuilder.Entity("ArchiSyncServer.Core.Entities.ProjectArchitect", b =>
+                {
+                    b.HasOne("ArchiSyncServer.Core.Entities.Project", "Project")
+                        .WithMany("ProjectArchitects")
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ArchiSyncServer.Core.Entities.User", "Architect")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Architect");
+
+                    b.Navigation("Project");
                 });
 
             modelBuilder.Entity("ArchiSyncServer.Core.Entities.ProjectPermission", b =>
@@ -395,26 +451,6 @@ namespace ArchiSyncServer.Data.Migrations
                     b.Navigation("Project");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("ArchiSyncServer.Core.Entities.RolePermissions", b =>
-                {
-                    b.HasOne("ArchiSyncServer.Core.Entities.Roles", "Role")
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Role");
-                });
-
-            modelBuilder.Entity("ArchiSyncServer.Core.Entities.User", b =>
-                {
-                    b.HasOne("ArchiSyncServer.Core.Entities.Project", "MainFolder")
-                        .WithOne("Owner")
-                        .HasForeignKey("ArchiSyncServer.Core.Entities.User", "MainFolderId");
-
-                    b.Navigation("MainFolder");
                 });
 
             modelBuilder.Entity("ArchiSyncServer.Core.Entities.UserRoles", b =>
@@ -440,10 +476,9 @@ namespace ArchiSyncServer.Data.Migrations
                 {
                     b.Navigation("Files");
 
-                    b.Navigation("Owner")
-                        .IsRequired();
-
                     b.Navigation("Permissions");
+
+                    b.Navigation("ProjectArchitects");
                 });
 #pragma warning restore 612, 618
         }

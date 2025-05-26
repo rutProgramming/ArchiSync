@@ -53,13 +53,13 @@ builder.Services.AddScoped<IRolesRepository, RolesRepository>();
 builder.Services.AddScoped<IProjectPermissionRepository, ProjectPermissionRepository>();
 builder.Services.AddScoped<IMessageRepository, MessageRepository>();
 builder.Services.AddScoped<IFileRepository, FileRepository>();
+builder.Services.AddScoped<IStatisticsService, StatisticsService>();
 
 /* ---------Services----------*/
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IProjectService, ProjectService>();
 builder.Services.AddScoped<IUserRolesService, UserRolesService>();
 builder.Services.AddScoped<ICommentService, CommentService>();
-builder.Services.AddScoped<IHuggingFaceService, HuggingFaceService>();
 builder.Services.AddScoped<IMessageService, MessageService>();
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<IS3Service, S3Service>();
@@ -85,9 +85,10 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
     options.JsonSerializerOptions.WriteIndented = true;
+    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+
 });
 builder.Services.AddHttpClient(); 
-
 
 // Add JWT Authentication
 builder.Services.AddAuthentication(options =>
@@ -161,11 +162,11 @@ builder.Services.AddSwaggerGen(options =>
         }
     });
 });
-
+string[] urls = ["http://localhost:5173", "http://localhost:4200", "http://localhost:53141"];
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigin",
-        builder => builder.WithOrigins("http://localhost:5173") // או כתובת ה-Frontend שלך בפרודקשן
+        builder => builder.WithOrigins(urls) // או כתובת ה-Frontend שלך בפרודקשן
                           .AllowAnyHeader()
                           .AllowAnyMethod()
                           .AllowCredentials());

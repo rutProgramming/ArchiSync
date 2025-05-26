@@ -17,10 +17,16 @@ export type Project = {
   id: number,
   description:string,
   isPublic:boolean
-  name:string,
-  ownerId:number
-  parentId:number
-  owner:User
+  title: "",
+  ownerId:number,
+  owner:User,
+  client: string,
+  location: string,
+  startDate: Date,
+  endDate: Date,
+  architects: string[],
+  tags: string[],
+  status: string
 }
 export type PartialProject = Partial<Project>
 export type Message = {
@@ -29,8 +35,10 @@ export type Message = {
   architectIsRead : boolean,  
   approved: boolean,
   userId: number,
+  user:User
   projectId: number,
   architectId: number
+  createdAt: Date
 }
 export type PartialMessage = Partial<Message>
 

@@ -10,10 +10,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using ArchiSyncServer.Core.Iservices;
 using ArchiSyncServer.Core.DTOs;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace ArchiSyncServer.Api.Controllers
 {
@@ -45,17 +43,17 @@ namespace ArchiSyncServer.Api.Controllers
                 var roleName = userRole.Role.RoleName;
                 if (roleName == "admin")
                 {
-                    var token = _authService.GenerateJwtToken(userRole.UserId, model.UserName, new[] { "admin" });
+                    var token = _authService.GenerateJwtToken(userRole.UserId, model.UserName,  "admin" );
                     return Ok(new { Token = token, User = userRole.User, RoleName = "admin" });
                 }
                 else if (roleName == "architect")
                 {
-                    var token = _authService.GenerateJwtToken(userRole.UserId, model.UserName, new[] { "architect" });
+                    var token = _authService.GenerateJwtToken(userRole.UserId, model.UserName, "architect" );
                     return Ok(new { Token = token, User = userRole.User, RoleName = "architect" });
                     }
                 else if (roleName == "user")
                 {
-                    var token = _authService.GenerateJwtToken(userRole.UserId, model.UserName, new[] { "user" });
+                    var token = _authService.GenerateJwtToken(userRole.UserId, model.UserName, "user" );
                     return Ok(new { Token = token, User = userRole.User, RoleName = "user" });
                 }
                 return Unauthorized();
@@ -77,10 +75,10 @@ namespace ArchiSyncServer.Api.Controllers
             }
             try
             {
-                var userDto = _mapper.Map<UserDTO>(model);
+                var userDto = _mapper.Map<UserForCreationDTO>(model);
                 var createdUser = await _userService.CreateUserAsync(userDto, model.RoleName);
-                var token = _authService.GenerateJwtToken(createdUser.UserId, model.UserName, new[] { model.RoleName });
-                return Ok(new { Token = token ,UserId=createdUser.UserId, MainFolderId=createdUser.MainFolderId});
+                var token = _authService.GenerateJwtToken(createdUser.UserId, model.UserName,  model.RoleName );
+                return Ok(new { Token = token, UserId = createdUser.UserId });
             }
             catch (ArgumentException ex)
             {

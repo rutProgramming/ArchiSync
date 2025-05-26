@@ -27,8 +27,6 @@ namespace ArchiSyncServer.Service.Services
             _userRolesRepository = userRolesRepository;
             _rolesRepository = rolesRepository;
         }
-
-
         public async Task<UserRolesDTO> CreateUserRolesAsync(int userId, string roleName)
         {
             var role = await _rolesRepository.GetRoleByNameAsync(roleName);
@@ -45,31 +43,6 @@ namespace ArchiSyncServer.Service.Services
             var createdUser = await _userRolesRepository.CreateAsync(userRole);
             return _mapper.Map<UserRolesDTO>(createdUser);
 
-        }
-
-        public Task<UserRolesDTO> CreateUserRolesAsync(UserRolesDTO userRolesDto)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task DeleteUserRolesAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<UserRolesDTO>> GetAllUserRolesAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<UserRolesDTO> GetUserRolesAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task UpdateUserRolesAsync(UserRolesDTO userRolesDto)
-        {
-            throw new NotImplementedException();
         }
     }
 }

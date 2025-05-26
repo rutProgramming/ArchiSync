@@ -13,9 +13,15 @@ namespace ArchiSyncServer.Core.Entities
         public int Id { get; set; }
         public string RoleName { get; set; }
         public string Description { get; set; }
-        public DateTime CreatedAt { get; set; } 
-        public DateTime UpdatedAt { get; set; } 
+        public DateTime CreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
     }
 
-   
+    public static class RoleNames
+    {
+        public const string Architect = "architect";
+        public const string User = "user";
+        public const string Admin = "admin";
+    }
+
 }

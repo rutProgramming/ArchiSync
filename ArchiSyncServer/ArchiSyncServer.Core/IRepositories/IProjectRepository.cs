@@ -9,16 +9,18 @@ namespace ArchiSyncServer.Core.IRepositories
 {
     public interface IProjectRepository : IGenericRepository<Project>
     {
-        Task<Project> GetByIdAsync(int id);
+        Task<Project> GetProjectByIdAsync(int id);
         Task<IEnumerable<Project>> GetUserAccessibleProjectsAsync(int userId);
         Task<IEnumerable<Project>> GetArchitectProjectsAsync(int userId);
         Task<Project> GetByIdUserAccessibleAsync(int id, int userId);
         Task<IEnumerable<Project>> GetPublicProjectsAsync();
-        Task<Project> CreateProjectAsync(Project project);
         Task<IEnumerable<Project>> GetAllProjectsAsync();
+        Task<bool> IsProjectNameUniqueAsync(int userId, string projectTitle);
+        Task<int> CountAllAsync();
+        Task<List<DateTime>> GetCreateProjectDatesAsync();
 
-        Task<bool> IsProjectNameUniqueAsync(int userId, string projectName);
-        
+
+
     }
 
 }

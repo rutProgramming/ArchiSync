@@ -6,6 +6,7 @@ using ArchiSyncServer.API.Models;
 using ArchiSyncServer.Core.DTOs;
 using ArchiSyncServer.Core.IServices;
 using System;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ArchiSyncServer.Api.Controllers
 {
@@ -21,7 +22,7 @@ namespace ArchiSyncServer.Api.Controllers
             _commentService = commentService;
             _mapper = mapper;
         }
-
+        [Authorize(Policy = "UserAccess")]
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
@@ -39,6 +40,7 @@ namespace ArchiSyncServer.Api.Controllers
                 return NotFound(new { message = "Comment not found." });
             }
         }
+        [Authorize(Policy = "UserAccess")]
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CommentDTO>>> Get()
@@ -46,6 +48,7 @@ namespace ArchiSyncServer.Api.Controllers
             var comments = await _commentService.GetAllCommentsAsync();
             return Ok(comments);
         }
+        [Authorize(Policy = "UserAccess")]
 
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CommentPostModel commentPostModel)
@@ -61,6 +64,7 @@ namespace ArchiSyncServer.Api.Controllers
                 return BadRequest(new { message = ex.Message });
             }
         }
+        [Authorize(Policy = "UserAccess")]
 
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] CommentPostModel commentPostModel)
@@ -68,7 +72,7 @@ namespace ArchiSyncServer.Api.Controllers
             try
             {
                 var commentDto = _mapper.Map<CommentDTO>(commentPostModel);
-                //await _commentService.UpdateCommentAsync(id, commentDto);
+                await _commentService.UpdateCommentAsync(id, commentDto);
                 return NoContent();
             }
             catch (ArgumentException ex)
@@ -80,6 +84,7 @@ namespace ArchiSyncServer.Api.Controllers
                 return NotFound(new { message = "Comment not found." });
             }
         }
+        [Authorize(Policy = "UserAccess")]
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)

@@ -30,7 +30,6 @@ namespace ArchiSyncServer.Data
         public DbSet<Roles> Roles { get; set; }
         public DbSet<UserRoles> UserRoles { get; set; }
         public DbSet<File> File { get; set; }
-        public DbSet<RolePermissions> RolePermissions { get; set; }
         public DbSet<ProjectPermission> ProjectPermissions { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

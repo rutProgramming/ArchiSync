@@ -12,6 +12,7 @@ namespace ArchiSyncServer.Core.IRepositories
     {
         Task<bool> UserHasAccess(int userId, int projectId);
 
+
     }
 
 }

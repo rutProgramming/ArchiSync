@@ -76,7 +76,7 @@ namespace ArchiSyncServer.Data.Migrations
                     UserId = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     UserName = table.Column<string>(type: "text", nullable: false),
-                    PasswordHash = table.Column<string>(type: "text", nullable: false),
+                    Password = table.Column<string>(type: "text", nullable: false),
                     Email = table.Column<string>(type: "text", nullable: false),
                     MainFolderId = table.Column<int>(type: "integer", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
@@ -241,6 +241,7 @@ namespace ArchiSyncServer.Data.Migrations
                 name: "IX_File_OwnerId",
                 table: "File",
                 column: "OwnerId");
+
 
             migrationBuilder.CreateIndex(
                 name: "IX_File_ProjectId",

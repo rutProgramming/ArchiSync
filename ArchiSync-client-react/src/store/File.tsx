@@ -19,16 +19,32 @@ export const addFile = createAsyncThunk(
         }
     }
 );
+export const deleteFile = createAsyncThunk(
+    'Project/deleteFile',
+    async (file: PartialFile, thunkAPI) => {
+        try {
+            const response = await axios.delete(`${url}/${file.id}`, {
+                headers: GetHeaders(),
+            });
+                return file.id;
+            
+        } catch (error) {
+            alert(error);
+            return thunkAPI.rejectWithValue('Failed to delete file');
+        }
+    }
+);
 
-export const getFiles = createAsyncThunk('Project/getFiles', async ({projectId,userId,isPublic}:{projectId:number,userId:number,isPublic:boolean}, thunkAPI) => {
-    console.log("getFiles",projectId,userId,isPublic)
+
+export const getFiles = createAsyncThunk('Project/getFiles', async ({projectId,userId}:{projectId:number,userId:number}, thunkAPI) => {
+    console.log("getFiles",projectId,userId)
     try {
         const response = await axios.get(url, {
             params: {
                 projectId: projectId,
                 userId: userId,
-                ispublic:isPublic
-            }
+            },
+            headers: GetHeaders()
         });
         console.log(response);
         return response.data;
@@ -64,14 +80,32 @@ const FileSlice = createSlice({
                 state.loading = true;
                 state.error = "";
             })
-            .addCase(addFile.fulfilled, (state, _action: PayloadAction<File>) => {
+            .addCase(addFile.fulfilled, (state, action: PayloadAction<File>) => {
                 state.loading = false;
+                state.files.push(action.payload);
 
             })
             .addCase(addFile.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload as string || 'Failed to add file';
+            })
+            .addCase(deleteFile.pending, (state) => {
+                state.loading = true;
+                state.error = "";
+            })
+            .addCase(deleteFile.fulfilled, (state, action: PayloadAction<number | undefined>) => {
+                state.loading = false;
+                //if (action.payload !== undefined) {
+                    state.files = state.files.filter(file => file.id !== action.payload);
+                    console.log("File deleted successfully", state.files,action.payload);
+                //}
+            })
+            
+            .addCase(deleteFile.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload as string || 'Failed to delete file';
             });
+            
 
     },
 });

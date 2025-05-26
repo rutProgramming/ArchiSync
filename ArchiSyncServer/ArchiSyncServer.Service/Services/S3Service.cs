@@ -24,12 +24,11 @@ namespace ArchiSyncServer.Service.Services
             var credentials = new BasicAWSCredentials(accessKey, secretKey);
             var regionEndpoint = Amazon.RegionEndpoint.GetBySystemName(region);
             _s3Client = new AmazonS3Client(credentials, regionEndpoint);
-            Console.WriteLine(accessKey+", "+secretKey+", "+region+", "+_bucketName);
         }
 
-        public async Task<string> GeneratePresignedUrlAsync(string parentId,string projectName,string fileName, string contentType)
+        public async Task<string> GeneratePresignedUrlAsync(string projectName,string fileName, string contentType)
         {
-            var key = $"users/{parentId}/{projectName}/{fileName}"; 
+            var key = $"users/{projectName}/{fileName}"; 
 
             var request = new GetPreSignedUrlRequest
             {
@@ -40,26 +39,52 @@ namespace ArchiSyncServer.Service.Services
                 ContentType = contentType
             };
             string presignedUrl = _s3Client.GetPreSignedURL(request);
-            Console.WriteLine($"Generated Upload URL: {presignedUrl}");
             return presignedUrl;
         }
 
 
-        public async Task<string> GetDownloadUrlAsync(string parentId,string projectName, string fileName)
+        public async Task<string> GetDownloadUrlAsync(string S3key)
         {
-            var key = $"users/{parentId}/{projectName}/{fileName}"; 
+            var key = $"{S3key}"; 
 
             var request = new GetPreSignedUrlRequest
             {
                 BucketName = _bucketName,
                 Key = key,
                 Verb = HttpVerb.GET,
-                Expires = DateTime.UtcNow.AddMinutes(60) 
+                Expires = DateTime.UtcNow.AddHours(12) 
             };
 
             string presignedUrl = _s3Client.GetPreSignedURL(request);
-            Console.WriteLine($"Generated Download URL: {presignedUrl}");
             return presignedUrl;
+        }
+
+        public async Task<(byte[] Content, string ContentType, string FileName)> DownloadFileAsync(string fileUrl)
+        {
+            if (string.IsNullOrWhiteSpace(fileUrl) || !Uri.IsWellFormedUriString(fileUrl, UriKind.Absolute))
+                throw new ArgumentException("Invalid file URL.");
+
+            using var httpClient = new HttpClient();
+            var response = await httpClient.GetAsync(fileUrl);
+
+            if (!response.IsSuccessStatusCode)
+                throw new HttpRequestException("Failed to download file from the provided URL.", null, response.StatusCode);
+
+            var content = await response.Content.ReadAsByteArrayAsync();
+            var contentType = response.Content.Headers.ContentType?.ToString() ?? "application/octet-stream";
+
+            string fileName = "downloaded_file";
+
+            if (response.Content.Headers.ContentDisposition != null)
+            {
+                fileName = response.Content.Headers.ContentDisposition.FileName?.Trim('"') ?? fileName;
+            }
+            else
+            {
+                fileName = Path.GetFileName(new Uri(fileUrl).AbsolutePath);
+            }
+
+            return (content, contentType, fileName);
         }
     }
 

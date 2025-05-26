@@ -281,7 +281,7 @@ namespace ArchiSyncServer.Data.Migrations
                     b.Property<int?>("MainFolderId")
                         .HasColumnType("integer");
 
-                    b.Property<string>("PasswordHash")
+                    b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("text");
 

@@ -26,21 +26,26 @@ namespace ArchiSyncServer.API.Controllers
         private int GetUserId() => int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
         private string GetUserRole() => User.FindFirst(ClaimTypes.Role)?.Value ?? "";
 
-        // POST: api/Project
+
+        //============Used functions===============
+
         [Authorize(Policy = "ArchitectOnly")]
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] ProjectPostModel projectPostModel)
         {
             try
             {
-                projectPostModel.OwnerId = GetUserId();
-                 
-                if(!await _ProjectService.IsProjectNameUniqueAsync(projectPostModel.OwnerId, projectPostModel.Name))
+                int ownerId = GetUserId();
+
+                if (!await _ProjectService.IsProjectNameUniqueAsync(ownerId, projectPostModel.Title))
                 {
                     return Conflict("Project name already exists.");
                 }
+
                 var projectDto = _mapper.Map<ProjectDTO>(projectPostModel);
-                var createdProject = await _ProjectService.CreateProjectAsync(projectDto);
+
+                var createdProject = await _ProjectService.CreateProjectAsync(projectDto, ownerId);
+
                 return CreatedAtAction(nameof(Get), new { id = createdProject.Id }, createdProject);
             }
             catch (ArgumentNullException ex)
@@ -57,47 +62,9 @@ namespace ArchiSyncServer.API.Controllers
             }
         }
 
-        // PUT: api/Project/{id}
-        [Authorize(Policy = "ArchitectOnly")]
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] ProjectDTO projectDto)
-        {
-            try
-            {
-                if (projectDto.Id != id)
-                {
-                    return BadRequest("Project ID mismatch.");
-                }
 
-                var userId = GetUserId();
-                var userRole = GetUserRole();
 
-                if (userRole != "admin" && projectDto.OwnerId != userId)
-                {
-                    return Forbid("You do not have permission to update this project.");
-                }
-
-                await _ProjectService.UpdateProjectAsync(id,projectDto);
-                return NoContent();
-            }
-            catch (ArgumentNullException ex)
-            {
-                return BadRequest(ex.Message);
-            }
-            catch (ArgumentException ex)
-            {
-                return NotFound(ex.Message);
-            }
-            catch (UnauthorizedAccessException ex)
-            {
-                return Forbid(ex.Message);
-            }
-            catch (Exception)
-            {
-                return StatusCode(500, "An unexpected error occurred.");
-            }
-        }
-
+        //עעט
         // DELETE: api/Project/{id}
         [Authorize(Policy = "ArchitectOnly")]
         [HttpDelete("{id}")]
@@ -108,7 +75,7 @@ namespace ArchiSyncServer.API.Controllers
                 var userId = GetUserId();
                 var userRole = GetUserRole();
 
-                var project = await _ProjectService.GetProjectAsync(id);
+                var project = await _ProjectService.GetProjectAsync(id, userId, userRole);
                 if (project == null)
                 {
                     return NotFound("Project not found.");
@@ -136,33 +103,27 @@ namespace ArchiSyncServer.API.Controllers
             }
         }
 
+        [Authorize(Policy = "UserAccess")]
         // GET: api/Project/{id}
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
             try
             {
-                var project = await _ProjectService.GetProjectAsync(id);
-                if (project == null)
-                {
-                    return NotFound("Project not found.");
-                }
-
                 var userId = GetUserId();
                 var userRole = GetUserRole();
 
-                if (project.IsPublic || userRole == "admin" || project.OwnerId == userId)
-                {
-                    return Ok(project);
-                }
+                var project = await _ProjectService.GetProjectAsync(id, userId, userRole);
+                return Ok(project);
 
-                var accessibleProjects = await _ProjectService.GetUserAccessibleProjectsAsync(userId);
-                if (accessibleProjects.Any(p => p.Id == id))
-                {
-                    return Ok(project);
-                }
-
-                return Forbid();
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Forbid(ex.Message);
             }
             catch (Exception)
             {
@@ -171,6 +132,7 @@ namespace ArchiSyncServer.API.Controllers
         }
 
         // GET: api/Project/all
+
         [Authorize(Policy = "UserAccess")]
         [HttpGet("all")]
         public async Task<IActionResult> GetAllProjects()
@@ -202,31 +164,78 @@ namespace ArchiSyncServer.API.Controllers
             }
         }
 
+
+
         // GET: api/Project/user
-        [Authorize(Policy = "UserAccess")]
-        [HttpGet("UserAccess")]
+        //[Authorize(Policy = "UserAccess")]
+        //[HttpGet("UserAccess")]
 
-        public async Task<IActionResult> GetUserAccessibleProjects()
+        //public async Task<IActionResult> GetUserAccessibleProjects()
+        //{
+
+        //    try
+        //    {
+        //        var projects = await _ProjectService.GetUserAccessibleProjectsAsync(GetUserId());
+
+        //        return Ok(_mapper.Map<ProjectDTO[]>(projects));
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return StatusCode(500, "An unexpected error occurred.");
+        //    }
+        //}
+
+
+        //[HttpGet("public")]
+        //public async Task<IActionResult> GetPublicProjects()
+        //{
+        //    try
+        //    {
+        //        var projects = await _ProjectService.GetPublicProjectsAsync();
+        //        return Ok(projects);
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return StatusCode(500, "An unexpected error occurred.");
+        //    }
+        //}
+
+        //============Unused functions for future extenion===============
+
+        //need extention refernce to file 
+        [Authorize(Policy = "ArchitectOnly")]
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(int id, [FromBody] ProjectDTO projectDto)
         {
-
             try
             {
-                var projects = await _ProjectService.GetUserAccessibleProjectsAsync(GetUserId());
-                
-                return Ok(_mapper.Map<ProjectDTO[]>(projects));
+                if (projectDto.Id != id)
+                {
+                    return BadRequest("Project ID mismatch.");
+                }
+
+                var userId = GetUserId();
+                var userRole = GetUserRole();
+
+                if (userRole != "admin" && projectDto.OwnerId != userId)
+                {
+                    return Forbid("You do not have permission to update this project.");
+                }
+
+                await _ProjectService.UpdateProjectAsync(id, projectDto);
+                return NoContent();
             }
-            catch (Exception)
+            catch (ArgumentNullException ex)
             {
-                return StatusCode(500, "An unexpected error occurred.");
+                return BadRequest(ex.Message);
             }
-        }
-        [HttpGet("public")]
-        public async Task<IActionResult> GetPublicProjects()
-        {
-            try
+            catch (ArgumentException ex)
             {
-                var projects = await _ProjectService.GetPublicProjectsAsync();
-                return Ok(projects);
+                return NotFound(ex.Message);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Forbid(ex.Message);
             }
             catch (Exception)
             {
@@ -234,4 +243,4 @@ namespace ArchiSyncServer.API.Controllers
             }
         }
     }
-}
+    }

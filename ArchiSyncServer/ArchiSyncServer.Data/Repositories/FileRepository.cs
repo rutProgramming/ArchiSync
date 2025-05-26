@@ -20,9 +20,13 @@ namespace ArchiSyncServer.Data.Repositories
         }
         public async Task<IEnumerable<File>> GetFilesInProjectAsync(int projectId)
         {
-            return _context.File
-           .Where(f => f.ProjectId == projectId && !f.IsDeleted).Include(f=>f.Project)
-           .ToList();
+            return await _context.File
+           .Where(f => f.ProjectId == projectId && !f.IsDeleted).Include(f => f.Project)
+           .ToListAsync();
+        }
+        public async Task<int> CountAllAsync()
+        {
+            return await _context.File.CountAsync();
         }
 
     }

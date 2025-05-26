@@ -27,6 +27,8 @@ namespace ArchiSyncServer.Service.Services
             _repositoryManager = repositoryManager;
         }
 
+        //unneccery
+
         public async Task<MessageDTO> GetMessageAsync(int id)
         {
             if (id < 0)
@@ -40,14 +42,13 @@ namespace ArchiSyncServer.Service.Services
             }
             return _mapper.Map<MessageDTO>(message);
         }
-
+        //unneccery
         public async Task<IEnumerable<MessageDTO>> GetAllMessagesAsync()
         {
             var messages = await _messageRepository.GetAllAsync();
             return _mapper.Map<IEnumerable<MessageDTO>>(messages);
         }
         public async Task<IEnumerable<MessageDTO>> GetAllArchitectMessagesAsync(int architectId)
-        
         {
             var messages = await _messageRepository.GetAllArchitectMessagesAsync(architectId);
             return _mapper.Map<IEnumerable<MessageDTO>>(messages);
@@ -63,37 +64,31 @@ namespace ArchiSyncServer.Service.Services
             {
                 throw new ArgumentNullException(nameof(messageDto), "Message data cannot be null.");
             }
-            try
+            var existing = await _messageRepository.GetByIdAsync(messageDto.Id);
+            if (existing != null)
             {
-                await GetMessageAsync(messageDto.Id);
-                throw new ArgumentException("Message already exists.");
+                throw new ArgumentException("Messsage already exists.");
             }
-            catch (KeyNotFoundException)
-            {
 
-                var message = _mapper.Map<Message>(messageDto);
-                message.CreatedAt = DateTime.UtcNow;
-                message.UpdatedAt = DateTime.UtcNow;
-                var createdMessage = await _messageRepository.CreateAsync(message);
-                await _repositoryManager.SaveAsync();
-                return _mapper.Map<MessageDTO>(createdMessage);
-            }
+            var message = _mapper.Map<Message>(messageDto);
+            message.CreatedAt = DateTime.UtcNow;
+            message.UpdatedAt = DateTime.UtcNow;
+
+            var createdMessage = await _messageRepository.CreateAsync(message);
+            await _repositoryManager.SaveAsync();
+
+            return _mapper.Map<MessageDTO>(createdMessage);
         }
-
+        //וncerry
         public async Task UpdateMessageAsync(int id, MessageDTO messageDto)
         {
-            try
-            {
+          
                 await GetMessageAsync(id);
                 var message = _mapper.Map<Message>(messageDto);
                 message.UpdatedAt = DateTime.UtcNow;
                 await _messageRepository.UpdateAsync(id, message);
                 await _repositoryManager.SaveAsync();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error updating message.", ex);
-            }
+           
         }
 
         public async Task DeleteMessageAsync(int id)

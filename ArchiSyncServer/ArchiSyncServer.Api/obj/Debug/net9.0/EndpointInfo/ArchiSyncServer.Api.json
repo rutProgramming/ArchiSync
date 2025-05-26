@@ -390,6 +390,178 @@
         }
       }
     },
+    "/api/Message/architect": {
+      "get": {
+        "tags": [
+          "Message"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MessageDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MessageDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MessageDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Message/user": {
+      "get": {
+        "tags": [
+          "Message"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MessageDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MessageDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MessageDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Message": {
+      "post": {
+        "tags": [
+          "Message"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MessagePostModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MessagePostModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/MessagePostModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Message"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MessageDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MessageDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MessageDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Message/unread-count": {
+      "get": {
+        "tags": [
+          "Message"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Message/{id}": {
       "get": {
         "tags": [
@@ -491,178 +663,6 @@
         }
       }
     },
-    "/api/Message/architect": {
-      "get": {
-        "tags": [
-          "Message"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/MessageDTO"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/MessageDTO"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/MessageDTO"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/Message/user": {
-      "get": {
-        "tags": [
-          "Message"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/MessageDTO"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/MessageDTO"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/MessageDTO"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/Message": {
-      "get": {
-        "tags": [
-          "Message"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/MessageDTO"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/MessageDTO"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/MessageDTO"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Message"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/MessagePostModel"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/MessagePostModel"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/MessagePostModel"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageDTO"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageDTO"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageDTO"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/Message/unread-count": {
-      "get": {
-        "tags": [
-          "Message"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/api/Project": {
       "post": {
         "tags": [
@@ -695,46 +695,6 @@
       }
     },
     "/api/Project/{id}": {
-      "put": {
-        "tags": [
-          "Project"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ProjectDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ProjectDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/ProjectDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
       "delete": {
         "tags": [
           "Project"
@@ -776,6 +736,46 @@
             "description": "OK"
           }
         }
+      },
+      "put": {
+        "tags": [
+          "Project"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProjectDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProjectDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProjectDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
     "/api/Project/all": {
@@ -791,30 +791,6 @@
       }
     },
     "/api/Project/architect": {
-      "get": {
-        "tags": [
-          "Project"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Project/UserAccess": {
-      "get": {
-        "tags": [
-          "Project"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Project/public": {
       "get": {
         "tags": [
           "Project"
@@ -923,6 +899,83 @@
         }
       }
     },
+    "/api/S3/upload-url": {
+      "get": {
+        "tags": [
+          "S3"
+        ],
+        "parameters": [
+          {
+            "name": "projectName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fileName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "contentType",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/S3/download-url": {
+      "get": {
+        "tags": [
+          "S3"
+        ],
+        "parameters": [
+          {
+            "name": "S3key",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/S3/download": {
+      "get": {
+        "tags": [
+          "S3"
+        ],
+        "parameters": [
+          {
+            "name": "fileUrl",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Sketch/convert": {
       "post": {
         "tags": [
@@ -954,40 +1007,10 @@
         }
       }
     },
-    "/api/Upload/upload-url": {
+    "/api/Statistics/total-projects": {
       "get": {
         "tags": [
-          "Upload"
-        ],
-        "parameters": [
-          {
-            "name": "parentId",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "projectName",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "fileName",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "contentType",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
+          "Statistics"
         ],
         "responses": {
           "200": {
@@ -996,33 +1019,58 @@
         }
       }
     },
-    "/api/Upload/download-url": {
+    "/api/Statistics/total-files": {
       "get": {
         "tags": [
-          "Upload"
+          "Statistics"
         ],
-        "parameters": [
-          {
-            "name": "parentId",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "projectName",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "fileName",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
+        "responses": {
+          "200": {
+            "description": "OK"
           }
+        }
+      }
+    },
+    "/api/Statistics/total-users": {
+      "get": {
+        "tags": [
+          "Statistics"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Statistics/daily-logins": {
+      "get": {
+        "tags": [
+          "Statistics"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Statistics/daily-projects": {
+      "get": {
+        "tags": [
+          "Statistics"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Statistics/projects-by-type": {
+      "get": {
+        "tags": [
+          "Statistics"
         ],
         "responses": {
           "200": {
@@ -1076,17 +1124,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserPostModel"
+                "$ref": "#/components/schemas/RegisterModel"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserPostModel"
+                "$ref": "#/components/schemas/RegisterModel"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/UserPostModel"
+                "$ref": "#/components/schemas/RegisterModel"
               }
             }
           }
@@ -1139,17 +1187,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserPostModel"
+                "$ref": "#/components/schemas/RegisterModel"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserPostModel"
+                "$ref": "#/components/schemas/RegisterModel"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/UserPostModel"
+                "$ref": "#/components/schemas/RegisterModel"
               }
             }
           }
@@ -1192,7 +1240,7 @@
             "type": "integer",
             "format": "int32"
           },
-          "documentId": {
+          "projectId": {
             "type": "integer",
             "format": "int32"
           },
@@ -1203,6 +1251,9 @@
           "userId": {
             "type": "integer",
             "format": "int32"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
           },
           "createdAt": {
             "type": "string",
@@ -1442,7 +1493,7 @@
       },
       "Project": {
         "required": [
-          "name"
+          "title"
         ],
         "type": "object",
         "properties": {
@@ -1450,7 +1501,7 @@
             "type": "integer",
             "format": "int32"
           },
-          "name": {
+          "title": {
             "maxLength": 255,
             "minLength": 1,
             "type": "string"
@@ -1469,21 +1520,55 @@
           },
           "ownerId": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
           },
           "owner": {
             "$ref": "#/components/schemas/User"
           },
+          "type": {
+            "$ref": "#/components/schemas/ProjectType"
+          },
+          "status": {
+            "$ref": "#/components/schemas/ProjectStatus"
+          },
           "isPublic": {
             "type": "boolean"
           },
-          "createdAt": {
+          "location": {
+            "type": "string",
+            "nullable": true
+          },
+          "startDate": {
             "type": "string",
             "format": "date-time"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
           },
           "updatedAt": {
             "type": "string",
             "format": "date-time"
+          },
+          "clientId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "client": {
+            "$ref": "#/components/schemas/User"
+          },
+          "projectImage": {
+            "type": "string",
+            "nullable": true
+          },
+          "projectArchitects": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProjectArchitect"
+            },
+            "nullable": true
           },
           "files": {
             "type": "array",
@@ -1502,9 +1587,33 @@
         },
         "additionalProperties": false
       },
+      "ProjectArchitect": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "projectId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "project": {
+            "$ref": "#/components/schemas/Project"
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "architect": {
+            "$ref": "#/components/schemas/User"
+          }
+        },
+        "additionalProperties": false
+      },
       "ProjectDTO": {
         "required": [
-          "name"
+          "title"
         ],
         "type": "object",
         "properties": {
@@ -1512,7 +1621,7 @@
             "type": "integer",
             "format": "int32"
           },
-          "name": {
+          "title": {
             "maxLength": 255,
             "minLength": 1,
             "type": "string"
@@ -1526,26 +1635,53 @@
             "format": "int32",
             "nullable": true
           },
-          "parent": {
-            "$ref": "#/components/schemas/Project"
-          },
           "ownerId": {
             "type": "integer",
             "format": "int32"
           },
           "owner": {
-            "$ref": "#/components/schemas/User"
+            "$ref": "#/components/schemas/UserDTO"
           },
           "isPublic": {
             "type": "boolean"
           },
-          "createdAt": {
+          "type": {
+            "$ref": "#/components/schemas/ProjectType"
+          },
+          "status": {
+            "$ref": "#/components/schemas/ProjectStatus"
+          },
+          "location": {
+            "type": "string",
+            "nullable": true
+          },
+          "projectImage": {
+            "type": "string",
+            "nullable": true
+          },
+          "clientId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "clientUserName": {
+            "type": "string",
+            "nullable": true
+          },
+          "client": {
+            "$ref": "#/components/schemas/UserDTO"
+          },
+          "startDate": {
             "type": "string",
             "format": "date-time"
           },
           "updatedAt": {
             "type": "string",
             "format": "date-time"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
           },
           "files": {
             "type": "array",
@@ -1558,6 +1694,20 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ProjectPermission"
+            },
+            "nullable": true
+          },
+          "architectUserNames": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "architects": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/User"
             },
             "nullable": true
           }
@@ -1612,11 +1762,14 @@
       },
       "ProjectPostModel": {
         "required": [
-          "name"
+          "clientUserName",
+          "status",
+          "title",
+          "type"
         ],
         "type": "object",
         "properties": {
-          "name": {
+          "title": {
             "maxLength": 255,
             "minLength": 1,
             "type": "string"
@@ -1636,14 +1789,61 @@
             "type": "integer",
             "format": "int32",
             "nullable": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/ProjectType"
+          },
+          "status": {
+            "$ref": "#/components/schemas/ProjectStatus"
+          },
+          "location": {
+            "type": "string",
+            "nullable": true
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "clientUserName": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "projectImage": {
+            "type": "string",
+            "nullable": true
+          },
+          "architectUserNames": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
       },
+      "ProjectStatus": {
+        "enum": [
+          "Planning",
+          "InProgress",
+          "Completed",
+          "OnHold"
+        ],
+        "type": "string"
+      },
+      "ProjectType": {
+        "enum": [
+          "Residential",
+          "Commercial",
+          "Mixed"
+        ],
+        "type": "string"
+      },
       "RegisterModel": {
         "required": [
           "email",
-          "passwordHash",
+          "password",
           "userName"
         ],
         "type": "object",
@@ -1657,7 +1857,7 @@
             "type": "string",
             "format": "email"
           },
-          "passwordHash": {
+          "password": {
             "minLength": 1,
             "type": "string"
           },
@@ -1697,21 +1897,13 @@
             "type": "string",
             "nullable": true
           },
-          "passwordHash": {
+          "password": {
             "type": "string",
             "nullable": true
           },
           "email": {
             "type": "string",
             "nullable": true
-          },
-          "mainFolderId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "mainFolder": {
-            "$ref": "#/components/schemas/Project"
           },
           "createdAt": {
             "type": "string",
@@ -1720,24 +1912,36 @@
           "updatedAt": {
             "type": "string",
             "format": "date-time"
+          },
+          "lastLoginDate": {
+            "type": "string",
+            "format": "date-time"
           }
         },
         "additionalProperties": false
       },
-      "UserPostModel": {
+      "UserDTO": {
         "type": "object",
         "properties": {
-          "username": {
-            "type": "string",
-            "nullable": true
+          "userId": {
+            "type": "integer",
+            "format": "int32"
           },
-          "password": {
+          "userName": {
             "type": "string",
             "nullable": true
           },
           "email": {
             "type": "string",
             "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
           }
         },
         "additionalProperties": false
