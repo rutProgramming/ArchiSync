@@ -22,27 +22,19 @@ import UserProjects from './components/Projects/UserProjects.tsx'
 //   return user.RoleName === "user" ? <UserNotifications /> : <ArchitectNotifications />;
 // };
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
-  const isAuthenticated = useSelector((state: RootState) => state.connect.user)
-  if (!isAuthenticated) {
-    return <Navigate to="/login" replace />
-  }
-  return <>{children}</>
+  const user = useSelector((state: RootState) => state.connect.user)
+  return user?.token ? <>{children}</> : <Navigate to="/login" replace />
 }
+
 const RootElement = () => {
   const user = useSelector((state: RootState) => state.connect.user)
   return user.token ? <AppLayout /> : <HomePage />
 }
+
 const ProjectsElement = () => {
   const user = useSelector((state: RootState) => state.connect.user)
-  if (!user || !user.token) {
-    return <Navigate to="/login" replace />
-  }
-  console.log("User Role:", user)
-  if (user.RoleName === "user") {
-    return <UserProjects />
-  } else if (user.RoleName === "architect") {
-    return <Projects />
-  }
+  if (!user?.token) return <Navigate to="/login" replace />
+  return user.RoleName === "user" ? <UserProjects /> : <Projects />
 }
 
 const MessageElement = () => {
