@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 import { Box, IconButton, Stack, Typography } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
-import UserMenu from "../S/UserMenu";
+// import UserMenu from "../S/UserMenu";
 import { Folder } from "@mui/icons-material";
 
 const NavBar = () => {
@@ -31,7 +31,7 @@ const NavBar = () => {
       </Stack>
 
       <Stack direction="row" spacing={2} alignItems="center">
-        <UserMenu />
+        {/* <UserMenu /> */}
       </Stack>
     </Box>
   );
