@@ -1,3 +1,4 @@
 [build]
-dockerfile = "./ArchiSyncServer.Api/Dockerfile"
-context = "ArchiSyncServer.Api"
+dockerfile = "Dockerfile"
+buildCommand = ""
+startCommand = ""
