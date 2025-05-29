@@ -12,10 +12,10 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["ArchiSyncServer.Api/ArchiSyncServer.Api.csproj", "ArchiSyncServer.Api/"]
-COPY ["ArchiSyncServer.Core/ArchiSyncServer.Core.csproj", "ArchiSyncServer.Core/"]
-COPY ["ArchiSyncServer.Data/ArchiSyncServer.Data.csproj", "ArchiSyncServer.Data/"]
-COPY ["ArchiSyncServer.Service/ArchiSyncServer.Service.csproj", "ArchiSyncServer.Service/"]
+COPY ["../ArchiSyncServer.Api/ArchiSyncServer.Api.csproj", "ArchiSyncServer.Api/"]
+COPY ["../ArchiSyncServer.Core/ArchiSyncServer.Core.csproj", "ArchiSyncServer.Core/"]
+COPY ["../ArchiSyncServer.Data/ArchiSyncServer.Data.csproj", "ArchiSyncServer.Data/"]
+COPY ["../ArchiSyncServer.Service/ArchiSyncServer.Service.csproj", "ArchiSyncServer.Service/"]
 RUN dotnet restore "./ArchiSyncServer.Api/ArchiSyncServer.Api.csproj"
 COPY . .
 WORKDIR "/src/ArchiSyncServer.Api"
