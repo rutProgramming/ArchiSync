@@ -38,7 +38,8 @@ const RootElement = () => {
 
 const ProjectsElement = () => {
   const user = useSelector((state: RootState) => state.connect.user)
-  if (!user?.token) return <Navigate to="/login" replace />
+  if (!user?.RoleName) return <Navigate to="/login" replace />
+
   return user.RoleName === "user" ? <UserProjects /> : <Projects />
 }
 
