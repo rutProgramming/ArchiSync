@@ -31,9 +31,9 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
 
 const RootElement = () => {
   const user = useSelector((state: RootState) => state.connect.user)
-  console.log("RootElement user:", user);
+  console.log("RootElement user:", user.RoleName);
   
-  return user.token ? <AppLayout /> : <HomePage />
+  return user.RoleName ? <AppLayout /> : <HomePage />
 }
 
 const ProjectsElement = () => {
