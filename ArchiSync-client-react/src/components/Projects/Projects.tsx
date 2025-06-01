@@ -1,7 +1,7 @@
 
 import { useEffect, useState, useMemo } from "react"
 import { Plus, Filter, Grid3X3, List, Search} from "lucide-react"
-import Button from "../S/Button"
+import Button from "../Additional/Button"
 import ProjectCard from "./ProjectCard"
 import "./Projects.css"
 import "../Dashboard/Dashboard.css"
@@ -93,17 +93,10 @@ const Projects = () => {
   }, [projects, searchTerm, typeFilter, statusFilter, sortBy, sortDirection])
 
   const handleProjectClick = (projectId: number) => {
-    navigate(`/projects/${projectId}`)
+    navigate(`/MyProjects/${projectId}`)
   }
 
-  // const handleSort = (option: SortOption) => {
-  //   if (sortBy === option) {
-  //     setSortDirection(prev => prev === 'asc' ? 'desc' : 'asc')
-  //   } else {
-  //     setSortBy(option)
-  //     setSortDirection('asc')
-  //   }
-  // }
+ 
 
   const resetFilters = () => {
     setSearchTerm("")
@@ -220,7 +213,6 @@ const Projects = () => {
             </select>
           </div>
 
-          {/* Advanced Filter Button */}
           <Button
             variant="outline"
             icon={<Filter size={16} />}
@@ -282,7 +274,6 @@ const Projects = () => {
         </div>
       )}
 
-      {/* Results Summary */}
       {(searchTerm || typeFilter !== 'all' || statusFilter !== 'all') && (
         <div className="results-summary">
           <p>
@@ -297,7 +288,6 @@ const Projects = () => {
         </div>
       )}
 
-      {/* Enhanced Projects Grid/List */}
       {filteredAndSortedProjects.length === 0 ? (
         <div className="empty-state">
           <div className="empty-icon">📁</div>

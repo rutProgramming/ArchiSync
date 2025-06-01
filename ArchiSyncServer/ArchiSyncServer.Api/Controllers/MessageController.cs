@@ -68,6 +68,28 @@ namespace ArchiSyncServer.Api.Controllers
         }
 
         [Authorize(Policy = "UserAccess")]
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(int id, [FromBody] MessageDTO messageDto)
+        {
+            try
+            {
+                await _messageService.UpdateMessageAsync(id, messageDto);
+                return NoContent();
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(new { message = ex.Message });
+            }
+        }
+
+
+        //============Unused functions for future extension===============
+
+        [Authorize(Policy = "UserAccess")]
         [HttpGet("unread-count")]
         public async Task<IActionResult> GetUnreadMessagesCount()
         {
@@ -83,10 +105,6 @@ namespace ArchiSyncServer.Api.Controllers
                 return StatusCode(500, $"An error occurred: {ex.Message}");
             }
         }
-
-        //============Unused functions for future extenion===============
-
-
         [Authorize(Policy ="AdminOnly")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MessageDTO>>> Get()
@@ -112,27 +130,6 @@ namespace ArchiSyncServer.Api.Controllers
                 return NotFound(new { message = ex.Message });
             }
         }
-
-
-        [Authorize(Policy = "UserAccess")]
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] MessageDTO messageDto)
-        {
-            try
-            {
-                await _messageService.UpdateMessageAsync(id, messageDto);
-                return NoContent();
-            }
-            catch (ArgumentException ex)
-            {
-                return BadRequest(new { message = ex.Message });
-            }
-            catch (KeyNotFoundException ex)
-            {
-                return NotFound(new { message = ex.Message });
-            }
-        }
-
 
         [Authorize(Policy = "UserAccess")]
         [HttpDelete("{id}")]

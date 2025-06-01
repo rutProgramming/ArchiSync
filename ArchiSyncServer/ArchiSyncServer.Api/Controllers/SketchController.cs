@@ -11,14 +11,13 @@ namespace ArchiSyncServer.Api.Controllers
     public class SketchController : ControllerBase
     {
         private readonly ISketchJobQueueService _jobQueue;
-        //============Used functions===============
-        //============Unused functions for future extenion===============
+       
         public SketchController(ISketchJobQueueService jobQueue)
         {
             _jobQueue = jobQueue;
         }
 
-       // [Authorize(Policy = "ArchitectOnly")]
+        [Authorize(Policy = "ArchitectOnly")]
         [HttpPost("convert")]
         public IActionResult ConvertSketch([FromBody] SketchRequest request)
         {

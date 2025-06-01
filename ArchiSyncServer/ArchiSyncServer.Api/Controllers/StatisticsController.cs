@@ -10,8 +10,7 @@ namespace ArchiSyncServer.Api.Controllers
     public class StatisticsController : ControllerBase
     {
         private readonly IStatisticsService _statisticsService;
-        //============Used functions===============
-        //============Unused functions for future extenion===============
+        
         public StatisticsController(IStatisticsService statisticsService)
         {
             _statisticsService = statisticsService;

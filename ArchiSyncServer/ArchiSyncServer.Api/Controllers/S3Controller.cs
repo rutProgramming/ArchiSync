@@ -10,15 +10,14 @@ namespace ArchiSyncServer.Api.Controllers
     [ApiController]
     public class S3Controller : ControllerBase
     {
-        //============Used functions===============
-        //============Unused functions for future extenion===============
+       
         private readonly IS3Service _s3Service;
         public S3Controller(IS3Service s3Server)
         {
             _s3Service = s3Server;
         }
 
-        //[Authorize(Policy = "ArchitectOnly")]
+        [Authorize(Policy = "ArchitectOnly")]
         [HttpGet("upload-url")]
         public async Task<IActionResult> GetUploadUrl( [FromQuery] string projectName, [FromQuery] string fileName, [FromQuery] string contentType)
         {
@@ -29,7 +28,7 @@ namespace ArchiSyncServer.Api.Controllers
             return Ok(new { url });
         }
 
-       // [Authorize(Policy = "UserAccess")]
+        [Authorize(Policy = "UserAccess")]
         [HttpGet("download-url")]
         public async Task<IActionResult> GetDownloadUrl([FromQuery] string S3key)
             {

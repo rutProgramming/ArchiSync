@@ -63,48 +63,7 @@ namespace ArchiSyncServer.API.Controllers
         }
 
 
-
-        //עעט
-        // DELETE: api/Project/{id}
-        [Authorize(Policy = "ArchitectOnly")]
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
-        {
-            try
-            {
-                var userId = GetUserId();
-                var userRole = GetUserRole();
-
-                var project = await _ProjectService.GetProjectAsync(id, userId, userRole);
-                if (project == null)
-                {
-                    return NotFound("Project not found.");
-                }
-
-                if (userRole != "admin" && project.OwnerId != userId)
-                {
-                    return Forbid("You do not have permission to delete this project.");
-                }
-
-                await _ProjectService.DeleteProjectAsync(id);
-                return NoContent();
-            }
-            catch (ArgumentException ex)
-            {
-                return NotFound(ex.Message);
-            }
-            catch (UnauthorizedAccessException ex)
-            {
-                return Forbid(ex.Message);
-            }
-            catch (Exception)
-            {
-                return StatusCode(500, "An unexpected error occurred.");
-            }
-        }
-
         [Authorize(Policy = "UserAccess")]
-        // GET: api/Project/{id}
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
@@ -130,8 +89,6 @@ namespace ArchiSyncServer.API.Controllers
                 return StatusCode(500, "An unexpected error occurred.");
             }
         }
-
-        // GET: api/Project/all
 
         [Authorize(Policy = "UserAccess")]
         [HttpGet("all")]
@@ -166,43 +123,11 @@ namespace ArchiSyncServer.API.Controllers
 
 
 
-        // GET: api/Project/user
-        //[Authorize(Policy = "UserAccess")]
-        //[HttpGet("UserAccess")]
-
-        //public async Task<IActionResult> GetUserAccessibleProjects()
-        //{
-
-        //    try
-        //    {
-        //        var projects = await _ProjectService.GetUserAccessibleProjectsAsync(GetUserId());
-
-        //        return Ok(_mapper.Map<ProjectDTO[]>(projects));
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return StatusCode(500, "An unexpected error occurred.");
-        //    }
-        //}
 
 
-        //[HttpGet("public")]
-        //public async Task<IActionResult> GetPublicProjects()
-        //{
-        //    try
-        //    {
-        //        var projects = await _ProjectService.GetPublicProjectsAsync();
-        //        return Ok(projects);
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return StatusCode(500, "An unexpected error occurred.");
-        //    }
-        //}
 
-        //============Unused functions for future extenion===============
+        //============Unused functions for future extension===============
 
-        //need extention refernce to file 
         [Authorize(Policy = "ArchitectOnly")]
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] ProjectDTO projectDto)

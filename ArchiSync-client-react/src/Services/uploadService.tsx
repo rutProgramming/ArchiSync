@@ -3,7 +3,6 @@ import { GetHeaders } from "../store/Project";
 const url = import.meta.env.VITE_BASE_URL
 
 export const getUploadUrl = async ( projectName: string, fileName: string, contentType: string) => {
-  console.log("getUploadUrl", projectName, fileName, contentType);
   try {
     const response = await axios.get(`${url}/api/S3/upload-url`, {
       params: { projectName, fileName, contentType },
@@ -43,23 +42,6 @@ export const getDownloadUrl = async (S3key: string) => {
     throw e;
   }
 };
-// export const generateImage = async (imageUrl: string, prompt: string) => {
-//   try {
-//     console.log(imageUrl, prompt);
-//     const requestData = { imageUrl, prompt };
-//     const response = await axios.post(
-//       `${url}/api/Sketch/convert`,
-//       requestData,
-//       { headers: { "Content-Type": "application/json" } }
-//     );
-
-//     console.log(response);
-//     return response.data
-//   }
-//   catch (e) {
-//     throw e;
-//   }
-// }
 
 
 export const generateImage = async (imageUrl: string, prompt: string, connectionId: string) => {

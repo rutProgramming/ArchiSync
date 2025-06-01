@@ -128,7 +128,6 @@ namespace ArchiSyncServer.Service.Services
             }
         }
 
-        //unuse
         public async Task UpdateProjectAsync(int id, ProjectDTO projectDto)
         {
             if (projectDto == null)
@@ -186,7 +185,6 @@ namespace ArchiSyncServer.Service.Services
             return _mapper.Map<IEnumerable<ProjectDTO>>(projects);
         }
 
-        //if.. uncccery
         public async Task<IEnumerable<ProjectDTO>> GetPublicProjectsAsync()
         {
             var projects = await _ProjectRepository.GetPublicProjectsAsync();

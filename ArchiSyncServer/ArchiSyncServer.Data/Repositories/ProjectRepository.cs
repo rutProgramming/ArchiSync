@@ -16,12 +16,7 @@ namespace ArchiSyncServer.Data.Repositories
         {
         }
 
-        //public async Task<Project> CreateProjectAsync(Project project)
-        //{
-
-        //    _dbSet.Add(project);
-        //    return project;
-        //}
+       
 
         public async Task<Project> GetProjectByIdAsync(int id)
         {
@@ -33,7 +28,6 @@ namespace ArchiSyncServer.Data.Repositories
                 .ThenInclude(pa => pa.Architect)
                 .FirstOrDefaultAsync(p => p.Id == id);
         }
-        //יהיה מיתר אם יוסיפו בריאקט
         public async Task<IEnumerable<Project>> GetPublicProjectsAsync()
         {
             return await _context.Projects.Where(p => p.IsPublic).Include(p => p.Owner).ToListAsync();
@@ -43,8 +37,7 @@ namespace ArchiSyncServer.Data.Repositories
         {
             return !await _context.Projects.AnyAsync(p => p.OwnerId == userId && p.Title == projectTitle);
         }
-        //הוספתי את הבעלים לא בטוח שצריך
-        //int the tow following function
+        
         public async Task<Project> GetByIdUserAccessibleAsync(int id, int userId)
         {
             return await _context.Projects.Where(p => p.IsPublic || p.Permissions.Any(perm => perm.UserId == userId || p.OwnerId == userId))

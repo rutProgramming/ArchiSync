@@ -2,7 +2,7 @@ import { useRef, FormEvent, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { User, Mail, Lock, ArrowLeft } from "lucide-react";
 import "./Auth.css";
-import Button from "../S/Button";
+import Button from "../Additional/Button";
 import { AppDispatch } from "../../store/reduxStore";
 import { useDispatch } from "react-redux";
 import { SignUp } from "../../store/Connect";

@@ -6,6 +6,7 @@ const url = import.meta.env.VITE_BASE_URL+"/api/Message/"
 
 export const createMessage = createAsyncThunk('message/createMessage', async ({ message }: { message: PartialMessage }, thunkAPI) => {
     try {
+
         const response = await axios.post(url, message, { headers: GetHeaders() });
         return response.data
 

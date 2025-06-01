@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { format, addMonths, subMonths, startOfMonth, endOfMonth, eachDayOfInterval, isSameDay } from "date-fns"
-import { cn } from "../S/utils"
+import { cn } from "../Additional/utils"
 
 export interface TimelineEvent {
   id: string
@@ -38,7 +38,6 @@ const ProjectTimeline = ({ events, onEventClick }: ProjectTimelineProps) => {
   }
 
   const getEventTypeClass = (type: string) => {
-    console.log("Getting event type class for:", type)
     switch (type) {
       case "milestone":
         return "event-milestone"

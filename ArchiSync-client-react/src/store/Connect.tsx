@@ -12,9 +12,8 @@ export const SignIn = createAsyncThunk('connect/signIn', async ({ user }: { user
             Password: user.password,
             UserName: user.userName
         });
-        console.log(response)
         return {
-            Token: response.data.token,
+            token: response.data.token,
             User: response.data.user,
             RoleName: response.data.roleName
 
@@ -33,9 +32,7 @@ export const SignUp = createAsyncThunk('connect/signUp', async ({ user }: { user
         RoleName: user.RoleName,
     };
     try {
-        console.log(userDetails);
         const response = await axios.post(url + 'register', userDetails);
-        console.log(response);
         return {
             user: {
                 userId: response.data.userId,
@@ -82,14 +79,14 @@ const userSlice = createSlice({
                 state.loading = true;
                 state.error = "";
             })
-            .addCase(SignIn.fulfilled, (state, action: PayloadAction<{ User: Puser; Token: string, RoleName: string }>) => {
+            .addCase(SignIn.fulfilled, (state, action: PayloadAction<{ User: Puser; token: string, RoleName: string }>) => {
                 state.loading = false;
                 state.user = { ...action.payload.User };
                 state.user.RoleName = action.payload.RoleName;
-                console.log(state.user);
+                state.user.token = action.payload.token;
 
                 sessionStorage.setItem('user', JSON.stringify(state.user));
-                sessionStorage.setItem('token', JSON.stringify(action.payload.Token));
+                sessionStorage.setItem('token', JSON.stringify(action.payload.token));
             })
             .addCase(SignIn.rejected, (state, action) => {
                 state.loading = false;
@@ -102,7 +99,6 @@ const userSlice = createSlice({
             .addCase(SignUp.fulfilled, (state, action: PayloadAction<{ user: Puser }>) => {
                 state.loading = false;
                 state.user = action.payload.user;
-                console.log(state.user);
                 sessionStorage.setItem('user', JSON.stringify(state.user));
                 sessionStorage.setItem('token', JSON.stringify(state.user.token));
             })

@@ -1412,7 +1412,8 @@
             "format": "int32"
           },
           "isDeleted": {
-            "type": "boolean"
+            "type": "boolean",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -1451,6 +1452,9 @@
             "type": "integer",
             "format": "int32"
           },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          },
           "projectId": {
             "type": "integer",
             "format": "int32"
@@ -1458,6 +1462,9 @@
           "architectId": {
             "type": "integer",
             "format": "int32"
+          },
+          "architect": {
+            "$ref": "#/components/schemas/User"
           },
           "createdAt": {
             "type": "string",

@@ -1,6 +1,6 @@
 import "./home-styles.css"
 import { Link } from "react-router"
-import Button from "../S/Button"
+import Button from "../Additional/Button"
 import "../../App.css"
 
 const CTASection = () => {

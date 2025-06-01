@@ -37,7 +37,8 @@ export type Message = {
   userId: number,
   user:User
   projectId: number,
-  architectId: number
+  architectId: number,
+  architect:User
   createdAt: Date
 }
 export type PartialMessage = Partial<Message>

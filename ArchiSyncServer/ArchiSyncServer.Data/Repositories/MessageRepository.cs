@@ -21,12 +21,14 @@ namespace ArchiSyncServer.Data.Repositories
         {
             return await _context.Messages
                    .Where(m => m.ArchitectId == architectId)
+                   .Include(m=>m.User)
                    .ToListAsync();
         }
         public async Task<IEnumerable<Message>> GetAllUserMessagesAsync(int userId)
         {
             return await _context.Messages
                 .Where(m => m.UserId == userId)
+                .Include(m=>m.Architect)
                 .ToListAsync();
         }
         public async Task<int> GetUsernreadMessagesCountAsync(int userId)

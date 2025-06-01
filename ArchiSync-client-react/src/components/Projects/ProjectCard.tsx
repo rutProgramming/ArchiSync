@@ -11,12 +11,7 @@ import {
   User, 
   Users, 
   EyeOff,
-  MoreVertical,
   Star,
-  Edit,
-  Share2,
-  Archive,
-  Trash2
 } from "lucide-react"
 import {ProjectDTO } from "../../types/Project"
 import { useEffect, useState } from "react"
@@ -26,28 +21,17 @@ interface ProjectCardProps {
   project: ProjectDTO
   handleOpenProject?: (id: number) => void
   viewMode?: 'grid' | 'list'
-  onEdit?: (id: number) => void
-  onShare?: (id: number) => void
-  onArchive?: (id: number) => void
-  onDelete?: (id: number) => void
-  showActions?: boolean
-}
+ }
 
 
 const ProjectCard = ({ 
   project, 
   viewMode = 'grid',
-  onEdit,
-  onShare,
-  onArchive,
   handleOpenProject,
-  showActions = true
 }: ProjectCardProps) => {
-  const [showDropdown, setShowDropdown] = useState(false)
   const [isImageLoaded, setIsImageLoaded] = useState(false)
   const [isFavorite, setIsFavorite] = useState(false)
   const [imageUrl, setImageUrl] = useState<string | undefined>(undefined);
-  //const navigate = useNavigate()
 
   useEffect(() => {
     let isMounted = true;
@@ -60,21 +44,6 @@ const ProjectCard = ({
     return () => { isMounted = false; };
   }, [project.projectImage]);
 
-  // const handleClick = (e: React.MouseEvent) => {
-  // if ((e.target as HTMLElement).closest('.project-actions')) {
-  //   e.stopPropagation()
-  //   return
-  // }
-  // sessionStorage.setItem('projectId', project.id.toString());
-  // navigate(`/projects/${project.id}`)
-
-
-
-  const handleActionClick = (e: React.MouseEvent, action: () => void) => {
-    e.stopPropagation()
-    action()
-    setShowDropdown(false)
-  }
 
   const getIcon = () => {
     switch (project.type) {
@@ -166,7 +135,6 @@ const ProjectCard = ({
           )}
         </div>
 
-        {/* Enhanced Overlay */}
         <div className="project-overlay">
           <div className="overlay-top">
             <div className="project-type-badge-overlay">
@@ -219,58 +187,9 @@ const ProjectCard = ({
           </div>
         </div>
 
-        {/* Actions Menu */}
-        {showActions && (
-          <div className="project-actions">
-            <button
-              className="actions-trigger"
-              onClick={(e) => {
-                e.stopPropagation()
-                setShowDropdown(!showDropdown)
-              }}
-              title="Actions"
-            >
-              <MoreVertical size={16} />
-            </button>
-
-            {showDropdown && (
-              <div className="actions-dropdown">
-                <button
-                  className="action-item"
-                  onClick={(e) => handleActionClick(e, () => onEdit?.(project.id))}
-                >
-                  <Edit size={14} />
-                  <span>Edit</span>
-                </button>
-                <button
-                  className="action-item"
-                  onClick={(e) => handleActionClick(e, () => onShare?.(project.id))}
-                >
-                  <Share2 size={14} />
-                  <span>Share</span>
-                </button>
-                <button
-                  className="action-item"
-                  onClick={(e) => handleActionClick(e, () => onArchive?.(project.id))}
-                >
-                  <Archive size={14} />
-                  <span>Archive</span>
-                </button>
-                <div className="dropdown-divider"></div>
-                <button
-                  className="action-item danger"
-                  //onClick={(e) => handleActionClick(e, () => onDelete?.(project.id))}
-                >
-                  <Trash2 size={14} />
-                  <span>Delete</span>
-                </button>
-              </div>
-            )}
-          </div>
-        )}
+        
       </div>
 
-      {/* Project Info */}
       <div className="project-info">
         <div className="project-header">
           <h3 className="project-title">{project.title}</h3>

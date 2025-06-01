@@ -1,7 +1,7 @@
 
 import { Link,  } from "react-router"
 import {  ArrowRight, Lightbulb, Zap, Layers } from "lucide-react"
-import Button from "../S/Button"
+import Button from "../Additional/Button"
 import "./home-styles.css"
 import "../../App.css"
 

@@ -15,8 +15,11 @@ namespace ArchiSyncServer.Core.DTOs
         public bool UserIsRead { get; set; } 
         public bool ArchitectIsRead { get; set; }
         public int UserId { get; set; }
+        public User? User { get; set; }
+
         public int ProjectId { get; set; }
         public int ArchitectId { get; set; }
+        public User? Architect { get; set; }
 
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }

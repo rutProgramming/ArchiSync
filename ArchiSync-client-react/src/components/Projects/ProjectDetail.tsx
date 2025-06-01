@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { ArrowLeft } from "lucide-react"
 import { Link, useParams } from "react-router"
-import Button from "../S/Button"
+import Button from "../Additional/Button"
 import ProjectDetailsView from "./ProjectDetailsView"
 import FileUploader from "../Files/FileUploader"
 import { useSelector } from "react-redux"
@@ -20,10 +20,16 @@ const ProjectDetail = () => {
   // const [timelineEvents] = useState(sampleTimelineEvents)
   // const [comments] = useState(sampleComments)
   const dispatch: AppDispatch = useDispatch()
+  const [hasAccess, setHasAccess] = useState(false);
+
   useEffect(() => {
     dispatch(GetProjectById(id!));
     if (user && user.userId) {
       dispatch(getFiles({ projectId: +(id!), userId: user.userId! }))
+    }
+
+    if(project?.ownerId===user.userId||project?.architects.some(arch => arch.userId === user.userId)){
+      setHasAccess(true);
     }
   }, [dispatch, id, user])
 
@@ -41,7 +47,7 @@ const ProjectDetail = () => {
   //   console.log("Uploading files:", files)
   //   // In a real app, this would call an API to upload the files
   // }
-  const [activeTab, setActiveTab] = useState<"Upload Files" | "AI Workspace">("Upload Files")
+  const [activeTab, setActiveTab] = useState<"Upload Files" | "AI Workspace">("AI Workspace")
 
   return (
     <div className="project-detail-page">
@@ -53,48 +59,49 @@ const ProjectDetail = () => {
         </Link>
       </div>
       {project && (<>
-          <div className="project-detail-content">
+        <div className="project-detail-content">
 
-            <ProjectDetailsView project={project} files={files} />
-          </div>
-<div className="project-datail-content">
+          <ProjectDetailsView project={project} files={files} hasAccess={hasAccess} />
+        </div>
+        <div className="project-datail-content">
           <div className="project-detail-sections">
             {/* <section className="detail-section">
             <h2 className="section-title">Timeline</h2>
             <ProjectTimeline events={timelineEvents} />
           </section> */}
-            <div className="project-tabs">
-              <button className={`tab ${activeTab === "Upload Files" ? "active" : ""}`} onClick={() => setActiveTab("Upload Files")}>
-                Upload Files
-              </button>
-              <button className={`tab ${activeTab === "AI Workspace" ? "active" : ""}`} onClick={() => setActiveTab("AI Workspace")}>
-                AI Workspace
-              </button>
-            </div>
+            {hasAccess && (<>
+              <div className="project-tabs">
+                <button className={`tab ${activeTab === "AI Workspace" ? "active" : ""}`} onClick={() => setActiveTab("AI Workspace")}>
+                  AI Workspace
+                </button>
+                <button className={`tab ${activeTab === "Upload Files" ? "active" : ""}`} onClick={() => setActiveTab("Upload Files")}>
+                  Upload Files
+                </button>
+              </div>
 
-            {activeTab === "Upload Files" && (
-              <section className="detail-section">
-                <h2 className="section-title">Upload Files</h2>
-                <FileUploader projectId={+(id!)} projectName={project.title} />
-              </section>
-            )}
+              {activeTab === "Upload Files" && (
+                <section className="detail-section">
+                  <h2 className="section-title">Upload Files</h2>
+                  <FileUploader projectId={+(id!)} projectName={project.title} />
+                </section>
+              )}
 
-            {activeTab === "AI Workspace" && (
-              <Workspace projectId={+(id!)} projectName={project.title} />
+              {activeTab === "AI Workspace" && (
+                <Workspace projectId={+(id!)} projectName={project.title} />
 
-            )}
+              )}
 
-
+            </>)}
             {/* <CommentSection comments={comments} onAddComment={handleAddComment} onLikeComment={handleLikeComment} /> */}
 
 
           </div>
-          </div>
-        </>
-        )    
+        </div>
+      </>
+      )
 
       }
-      </div >
+    </div >
   )
 }
 

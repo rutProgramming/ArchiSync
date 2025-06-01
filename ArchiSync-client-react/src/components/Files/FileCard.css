@@ -1,0 +1,394 @@
+/* File Card Component Styles */
+.file-card {
+  background: linear-gradient(145deg, #1a1a1a, #2d2d2d);
+  border: 1px solid #444;
+  border-radius: 12px;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+}
+
+.file-card:hover {
+  transform: translateY(-4px);
+  border-color:var(--ring);
+}
+
+.file-card:hover .file-actions {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.file-card.loading,
+.file-card.error {
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}
+
+/* Loading State */
+.file-loading {
+  text-align: center;
+  color: #ccc;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #333;
+  border-top: 3px solid var(--ring);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 16px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Error State */
+.file-error {
+  text-align: center;
+  color: #ff6b6b;
+}
+
+.error-icon {
+  font-size: 32px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* File Preview */
+.file-preview {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #222;
+  min-height: 160px;
+}
+
+.file-thumbnail {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.file-thumbnail-pdf {
+  width: 100%;
+  height: 160px;
+  border: none;
+  border-radius: 4px;
+}
+
+.pdf-preview {
+  width: 100%;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.file-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.file-icon {
+  font-size: 48px;
+  opacity: 0.7;
+}
+
+/* File Info */
+.file-info {
+  margin-bottom: 12px;
+}
+
+.file-name {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  word-break: break-word;
+  line-height: 1.3;
+}
+
+.file-meta {
+  display: flex;
+  gap: 8px;
+  font-size: 12px;
+  color: #888;
+}
+
+.file-type {
+  background: #333;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.file-size {
+  color: #aaa;
+}
+
+/* File Actions */
+.file-actions {
+  display: flex;
+  gap: 8px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+
+.action-btn {
+  background: #333;
+  border: 1px solid #555;
+  border-radius: 6px;
+  padding: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+.action-btn:hover {
+  transform: translateY(-2px);
+}
+
+.download-btn {
+  color: #4CAF50;
+  border-color: #4CAF50;
+}
+
+.download-btn:hover {
+  background: #4CAF50;
+  color: white;
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.delete-btn {
+  color: #f44336;
+  border-color: #f44336;
+}
+
+.delete-btn:hover {
+  background: #f44336;
+  color: white;
+  box-shadow: 0 4px 12px rgba(244, 67, 54, 0.3);
+}
+
+.action-icon {
+  width: 16px;
+  height: 16px;
+  stroke-width: 2;
+}
+
+/* Modal Styles */
+.file-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.file-modal-content {
+  background: #1a1a1a;
+  border-radius: 12px;
+  max-width: 90vw;
+  max-height: 90vh;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #333;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(0, 0, 0, 0.7);
+  border: none;
+  border-radius: 50%;
+  padding: 8px;
+  cursor: pointer;
+  color: #fff;
+  z-index: 1001;
+  transition: all 0.2s ease;
+}
+
+.modal-close:hover {
+  background: rgba(255, 0, 0, 0.7);
+  transform: scale(1.1);
+}
+
+.modal-close svg {
+  width: 20px;
+  height: 20px;
+  stroke-width: 2;
+}
+
+.modal-body {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+}
+
+.modal-image {
+  max-width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.modal-pdf {
+  width: 80vw;
+  height: 70vh;
+  border: none;
+  border-radius: 8px;
+}
+
+.modal-unsupported {
+  text-align: center;
+  color: #ccc;
+  padding: 40px;
+}
+
+.file-icon-large {
+  font-size: 80px;
+  display: block;
+  margin-bottom: 16px;
+  opacity: 0.7;
+}
+
+.file-name-modal {
+  color: #fff;
+  font-weight: 600;
+  margin-top: 16px;
+  word-break: break-word;
+}
+
+.modal-actions {
+  padding: 20px;
+  border-top: 1px solid #333;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.modal-btn {
+  background: #333;
+  border: 1px solid #555;
+  border-radius: 8px;
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.modal-btn.download {
+  color: #4CAF50;
+  border-color: #4CAF50;
+}
+
+.modal-btn.download:hover {
+  background: #4CAF50;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.btn-icon {
+  width: 18px;
+  height: 18px;
+  stroke-width: 2;
+}
+
+/* Gallery Grid Layout */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.gallery-item {
+  position: relative;
+}
+
+.gallery-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.gallery-image:hover {
+  transform: scale(1.05);
+}
+
+.no-images {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: #888;
+  padding: 40px;
+  font-size: 16px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 16px;
+    padding: 16px;
+  }
+  
+  .file-card {
+    min-height: 250px;
+  }
+  
+  .file-modal-content {
+    max-width: 95vw;
+    max-height: 95vh;
+  }
+  
+  .modal-pdf {
+    width: 90vw;
+    height: 60vh;
+  }
+  
+  .modal-body {
+    padding: 16px;
+  }
+  
+  .modal-actions {
+    padding: 16px;
+  }
+}

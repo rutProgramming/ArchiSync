@@ -1,33 +1,33 @@
-
 import { useEffect, useState } from "react"
-import { Calendar, Users, MapPin, FileText} from "lucide-react"
-import TeamMember from "../S/TeamMember"
+import { Calendar, Users, MapPin} from "lucide-react"
+import TeamMember from "../Additional/TeamMember"
 import { ProjectDTO } from "../../types/Project"
 import { File } from "../../types/types"
 import { getDownloadUrl } from "../../Services/uploadService"
-import { formatDate } from "../S/utils"
-import "../S/additional-styles.css"
+import { formatDate } from "../Additional/utils"
+import "../Additional/additional-styles.css"
+import FileCard from "../Files/FileCard"
 
 interface ProjectDetailsViewProps {
   project: ProjectDTO
   files: File[]
-  onEdit?: (id: number) => void
-  onDelete?: (id: number) => void
+  hasAccess:boolean
 }
 
-const ProjectDetailsView = ({ project, files }: ProjectDetailsViewProps) => {
+const ProjectDetailsView = ({ project, files, hasAccess }: ProjectDetailsViewProps) => {
 
 
   const [activeTab, setActiveTab] = useState<"overview" | "team" | "documents" | "gallery">("overview")
   const [documents, setDocuments] = useState<File[]>()
+  const [imageFiles, setImageFiles] = useState<File[]>()
   const [imageUrls, setImageUrls] = useState<string[]>()
 
 
   useEffect(() => {
       setDocuments(files.filter(file => !file.fileType?.startsWith("image/")))
-      const imageFiles = files.filter(file => file.fileType?.startsWith("image/"))
+      setImageFiles(files.filter(file => file.fileType?.startsWith("image/")))
       const fetchImageUrls = async () => {
-        if (imageFiles.length > 0) {
+        if (imageFiles && imageFiles.length > 0) {
           const urls = await Promise.all(imageFiles.map(image => getDownloadUrl(image.s3Key).then(res => res)))
           setImageUrls(urls)
         } else {
@@ -158,22 +158,7 @@ const ProjectDetailsView = ({ project, files }: ProjectDetailsViewProps) => {
                 ) : (
                   documents.map((doc) => (
                     <div key={doc.id} className="document-item">
-                      <div className="document-icon">
-                        <FileText size={20} />
-                      </div>
-                      <div className="document-info">
-                        <div className="document-name">{doc.fileName}</div>
-                        <div className="document-meta">
-                          <span className="document-type">{doc.fileType}</span>
-                          <span className="document-size">{(doc.size / 1024 / 1024).toFixed(2)} MB</span>
-                          {/* <span className="document-date">
-                        Uploaded {formatDistanceToNow(doc., { addSuffix: true })}
-                      </span> */}
-                        </div>
-                      </div>
-                      {/* <a href={() => getSignedUrl(doc.s3Key)} download className="document-download">
-                    <Download size={16} />
-                  </a> */}
+                       <FileCard file={doc} hasAccess={hasAccess} />
                     </div>
                   ))
                 )}
@@ -187,17 +172,12 @@ const ProjectDetailsView = ({ project, files }: ProjectDetailsViewProps) => {
             <h3>Project Gallery</h3>
             {imageUrls && (
               <div className="gallery-grid">
-                {imageUrls.length === 0 ? (
+              
+                {!imageFiles || imageFiles.length === 0 ? (
                   <p className="no-images">No images available</p>
                 ) : (
-                  imageUrls.map((imageUrl, index) => (
-                    <div key={index} className="gallery-item">
-                      <img
-                        src={imageUrl}
-                        alt={`Project image ${index + 1}`}
-                        className="gallery-image"
-                      />
-                    </div>
+                  imageFiles.map((image, index) => (
+                    <FileCard key={index} file={image} hasAccess={hasAccess} />
                   ))
                 )}
               </div>

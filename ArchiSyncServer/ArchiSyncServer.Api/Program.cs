@@ -26,17 +26,6 @@ IdentityModelEventSource.ShowPII = true;
 var builder = WebApplication.CreateBuilder(args);
 //---------Amazon--------
 builder.Configuration.AddEnvironmentVariables();
-//var accessKey = Environment.GetEnvironmentVariable("AWS_ACCESS_KEY_ID", EnvironmentVariableTarget.User);
-//var secretKey = Environment.GetEnvironmentVariable("AWS_SECRET_ACCESS_KEY", EnvironmentVariableTarget.User);
-//var region = Environment.GetEnvironmentVariable("AWS_REGION", EnvironmentVariableTarget.User);
-
-//var credentials = new BasicAWSCredentials(accessKey, secretKey);
-
-//var regionEndpoint = Amazon.RegionEndpoint.GetBySystemName(region);
-
-//var s3Client = new AmazonS3Client(credentials, regionEndpoint);
-//builder.Services.AddSingleton<IAmazonS3>(s3Client);
-
 
 
 
@@ -89,7 +78,7 @@ builder.Services.AddControllers().AddJsonOptions(options =>
     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
 
 });
-builder.Services.AddHttpClient(); 
+builder.Services.AddHttpClient();
 
 // Add JWT Authentication
 builder.Services.AddAuthentication(options =>
@@ -167,7 +156,7 @@ string[] urls = ["http://localhost:5173", "http://localhost:4200", "https://arch
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigin",
-        builder => builder.WithOrigins(urls) 
+        builder => builder.WithOrigins(urls)
                           .AllowAnyHeader()
                           .AllowAnyMethod()
                           .AllowCredentials());
@@ -175,19 +164,17 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-//app.UseCors("AllowAllOrigins");
 app.UseCors("AllowSpecificOrigin");
 
-// Configure the HTTP request pipeline.
-//if (app.Environment.IsDevelopment())
-//{
-app.UseDeveloperExceptionPage();
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
     app.UseSwagger();
     app.UseSwaggerUI(options =>
     {
         options.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
     });
-//}
+}
 
 app.UseHttpsRedirection();
 app.UseRouting();
@@ -197,6 +184,6 @@ app.UseAuthorization();
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllers();
-    endpoints.MapHub<SketchHub>("/sketchhub"); 
+    endpoints.MapHub<SketchHub>("/sketchhub");
 });
 app.Run();

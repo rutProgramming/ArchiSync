@@ -27,7 +27,6 @@ namespace ArchiSyncServer.Service.Services
             _repositoryManager = repositoryManager;
         }
 
-        //uneccery
         public async Task<CommentDTO> GetCommentAsync(int id)
         {
             if (id < 0)
@@ -62,7 +61,6 @@ namespace ArchiSyncServer.Service.Services
             return _mapper.Map<CommentDTO>(createdComment);
         }
 
-        //uneccery
         public async Task UpdateCommentAsync(int id,CommentDTO commentDto)
         {
             var comment = _mapper.Map<Comment>(commentDto);
@@ -70,7 +68,6 @@ namespace ArchiSyncServer.Service.Services
             await _repositoryManager.SaveAsync();
         }
 
-        //unceccery
         public async Task DeleteCommentAsync(int id)
         {
             var comment = await _commentRepository.GetByIdAsync(id);

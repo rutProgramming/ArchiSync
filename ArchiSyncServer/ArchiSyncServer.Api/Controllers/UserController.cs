@@ -15,8 +15,6 @@ namespace ArchiSyncServer.API.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        //============Used functions===============
-        //============Unused functions for future extenion===============
         private readonly IUserService _userService;
         private readonly IMapper _mapper;
 
@@ -26,7 +24,6 @@ namespace ArchiSyncServer.API.Controllers
             _mapper = mapper;
         }
 
-        // GET: api/user
         [HttpGet]
         public async Task<ActionResult<IEnumerable<UserRolesDTO>>> Get()
         {
@@ -34,7 +31,6 @@ namespace ArchiSyncServer.API.Controllers
             return Ok(users);
         }
 
-        // GET: api/user/{id}
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
@@ -53,23 +49,7 @@ namespace ArchiSyncServer.API.Controllers
             }
         }
 
-        // POST: api/user
-        [HttpPost]
-        //public async Task<IActionResult> Post([FromBody] UserPostModel userPostModel)
-        //{
-        //    try
-        //    {
-        //        var userDto = _mapper.Map<UserDTO>(userPostModel);
-        //        var createdUser = await _userService.CreateUserAsync(userDto,"user");
-        //        return CreatedAtAction(nameof(Get), new { id = createdUser.UserId }, createdUser);
-        //    }
-        //    catch (ArgumentException ex)
-        //    {
-        //        return BadRequest(new { message = ex.Message });
-        //    }
-        //}
 
-        // PUT: api/user/{id}
         [HttpPut("{id}")]
         public async Task<ActionResult> Put(int id, [FromBody] RegisterModel userPostModel)
         {
@@ -89,7 +69,6 @@ namespace ArchiSyncServer.API.Controllers
             }
         }
 
-        // DELETE: api/user/{id}
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {

@@ -1,87 +1,101 @@
-"use client"
+import { useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { AppDispatch, RootState } from "../../store/reduxStore"
+import { 
+  GetArchitectMessages, 
+  GetUserMessages,
+  UpdateMessageStatus, 
+  toggleArchitectMessageReadStatus,
+  toggleUserMessageReadStatus 
+} from "../../store/Message"
+import { addProjectPremmision } from "../../store/Premission"
+import { PartialMessage, PartialProjectPermission } from "../../types/types"
+import "../../App.css"
+import MessageItem from "./MessageItem"
 
-import { useState } from "react"
-import SearchBar from "../Bar/SearchBar"
-import MessageItem, { type Message } from "./MessageItem"
 
-// Sample data
-const sampleMessages: Message[] = [
-  {
-    id: "1",
-    sender: {
-      id: "user1",
-      name: "John Doe",
-      initials: "JD",
-    },
-    content: "What's the status of our residential project?",
-    timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000), // 2 hours ago
-    read: false,
-  },
-  {
-    id: "2",
-    sender: {
-      id: "user2",
-      name: "Emma R",
-      initials: "ER",
-    },
-    content: "Can you provide the revised floor plans by tomorrow?",
-    timestamp: new Date(Date.now() - 5 * 60 * 60 * 1000), // 5 hours ago
-    read: true,
-  },
-  {
-    id: "3",
-    sender: {
-      id: "user3",
-      name: "Alice Smith",
-      initials: "AS",
-    },
-    content: "Great, thanks!",
-    timestamp: new Date(Date.now() - 24 * 60 * 60 * 1000), // 1 day ago
-    read: true,
-  },
-  {
-    id: "4",
-    sender: {
-      id: "user4",
-      name: "Robert Johnson",
-      initials: "RJ",
-    },
-    content: "The client approved the design concept. We can move forward with detailed drawings.",
-    timestamp: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000), // 2 days ago
-    read: true,
-  },
-]
 
 const Messages = () => {
-  const [messages] = useState<Message[]>(sampleMessages)
-  const [searchQuery, setSearchQuery] = useState("")
+  const dispatch: AppDispatch = useDispatch()
+  const messages = useSelector((state: RootState) => state.messages.messages)
+  const loading = useSelector((state: RootState) => state.messages.loading)
+  const error = useSelector((state: RootState) => state.messages.error)
+  const user = useSelector((state: RootState) => state.connect.user)
+  
+  const userType: 'architect' | 'user' = user?.RoleName === 'architect' ? 'architect' : 'user'
 
-  const filteredMessages = searchQuery
-    ? messages.filter(
-        (message) =>
-          message.sender.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          message.content.toLowerCase().includes(searchQuery.toLowerCase()),
-      )
-    : messages
+  useEffect(() => {
+    const fetchMessages = () => {
+      if (userType === 'architect') {
+        dispatch(GetArchitectMessages())
+      } else {
+        dispatch(GetUserMessages())
+      }
+    }
 
-  const handleSearch = (query: string) => {
-    setSearchQuery(query)
+    fetchMessages()
+    const interval = setInterval(fetchMessages, 60000)
+    return () => clearInterval(interval)
+  }, [dispatch, user, userType])
+
+  const toggleReadStatus = (id: number) => {
+    const message = messages.find((m) => m.id === id)
+    if (!message) return
+
+    if (userType === 'architect') {
+      const updated = { ...message, architectIsRead: !message.architectIsRead }
+      const projectPremmision: PartialProjectPermission = {
+          userId: message.userId,
+          projectId: message.projectId,
+      };
+      dispatch(addProjectPremmision(projectPremmision));
+      dispatch(UpdateMessageStatus(updated))
+      dispatch(toggleArchitectMessageReadStatus(id))
+    } else {
+     
+      dispatch(toggleUserMessageReadStatus(id))
+    }
+  }
+
+  const handleApprove = (message: PartialMessage) => {
+    const projectPermission: PartialProjectPermission = {
+      userId: message.userId,
+      projectId: message.projectId,
+    }
+    
+    dispatch(addProjectPremmision(projectPermission))
+    
+    const updatedMessage: PartialMessage = { 
+      ...message, 
+      approved: true 
+    }
+    dispatch(UpdateMessageStatus(updatedMessage))
   }
 
   return (
     <div className="messages-page">
       <div className="page-header">
         <h1>Messages</h1>
-        <SearchBar onSearch={handleSearch} placeholder="Search messages..." />
       </div>
 
       <div className="messages-list">
-        {filteredMessages.length > 0 ? (
-          filteredMessages.map((message) => <MessageItem key={message.id} message={message} />)
-        ) : (
+        {loading && <p className="loading">Loading...</p>}
+        {error && <p className="error">{error}</p>}
+        
+        {!loading && messages.length === 0 ? (
           <div className="no-messages">
             <p>No messages found</p>
           </div>
+        ) : (
+          messages.map((msg) => (
+            <MessageItem 
+              key={msg.id} 
+              message={msg} 
+              userType={userType}
+              onToggleRead={toggleReadStatus}
+              onApprove={userType === 'architect' ? handleApprove : undefined}
+            />
+          ))
         )}
       </div>
     </div>

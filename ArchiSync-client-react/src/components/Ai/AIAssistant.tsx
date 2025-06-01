@@ -1,6 +1,8 @@
 import AIChat from "./AIChat"
 
 const AIAssistant = () => {
+  
+
   return (
     <div className="ai-assistant-page">
       <div className="page-header">

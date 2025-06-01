@@ -1,16 +1,18 @@
 
-import {  useState } from "react"
+import { useState } from "react"
 import { NavLink, useNavigate } from "react-router"
 import { LayoutDashboard, MessageSquare, FolderKanban, Bot, LogOut, Menu, X, User, Settings } from "lucide-react"
-import Logo from "../S/Logo"
 import "./Sidebar.css"
 import { AppDispatch, RootState } from "../../store/reduxStore"
 import { useDispatch, useSelector } from "react-redux"
 import { logout } from "../../store/Connect"
+import Logo from "../Additional/Logo"
 
 const Sidebar = () => {
   const [collapsed, setCollapsed] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const dispatch: AppDispatch = useDispatch()
+  const user = useSelector((state: RootState) => state.connect.user)
   const navigate = useNavigate()
 
   const toggleSidebar = () => {
@@ -25,16 +27,17 @@ const Sidebar = () => {
     dispatch(logout())
     navigate("/");
   }
-  
+
 
   const navItems = [
-    { path: "/dashboard", name: "Dashboard", icon: <LayoutDashboard size={20} /> },
     { path: "/messages", name: "Messages", icon: <MessageSquare size={20} /> },
     { path: "/projects", name: "Projects", icon: <FolderKanban size={20} /> },
     { path: "/ai-assistant", name: "AI Assistant", icon: <Bot size={20} /> },
+
   ]
-const dispatch:AppDispatch = useDispatch()
-const user=useSelector((state:RootState)=>state.connect.user)
+  if (user.RoleName === "architect") {
+    navItems.push({ path: "/MyProjects", name: "My Projects", icon: <LayoutDashboard size={20} /> })
+  }
   return (
     <>
       <button className="mobile-menu-toggle" onClick={toggleMobileSidebar}>
@@ -92,8 +95,8 @@ const user=useSelector((state:RootState)=>state.connect.user)
                     <Settings size={16} />
                     <span>Settings</span>
                   </button>
-                  <button className="footer-btn"onClick={handleLogout}>
-                    <LogOut size={16}  />
+                  <button className="footer-btn" onClick={handleLogout}>
+                    <LogOut size={16} />
                     <span>Logout</span>
                   </button>
                 </>

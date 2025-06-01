@@ -13,6 +13,6 @@ namespace ArchiSyncServer.Api.Models
         public string S3Key { get; set; }
         public int ProjectId { get; set; }
         public int OwnerId { get; set; }
-        public bool IsDeleted { get; set; }
+        public bool? IsDeleted { get; set; }
     }
 }

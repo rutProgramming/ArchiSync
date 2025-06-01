@@ -5,8 +5,8 @@ import type React from "react"
 import { useState } from "react"
 import { formatDistanceToNow } from "date-fns"
 import { Send, ThumbsUp, Reply, MoreHorizontal } from "lucide-react"
-import Button from "../S/Button"
-import { cn } from "../S/utils"
+import Button from "../Additional/Button"
+import { cn } from "../Additional/utils"
 
 export interface Comment {
   id: string

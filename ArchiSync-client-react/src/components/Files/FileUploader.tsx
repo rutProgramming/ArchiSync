@@ -179,7 +179,7 @@ import { ArrowBack } from "@mui/icons-material";
 import { getUploadUrl, uploadFileToS3 } from "../../Services/uploadService";
 import { AppDispatch, RootState } from "../../store/reduxStore";
 import { addFile } from "../../store/File";
-import Button from "../S/Button";
+import Button from "../Additional/Button";
 
 interface FileUploaderProps {
     projectId: number;
@@ -259,6 +259,7 @@ const FileUploader = ({ projectId, projectName, fileName }: FileUploaderProps) =
           projectId: projectId,
           s3Key: `users/${projectName}/${uniqueFileName}`,
           size: file.size,
+          isDeleted: false,
         };
         dispatch(addFile(fileServer));
       }

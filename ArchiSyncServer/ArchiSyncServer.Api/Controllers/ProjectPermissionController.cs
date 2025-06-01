@@ -15,8 +15,7 @@ namespace ArchiSyncServer.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    //============Used functions===============
-    //============Unused functions for future extenion===============
+   
     public class ProjectPermissionController : ControllerBase
     {
         private readonly IProjectPermissionService _projectPermissionService;

@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace ArchiSyncServer.Api.Controllers
 {
+    //============Unused controller, for future extension===============
+
     [ApiController]
     [Route("api/[controller]")]
     public class CommentController : ControllerBase

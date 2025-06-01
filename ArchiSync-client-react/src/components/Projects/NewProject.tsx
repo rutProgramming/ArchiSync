@@ -2,7 +2,7 @@
 import { useState, useRef } from "react"
 import { useNavigate } from "react-router"
 import { X, Plus } from "lucide-react"
-import Button from "../S/Button"
+import Button from "../Additional/Button"
 import "./NewProject.css"
 import "../../App.css"
 import { useDispatch, useSelector } from "react-redux"

@@ -4,7 +4,7 @@ import type React from "react"
 
 import { useState, useRef, useEffect } from "react"
 import { Send, Lightbulb } from "lucide-react"
-import Button from "../S/Button"
+import Button from "../Additional/Button"
 
 interface Message {
   id: string

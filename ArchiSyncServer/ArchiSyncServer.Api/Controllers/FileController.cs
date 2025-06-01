@@ -12,7 +12,6 @@ using System.Security.Claims;
 using ArchiSyncServer.Service.Services;
 using ArchiSyncServer.Api.Models;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace ArchiSyncServer.Api.Controllers
 {
@@ -30,7 +29,7 @@ namespace ArchiSyncServer.Api.Controllers
             _mapper = mapper;
         }
 
-        [Authorize(Policy = "ArchitectOnly")]
+        [Authorize(Policy = "UserAccess")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<FileDTO>>> GetAllFiles(int projectId,bool isPublic=false, int userId = 0)
         {

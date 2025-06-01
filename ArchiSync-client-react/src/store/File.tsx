@@ -9,8 +9,6 @@ export const addFile = createAsyncThunk(
     'Project/addFile',
     async (file: PartialFile, thunkAPI) => {
         try {
-            console.log(file,GetHeaders());
-
             var response = await axios.post(url, file, { headers: GetHeaders() });
             return response.data;
         } catch (error) {
@@ -37,7 +35,6 @@ export const deleteFile = createAsyncThunk(
 
 
 export const getFiles = createAsyncThunk('Project/getFiles', async ({projectId,userId}:{projectId:number,userId:number}, thunkAPI) => {
-    console.log("getFiles",projectId,userId)
     try {
         const response = await axios.get(url, {
             params: {
@@ -46,7 +43,6 @@ export const getFiles = createAsyncThunk('Project/getFiles', async ({projectId,u
             },
             headers: GetHeaders()
         });
-        console.log(response);
         return response.data;
     } catch (error: any) {
         console.error('Error fetching public projects:', error);
@@ -95,10 +91,7 @@ const FileSlice = createSlice({
             })
             .addCase(deleteFile.fulfilled, (state, action: PayloadAction<number | undefined>) => {
                 state.loading = false;
-                //if (action.payload !== undefined) {
-                    state.files = state.files.filter(file => file.id !== action.payload);
-                    console.log("File deleted successfully", state.files,action.payload);
-                //}
+                state.files = state.files.filter(file => file.id !== action.payload);
             })
             
             .addCase(deleteFile.rejected, (state, action) => {

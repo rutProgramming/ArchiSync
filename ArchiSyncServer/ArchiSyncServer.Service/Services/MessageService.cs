@@ -27,7 +27,6 @@ namespace ArchiSyncServer.Service.Services
             _repositoryManager = repositoryManager;
         }
 
-        //unneccery
 
         public async Task<MessageDTO> GetMessageAsync(int id)
         {
@@ -42,7 +41,6 @@ namespace ArchiSyncServer.Service.Services
             }
             return _mapper.Map<MessageDTO>(message);
         }
-        //unneccery
         public async Task<IEnumerable<MessageDTO>> GetAllMessagesAsync()
         {
             var messages = await _messageRepository.GetAllAsync();
