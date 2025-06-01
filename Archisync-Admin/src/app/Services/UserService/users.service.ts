@@ -10,13 +10,13 @@ export class UsersService {
 
   
   constructor(private http: HttpClient) { }
-  private apiUrl = 'https://localhost:7218/api/User/';
+  private apiUrl = 'https://archisync-production.up.railway.app/api/User/';
 
   getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.apiUrl);
   }
   addUser(user: UserServer): Observable<User> {
-    return this.http.post<User>("https://localhost:7218/api/Auth/register", user);
+    return this.http.post<User>("https://archisync-production.up.railway.app/api/Auth/register", user);
   }
 
   updateUser(user: UserServer, id: number): Observable<User> {
