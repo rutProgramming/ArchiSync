@@ -41,7 +41,7 @@ namespace ArchiSyncServer.Data.Repositories
             return entity;
         }
 
-        \
+        
         public async Task UpdateAsync(int id, T entity)
         {
             var existingEntity = await _dbSet.FindAsync(id);
