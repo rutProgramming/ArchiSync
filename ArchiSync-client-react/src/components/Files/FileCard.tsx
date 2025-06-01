@@ -184,7 +184,6 @@ const FileCard = ({ file, hasAccess }: FileCardProps) => {
         )}
 
       </div>
-      {/* Modal */}
       {modalOpen && (
         <div className="file-modal-overlay" onClick={() => setModalOpen(false)}>
           <div className="file-modal-content" onClick={(e) => e.stopPropagation()}>

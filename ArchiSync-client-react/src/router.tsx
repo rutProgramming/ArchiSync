@@ -9,8 +9,7 @@ import NewProject from './components/Projects/NewProject'
 import ProjectDetail from './components/Projects/ProjectDetail'
 import AIAssistant from './components/Ai/AIAssistant.tsx'
 import Messages from './components/Messages/Messages.tsx'
-import AllProjects from './components/Projects/AllProjects.tsx'
-import Projects from './components/Projects/Projects.tsx'
+import ProjectFeatures from './components/Projects/ProjectFeatures.tsx'
 
 
 
@@ -51,7 +50,7 @@ export const router = createBrowserRouter(
           path: "MyProjects",
           element: (
             <ProtectedRoute>
-              <Projects />
+              <ProjectFeatures />
             </ProtectedRoute>
           )
         },
@@ -64,11 +63,11 @@ export const router = createBrowserRouter(
           )
         },
 
-      {
+        {
           path: "projects",
           element: (
             <ProtectedRoute>
-              <AllProjects />
+              <ProjectFeatures />
             </ProtectedRoute>
           )
         },

@@ -1,5 +1,4 @@
 import { configureStore } from "@reduxjs/toolkit";
-import urlReducer from "./UrlSlice";
 import userReducer from "./Connect"; 
 import messageReducer from "./Message";
 import ProgectsReducer from "./Project";
@@ -8,7 +7,6 @@ import filesReducer from "./File";
 const store = configureStore({
     reducer: {
         connect: userReducer, 
-        url: urlReducer,   
         projects: ProgectsReducer ,
         messages:messageReducer  ,
         premmision:premmisionReucer,

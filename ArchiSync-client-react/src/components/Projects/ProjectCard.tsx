@@ -1,5 +1,5 @@
 import "./Projects.css"
-import "../S/additional-styles.css"
+import "../Additional/additional-styles.css"
 import "./ProjectCard.css"
 import { 
   Building, 

@@ -17,7 +17,7 @@ const Workspace: React.FC<WorkspaceProps> = ({ projectId, projectName }) => {
  
   const [isGenerating, _setIsGenerating] = useState(false);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
-  const [connection, setConnection] = useState<signalR.HubConnection | null>(null);
+  const [_connection, setConnection] = useState<signalR.HubConnection | null>(null);
   const [connectionId, setConnectionId] = useState<string>("");
   const [uploadedImage, setUploadedImage] = useState<string | null>(null);
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
@@ -28,7 +28,6 @@ const Workspace: React.FC<WorkspaceProps> = ({ projectId, projectName }) => {
   const uniqueNameRef = useRef<string | null>(null);
   const user = useSelector((state: RootState) => state.connect.user);
   const dispatch: AppDispatch = useDispatch();
-  // SignalR חיבור ל-
   useEffect(() => {
     const newConnection = new signalR.HubConnectionBuilder()
       .withUrl(`${import.meta.env.VITE_BASE_URL}/sketchhub`)

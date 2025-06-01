@@ -275,8 +275,11 @@
 }
 
 .projects-container.grid-view {
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 20px; 
 }
+
 
 .projects-container.list-view {
   grid-template-columns: 1fr;
