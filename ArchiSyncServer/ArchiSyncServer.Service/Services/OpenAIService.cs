@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Text.Json;
 using System.Net.Http.Headers;
 using Amazon.Runtime.Internal.Util;
+using Microsoft.Extensions.Logging;
 
 namespace ArchiSyncServer.Service.Services
 {
@@ -17,12 +18,15 @@ namespace ArchiSyncServer.Service.Services
     {
         private readonly HttpClient _httpClient;
         private readonly string _apiKey;
+        private readonly ILogger<OpenAIService> _logger;
 
-        public OpenAIService(IConfiguration configuration)
+
+        public OpenAIService(IConfiguration configuration, ILogger<OpenAIService> logger)
         {
             _httpClient = new HttpClient();
             _apiKey = configuration["OPEN_AI_KEY"];
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _apiKey);
+            _logger = logger;
         }
 
         public async Task<string> GetAIResponseAsync(string message)
@@ -40,6 +44,7 @@ namespace ArchiSyncServer.Service.Services
 
             var response = await _httpClient.PostAsync("https://api.openai.com/v1/chat/completions", content);
             Console.WriteLine(response.StatusCode + "ai:  " + _apiKey);
+            _logger.LogInformation("API KEY: {key}", _apiKey);
 
             if (!response.IsSuccessStatusCode)
                 throw new HttpRequestException("Error contacting OpenAI");
