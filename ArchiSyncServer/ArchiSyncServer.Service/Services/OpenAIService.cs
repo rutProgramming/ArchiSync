@@ -21,6 +21,7 @@ namespace ArchiSyncServer.Service.Services
         {
             _httpClient = new HttpClient();
             _apiKey = configuration["OPEN_AI_KEY"];
+            Console.WriteLine(_apiKey);
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _apiKey);
         }
 
