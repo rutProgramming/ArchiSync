@@ -8,10 +8,10 @@ import {
   toggleArchitectMessageReadStatus,
   toggleUserMessageReadStatus 
 } from "../../store/Message"
-import { addProjectPremmision } from "../../store/Premission"
 import { PartialMessage, PartialProjectPermission } from "../../types/types"
 import "../../App.css"
 import MessageItem from "./MessageItem"
+import { addProjectPermission } from "../../store/Premission"
 
 
 
@@ -48,7 +48,7 @@ const Messages = () => {
           userId: message.userId,
           projectId: message.projectId,
       };
-      dispatch(addProjectPremmision(projectPremmision));
+      dispatch(addProjectPermission(projectPremmision));
       dispatch(UpdateMessageStatus(updated))
       dispatch(toggleArchitectMessageReadStatus(id))
     } else {
@@ -63,7 +63,7 @@ const Messages = () => {
       projectId: message.projectId,
     }
     
-    dispatch(addProjectPremmision(projectPermission))
+    dispatch(addProjectPermission(projectPermission))
     
     const updatedMessage: PartialMessage = { 
       ...message, 

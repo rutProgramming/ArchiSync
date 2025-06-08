@@ -4,9 +4,9 @@ import { File } from "../../types/types";
 import { AppDispatch } from "../../store/reduxStore";
 import { useDispatch } from "react-redux";
 import { deleteFile } from "../../store/File";
-import { GetHeaders } from "../../store/Project";
 import axios from "axios";
 import "./FileCard.css"
+import api from "../../api/axiosInstance";
 
 export interface FileCardProps {
   file: File;
@@ -44,8 +44,7 @@ const FileCard = ({ file, hasAccess }: FileCardProps) => {
 
     try {
       const urlbase = import.meta.env.VITE_BASE_URL;
-      const response = await axios.get(`${urlbase}/api/S3/download?fileUrl=${encodeURIComponent(url)}`, {
-        headers: GetHeaders(),
+      const response = await api.get(`/api/S3/download?fileUrl=${encodeURIComponent(url)}`, {
         responseType: "blob"
       });
 

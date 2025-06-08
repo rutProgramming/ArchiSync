@@ -1,19 +1,22 @@
-"use client"
-
-import type React from "react"
-
-import { useState, useRef, useEffect } from "react"
-import { Send, Lightbulb } from "lucide-react"
-import Button from "../Additional/Button"
+import React, { useState, useRef, useEffect } from "react";
+import { Send, Lightbulb } from "lucide-react";
+import Button from "../Additional/Button";
+import axios from "axios";
+const url = import.meta.env.VITE_BASE_URL;
 
 interface Message {
-  id: string
-  content: string
-  sender: "user" | "ai"
-  timestamp: Date
+  id: string;
+  content: string;
+  sender: "user" | "ai";
+  timestamp: Date;
 }
 
-const AIChat = () => {
+interface AIChatProps {
+  prompt: string;
+  setPrompt: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const AIChat: React.FC<AIChatProps> = ({ prompt, setPrompt }) => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "1",
@@ -21,48 +24,57 @@ const AIChat = () => {
       sender: "ai",
       timestamp: new Date(),
     },
-  ])
-  const [input, setInput] = useState("")
-  const messagesEndRef = useRef<HTMLDivElement>(null)
+  ]);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
-  }
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   useEffect(() => {
-    scrollToBottom()
-  }, [messages])
+    scrollToBottom();
+  }, [messages]);
 
-  const handleSendMessage = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!input.trim()) return
+  const handleSendMessage = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!prompt.trim()) return;
 
-    // Add user message
     const userMessage: Message = {
       id: Date.now().toString(),
-      content: input,
+      content: prompt,
       sender: "user",
       timestamp: new Date(),
-    }
+    };
 
-    setMessages((prev) => [...prev, userMessage])
-    setInput("")
+    setMessages((prev) => [...prev, userMessage]);
+    setPrompt("");
 
-    // Simulate AI response (in a real app, this would be an API call)
-    setTimeout(() => {
+    try {
+      const response = await axios.post(`${url}/api/OpenAI/ask`, {
+        message: prompt,
+      });
+
       const aiMessage: Message = {
         id: (Date.now() + 1).toString(),
-        content:
-          "I'm your architecture assistant. I can help with project planning, design ideas, and technical questions. What specific aspect of your project would you like help with?",
+        content: response.data.response,
         sender: "ai",
         timestamp: new Date(),
-      }
-      setMessages((prev) => [...prev, aiMessage])
-    }, 1000)
-  }
+      };
+
+      setMessages((prev) => [...prev, aiMessage]);
+    } catch (err) {
+      const errorMessage: Message = {
+        id: (Date.now() + 2).toString(),
+        content: "Sorry, there was a problem contacting the AI.",
+        sender: "ai",
+        timestamp: new Date(),
+      };
+      setMessages((prev) => [...prev, errorMessage]);
+    }
+  };
 
   return (
-    <div className="ai-chat">
+    <div className="ai-chat" style={{ flex: 3 }}>
       <div className="chat-header">
         <div className="ai-avatar">
           <Lightbulb size={24} />
@@ -70,7 +82,7 @@ const AIChat = () => {
         <h2>AI Assistant</h2>
       </div>
 
-      <div className="chat-messages">
+      <div className="chat-messages" style={{ overflowY: "auto", maxHeight: "400px" }}>
         {messages.map((message) => (
           <div key={message.id} className={`message ${message.sender}`}>
             <div className="message-bubble">{message.content}</div>
@@ -85,17 +97,17 @@ const AIChat = () => {
       <form className="chat-input" onSubmit={handleSendMessage}>
         <input
           type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
+          value={prompt}
+          onChange={(e) => setPrompt(e.target.value)}
           placeholder="Type your message..."
           className="chat-input-field"
         />
-        <Button type="submit" variant="primary" className="send-button" disabled={!input.trim()}>
+        <Button type="submit" variant="primary" className="send-button" disabled={!prompt.trim()}>
           <Send size={18} />
         </Button>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default AIChat
+export default AIChat;

@@ -2,8 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store/reduxStore";
 import { useEffect, useState, useMemo } from "react";
 import { GetAllProjects } from "../../store/Project";
-import { useLocation } from "react-router";
-import { Search, Filter, Grid3X3, List, Eye } from "lucide-react";
+import { useLocation, useNavigate } from "react-router";
+import { Search, Filter, Grid3X3, List, Eye, Plus } from "lucide-react";
 import Button from "../Additional/Button";
 import "./Projects.css";
 import Projects from "./Projects";
@@ -27,6 +27,7 @@ const ProjectFeatures = () => {
     const location = useLocation();
     const segments = location.pathname.split('/');
     const lastSegment = segments[segments.length - 1];
+    const navigate = useNavigate();
 
     useEffect(() => {
         setIsLoading(true);
@@ -242,7 +243,17 @@ const ProjectFeatures = () => {
                     </div>
                 )}
 
-                {filteredAndSortedProjects.length === 0 ? (
+                {filteredAndSortedProjects.length === 0 ? (<>
+                 {lastSegment === "MyProjects" &&
+                        <div className="header-actions">
+                            <Button
+                                variant="primary"
+                                icon={<Plus size={16} />}
+                                onClick={() => navigate("/new")}
+                            >
+                                New Project
+                            </Button>
+                        </div>}
                     <div className="empty-state">
                         <div className="empty-icon">
                             <Eye size={48} />
@@ -254,17 +265,18 @@ const ProjectFeatures = () => {
                                 : "No projects available at the moment"}
                         </p>
                     </div>
-                ) : (<>
-                        {lastSegment === "MyProjects" &&
-                            <Projects
-                                projects={filteredAndSortedProjects}
-                                viewMode={viewMode} />
-                        }
-                        {lastSegment === "projects" &&
+                   
+                </>) : (<>
+                    {lastSegment === "MyProjects" &&
+                        <Projects
+                            projects={filteredAndSortedProjects}
+                            viewMode={viewMode} />
+                    }
+                    {lastSegment === "projects" &&
                         <AllProjects
                             projects={filteredAndSortedProjects}
                             viewMode={viewMode} />
-                        }
+                    }
 
                 </>)}
             </div>

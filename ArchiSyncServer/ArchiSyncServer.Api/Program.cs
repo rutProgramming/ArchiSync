@@ -55,8 +55,10 @@ builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<IS3Service, S3Service>();
 builder.Services.AddScoped<IProjectPermissionService, ProjectPermissionService>();
 builder.Services.AddScoped<IFileService, FileService>();
+builder.Services.AddScoped<IOpenAIService, OpenAIService>();
 
-/*------ai-------*/
+
+/*------replicate ai-------*/
 builder.Services.AddSingleton<ISketchJobQueueService, SketchJobQueueService>();
 builder.Services.AddHostedService<SketchWorkerService>();
 builder.Services.AddSignalR();

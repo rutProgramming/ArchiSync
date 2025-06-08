@@ -31,6 +31,7 @@ const ProjectDetail = () => {
     if(project?.ownerId===user.userId||project?.architects.some(arch => arch.userId === user.userId)){
       setHasAccess(true);
     }
+    console.log("Project Detail:", project, "Files:", files, "User:", user, "Has Access:", hasAccess) 
   }, [dispatch, id, user])
 
   // const handleAddComment = (content: string, parentId?: string) => {
