@@ -42,10 +42,10 @@ namespace ArchiSyncServer.Service.Services
             };
 
             var content = new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json");
-
+            _logger.LogError("OpenAIService initialized with API Key:", _apiKey);
+            _logger.LogCritical("Configuration OPEN_AI_KEY:", _configuration["OPEN_AI_KEY"]);
             var response = await _httpClient.PostAsync("https://api.openai.com/v1/chat/completions", content);
-            _logger.LogInformation("OpenAIService initialized with API Key: {ApiKey}", _apiKey);
-            _logger.LogInformation("Configuration OPEN_AI_KEY: {OpenAIKey}", _configuration["OPEN_AI_KEY"]);
+           
             if (!response.IsSuccessStatusCode)
                 throw new HttpRequestException("Error contacting OpenAI");
             
