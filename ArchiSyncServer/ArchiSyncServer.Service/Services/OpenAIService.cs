@@ -21,7 +21,6 @@ namespace ArchiSyncServer.Service.Services
         {
             _httpClient = new HttpClient();
             _apiKey = configuration["OPEN_AI_KEY"];
-            Console.WriteLine(_apiKey);
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _apiKey);
         }
 
@@ -42,7 +41,7 @@ namespace ArchiSyncServer.Service.Services
 
             if (!response.IsSuccessStatusCode)
             {
-                Console.WriteLine(response.StatusCode);
+                Console.WriteLine(response.StatusCode+"ai:  "+_apiKey);
                 throw new HttpRequestException("Error contacting OpenAI");
             }
 
