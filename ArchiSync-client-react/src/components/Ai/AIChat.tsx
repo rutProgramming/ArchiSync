@@ -53,7 +53,6 @@ const AIChat: React.FC<AIChatProps> = ({ prompt, setPrompt }) => {
       const response = await axios.post(`${url}/api/OpenAI/ask`, {
         message: prompt,
       });
-      console.log("AI Response:", response);
       const aiMessage: Message = {
         id: (Date.now() + 1).toString(),
         content: response.data.response,
