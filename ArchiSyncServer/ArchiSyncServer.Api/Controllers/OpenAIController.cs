@@ -22,10 +22,17 @@ namespace ArchiSyncServer.Api.Controllers
         {
             if (string.IsNullOrWhiteSpace(request.Message))
                 return BadRequest("Message is required.");
+            try
+            {
+                var response = await _openAIService.GetAIResponseAsync(request.Message);
 
-            var response = await _openAIService.GetAIResponseAsync(request.Message);
-
-            return Ok(new { Response = response });
+                return Ok(new { Response = response });
+            }
+            catch (HttpRequestException ex)
+            {
+                return StatusCode(StatusCodes.Status503ServiceUnavailable, $"{ex.Message}");
+            }
+            
         }
     }
 }

@@ -40,7 +40,10 @@ namespace ArchiSyncServer.Service.Services
             var response = await _httpClient.PostAsync("https://api.openai.com/v1/chat/completions", content);
 
             if (!response.IsSuccessStatusCode)
-                return "Error contacting OpenAI";
+            {
+                Console.WriteLine(response.StatusCode);
+                throw new HttpRequestException("Error contacting OpenAI");
+            }
 
             var responseString = await response.Content.ReadAsStringAsync();
             using var doc = JsonDocument.Parse(responseString);
