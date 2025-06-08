@@ -4,7 +4,6 @@ import { File } from "../../types/types";
 import { AppDispatch } from "../../store/reduxStore";
 import { useDispatch } from "react-redux";
 import { deleteFile } from "../../store/File";
-import axios from "axios";
 import "./FileCard.css"
 import api from "../../api/axiosInstance";
 
@@ -43,7 +42,6 @@ const FileCard = ({ file, hasAccess }: FileCardProps) => {
     }
 
     try {
-      const urlbase = import.meta.env.VITE_BASE_URL;
       const response = await api.get(`/api/S3/download?fileUrl=${encodeURIComponent(url)}`, {
         responseType: "blob"
       });
