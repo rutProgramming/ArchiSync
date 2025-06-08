@@ -19,16 +19,15 @@ namespace ArchiSyncServer.Service.Services
         private readonly HttpClient _httpClient;
         private readonly string _apiKey;
         private readonly ILogger<OpenAIService> _logger;
-
+        private readonly IConfiguration _configuration;
 
         public OpenAIService(IConfiguration configuration, ILogger<OpenAIService> logger)
         {
             _httpClient = new HttpClient();
             _apiKey = configuration["OPEN_AI_KEY"];
-            _logger.LogInformation("OpenAIService initialized with API Key: {ApiKey}", _apiKey);
-            _logger.LogInformation("Configuration OPEN_AI_KEY: {OpenAIKey}", configuration["OPEN_AI_KEY"]);
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _apiKey);
             _logger = logger;
+            _configuration = configuration;
         }
 
         public async Task<string> GetAIResponseAsync(string message)
@@ -45,8 +44,8 @@ namespace ArchiSyncServer.Service.Services
             var content = new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json");
 
             var response = await _httpClient.PostAsync("https://api.openai.com/v1/chat/completions", content);
-            Console.WriteLine(response.StatusCode + "ai:  " + _apiKey);
-
+            _logger.LogInformation("OpenAIService initialized with API Key: {ApiKey}", _apiKey);
+            _logger.LogInformation("Configuration OPEN_AI_KEY: {OpenAIKey}", _configuration["OPEN_AI_KEY"]);
             if (!response.IsSuccessStatusCode)
                 throw new HttpRequestException("Error contacting OpenAI");
             
