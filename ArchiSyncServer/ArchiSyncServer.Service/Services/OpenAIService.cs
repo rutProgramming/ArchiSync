@@ -17,14 +17,12 @@ namespace ArchiSyncServer.Service.Services
     {
         private readonly HttpClient _httpClient;
         private readonly string _apiKey;
-        private readonly Logger _logger;
 
-        public OpenAIService(IConfiguration configuration,Logger logger)
+        public OpenAIService(IConfiguration configuration)
         {
             _httpClient = new HttpClient();
             _apiKey = configuration["OPEN_AI_KEY"];
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _apiKey);
-            _logger = logger;
         }
 
         public async Task<string> GetAIResponseAsync(string message)
@@ -41,14 +39,11 @@ namespace ArchiSyncServer.Service.Services
             var content = new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json");
 
             var response = await _httpClient.PostAsync("https://api.openai.com/v1/chat/completions", content);
+            Console.WriteLine(response.StatusCode + "ai:  " + _apiKey);
 
             if (!response.IsSuccessStatusCode)
-            {
-                _logger.InfoFormat("Error contacting OpenAI: " + response.StatusCode + " - " + response.ReasonPhrase);
-                _logger.InfoFormat("API Key: " + _apiKey);
-                Console.WriteLine(response.StatusCode+"ai:  "+_apiKey);
                 throw new HttpRequestException("Error contacting OpenAI");
-            }
+            
 
             var responseString = await response.Content.ReadAsStringAsync();
             using var doc = JsonDocument.Parse(responseString);
