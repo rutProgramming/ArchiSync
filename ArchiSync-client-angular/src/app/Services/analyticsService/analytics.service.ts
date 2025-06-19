@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class StatisticsService {
-  private baseUrl = 'https://localhost:7218/api/Statistics';
+  private baseUrl = 'https://archisync-production.up.railway.app/api/Statistics';
 
   constructor(private http: HttpClient) {}
 

@@ -9,7 +9,7 @@ import { User } from '../../Models/User';
 export class AuthService {
 
   constructor(private http: HttpClient) { }
-  private apiUrl = 'https://localhost:7218/api/Auth/';
+  private apiUrl = 'https://archisync-production.up.railway.app/api/Auth/';
 
   
   getToken(): string | null {
