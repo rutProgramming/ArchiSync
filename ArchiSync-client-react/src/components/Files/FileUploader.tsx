@@ -346,7 +346,7 @@ const FileUploader = ({ projectId, projectName, fileName }: FileUploaderProps) =
         autoHideDuration={4000}
         onClose={() => {
           setSnackbar(false);
-          navigate(-2);
+          navigate(-1);
         }}
         anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
       >
