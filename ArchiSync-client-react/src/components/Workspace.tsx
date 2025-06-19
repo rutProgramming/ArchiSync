@@ -161,7 +161,7 @@ const Workspace: React.FC<WorkspaceProps> = ({ projectId, projectName }) => {
       <div className="workspace-header">
         <div className="header-content">
           <div className="header-icon">
-            <Wand2 className="icon" />
+            <Wand2 className="icon"/>
           </div>
           <div>
             <h1 className="workspace-title">AI Design Studio</h1>
@@ -171,7 +171,7 @@ const Workspace: React.FC<WorkspaceProps> = ({ projectId, projectName }) => {
       </div>
 
       <div className="workspace-content">
-\        <div className="upload-section">
+        <div className="upload-section">
           <div className="upload-card">
             <div className="upload-header">
               <FileImage className="section-icon" />
