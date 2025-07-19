@@ -12,6 +12,14 @@ namespace ArchiSyncServer.Api
 
         public async Task HandleAsync(RequestDelegate next, HttpContext context, AuthorizationPolicy policy, PolicyAuthorizationResult authorizeResult)
         {
+            if (context.Request.Headers.TryGetValue("Authorization", out var authHeader))
+            {
+                Console.WriteLine($"🔐 Authorization Header: {authHeader}");
+            }
+            else
+            {
+                Console.WriteLine("⚠️ No Authorization header found.");
+            }
             if (!authorizeResult.Succeeded)
             {
                 Console.WriteLine($"❌ Authorization failed: User={context.User.Identity?.Name ?? "Anonymous"} | Policy={string.Join(",", policy.Requirements.Select(r => r.GetType().Name))}");
