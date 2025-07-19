@@ -40,6 +40,8 @@ namespace ArchiSyncServer.Service.Services
             while (!stoppingToken.IsCancellationRequested)
             {
                 var job = await _jobQueue.DequeueAsync(stoppingToken);
+                Console.WriteLine("execute sketch");
+                _logger.LogInformation($"sketch");
 
                 try
                 {
@@ -77,12 +79,14 @@ namespace ArchiSyncServer.Service.Services
                         {
                             string outputUrl = statusData.output;
                             _logger.LogInformation($"Prediction succeeded. URL: {outputUrl}");
+                            Console.WriteLine("succ");
                             await _notifier.NotifySketchCompletedAsync(job.ConnectionId, outputUrl);
                             break;
                         }
                         else if (statusData.status == "failed")
                         {
                             _logger.LogError("Prediction failed.");
+                            Console.WriteLine("fail");
                             break;
                         }
 
@@ -92,6 +96,7 @@ namespace ArchiSyncServer.Service.Services
                 catch (Exception ex)
                 {
                     _logger.LogError($"❗ Error handling sketch job: {ex.Message}");
+                    Console.WriteLine($"❗ Error handling sketch job: {ex.Message}");
                 }
             }
         }

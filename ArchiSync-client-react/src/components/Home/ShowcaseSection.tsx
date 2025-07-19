@@ -5,6 +5,8 @@ import Button from "../Additional/Button"
 import "./home-styles.css"
 import "../../App.css"
 
+
+
 const ShowcaseSection = () => {
     return (<>
       <section className="showcase-section">
@@ -49,3 +51,4 @@ const ShowcaseSection = () => {
     </>)
 }
 export default ShowcaseSection
+
