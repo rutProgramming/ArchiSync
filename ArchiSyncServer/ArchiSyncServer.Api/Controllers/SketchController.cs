@@ -23,6 +23,7 @@ namespace ArchiSyncServer.Api.Controllers
         {
             try
             {
+                Console.WriteLine("in ai convert");
                 if (string.IsNullOrEmpty(request.ImageUrl) || string.IsNullOrEmpty(request.ConnectionId))
                     return BadRequest("ImageUrl and ConnectionId are required");
 

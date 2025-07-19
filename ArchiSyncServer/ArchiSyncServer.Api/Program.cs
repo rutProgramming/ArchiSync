@@ -18,6 +18,7 @@ using Amazon.S3;
 using ArchiSyncServer.Api.Notifiers;
 using ArchiSyncServer.Api.Hubs;
 using static System.Net.WebRequestMethods;
+using Microsoft.AspNetCore.Authorization;
 
 
 
@@ -56,6 +57,8 @@ builder.Services.AddScoped<IS3Service, S3Service>();
 builder.Services.AddScoped<IProjectPermissionService, ProjectPermissionService>();
 builder.Services.AddScoped<IFileService, FileService>();
 builder.Services.AddScoped<IOpenAIService, OpenAIService>();
+builder.Services.AddSingleton<IAuthorizationMiddlewareResultHandler, LoggingAuthorizationMiddlewareResultHandler>();
+
 
 
 /*------replicate ai-------*/

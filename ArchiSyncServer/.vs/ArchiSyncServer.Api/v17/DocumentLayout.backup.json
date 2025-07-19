@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{0DCC35E5-0696-4E29-A57C-CF0782B01842}|ArchiSyncServer.Api\\ArchiSyncServer.Api.csproj|c:\\users\\97250\\desktop\\rut\\archisync\\archisyncserver\\archisyncserver.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0DCC35E5-0696-4E29-A57C-CF0782B01842}|ArchiSyncServer.Api\\ArchiSyncServer.Api.csproj|solutionrelative:archisyncserver.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{9F10C67A-6299-4E9E-B43E-70209BECADD1}|ArchiSyncServer.Service\\ArchiSyncServer.Service.csproj|c:\\users\\97250\\desktop\\rut\\archisync\\archisyncserver\\archisyncserver.service\\services\\sketchworkerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9F10C67A-6299-4E9E-B43E-70209BECADD1}|ArchiSyncServer.Service\\ArchiSyncServer.Service.csproj|solutionrelative:archisyncserver.service\\services\\sketchworkerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9F10C67A-6299-4E9E-B43E-70209BECADD1}|ArchiSyncServer.Service\\ArchiSyncServer.Service.csproj|c:\\users\\97250\\desktop\\rut\\archisync\\archisyncserver\\archisyncserver.service\\services\\sketchjobqueueservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9F10C67A-6299-4E9E-B43E-70209BECADD1}|ArchiSyncServer.Service\\ArchiSyncServer.Service.csproj|solutionrelative:archisyncserver.service\\services\\sketchjobqueueservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0DCC35E5-0696-4E29-A57C-CF0782B01842}|ArchiSyncServer.Api\\ArchiSyncServer.Api.csproj|c:\\users\\97250\\desktop\\rut\\archisync\\archisyncserver\\archisyncserver.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0DCC35E5-0696-4E29-A57C-CF0782B01842}|ArchiSyncServer.Api\\ArchiSyncServer.Api.csproj|solutionrelative:archisyncserver.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9F10C67A-6299-4E9E-B43E-70209BECADD1}|ArchiSyncServer.Service\\ArchiSyncServer.Service.csproj|c:\\users\\97250\\desktop\\rut\\archisync\\archisyncserver\\archisyncserver.service\\services\\openaiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -273,7 +273,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
@@ -313,20 +313,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Api\\Program.cs",
               "RelativeDocumentMoniker": "ArchiSyncServer.Api\\Program.cs",
               "ToolTip": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Api\\Program.cs",
               "RelativeToolTip": "ArchiSyncServer.Api\\Program.cs",
-              "ViewState": "AgIAAFgAAAAAAAAAAAArwF0AAAAEAAAAAAAAAA==",
+              "ViewState": "AgIAAKMAAAAAAAAAAAArwLIAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-22T13:59:23.134Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "SketchJobQueueService.cs",
               "DocumentMoniker": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Service\\Services\\SketchJobQueueService.cs",
               "RelativeDocumentMoniker": "ArchiSyncServer.Service\\Services\\SketchJobQueueService.cs",
@@ -334,12 +334,11 @@
               "RelativeToolTip": "ArchiSyncServer.Service\\Services\\SketchJobQueueService.cs",
               "ViewState": "AgIAABcAAAAAAAAAAAAuwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-26T12:16:01.178Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-26T12:16:01.178Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "SketchWorkerService.cs",
               "DocumentMoniker": "C:\\Users\\97250\\Desktop\\rut\\ArchiSync\\ArchiSyncServer\\ArchiSyncServer.Service\\Services\\SketchWorkerService.cs",
               "RelativeDocumentMoniker": "ArchiSyncServer.Service\\Services\\SketchWorkerService.cs",
